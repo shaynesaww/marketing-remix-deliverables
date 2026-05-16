@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Marketing Remix — Deliverables</title>
+<meta name="robots" content="noindex,nofollow" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0e17;
+    --text: #e8eaf0;
+    --text-muted: #6b7394;
+    --accent: #f97316;
+    --accent-glow: rgba(249, 115, 22, 0.3);
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+    overflow: hidden;
+    position: relative;
+  }
+  body::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(249, 115, 22, 0.12) 0%, transparent 60%);
+    pointer-events: none;
+  }
+  .center {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    max-width: 560px;
+  }
+  .marker {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background: var(--accent);
+    border-radius: 50%;
+    box-shadow: 0 0 16px var(--accent-glow);
+    margin-bottom: 32px;
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(32px, 5vw, 52px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin-bottom: 24px;
+  }
+  h1 em {
+    font-style: normal;
+    color: var(--accent);
+    text-shadow: 0 0 40px var(--accent-glow);
+  }
+  p {
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .meta {
+    margin-top: 56px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+  <div class="center">
+    <span class="marker"></span>
+    <h1>Marketing Remix <em>Deliverables</em></h1>
+    <p>You've reached the root of a private client-deliverables hub. Individual reports live at their own URLs and are shared directly with clients.</p>
+    <p>If you've been sent a link, please use that link directly. If you're a client and need access to your deliverables, contact us at <span style="color: var(--accent);">shayne@shaynechamplin.com</span>.</p>
+    <div class="meta">Marketing Remix &nbsp;·&nbsp; SEO &nbsp;·&nbsp; Strategy &nbsp;·&nbsp; Local Marketing</div>
+  </div>
+</body>
+</html>

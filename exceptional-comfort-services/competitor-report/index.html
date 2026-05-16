@@ -1,0 +1,2236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Exceptional Comfort Services — Competitive Landscape & Ranking Strategy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,600&family=Work+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --bg: #0b0e17;
+    --bg-elev: #0f1320;
+    --bg-card: #141824;
+    --bg-card-hover: #1a2030;
+    --text: #e8eaf0;
+    --text-soft: #b8bccb;
+    --text-muted: #6b7394;
+    --text-faint: #4a5170;
+
+    --accent: #f97316;
+    --accent-bright: #fb923c;
+    --accent-deep: #c2410c;
+    --accent-glow: rgba(249, 115, 22, 0.15);
+    --accent-glow-strong: rgba(249, 115, 22, 0.3);
+    --accent-glow-faint: rgba(249, 115, 22, 0.06);
+
+    --accent-blue: #3b82f6;
+    --accent-blue-glow: rgba(59, 130, 246, 0.15);
+
+    --danger: #ef4444;
+    --danger-glow: rgba(239, 68, 68, 0.15);
+    --danger-glow-strong: rgba(239, 68, 68, 0.3);
+
+    --success: #22c55e;
+    --success-glow: rgba(34, 197, 94, 0.15);
+    --success-glow-strong: rgba(34, 197, 94, 0.3);
+
+    --border-faint: rgba(232, 234, 240, 0.08);
+    --border: rgba(232, 234, 240, 0.14);
+    --border-strong: rgba(232, 234, 240, 0.22);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Work Sans', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    font-feature-settings: 'ss01';
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Ambient atmospheric glow */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 20%;
+    left: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, var(--accent-glow-faint) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  body::after {
+    content: "";
+    position: fixed;
+    bottom: 10%;
+    right: -200px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--accent-glow-faint) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 56px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ TYPOGRAPHY HELPERS ============ */
+  .display { font-family: 'Montserrat', sans-serif; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+
+  .eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .eyebrow.muted { color: var(--text-muted); }
+  .eyebrow.danger { color: var(--danger); }
+  .eyebrow.success { color: var(--success); }
+  .eyebrow.blue { color: var(--accent-blue); }
+
+  .eyebrow .marker {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: currentColor;
+    border-radius: 50%;
+    box-shadow: 0 0 12px currentColor;
+  }
+
+  /* ============ TOP STRIP / STATUS BAR ============ */
+  .top-strip {
+    background: var(--bg-elev);
+    border-bottom: 1px solid var(--border);
+    padding: 16px 0;
+    position: relative;
+    z-index: 10;
+  }
+
+  .top-strip .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .top-strip .status-block {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .top-strip .status-block .live {
+    color: var(--success);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .top-strip .status-block .live::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 10px var(--success);
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.4; }
+  }
+
+  .top-strip .right {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .top-strip .right .accent {
+    color: var(--accent);
+    font-weight: 600;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 96px 0 112px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    right: 0;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .hero-meta {
+    margin-bottom: 40px;
+  }
+
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: clamp(40px, 6.4vw, 88px);
+    line-height: 1.02;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    max-width: 1100px;
+  }
+
+  .hero h1 em {
+    font-style: normal;
+    color: var(--accent);
+    font-weight: 800;
+    text-shadow: 0 0 60px var(--accent-glow-strong);
+  }
+
+  .hero-sub {
+    margin-top: 40px;
+    font-size: 21px;
+    line-height: 1.55;
+    color: var(--text-soft);
+    max-width: 760px;
+    font-weight: 400;
+  }
+
+  .hero-divider {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-top: 72px;
+  }
+
+  .hero-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+  }
+
+  .hero-divider .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+
+  /* ============ SECTION GENERAL ============ */
+  section {
+    padding: 112px 0;
+    position: relative;
+  }
+
+  section.tight { padding: 88px 0; }
+
+  .section-head {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 40px;
+    margin-bottom: 64px;
+    align-items: start;
+  }
+
+  .section-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    color: var(--accent);
+    line-height: 1;
+    padding-top: 4px;
+    letter-spacing: -0.02em;
+    text-shadow: 0 0 40px var(--accent-glow-strong);
+  }
+
+  .section-head h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(32px, 4vw, 52px);
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    color: var(--text);
+  }
+
+  .section-head h2 em {
+    font-style: normal;
+    color: var(--accent);
+  }
+
+  .section-head .lede {
+    margin-top: 24px;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    max-width: 760px;
+    font-weight: 400;
+  }
+
+  /* ============ BASELINE / STARTING LINE ============ */
+  .baseline {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border-faint);
+    border-bottom: 1px solid var(--border-faint);
+    position: relative;
+  }
+
+  .baseline::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 800px;
+    height: 400px;
+    background: radial-gradient(circle, var(--danger-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .baseline-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+  }
+
+  .baseline-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .stat-row {
+    background: var(--bg-card);
+    border: 1px solid rgba(239, 68, 68, 0.18);
+    border-left: 3px solid var(--danger);
+    padding: 28px 32px;
+    box-shadow: 0 0 24px var(--danger-glow);
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 32px;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  .stat-row:hover {
+    background: var(--bg-card-hover);
+    box-shadow: 0 0 32px var(--danger-glow-strong);
+  }
+
+  .stat-value {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 92px;
+    line-height: 0.9;
+    color: var(--text);
+    letter-spacing: -0.04em;
+    min-width: 160px;
+    text-shadow: 0 0 40px var(--danger-glow-strong);
+  }
+
+  .stat-value.tiny { font-size: 64px; }
+
+  .stat-label {
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.55;
+    max-width: 380px;
+  }
+
+  .stat-label strong {
+    display: block;
+    color: var(--text);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .baseline-quote {
+    padding: 36px 40px;
+    background: var(--bg-card);
+    border: 1px solid rgba(34, 197, 94, 0.2);
+    border-left: 3px solid var(--success);
+    box-shadow: 0 0 32px var(--success-glow);
+  }
+
+  .baseline-quote .quote-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--success);
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .baseline-quote .quote-label::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: var(--success);
+    border-radius: 50%;
+    box-shadow: 0 0 12px var(--success);
+  }
+
+  .baseline-quote p {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.4;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  /* ============ SURPRISE BANNER ============ */
+  .surprise-banner {
+    padding: 112px 0;
+    margin: 0;
+    position: relative;
+    background:
+      linear-gradient(135deg, rgba(249, 115, 22, 0.05) 0%, transparent 60%),
+      var(--bg);
+    overflow: hidden;
+  }
+
+  .surprise-banner::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: -100px;
+    transform: translateY(-50%);
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(circle, var(--accent-glow-strong) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .surprise-banner .container { position: relative; z-index: 1; }
+
+  .surprise-banner h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 68px);
+    line-height: 1.06;
+    letter-spacing: -0.02em;
+    margin-top: 28px;
+    color: var(--text);
+    max-width: 1100px;
+  }
+
+  .surprise-banner h2 em {
+    font-style: normal;
+    color: var(--accent);
+    text-shadow: 0 0 50px var(--accent-glow-strong);
+  }
+
+  .surprise-banner .footer-line {
+    margin-top: 56px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-faint);
+    font-size: 16px;
+    color: var(--text-soft);
+    max-width: 880px;
+    line-height: 1.65;
+  }
+
+  /* ============ COMPETITOR CARDS ============ */
+  .competitors {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 64px;
+  }
+
+  .comp-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 32px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .comp-card:hover {
+    background: var(--bg-card-hover);
+    transform: translateY(-3px);
+  }
+
+  .comp-card.blue {
+    border-left: 3px solid var(--accent-blue);
+    box-shadow: 0 0 24px var(--accent-blue-glow);
+  }
+  .comp-card.blue:hover { box-shadow: 0 6px 32px var(--accent-blue-glow); }
+
+  .comp-card.danger {
+    border-left: 3px solid var(--danger);
+    box-shadow: 0 0 24px var(--danger-glow);
+  }
+  .comp-card.danger:hover { box-shadow: 0 6px 32px var(--danger-glow-strong); }
+
+  .comp-card.accent {
+    border-left: 3px solid var(--accent);
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+  .comp-card.accent:hover { box-shadow: 0 6px 32px var(--accent-glow-strong); }
+
+  .comp-card .badge {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .comp-card .badge .pattern-num {
+    font-weight: 600;
+    color: var(--text-soft);
+  }
+
+  .comp-card .badge .accent-text.blue { color: var(--accent-blue); }
+  .comp-card .badge .accent-text.danger { color: var(--danger); }
+  .comp-card .badge .accent-text.accent { color: var(--accent); }
+
+  .comp-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.15;
+    color: var(--text);
+    margin-bottom: 16px;
+    letter-spacing: -0.01em;
+  }
+
+  .comp-card .punchline {
+    font-family: 'Work Sans', sans-serif;
+    font-style: italic;
+    font-size: 17px;
+    line-height: 1.45;
+    color: var(--text-soft);
+    margin-bottom: 28px;
+    font-weight: 400;
+  }
+
+  .comp-card .data-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--border-faint);
+    font-size: 13.5px;
+  }
+
+  .comp-card .data-row:last-of-type { border-bottom: none; }
+
+  .comp-card .data-row .key {
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 11px;
+    font-weight: 500;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  .comp-card .data-row .val {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--text);
+    font-weight: 600;
+    font-size: 16px;
+  }
+
+  .comp-card .verdict {
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-faint);
+    font-size: 14px;
+    color: var(--text-soft);
+    line-height: 1.6;
+  }
+
+  .comp-card .verdict strong {
+    color: var(--text);
+    display: block;
+    margin-bottom: 6px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+
+  /* ============ TRAFFIC BAR CHART ============ */
+  .traffic-chart {
+    margin-top: 80px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 48px;
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+
+  .traffic-chart .chart-title {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--text);
+    margin-bottom: 10px;
+    letter-spacing: -0.01em;
+  }
+
+  .traffic-chart .chart-sub {
+    font-size: 15px;
+    color: var(--text-soft);
+    margin-bottom: 40px;
+    max-width: 720px;
+    line-height: 1.55;
+  }
+
+  .bar-row {
+    display: grid;
+    grid-template-columns: 280px 1fr 100px;
+    gap: 24px;
+    align-items: center;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .bar-row .bar-label {
+    font-size: 14.5px;
+    color: var(--text);
+    line-height: 1.3;
+    font-weight: 500;
+  }
+
+  .bar-row .bar-label .sub {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--text-faint);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+    font-weight: 400;
+  }
+
+  .bar-track {
+    height: 28px;
+    background: rgba(232, 234, 240, 0.04);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-deep) 0%, var(--accent) 50%, var(--accent-bright) 100%);
+    box-shadow: 0 0 16px var(--accent-glow-strong);
+    transition: width 1.2s cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+
+  .bar-fill.success {
+    background: linear-gradient(90deg, #16a34a 0%, var(--success) 100%);
+    box-shadow: 0 0 16px var(--success-glow-strong);
+  }
+
+  .bar-fill.muted {
+    background: linear-gradient(90deg, #4a5170 0%, #6b7394 100%);
+    box-shadow: none;
+  }
+
+  .bar-fill.ink {
+    background: linear-gradient(90deg, var(--accent-blue) 0%, #60a5fa 100%);
+    box-shadow: 0 0 16px var(--accent-blue-glow);
+  }
+
+  .bar-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    color: var(--text);
+    font-weight: 600;
+    text-align: right;
+  }
+
+  .bar-row.you {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 2px solid var(--accent);
+    border-bottom: none;
+  }
+
+  .bar-row.you .bar-label {
+    color: var(--text);
+    font-weight: 700;
+  }
+
+  .bar-row.you .bar-value {
+    color: var(--success);
+    text-shadow: 0 0 12px var(--success-glow-strong);
+  }
+
+  /* ============ TWO BATTLES ============ */
+  .two-battles {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border-faint);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .battle-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 16px;
+  }
+
+  .battle {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 48px;
+    position: relative;
+  }
+
+  .battle.accent {
+    border-top: 3px solid var(--accent);
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+
+  .battle.success {
+    border-top: 3px solid var(--success);
+    box-shadow: 0 0 32px var(--success-glow);
+  }
+
+  .battle .num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 56px;
+    line-height: 0.9;
+    letter-spacing: -0.03em;
+  }
+
+  .battle.accent .num { color: var(--accent); text-shadow: 0 0 30px var(--accent-glow-strong); }
+  .battle.success .num { color: var(--success); text-shadow: 0 0 30px var(--success-glow-strong); }
+
+  .battle h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 32px;
+    line-height: 1.08;
+    margin: 20px 0 12px;
+    color: var(--text);
+    letter-spacing: -0.015em;
+  }
+
+  .battle .battle-sub {
+    font-family: 'Work Sans', sans-serif;
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 16px;
+    margin-bottom: 32px;
+    font-weight: 400;
+  }
+
+  .battle ul {
+    list-style: none;
+    margin-top: 24px;
+  }
+
+  .battle ul li {
+    padding: 14px 0 14px 28px;
+    border-bottom: 1px solid var(--border-faint);
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--text-soft);
+    position: relative;
+  }
+
+  .battle ul li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-weight: 600;
+    font-size: 12px;
+  }
+
+  .battle.accent ul li::before { color: var(--accent); }
+  .battle.success ul li::before { color: var(--success); }
+
+  .battle .battle-stat {
+    margin-top: 32px;
+    padding: 24px;
+    background: var(--bg);
+    border: 1px solid var(--border-faint);
+  }
+
+  .battle.accent .battle-stat { border-left: 3px solid var(--accent); }
+  .battle.success .battle-stat { border-left: 3px solid var(--success); }
+
+  .battle .battle-stat .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  .battle.accent .battle-stat .label { color: var(--accent); }
+  .battle.success .battle-stat .label { color: var(--success); }
+
+  .battle .battle-stat .stat {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.4;
+    color: var(--text);
+  }
+
+  .battle .battle-stat .stat strong {
+    font-weight: 700;
+  }
+
+  .battle.accent .battle-stat .stat strong { color: var(--accent); }
+  .battle.success .battle-stat .stat strong { color: var(--success); }
+
+  /* ============ FACTORS / BRIGHTLOCAL ============ */
+  .factors-section {
+    background: var(--bg);
+    padding: 112px 0;
+    position: relative;
+  }
+
+  .factors-section::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 600px;
+    background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .factors-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    margin-top: 64px;
+    align-items: start;
+    position: relative;
+    z-index: 1;
+  }
+
+  .factor-bar-row {
+    display: grid;
+    grid-template-columns: 220px 1fr 60px;
+    gap: 24px;
+    align-items: center;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .factor-bar-row:first-of-type { border-top: 1px solid var(--border-strong); }
+
+  .factor-bar-row .factor-label {
+    font-size: 14.5px;
+    color: var(--text);
+    font-weight: 500;
+  }
+
+  .factor-track {
+    height: 10px;
+    background: rgba(232, 234, 240, 0.05);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+
+  .factor-fill {
+    height: 100%;
+    transition: width 1.4s cubic-bezier(0.2, 0.8, 0.4, 1);
+  }
+
+  .factor-fill.major {
+    background: linear-gradient(90deg, var(--accent-deep) 0%, var(--accent) 50%, var(--accent-bright) 100%);
+    box-shadow: 0 0 12px var(--accent-glow-strong);
+  }
+
+  .factor-fill.medium {
+    background: linear-gradient(90deg, #d97706 0%, #f59e0b 100%);
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+  }
+
+  .factor-fill.low {
+    background: linear-gradient(90deg, #4a5170 0%, #6b7394 100%);
+  }
+
+  .factor-value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent);
+    text-align: right;
+    text-shadow: 0 0 12px var(--accent-glow-strong);
+  }
+
+  .factors-context {
+    padding: 36px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+
+  .factors-context h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.2;
+    margin: 16px 0 20px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  .factors-context p {
+    font-size: 15px;
+    line-height: 1.65;
+    color: var(--text-soft);
+    margin-bottom: 20px;
+  }
+
+  .factors-context ol {
+    margin-top: 24px;
+    list-style: none;
+    counter-reset: factor-counter;
+  }
+
+  .factors-context ol li {
+    counter-increment: factor-counter;
+    padding: 14px 0 14px 44px;
+    position: relative;
+    font-size: 14.5px;
+    color: var(--text-soft);
+    border-bottom: 1px solid var(--border-faint);
+    line-height: 1.55;
+  }
+
+  .factors-context ol li:last-child { border-bottom: none; }
+
+  .factors-context ol li::before {
+    content: counter(factor-counter, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: 14px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--accent);
+    font-weight: 700;
+    text-shadow: 0 0 8px var(--accent-glow-strong);
+  }
+
+  .factors-context ol li strong {
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .citation {
+    margin-top: 64px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* ============ 11 PAGES ============ */
+  .plan {
+    padding: 128px 0 112px;
+  }
+
+  .pages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 64px;
+  }
+
+  .page-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+    position: relative;
+  }
+
+  .page-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow);
+    transform: translateY(-2px);
+  }
+
+  .page-card .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    color: var(--text-faint);
+    margin-bottom: 14px;
+    font-weight: 500;
+  }
+
+  .page-card .tag {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 5px 10px;
+    margin-bottom: 16px;
+    color: var(--text);
+    font-weight: 600;
+  }
+
+  .page-card .tag.service {
+    background: rgba(249, 115, 22, 0.12);
+    color: var(--accent);
+    border: 1px solid rgba(249, 115, 22, 0.3);
+  }
+
+  .page-card .tag.location {
+    background: rgba(34, 197, 94, 0.12);
+    color: var(--success);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+  }
+
+  .page-card .tag.niche {
+    background: rgba(59, 130, 246, 0.12);
+    color: var(--accent-blue);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+  }
+
+  .page-card .tag.support {
+    background: rgba(107, 115, 148, 0.12);
+    color: var(--text-soft);
+    border: 1px solid rgba(107, 115, 148, 0.3);
+  }
+
+  .page-card h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.25;
+    color: var(--text);
+    margin-bottom: 12px;
+    letter-spacing: -0.01em;
+  }
+
+  .page-card .desc {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--text-muted);
+  }
+
+  .page-card .target {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border-faint);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    color: var(--accent);
+    letter-spacing: 0.06em;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+
+  /* ============ TIMELINE ============ */
+  .timeline-section {
+    background: var(--bg-elev);
+    border-top: 1px solid var(--border-faint);
+    border-bottom: 1px solid var(--border-faint);
+  }
+
+  .timeline {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    margin-top: 64px;
+    position: relative;
+  }
+
+  .timeline::before {
+    content: "";
+    position: absolute;
+    top: 28px;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--danger) 0%, var(--accent) 50%, var(--success) 100%);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  .milestone {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+  }
+
+  .milestone .marker {
+    width: 56px;
+    height: 56px;
+    background: var(--bg-card);
+    border: 2px solid;
+    border-radius: 50%;
+    margin: 0 auto 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+  }
+
+  .milestone.start .marker {
+    border-color: var(--danger);
+    color: var(--danger);
+    box-shadow: 0 0 24px var(--danger-glow-strong);
+  }
+
+  .milestone.mid .marker {
+    border-color: var(--accent);
+    color: var(--accent);
+    box-shadow: 0 0 24px var(--accent-glow-strong);
+  }
+
+  .milestone.late .marker {
+    border-color: var(--success);
+    color: var(--success);
+    box-shadow: 0 0 24px var(--success-glow-strong);
+  }
+
+  .milestone h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: var(--text);
+    margin-bottom: 24px;
+    letter-spacing: -0.01em;
+  }
+
+  .milestone .milestone-rows {
+    text-align: left;
+    background: var(--bg-card);
+    padding: 28px;
+    border: 1px solid var(--border);
+  }
+
+  .milestone.start .milestone-rows { border-left: 3px solid var(--danger); }
+  .milestone.mid .milestone-rows { border-left: 3px solid var(--accent); box-shadow: 0 0 24px var(--accent-glow); }
+  .milestone.late .milestone-rows { border-left: 3px solid var(--success); box-shadow: 0 0 24px var(--success-glow); }
+
+  .milestone .milestone-rows .row {
+    padding: 12px 0;
+    border-bottom: 1px dashed var(--border-faint);
+    font-size: 13.5px;
+    line-height: 1.5;
+  }
+
+  .milestone .milestone-rows .row:last-child { border-bottom: none; }
+
+  .milestone .milestone-rows .row strong {
+    display: block;
+    color: var(--text);
+    margin-bottom: 4px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+  }
+
+  .milestone .milestone-rows .row .note {
+    color: var(--text-muted);
+  }
+
+  /* ============ STRATEGY ============ */
+  .strategy {
+    padding: 128px 0 112px;
+  }
+
+  .strategy-list {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 64px;
+  }
+
+  .strat-item {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 40px;
+    display: grid;
+    grid-template-columns: 100px 1fr 320px;
+    gap: 48px;
+    align-items: start;
+    transition: all 0.3s ease;
+  }
+
+  .strat-item:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent);
+    box-shadow: 0 0 32px var(--accent-glow);
+  }
+
+  .strat-item .strat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 800;
+    font-size: 64px;
+    line-height: 1;
+    color: var(--accent);
+    text-shadow: 0 0 32px var(--accent-glow-strong);
+    letter-spacing: -0.04em;
+  }
+
+  .strat-item .strat-body h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.18;
+    margin-bottom: 16px;
+    color: var(--text);
+    letter-spacing: -0.015em;
+  }
+
+  .strat-item .strat-body p {
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--text-soft);
+  }
+
+  .strat-item .strat-aside {
+    padding: 20px 24px;
+    background: var(--bg);
+    border: 1px solid var(--border-faint);
+    border-left: 3px solid var(--accent);
+  }
+
+  .strat-item .strat-aside .label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 12px;
+  }
+
+  .strat-item .strat-aside .aside-text {
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--text-soft);
+    font-style: italic;
+  }
+
+  /* ============ CLOSING ============ */
+  .closing {
+    padding: 128px 0;
+    position: relative;
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, rgba(249, 115, 22, 0.04) 0%, transparent 60%),
+      var(--bg);
+  }
+
+  .closing::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: -100px;
+    width: 800px;
+    height: 100%;
+    background: radial-gradient(circle at 50% 50%, var(--accent-glow-strong) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .closing .container { position: relative; z-index: 1; }
+
+  .closing h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: clamp(36px, 5vw, 64px);
+    line-height: 1.06;
+    margin-top: 28px;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    max-width: 1080px;
+  }
+
+  .closing h2 em {
+    font-style: normal;
+    color: var(--accent);
+    text-shadow: 0 0 40px var(--accent-glow-strong);
+  }
+
+  .closing-grid {
+    margin-top: 88px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+  }
+
+  .closing-col {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 36px 32px;
+    box-shadow: 0 0 24px var(--accent-glow);
+  }
+
+  .closing-col h5 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.22em;
+    color: var(--accent);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    font-weight: 600;
+  }
+
+  .closing-col p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+    line-height: 1.45;
+    color: var(--text);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    background: var(--bg-elev);
+    padding: 48px 0;
+    border-top: 1px solid var(--border-faint);
+  }
+
+  footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  footer .brand {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--text);
+    letter-spacing: -0.01em;
+  }
+
+  footer .brand .sub {
+    display: block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    margin-top: 6px;
+    font-weight: 400;
+  }
+
+  footer .meta {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    text-align: right;
+    line-height: 1.8;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 1024px) {
+    .container { padding: 0 32px; }
+    .baseline-grid,
+    .factors-grid { grid-template-columns: 1fr; gap: 48px; }
+    .competitors,
+    .pages-grid,
+    .timeline,
+    .closing-grid,
+    .battle-grid { grid-template-columns: 1fr; }
+    .strat-item { grid-template-columns: 60px 1fr; }
+    .strat-item .strat-aside { grid-column: 1 / -1; }
+    .bar-row { grid-template-columns: 1fr; gap: 8px; }
+    .bar-row .bar-value { text-align: left; }
+    .factor-bar-row { grid-template-columns: 1fr; gap: 10px; }
+  }
+
+  @media (max-width: 640px) {
+    section { padding: 72px 0; }
+    .surprise-banner { padding: 72px 0; }
+    .top-strip .container { flex-direction: column; align-items: flex-start; gap: 12px; }
+    .section-head { grid-template-columns: 1fr; gap: 20px; }
+    .timeline::before { display: none; }
+    .stat-row { grid-template-columns: 1fr; }
+    .stat-value { font-size: 64px; }
+    .battle { padding: 32px; }
+    .traffic-chart { padding: 28px; }
+  }
+
+  /* ============ PRINT / PDF ============ */
+  @media print {
+    @page {
+      size: 13in 18in;
+      margin: 0;
+    }
+
+    html, body {
+      background: var(--bg) !important;
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+
+    /* Force desktop multi-column grids — override responsive breakpoint that
+       Chrome's headless print engine triggers based on window size, not page size */
+    .baseline-grid { grid-template-columns: 1.1fr 1fr !important; gap: 80px !important; }
+    .competitors { grid-template-columns: repeat(3, 1fr) !important; gap: 24px !important; }
+    .battle-grid { grid-template-columns: 1fr 1fr !important; gap: 24px !important; }
+    .factors-grid { grid-template-columns: 1.1fr 1fr !important; gap: 48px !important; }
+    .pages-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 16px !important; }
+    .timeline { grid-template-columns: repeat(3, 1fr) !important; gap: 32px !important; }
+    .closing-grid { grid-template-columns: repeat(3, 1fr) !important; gap: 32px !important; }
+    .strat-item { grid-template-columns: 100px 1fr 320px !important; gap: 48px !important; }
+    .strat-item .strat-aside { grid-column: auto !important; }
+    .section-head { grid-template-columns: 100px 1fr !important; gap: 40px !important; }
+    .bar-row { grid-template-columns: 280px 1fr 100px !important; gap: 24px !important; }
+    .bar-row .bar-value { text-align: right !important; }
+    .factor-bar-row { grid-template-columns: 220px 1fr 60px !important; gap: 24px !important; }
+    .stat-row { grid-template-columns: auto 1fr !important; gap: 32px !important; }
+    .stat-value { font-size: 92px !important; }
+    .battle { padding: 48px !important; }
+    .battle:nth-child(2) { padding: 48px !important; border-left: 1px solid var(--border) !important; border-top: none !important; }
+    .traffic-chart { padding: 48px !important; }
+    .top-strip .container { flex-direction: row !important; align-items: center !important; gap: 16px !important; }
+
+    *, *::before, *::after {
+      print-color-adjust: exact !important;
+      -webkit-print-color-adjust: exact !important;
+      color-adjust: exact !important;
+      animation-duration: 0s !important;
+      animation-delay: 0s !important;
+      transition-duration: 0s !important;
+      transition-delay: 0s !important;
+    }
+
+    /* Override the scroll-fade JS that sets inline opacity/transform */
+    section,
+    .surprise-banner,
+    .baseline,
+    .factors-section,
+    .closing,
+    .timeline-section,
+    .two-battles,
+    .plan,
+    .strategy {
+      opacity: 1 !important;
+      transform: none !important;
+      page-break-inside: avoid;
+    }
+
+    /* Counter and bar animations: force final state */
+    .bar-fill, .factor-fill {
+      transition: none !important;
+    }
+
+    /* Containers — keep dark gradient backgrounds visible */
+    body::before, body::after,
+    .hero::before,
+    .baseline::before,
+    .surprise-banner::before,
+    .factors-section::before,
+    .closing::before {
+      display: none !important;
+    }
+
+    /* Force solid dark backgrounds on sections instead of glowing layers (cleaner PDF) */
+    body { background: var(--bg) !important; }
+
+    /* Avoid splitting cards across pages */
+    .comp-card,
+    .battle,
+    .stat-row,
+    .strat-item,
+    .milestone,
+    .closing-col,
+    .factors-context,
+    .page-card,
+    .baseline-quote,
+    .traffic-chart {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    /* Section padding compresses slightly for print */
+    section { padding: 64px 0; }
+    .hero { padding: 56px 0 72px; }
+    .surprise-banner { padding: 72px 0; }
+
+    /* Hide pulse animation indicator */
+    .top-strip .status-block .live::before {
+      animation: none !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ TOP STRIP / STATUS BAR ============ -->
+<div class="top-strip">
+  <div class="container">
+    <div class="status-block">
+      <span class="live">LIVE DATA</span>
+      <span>MARKETING REMIX / STRATEGY REPORT</span>
+    </div>
+    <div class="right">
+      PREPARED FOR <span class="accent">STEVEN TIBBALL · EXCEPTIONAL COMFORT SERVICES</span> &nbsp;·&nbsp; 05/15/26
+    </div>
+  </div>
+</div>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="container">
+    <div class="hero-meta">
+      <span class="eyebrow"><span class="marker"></span>Competitive Landscape Analysis · Greenville HVAC Market</span>
+    </div>
+
+    <h1>
+      The Greenville HVAC market <em>looks</em> crowded.<br>
+      In search, it's <em>wide open</em>.
+    </h1>
+
+    <p class="hero-sub">
+      We pulled live data on every major HVAC competitor across Greenville and the Upstate. What we found is the most important thing you'll read about your business this year: the brands that look intimidating in print and radio aren't actually showing up where customers are searching online — and the keywords that matter most for new calls are essentially uncontested.
+    </p>
+
+    <div class="hero-divider">
+      <span class="label">SECTION 01 →</span>
+      <span class="line"></span>
+      <span class="label">THE STARTING LINE</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ SECTION 01 — BASELINE ============ -->
+<section class="baseline">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <div>
+        <span class="eyebrow danger"><span class="marker"></span>The Starting Line</span>
+        <h2 style="margin-top: 14px;">Where Exceptional Comfort Services stands today.</h2>
+        <p class="lede">Before we look at the competition, here's the honest read on where your website ranks right now in Google search. This is the baseline. Everything we build is measured against it.</p>
+      </div>
+    </div>
+
+    <div class="baseline-grid">
+      <div class="baseline-stats">
+        <div class="stat-row">
+          <div class="stat-value">2</div>
+          <div class="stat-label">
+            <strong>Keywords currently ranked</strong>
+            Both are searches for businesses with similar names — not your customers. Neither is a Pickens or Greenville HVAC query.
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-value">~1</div>
+          <div class="stat-label">
+            <strong>Monthly visit from organic search</strong>
+            A healthy local HVAC site in this metro should be ranking for 500+ keywords and pulling hundreds of monthly visits.
+          </div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-value">1</div>
+          <div class="stat-label">
+            <strong>Page indexed by Google</strong>
+            Just the homepage. No service pages, no city pages. Google has nothing else to rank — meaning right now, you're invisible for every search that matters.
+          </div>
+        </div>
+      </div>
+
+      <div class="baseline-quote">
+        <div class="quote-label">The good news</div>
+        <p>You have nothing to lose. Every page we build, every keyword we target, every local signal we add — it's all incremental upside on top of a clean slate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SURPRISE BANNER ============ -->
+<div class="surprise-banner">
+  <div class="container">
+    <span class="eyebrow"><span class="marker"></span>The Discovery That Changes Everything</span>
+    <h2>
+      The biggest HVAC names in Greenville don't actually win in search the way they win in <em>reputation</em>.
+    </h2>
+    <p class="footer-line">
+      We analyzed every major competitor's organic search footprint, total ranked keywords, and traffic estimates using live DataForSEO data. What we found surprised us — and it's the single biggest reason to build this site right now, before someone else figures it out.
+    </p>
+  </div>
+</div>
+
+<!-- ============ SECTION 02 — COMPETITORS ============ -->
+<section>
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <div>
+        <span class="eyebrow"><span class="marker"></span>Competitor Reality Check</span>
+        <h2 style="margin-top: 14px;">What the data actually shows about Greenville HVAC competitors.</h2>
+        <p class="lede">There are three patterns we found in the live competitor data, and they completely reshape the strategic picture for what your website needs to do.</p>
+      </div>
+    </div>
+
+    <div class="competitors">
+      <div class="comp-card blue">
+        <div class="badge">PATTERN <span class="pattern-num">01</span> · <span class="accent-text blue">THE BIG BRAND</span></div>
+        <h3>Waldrop Plumbing Air Electric</h3>
+        <p class="punchline">Looks scary. Has 14,623 monthly visits. Owns zero Greenville HVAC keywords.</p>
+        <div class="data-row"><span class="key">Keywords ranked</span><span class="val">2,652</span></div>
+        <div class="data-row"><span class="key">Monthly visits</span><span class="val">14,623</span></div>
+        <div class="data-row"><span class="key">Google reviews</span><span class="val">7,500</span></div>
+        <div class="data-row"><span class="key">Years in business</span><span class="val">55+</span></div>
+        <div class="verdict">
+          <strong>The Reality</strong>
+          Their traffic is almost entirely from national blog posts about air-duct cleaning and mini-split installation cost. They're not defending Greenville service-page rankings at all.
+        </div>
+      </div>
+
+      <div class="comp-card accent">
+        <div class="badge">PATTERN <span class="pattern-num">02</span> · <span class="accent-text accent">THE GREENVILLE DEFENDER</span></div>
+        <h3>Long Heating &amp; Air</h3>
+        <p class="punchline">The one company that actually owns Greenville organic SEO. Only Greenville.</p>
+        <div class="data-row"><span class="key">Keywords ranked</span><span class="val">115</span></div>
+        <div class="data-row"><span class="key">Monthly visits</span><span class="val">5,890</span></div>
+        <div class="data-row"><span class="key">Greenville #1 rankings</span><span class="val">8+</span></div>
+        <div class="data-row"><span class="key">Easley · Greer · Seneca</span><span class="val">0</span></div>
+        <div class="verdict">
+          <strong>The Reality</strong>
+          One homepage targets every Greenville HVAC variant. Powerful and entrenched there — but they own nothing outside the city limits of Greenville.
+        </div>
+      </div>
+
+      <div class="comp-card danger">
+        <div class="badge">PATTERN <span class="pattern-num">03</span> · <span class="accent-text danger">THE LOCAL PACK LEGENDS</span></div>
+        <h3>Carolina Heating &amp; Eastergard</h3>
+        <p class="punchline">Decades of reviews. Weak websites. Local pack only.</p>
+        <div class="data-row"><span class="key">Carolina monthly visits</span><span class="val">882</span></div>
+        <div class="data-row"><span class="key">Eastergard monthly visits</span><span class="val">193</span></div>
+        <div class="data-row"><span class="key">Combined reviews</span><span class="val">4,400+</span></div>
+        <div class="data-row"><span class="key">Years in business</span><span class="val">35–45+</span></div>
+        <div class="verdict">
+          <strong>The Reality</strong>
+          These names dominate the Google Map Pack via decades of reviews. Their websites are SEO-thin. Outranking them organically is achievable. Matching their review count is the longer play.
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAFFIC BAR CHART -->
+    <div class="traffic-chart">
+      <div class="chart-title">Monthly visits from organic search</div>
+      <p class="chart-sub">A live read of how much traffic each Greenville HVAC competitor is actually pulling from Google. Most of the brands homeowners recognize from advertising aren't winning the search game — they're winning the local pack on reputation. The gap is your opportunity.</p>
+
+      <div class="bar-row">
+        <div class="bar-label">Waldrop Plumbing Air Electric<span class="sub">callwaldrop.com</span></div>
+        <div class="bar-track"><div class="bar-fill muted" style="width: 100%"></div></div>
+        <div class="bar-value">14,623</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Call Dad AC &amp; Heating<span class="sub">calldad.com · franchise</span></div>
+        <div class="bar-track"><div class="bar-fill muted" style="width: 48%"></div></div>
+        <div class="bar-value">7,033</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Long Heating &amp; Air<span class="sub">longheatingandair.com</span></div>
+        <div class="bar-track"><div class="bar-fill" style="width: 40%"></div></div>
+        <div class="bar-value">5,890</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Carolina Heating Service<span class="sub">carolinaheating.com · 3,900 reviews</span></div>
+        <div class="bar-track"><div class="bar-fill muted" style="width: 6%"></div></div>
+        <div class="bar-value">882</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Preferred Choice<span class="sub">preferredchoiceheatingandair.com</span></div>
+        <div class="bar-track"><div class="bar-fill muted" style="width: 3%"></div></div>
+        <div class="bar-value">437</div>
+      </div>
+      <div class="bar-row">
+        <div class="bar-label">Eastergard Heating &amp; AC<span class="sub">eastergard.com · 556 reviews</span></div>
+        <div class="bar-track"><div class="bar-fill muted" style="width: 1.3%"></div></div>
+        <div class="bar-value">193</div>
+      </div>
+      <div class="bar-row you">
+        <div class="bar-label">Exceptional Comfort Services<span class="sub">TODAY · YOUR STARTING POINT</span></div>
+        <div class="bar-track"><div class="bar-fill success" style="width: 0.01%; min-width: 4px;"></div></div>
+        <div class="bar-value">~1</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 03 — TWO BATTLES ============ -->
+<section class="two-battles tight">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <div>
+        <span class="eyebrow"><span class="marker"></span>Two Different Battles</span>
+        <h2 style="margin-top: 14px;">Organic search and the Google Map Pack are two separate fights.</h2>
+        <p class="lede">This is the single most important strategic distinction in the whole report. Different rules, different timelines, different opponents. Your website tackles one of them directly and sets up the long game on the other.</p>
+      </div>
+    </div>
+
+    <div class="battle-grid">
+      <div class="battle accent">
+        <div class="num">I.</div>
+        <h3>Organic Search</h3>
+        <p class="battle-sub">The blue links on Google's results page. Won through the website.</p>
+        <ul>
+          <li>Rewards: page architecture, on-page SEO, content depth, local signals, schema markup, internal linking</li>
+          <li>Does NOT require: decades of reviews, decades in business, massive ad spend</li>
+          <li>Why we can win it fast: only Long Heating is defending Greenville keywords — no one is defending Easley, Greer, or Seneca</li>
+          <li>Typical timeline: 90–180 days for satellite cities, 6–12 months for Greenville flagship terms</li>
+        </ul>
+        <div class="battle-stat">
+          <div class="label">THE TAKEAWAY</div>
+          <div class="stat">Your <strong>website rebuild</strong> wins this battle directly. The 11-page architecture targets keywords no competitor is defending at the dedicated-page level.</div>
+        </div>
+      </div>
+
+      <div class="battle success">
+        <div class="num">II.</div>
+        <h3>The Map Pack</h3>
+        <p class="battle-sub">The three businesses with map pins at the top of search results. Won through reputation.</p>
+        <ul>
+          <li>Rewards: Google Business Profile completeness, review count + velocity, GBP age, proximity to searcher</li>
+          <li>Does NOT primarily reward: website on-page SEO, blog content (those help indirectly)</li>
+          <li>Why it takes longer: incumbents have 35–55 years of GBP age and thousands of reviews — gap takes time to close</li>
+          <li>Typical timeline: 6–12 months to enter top 5 in surrounding cities, 12–24 months for Greenville</li>
+        </ul>
+        <div class="battle-stat">
+          <div class="label">THE TAKEAWAY</div>
+          <div class="stat">Your <strong>Google Business Profile + review engine</strong> wins this battle. Longer compound play — but unstoppable once it gets rolling.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 04 — BRIGHTLOCAL ============ -->
+<section class="factors-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <div>
+        <span class="eyebrow"><span class="marker"></span>The Map Pack Playbook</span>
+        <h2 style="margin-top: 14px;">What actually moves Google Business Profile rankings.</h2>
+        <p class="lede">For the Map Pack battle, the industry-standard source is the Local Search Ranking Factors study from Whitespark and BrightLocal. They survey local SEO experts annually and weight every ranking factor. Here's how the weights break down — and what we'll prioritize for Exceptional.</p>
+      </div>
+    </div>
+
+    <div class="factors-grid">
+      <div>
+        <div style="margin-bottom: 32px;">
+          <span class="eyebrow"><span class="marker"></span>Map Pack / 3-Pack Rankings — Factor Weightings</span>
+          <p style="color: var(--text-muted); font-size: 14px; line-height: 1.55; margin-top: 14px;">How the seven major ranking-factor categories are weighted for the local Map Pack.</p>
+        </div>
+
+        <div class="factor-bar-row">
+          <div class="factor-label">Google Business Profile signals</div>
+          <div class="factor-track"><div class="factor-fill major" style="width: 100%"></div></div>
+          <div class="factor-value">32%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">On-page signals</div>
+          <div class="factor-track"><div class="factor-fill major" style="width: 59%"></div></div>
+          <div class="factor-value">19%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">Review signals</div>
+          <div class="factor-track"><div class="factor-fill medium" style="width: 50%"></div></div>
+          <div class="factor-value">16%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">Link signals</div>
+          <div class="factor-track"><div class="factor-fill medium" style="width: 34%"></div></div>
+          <div class="factor-value">11%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">Behavioral signals</div>
+          <div class="factor-track"><div class="factor-fill low" style="width: 25%"></div></div>
+          <div class="factor-value">8%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">Citation signals (NAP)</div>
+          <div class="factor-track"><div class="factor-fill low" style="width: 22%"></div></div>
+          <div class="factor-value">7%</div>
+        </div>
+        <div class="factor-bar-row">
+          <div class="factor-label">Personalization</div>
+          <div class="factor-track"><div class="factor-fill low" style="width: 19%"></div></div>
+          <div class="factor-value">7%</div>
+        </div>
+      </div>
+
+      <div class="factors-context">
+        <span class="eyebrow"><span class="marker"></span>The Top 5 Specific Factors</span>
+        <h4>What we'll prioritize to climb the Map Pack.</h4>
+        <p>Of the dozens of individual ranking factors inside Google Business Profile, these five carry the most weight for a local service business like yours:</p>
+        <ol>
+          <li><strong>Primary GBP category set correctly.</strong> "HVAC Contractor" as primary; secondary categories enabled for AC repair, heating contractor, etc.</li>
+          <li><strong>Business name in GBP exactly matches reality.</strong> No keyword stuffing, no penalties.</li>
+          <li><strong>Quantity of native Google reviews + recency.</strong> Automated review requests via GoHighLevel feed this monthly.</li>
+          <li><strong>High-quality photos uploaded regularly.</strong> Vehicle wraps, job sites, team, equipment, before/after.</li>
+          <li><strong>Proximity of address to the searcher.</strong> Your physical Pickens location is fixed — this is why surrounding cities need their own location pages and GBP signals.</li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="citation">
+      SOURCE · WHITESPARK / BRIGHTLOCAL LOCAL SEARCH RANKING FACTORS STUDY · 2023 EDITION · INDUSTRY-STANDARD ANNUAL SURVEY OF LEADING LOCAL SEO EXPERTS
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 05 — 11 PAGES ============ -->
+<section class="plan">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <div>
+        <span class="eyebrow"><span class="marker"></span>The Page Architecture</span>
+        <h2 style="margin-top: 14px;">11 pages, each targeting a battle no one is defending.</h2>
+        <p class="lede">Based on the competitor data above, here's the exact page architecture we'll build. Each page targets a specific keyword cluster identified through live SEO research — and each one is positioned where competitors have left an opening.</p>
+      </div>
+    </div>
+
+    <div class="pages-grid">
+      <div class="page-card">
+        <div class="num">01</div>
+        <span class="tag service">Service Page</span>
+        <h4>AC Repair in Greenville, SC &amp; The Upstate</h4>
+        <p class="desc">The highest-converting commercial intent. Captures "ac repair greenville sc" and its variants.</p>
+        <div class="target">Target volume: 320+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">02</div>
+        <span class="tag service">Service Page</span>
+        <h4>AC Installation &amp; Replacement</h4>
+        <p class="desc">New system installs, including ductless mini-split applications. High-ticket service intent.</p>
+        <div class="target">Target volume: 50+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">03</div>
+        <span class="tag service">Service Page</span>
+        <h4>Heating Repair &amp; Furnace Repair</h4>
+        <p class="desc">Seasonal commercial intent across the metro. Captures both heating and furnace queries.</p>
+        <div class="target">Target volume: 30+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">04</div>
+        <span class="tag service">Service Page</span>
+        <h4>Heating Installation &amp; Furnace Installation</h4>
+        <p class="desc">New system installs, including heat pump systems folded in as a subsection.</p>
+        <div class="target">Target volume: long-tail</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">05</div>
+        <span class="tag service">Service Page</span>
+        <h4>HVAC Maintenance &amp; Tune-Up Plans</h4>
+        <p class="desc">Supports recurring-revenue maintenance agreements. Strong customer lifetime value.</p>
+        <div class="target">Target volume: long-tail</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">06</div>
+        <span class="tag location">Location Page</span>
+        <h4>HVAC Service in Greenville, SC</h4>
+        <p class="desc">The flagship. Aggressively optimized to compete for the highest-volume keyword cluster in the service area.</p>
+        <div class="target">Target volume: 2,300+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">07</div>
+        <span class="tag location">Location Page</span>
+        <h4>HVAC Service in Easley, SC</h4>
+        <p class="desc">Secondary anchor. "AC repair easley sc" is 70/mo with LOW competition — a quick-win target.</p>
+        <div class="target">Target volume: 240+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">08</div>
+        <span class="tag location">Location Page</span>
+        <h4>HVAC Service in Greer, SC</h4>
+        <p class="desc">Service-area expansion city. Low-difficulty ranking opportunity (KD 9). Wide-open organically.</p>
+        <div class="target">Target volume: 140+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">09</div>
+        <span class="tag location">Location Page</span>
+        <h4>HVAC Service in Seneca, SC</h4>
+        <p class="desc">Open ranking opportunity at KD 1 — one of the easiest meaningful targets in the entire service area.</p>
+        <div class="target">Target volume: 140+ /mo</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">10</div>
+        <span class="tag location">Location Page</span>
+        <h4>Service Areas Across Upstate SC</h4>
+        <p class="desc">Hub page anchoring Pickens and covering Liberty, Powdersville, Six Mile, Sunset, Clemson, Central, Travelers Rest, Mauldin, Taylors, Fountain Inn.</p>
+        <div class="target">Local relevance signal</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">11</div>
+        <span class="tag niche">Niche Positioning</span>
+        <h4>Lake Home HVAC — Salem &amp; Lake Keowee</h4>
+        <p class="desc">High-value lake-home customer segment. No competitor markets to this niche. Unclaimed positioning.</p>
+        <div class="target">High-ticket referral asset</div>
+      </div>
+
+      <div class="page-card">
+        <div class="num">+02</div>
+        <span class="tag support">Supporting</span>
+        <h4>Privacy Policy &amp; Terms and Conditions</h4>
+        <p class="desc">Standard supporting pages. Required for full GBP listing, Google Analytics, and ad-platform compliance.</p>
+        <div class="target">Compliance + trust</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 06 — TIMELINE ============ -->
+<section class="timeline-section">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <div>
+        <span class="eyebrow success"><span class="marker"></span>Realistic Expectations</span>
+        <h2 style="margin-top: 14px;">What to expect — and when.</h2>
+        <p class="lede">SEO is a compounding game. Here's an honest read on where your search visibility should be at each milestone, based on the competitor data we pulled and typical local-HVAC ranking timelines.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="milestone start">
+        <div class="marker">0</div>
+        <h4>Launch Day</h4>
+        <div class="milestone-rows">
+          <div class="row">
+            <strong>11-page site live</strong>
+            <span class="note">Full content, SEO-optimized, GBP integrated, Conversation AI agent active</span>
+          </div>
+          <div class="row">
+            <strong>Google Analytics tracking</strong>
+            <span class="note">Baseline data collection begins</span>
+          </div>
+          <div class="row">
+            <strong>Review automation live</strong>
+            <span class="note">First requests go out to existing customers within days</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone mid">
+        <div class="marker">6mo</div>
+        <h4>Six Months In</h4>
+        <div class="milestone-rows">
+          <div class="row">
+            <strong>Top 5 rankings</strong>
+            <span class="note">Easley, Seneca, Greer service+location combinations</span>
+          </div>
+          <div class="row">
+            <strong>Top 10 quick wins</strong>
+            <span class="note">"hvac installation greenville sc," "heat pump repair greenville sc," "best hvac companies in greenville sc"</span>
+          </div>
+          <div class="row">
+            <strong>Map Pack entry</strong>
+            <span class="note">Top 5 in Pickens, climbing in Easley / Seneca / Greer</span>
+          </div>
+          <div class="row">
+            <strong>50–150 new Google reviews</strong>
+            <span class="note">From the automated GoHighLevel review-request engine</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="milestone late">
+        <div class="marker">12mo</div>
+        <h4>Twelve Months In</h4>
+        <div class="milestone-rows">
+          <div class="row">
+            <strong>Top 3 in satellite cities</strong>
+            <span class="note">Easley, Seneca, Greer for primary HVAC queries</span>
+          </div>
+          <div class="row">
+            <strong>Top 15 for Greenville flagship</strong>
+            <span class="note">"hvac greenville sc," "ac repair greenville sc" — closing the gap on Long Heating</span>
+          </div>
+          <div class="row">
+            <strong>200–400 reviews total</strong>
+            <span class="note">Approaching parity with mid-tier competitors</span>
+          </div>
+          <div class="row">
+            <strong>AI Overview citations</strong>
+            <span class="note">Beginning to appear for Greenville HVAC AI-search queries</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SECTION 07 — STRATEGY ============ -->
+<section class="strategy">
+  <div class="container">
+    <div class="section-head">
+      <div class="section-num">07</div>
+      <div>
+        <span class="eyebrow"><span class="marker"></span>The Strategic Plays</span>
+        <h2 style="margin-top: 14px;">Five priorities that will get you more calls.</h2>
+        <p class="lede">Boiled down from everything above, these are the five strategic plays that turn the research into ranking, and ranking into ringing phones. Each one is built into the project plan.</p>
+      </div>
+    </div>
+
+    <div class="strategy-list">
+      <div class="strat-item">
+        <div class="strat-num">I.</div>
+        <div class="strat-body">
+          <h4>Build the page architecture no competitor has built.</h4>
+          <p>Dedicated service pages + dedicated city pages for Greenville, Easley, Greer, Seneca + a service-areas hub. None of your top six competitors have built this. They've either built one page (Long Heating) or skipped it entirely (Carolina Heating, Eastergard) or built it for the wrong queries (Waldrop). You walk into uncontested territory.</p>
+        </div>
+        <div class="strat-aside">
+          <div class="label">WHY NOW</div>
+          <div class="aside-text">If a competitor figures this out next quarter, the advantage compresses fast. Move while the territory is open.</div>
+        </div>
+      </div>
+
+      <div class="strat-item">
+        <div class="strat-num">II.</div>
+        <div class="strat-body">
+          <h4>Fire up the review engine from day one.</h4>
+          <p>Reviews are 16% of Map Pack rankings — but more importantly, review count + velocity is the slowest-compounding asset in the entire local-SEO stack. Every month you wait is a month behind. Your GoHighLevel build automates review requests to every customer the moment a job closes. Start aggressively in month 1.</p>
+        </div>
+        <div class="strat-aside">
+          <div class="label">THE COMPOUND</div>
+          <div class="aside-text">Carolina Heating spent 45 years building 3,900 reviews. Automation gets you there much faster — but only if the engine is running.</div>
+        </div>
+      </div>
+
+      <div class="strat-item">
+        <div class="strat-num">III.</div>
+        <div class="strat-body">
+          <h4>Optimize the Google Business Profile aggressively.</h4>
+          <p>GBP signals are 32% of Map Pack rankings — the single biggest factor. We integrate your GBP directly into GoHighLevel, set the primary category correctly, fill out every service, upload high-quality photos consistently, schedule GBP posts, and respond to every review. Done well, this alone moves rankings inside 90 days.</p>
+        </div>
+        <div class="strat-aside">
+          <div class="label">QUICK REALITY</div>
+          <div class="aside-text">Most local competitors leave half their GBP fields blank. Filling yours out completely is a 60-day advantage.</div>
+        </div>
+      </div>
+
+      <div class="strat-item">
+        <div class="strat-num">IV.</div>
+        <div class="strat-body">
+          <h4>Win the AI search citations.</h4>
+          <p>Google AI Overviews already cite specific HVAC company websites in Greenville. Long Heating gets cited because their on-page content is topically deep. Your new site will be built with FAQ schema, structured data, and the Conversation AI live chat agent — all of which feed AI-search signals. Within 6–12 months, expect citations in Google AI Overviews, ChatGPT, and Perplexity for Greenville HVAC queries.</p>
+        </div>
+        <div class="strat-aside">
+          <div class="label">THE NEXT FRONTIER</div>
+          <div class="aside-text">Most HVAC competitors are completely ignoring AI search. You won't be.</div>
+        </div>
+      </div>
+
+      <div class="strat-item">
+        <div class="strat-num">V.</div>
+        <div class="strat-body">
+          <h4>Claim the lake-home niche before anyone else.</h4>
+          <p>Lake-home HVAC — Salem, Sunset, Walhalla, Westminster, and the Lake Keowee / Lake Jocassee shorelines — is a high-value customer segment with specific needs (humidity control, vacation-home maintenance, mini-splits for outbuildings) that absolutely no competitor markets to. We build a dedicated content-positioning page that turns referrals and "near me" lake searches into conversions and creates AI citation opportunities in a category that's wide open.</p>
+        </div>
+        <div class="strat-aside">
+          <div class="label">THE HIDDEN GEM</div>
+          <div class="aside-text">Zero competitors are saying anything specific about lake-home HVAC. The first to claim it owns the category.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CLOSING ============ -->
+<section class="closing">
+  <div class="container">
+    <span class="eyebrow"><span class="marker"></span>In Summary</span>
+    <h2>
+      The strategy is right. <em>Now it's about execution speed.</em>
+    </h2>
+
+    <div class="closing-grid">
+      <div class="closing-col">
+        <h5>What's at stake</h5>
+        <p>The Greenville HVAC market currently has open territory in organic search — most of it for keywords that drive actual customer calls. The competitive moat being built right now is small.</p>
+      </div>
+      <div class="closing-col">
+        <h5>What we're building</h5>
+        <p>An 11-page website on GoHighLevel that targets unowned keywords, integrates your GBP for the Map Pack battle, and runs an automated review-request engine from day one.</p>
+      </div>
+      <div class="closing-col">
+        <h5>What you'll see</h5>
+        <p>First rankings inside 90 days. Map Pack entry in surrounding cities at 6 months. Real organic visibility competing with established brands in 12 months.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="brand">
+      Marketing Remix
+      <span class="sub">STRATEGY · SEO · LOCAL MARKETING</span>
+    </div>
+    <div class="meta">
+      Report prepared 05/15/26<br>
+      Live data via DataForSEO<br>
+      Whitespark / BrightLocal Local Search Ranking Factors 2023
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Fade up sections as they come into view
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.style.opacity = '1';
+        entry.target.style.transform = 'translateY(0)';
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('section, .surprise-banner').forEach((el) => {
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(24px)';
+    el.style.transition = 'opacity 0.9s cubic-bezier(0.2, 0.8, 0.4, 1), transform 0.9s cubic-bezier(0.2, 0.8, 0.4, 1)';
+    observer.observe(el);
+  });
+
+  // Animate bars when in view, with staggered reveal
+  const barObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const fills = entry.target.querySelectorAll('.bar-fill, .factor-fill');
+        fills.forEach((fill, i) => {
+          const targetWidth = fill.style.width;
+          fill.style.width = '0%';
+          setTimeout(() => {
+            fill.style.transition = 'width 1.3s cubic-bezier(0.2, 0.8, 0.4, 1)';
+            fill.style.width = targetWidth;
+          }, 120 + i * 90);
+        });
+        barObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll('.traffic-chart, .factors-section').forEach((el) => barObserver.observe(el));
+
+  // Counter animation on the baseline stat values
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const stats = entry.target.querySelectorAll('.stat-value');
+        stats.forEach((stat, i) => {
+          const text = stat.textContent.trim();
+          const isApprox = text.startsWith('~');
+          const target = parseInt(text.replace('~', ''), 10);
+          if (isNaN(target)) return;
+          let current = 0;
+          const duration = 1000 + i * 200;
+          const startTime = performance.now();
+          stat.textContent = isApprox ? '~0' : '0';
+          const tick = (now) => {
+            const elapsed = now - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            current = Math.round(target * eased);
+            stat.textContent = isApprox ? '~' + current : current;
+            if (progress < 1) requestAnimationFrame(tick);
+          };
+          setTimeout(() => requestAnimationFrame(tick), 200 + i * 200);
+        });
+        counterObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.baseline-stats').forEach((el) => counterObserver.observe(el));
+</script>
+
+</body>
+</html>
