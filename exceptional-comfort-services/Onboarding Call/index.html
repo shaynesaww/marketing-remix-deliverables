@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Onboarding Call — Exceptional Comfort Services</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0b0e17;
+  --bg-card: #141824;
+  --bg-card-hover: #1a2030;
+  --bg-sidebar: rgba(11, 14, 23, 0.85);
+  --text: #e8eaf0;
+  --text-soft: #c3c8d6;
+  --text-muted: #6b7394;
+  --accent: #f97316;
+  --accent-hover: #fb923c;
+  --accent-glow: rgba(249, 115, 22, 0.15);
+  --accent-glow-strong: rgba(249, 115, 22, 0.3);
+  --accent-blue: #3b82f6;
+  --border: rgba(249, 115, 22, 0.15);
+  --border-soft: rgba(232, 234, 240, 0.08);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Work Sans', -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.65;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: -200px;
+  right: -200px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  bottom: -300px;
+  left: -100px;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============ SIDEBAR ============ */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: var(--bg-sidebar);
+  backdrop-filter: blur(12px);
+  border-right: 1px solid var(--border-soft);
+  padding: 32px 24px;
+  overflow-y: auto;
+  z-index: 10;
+}
+
+.sidebar-header {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.sidebar-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 8px;
+}
+
+.sidebar-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.sidebar-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.sidebar nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.sidebar nav a {
+  display: block;
+  padding: 10px 14px;
+  color: var(--text-soft);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  border-left: 2px solid transparent;
+  transition: all 0.2s ease;
+  border-radius: 0 4px 4px 0;
+}
+
+.sidebar nav a:hover {
+  color: var(--accent);
+  background: var(--accent-glow);
+  border-left-color: var(--accent);
+}
+
+.sidebar nav a .seg-time {
+  display: block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  margin-bottom: 2px;
+  text-transform: uppercase;
+}
+
+/* ============ MAIN ============ */
+main {
+  margin-left: 300px;
+  padding: 64px 80px 120px;
+  max-width: 1100px;
+  position: relative;
+  z-index: 1;
+}
+
+/* ============ HEADER ============ */
+.doc-header {
+  padding-bottom: 40px;
+  margin-bottom: 48px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.doc-eyebrow {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.doc-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  margin-bottom: 12px;
+  color: var(--text);
+}
+
+.doc-subtitle {
+  font-size: 18px;
+  color: var(--text-soft);
+  font-weight: 400;
+  margin-bottom: 24px;
+}
+
+.doc-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.doc-meta strong {
+  color: var(--text-soft);
+  font-weight: 600;
+  margin-right: 4px;
+}
+
+/* ============ SEGMENT ============ */
+.segment {
+  margin-bottom: 80px;
+  scroll-margin-top: 32px;
+}
+
+.segment-header {
+  margin-bottom: 32px;
+  padding-left: 20px;
+  border-left: 3px solid var(--accent);
+  position: relative;
+}
+
+.segment-time {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: var(--accent);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.segment-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text);
+}
+
+/* ============ Q&A CARD ============ */
+.qa {
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-radius: 10px;
+  padding: 32px 36px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
+  scroll-margin-top: 32px;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.qa:hover {
+  border-color: var(--border);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2), 0 0 24px var(--accent-glow);
+}
+
+.qa-question {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text);
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+.qa-question .q-num {
+  display: inline-block;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin-right: 12px;
+  text-transform: uppercase;
+  vertical-align: middle;
+}
+
+.qa-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+
+.qa-label.answer-label { color: var(--accent); }
+.qa-label.related-label { color: var(--accent-blue); margin-top: 20px; }
+
+.qa-body p {
+  color: var(--text-soft);
+  margin-bottom: 16px;
+  font-size: 16px;
+}
+
+.qa-body p:last-child { margin-bottom: 0; }
+
+.qa-body em {
+  color: var(--text-muted);
+  font-style: italic;
+}
+
+.qa-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 16px 0;
+}
+
+.qa-body ul li {
+  position: relative;
+  padding-left: 22px;
+  margin-bottom: 14px;
+  color: var(--text-soft);
+}
+
+.qa-body ul li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--accent-glow-strong);
+}
+
+/* ============ INLINE QUOTES ============ */
+.qa-body blockquote {
+  margin: 20px 0;
+  padding: 14px 20px 14px 22px;
+  border-left: 3px solid var(--accent);
+  background: rgba(249, 115, 22, 0.06);
+  border-radius: 0 6px 6px 0;
+  font-family: 'Work Sans', sans-serif;
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  position: relative;
+}
+
+.qa-body blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: 4px;
+  left: 8px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--accent);
+  opacity: 0.4;
+  line-height: 1;
+}
+
+/* ============ STANDOUT QUOTES BLOCK ============ */
+.standout {
+  margin-top: 40px;
+  padding: 32px 36px;
+  background: var(--bg-card-hover);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  box-shadow: 0 0 32px var(--accent-glow), inset 0 0 0 1px rgba(249, 115, 22, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.standout::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.standout-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
+}
+
+.standout-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 0 8px var(--accent-glow-strong));
+}
+
+.standout-title {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.standout blockquote {
+  position: relative;
+  padding: 18px 24px 18px 56px;
+  margin-bottom: 14px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-soft);
+  border-left: 3px solid var(--accent);
+  border-radius: 6px;
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text);
+  transition: border-color 0.2s ease, transform 0.2s ease;
+  z-index: 1;
+}
+
+.standout blockquote:hover {
+  border-left-color: var(--accent-hover);
+  transform: translateX(2px);
+}
+
+.standout blockquote:last-child { margin-bottom: 0; }
+
+.standout blockquote::before {
+  content: '\201C';
+  position: absolute;
+  top: 6px;
+  left: 16px;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 44px;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+  opacity: 0.85;
+  text-shadow: 0 0 12px var(--accent-glow-strong);
+}
+
+/* ============ DIVIDERS ============ */
+.segment-divider {
+  margin: 64px 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border), transparent);
+  position: relative;
+}
+
+.segment-divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: var(--accent);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--accent-glow-strong);
+}
+
+/* ============ MOBILE ============ */
+@media (max-width: 1100px) {
+  .sidebar {
+    position: static;
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border-soft);
+  }
+  main {
+    margin-left: 0;
+    padding: 40px 24px 80px;
+  }
+  .doc-title { font-size: 32px; }
+  .segment-title { font-size: 24px; }
+  .qa { padding: 24px; }
+  .standout { padding: 24px; }
+  .standout blockquote { padding: 16px 16px 16px 48px; }
+}
+
+/* ============ SCROLLBAR ============ */
+::-webkit-scrollbar { width: 8px; height: 8px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<aside class="sidebar">
+  <div class="sidebar-header">
+    <div class="sidebar-label">Onboarding Call</div>
+    <div class="sidebar-title">Exceptional Comfort Services</div>
+    <div class="sidebar-meta">Steven Tibball · 2026-05-18</div>
+  </div>
+  <nav>
+    <a href="#segment-1"><span class="seg-time">0:05 — 0:25</span>Steven, The Person</a>
+    <a href="#segment-2"><span class="seg-time">0:25 — 0:40</span>The Family Business &amp; Team</a>
+    <a href="#segment-3"><span class="seg-time">0:40 — 0:50</span>Brand Feeling &amp; Customers</a>
+    <a href="#segment-4"><span class="seg-time">0:50 — 0:58</span>Post-Launch Roadmap</a>
+  </nav>
+</aside>
+
+<main>
+
+<header class="doc-header">
+  <div class="doc-eyebrow">Onboarding Call · Extracted Answers &amp; Quotes</div>
+  <h1 class="doc-title">Exceptional Comfort Services</h1>
+  <p class="doc-subtitle">Steven Tibball's story, in his own words — source material for the website.</p>
+  <div class="doc-meta">
+    <span><strong>Client:</strong>Steven Tibball, ECS</span>
+    <span><strong>Call date:</strong>2026-05-18</span>
+    <span><strong>Source:</strong>Gemini transcript</span>
+  </div>
+</header>
+
+<!-- ============================== SEGMENT 1 ============================== -->
+<section class="segment" id="segment-1">
+  <div class="segment-header">
+    <div class="segment-time">0:05 — 0:25</div>
+    <h2 class="segment-title">Steven, The Person</h2>
+  </div>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q1</span>Where did you grow up? Are you from the Upstate originally, or did you find your way here?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven was born in New York but grew up in Fort Lauderdale, Florida. His parents split when he was young and his mom raised him as a single mom.</p>
+      <p>She remarried someone who relocated the family from Florida to Myrtle Beach, South Carolina. They bounced between Myrtle Beach and Greenville a few times during his mom's relationship instability.</p>
+      <blockquote>My mom was kind of between boyfriends and the whole whatever.</blockquote>
+      <p>Steven got his learner's permit in Florida at 15, and shortly after the family moved to Myrtle Beach. He landed in Greenville at around 16.</p>
+      <p>Eventually his mom moved back to Myrtle Beach and Steven told her he was done moving — he stayed in Greenville and she left. All three of his kids were born in Greenville.</p>
+      <p>He's been in the Upstate off and on for about 25 years. His oldest is 22. He considers himself essentially from the Upstate at this point.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q2</span>What was your first real job? How did you end up in HVAC specifically?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Before HVAC, Steven worked on cars starting at age 14 — his stepdad owns an auto repair business. He went into HVAC almost by accident.</p>
+      <p>He was making $10/hr as a back room supervisor at Target. His cousin owned an HVAC company in Myrtle Beach called East Coast Air and posted on Facebook looking for help.</p>
+      <p>Steven jokingly messaged him:</p>
+      <blockquote>Yo, sign me up.</blockquote>
+      <p>His cousin told him if he was serious to come ride along for a day. Steven and Angel went down to Myrtle Beach, stayed a couple days, he rode with him for a day and said:</p>
+      <blockquote>Dude, this is definitely for me.</blockquote>
+      <p>At that point Steven and Angel were not in a good financial spot — credit in the 500s, living in a mobile home, Angel working as a waitress. They decided to make a change.</p>
+      <p>They literally let their house get foreclosed on. Steven backed a U-Haul to the front porch, kicked the railing off, carried everything straight off the porch into the U-Haul and left.</p>
+      <p>They rented a townhouse and then a house in Myrtle Beach. He started as an installer for about a year to a year and a half, then started learning service while still installing.</p>
+      <p>He eventually became the field service manager.</p>
+      <blockquote>I grabbed a hold of all of it and I just absorbed all of it.</blockquote>
+      <p>Within that same period, Angel became the office manager at the cousin's company about six months in. In his first year running a service truck by himself, Steven closed almost a million dollars in sales alone.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q3</span>Who taught you the trade? Was there a mentor, or a moment where it clicked for you?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked.</em></p>
+      <span class="qa-label related-label">Related material</span>
+      <p>His cousin (owner of East Coast Air in Myrtle Beach) gave him his start and let him ride along for the first day. Steven describes the trajectory as self-driven absorption rather than mentorship.</p>
+      <blockquote>I grabbed a hold of all of it.</blockquote>
+      <p>Later at Carolina Heating Service, he worked his way up from the bottom as a service tech all the way to service manager.</p>
+      <p>He also references training others as the meaningful relationship — he proudly mentions training a tech ("one of the best technicians I've ever trained") who later went to do maintenance at Michelin.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q4</span>How long have you been doing this — total years in the trade, not just at ECS?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>About 12 years in HVAC. He started in 2014 when he moved to Myrtle Beach to work for his cousin's company East Coast Air.</p>
+      <p>He worked there about four and a half years before being let go, then moved back to Greenville and worked at Carolina Heating Service for almost eight years, rising from bottom service tech to service manager.</p>
+      <p>He notes he was working on cars from age 14 with his stepdad before HVAC.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q5</span>What certifications did you earn the hard way?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked in the story-extraction sense.</em></p>
+      <span class="qa-label related-label">Related material</span>
+      <p>Steven mentioned in passing that he has his "bachers in HVAC" and emphasized that South Carolina doesn't legally require techs to be licensed — only one license holder per company is needed.</p>
+      <p>He's proud of being properly licensed, insured and bonded, in contrast to "21, 22 year old kid" tech companies popping up. He noted he drove to Columbia personally to pick up his contractor's license rather than wait on the mail.</p>
+      <p>He also mentioned that ECS is a certified Generac dealer for service and installation.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q6</span>Walk me through the moment you decided "I'm starting my own company." What was happening in your life right then?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>After Carolina Heating Service got bought out, Steven was unhappy despite making $250,000 a year. He met a guy from One Hour and they talked for a couple months about Steven's vision — most importantly, working with Angel again, which was his favorite thing to do.</p>
+      <p>The One Hour owner made it sound like Steven could eventually buy the One Hour franchise from him. For about six months it was great; the owner asked Steven's opinion on things.</p>
+      <p>Then the owner hired "some guy that was part of like the franchise board of directors or whatever — he was a numbers guy." That guy knocked Steven back into a truck, stopped listening to him, and was losing the company $100,000 a month.</p>
+      <p>Steven wasn't making 40 hours a week and was going into debt. Around September/early October he confronted the owner:</p>
+      <blockquote>Dude, something's got to happen... I'm going into debt.</blockquote>
+      <p>The owner replied:</p>
+      <blockquote>Well, you're not good with your money.</blockquote>
+      <p>Steven wanted to hit him. He went home and talked to Angel.</p>
+      <blockquote>Maybe it's time. You just need to do something.</blockquote>
+      <p>They filed for the LLC on October 29th. He pursued it properly — contractor's license, business license, bond, insurance, all of it.</p>
+      <p>They drove from Greenville to Columbia themselves to pick up the license rather than waiting on the mail. He didn't hire attorneys. He learned everything as he went using ChatGPT.</p>
+      <p>Within roughly six months they were at $150,000 in revenue, and Angel was still working her full-time job at Benjamin Franklin.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q7</span>What's the hardest job you've ever been on — technically or emotionally?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked.</em></p>
+      <span class="qa-label related-label">Related material</span>
+      <p>Several adjacent stories surfaced under later questions: the Myrtle Beach drunk customer with the dangerous brand-new install he had to walk away from, the rental house with a sewer line busted in the crawl space he still went into to fix the AC, and the COVID-era homebound customer's water heater replacement.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q8</span>What's the job you're proudest of?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked as a single question.</em></p>
+      <span class="qa-label related-label">Related material</span>
+      <p>When asked about jobs he wanted his name attached to, Steven didn't single out one.</p>
+      <blockquote>I've done so many jobs. I mean, I don't know.</blockquote>
+      <p>The closest single proud story is the Sunset (Lake Keowee area) maintenance agreement he sold first — a 10-system house with a wine cellar that became a $3,000 maintenance agreement, and he's done roughly $20,000 worth of work for that customer since.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q9</span>What do you want your name to mean to a homeowner in Pickens five years from now?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven wants homeowners to feel taken care of, to feel like the quality is there, and to not have to worry.</p>
+      <p>If they know they're using ECS, they don't have to worry about their system failing, they don't have to worry about high-pressure sales, they don't have to worry about ECS not being professional. The integrity is going to be there.</p>
+      <p>He pointed out that everybody throws around "integrity" — you see it on everybody's trucks — but:</p>
+      <blockquote>Ours is literally in the name now.</blockquote>
+      <p>(Exceptional.)</p>
+      <p>He's had the company name in mind for years, even back in Myrtle Beach, but the logo "looked like ass" until ChatGPT helped them create a real nice logo. The Exceptional Comfort Services name has always been the vision.</p>
+    </div>
+  </article>
+
+  <div class="standout">
+    <div class="standout-header">
+      <span class="standout-icon">🎯</span>
+      <span class="standout-title">Standout quotes from this segment</span>
+    </div>
+    <blockquote>I just got done making another AI post that I'm about to put online.</blockquote>
+    <blockquote>We were just we were living our life but I mean we weren't poor we were comfortable but you know we could have done a whole lot better.</blockquote>
+    <blockquote>We literally let our house get foreclosed on. I backed a U-Haul up to the front porch and I literally I kicked the railing off the front porch, backed the U-Haul up to it. We carried everything straight off the front porch into the U-Haul. We let the house get foreclosed on. We just left.</blockquote>
+    <blockquote>I remember the first year that I was in a truck by myself, I closed almost a million dollars in sales alone.</blockquote>
+    <blockquote>I haven't talked to nobody. Like I haven't I've been chat gpting it up. I've been learning this stuff as I go. I mean like we learned everything. I didn't hire no attorneys. I didn't This is what we're doing, you know? So we took it by the horns.</blockquote>
+    <blockquote>I just want them to feel taken care of. I want the quality to be there. I just want them to not have to worry.</blockquote>
+    <blockquote>Everybody uses all these words, the integrity, you know, accept all this. And I mean, you see it on everybody's trucks, but ours is literally in the name now.</blockquote>
+  </div>
+</section>
+
+<div class="segment-divider"></div>
+
+<!-- ============================== SEGMENT 2 ============================== -->
+<section class="segment" id="segment-2">
+  <div class="segment-header">
+    <div class="segment-time">0:25 — 0:40</div>
+    <h2 class="segment-title">The Family Business &amp; The Team</h2>
+  </div>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q1</span>Tell me about your family. Wife's name? Kids? How old?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Wife is Angel — she was on the call in the background. Three kids, all born in Greenville. Oldest is 22.</p>
+      <p>They have two sons and a daughter. Both sons do heating and air.</p>
+      <p>Steven specifically named two of the kids in context of being on the website: Aiden (A-I-D-E-N) and Amelia (A-M-E-L-I-A). His older son works as a part-time employee for ECS. His daughter Amelia helps with TikTok content.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q2</span>Is your wife involved in the business today? What does she do?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Angel is heavily involved informally — she goes out on calls with Steven on weekends, helps with paperwork in the field, and is his "brain" / memory bank for customer details.</p>
+      <p>On Easter Sunday she was up over a restaurant dining room handing him buckets of water with a rope.</p>
+      <p>But she still works a full-time job as the office manager at Benjamin Franklin, the local plumbing franchise. Her boss there is good friends with Steven and knows she's not going anywhere.</p>
+      <p>She'll likely go part-time at Benjamin Franklin eventually, but plans to stay there for two reasons: ECS still gets significant lead flow from her position there (yesterday's call generated two new customers), and they like the people.</p>
+      <p>Back when they worked together at the cousin's company, Angel became office manager about six months in. Steven says she is "one of the best office people I have ever seen" — she remembers customer details by trigger words and reminds Steven of stories from months earlier.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q3</span>Is she the kind of person whose photo and name should be on the site as part of the team, or does she prefer to stay behind the scenes?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Yes. Steven turned to her on the call and asked:</p>
+      <blockquote>I mean she can be, can't you? Yeah.</blockquote>
+      <p>She said yes. She'll be represented on the website as part of the team.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q4</span>The kids — are they involved at all? Answering phones, riding along, anything? Do you see them in the business someday?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>His older son is a part-time employee right now. Steven is currently in conversations to bring him on more formally.</p>
+      <p>His daughter Amelia helps with TikTok and social content. Neither is full-time yet. Both kids will be on the website.</p>
+      <p>Steven explicitly sees both sons working for him long-term in HVAC. He has standards though — he told his older son it's going to be a while before he can hire him full-time:</p>
+      <blockquote>I'm not paying you $35 an hour plus an 8% commission... that's where business owners are failing.</blockquote>
+      <p>He's also working on humility with his son, who has talked about being a manager already at 22.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q5</span>When you say "I want this to be a family business" — paint that picture for me. What does ECS look like in 10 years if everything goes right?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven wants ECS run by the family — by him and Angel — with the ability to hire quality people alongside them.</p>
+      <p>He sees himself staying hands-on, not the kind of owner who "disappears." He'll take vacations, but he's going to be involved in everything, including going out and double-checking on the techs.</p>
+      <p>No subcontractors. The quality control is not going to leave.</p>
+      <p>He explicitly rejects the private equity model where companies get bought up — he wants to keep it local, keep it in the family, and not change who they are as they grow.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q6</span>Who's on the team today? Is it mostly you running point right now, or do you have anyone alongside you?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Currently it's basically just Steven running calls and doing the work, with Angel supporting from her Benjamin Franklin office and joining him in the field on weekends and after hours.</p>
+      <p>His older son is a part-time employee. His daughter helps with social media (TikTok).</p>
+      <p>Steven is actively planning to bring his older son on more formally once the marketing and website are dialed in, and ultimately wants to hire at least one more tech to form an install team. He's intentionally growing slowly so overhead stays low.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q7</span>Tell me about a job that, when you look back on it, you think: "That's exactly the kind of work I want my name attached to."</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven didn't immediately have one job spring to mind.</p>
+      <blockquote>I've done so many jobs. I mean, I don't know.</blockquote>
+      <p>Angel reminded him about Allison's mom. It was wintertime and she had no heat. The fix was cheap — somebody hadn't wired the unit right and the wire nuts came loose, melting the wires inside the air handler ("a common thing").</p>
+      <p>She didn't have a lot of money so he didn't charge her for the repair. It was around Christmas — he told her merry Christmas and asked if she'd leave him a Google review, which she did.</p>
+      <p>He also told a story from his Carolina Heating days about a woman in a rental house with no AC in the middle of summer. He walked around the back and saw the grass discolored from sewage saturation — a sewer line in the crawl space had been busted for years.</p>
+      <p>The crawl space was "like a river under there." Most other techs would have used the sewer situation as an excuse to leave and come back after it was cleaned up.</p>
+      <p>Steven went into the crawl space anyway to figure out what was wrong, found she needed a zone board, and ended up changing it that day.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q8</span>Has there ever been a job where you went way beyond what you were paid to do — because it was just the right thing to do?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>During COVID, Steven showed up at a guy's house with a sign on the door reading:</p>
+      <blockquote>Do not enter — COVID.</blockquote>
+      <p>The guy was homebound. His water heater was leaking and rotting out the floor.</p>
+      <p>Steven didn't do water heaters at the time, but he called his service manager, had them bring a water heater out, and swapped it out that day. The customer had COVID — Steven just had him stay in the other room while he worked.</p>
+      <p>He also referenced the sewer-line-crawl-space story (above) as another example.</p>
+      <p>And on the call he mentioned a very recent one — yesterday he went to an 86-year-old customer's house where roofers had knocked a chandelier loose. He couldn't fix it himself (not licensed for electrical), but she doesn't use email.</p>
+      <p>So he stayed with her, researched electricians online, found one who specifically did NOT also do HVAC (so they wouldn't try to upsell her), and the electrician showed up before Steven even left.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q9</span>Has the Lord ever put a customer in front of you where the call turned into something more than HVAC?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked.</em></p>
+      <p>Shayne didn't pose the faith-language version; the related material lives under Q8 and Q10 — Allison's mom at Christmas, the homebound COVID customer, the 86-year-old with the chandelier.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q10</span>A moment where you could've cut a corner — saved yourself time, saved yourself money, nobody would've known — and you didn't. Why not?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <blockquote>That happens all the time.</blockquote>
+      <p>Steven immediately referenced a call he'd taken yesterday from a customer he got through Benjamin Franklin referral. She needed a TXV (thermostatic expansion valve — the metering device for the refrigerant).</p>
+      <p>The part wasn't available anywhere. The unit was only about a year old. He spent all day chasing the part down.</p>
+      <p>Eventually he talked to his Ferguson rep, who connected him to a friend at Gateway, and they got the manufacturer to warranty out a whole coil with TXV — so she didn't have to wait until July to have AC.</p>
+      <p>The cause of the failure was the previous installer cutting a corner — they didn't purge with nitrogen when brazing the copper lines. Without nitrogen displacing the oxygen, brazing leaves black soot inside the copper.</p>
+      <p>When refrigerant runs through, it pushes the soot into the TXV screen and jams it. The manufacturer ends up paying for the part even though it wasn't their defect.</p>
+      <p>Steven was emphatic:</p>
+      <blockquote>That's where you could cut corners every day.</blockquote>
+      <p>And he doesn't.</p>
+      <p>He also referenced the maintenance-call practice of finding a piece of uninsulated line set, cutting a piece of Armaflex, taping it on, and not charging the customer.</p>
+      <blockquote>Some companies, they're charging $120 to put Armor Flex on it... I'm going to cut a piece of insulation. I'mma put it there. I'm going to tape it. Then, I'm going to let the homeowner look, look, you've had this pipe dripping for the last such and such amount of time. I took care of it for you today. No charge.</blockquote>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q11</span>Is there a customer who's stayed with you over the years? Somebody whose neighbors or family you've ended up serving too?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>The first one Steven mentioned was a Carolina Heating customer who became loyal to him personally. When Steven became service manager and stopped going out, the company sent another tech and the customer called the office to complain:</p>
+      <blockquote>I don't want anybody else here but you.</blockquote>
+      <p>Steven asked what about sending his son, and the customer accepted, then started asking only for Steven's son.</p>
+      <p>After Steven left to start ECS, he went back to talk to the guy — he had sold the house. But the new owner is now Steven's customer too.</p>
+      <p>The bigger answer is Sam — a plumbing tech who works alongside Angel at Benjamin Franklin. Sam and his dad will never use anyone but Steven for HVAC.</p>
+      <p>Sam owns five rental properties — all serviced by ECS. He's referred Steven to his wife, to family, and to friends building out their gym (mini-splits).</p>
+      <p>Steven estimates Sam has referred him "probably 30 to 50 grand" worth of work. Steven described Sam as a quality-focused plumber who talks to homeowners respectfully and only refers people he'd trust in his own house.</p>
+      <p>Steven even fixed Sam's backup camera in his truck.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q12</span>Tell me about a homeowner who'd been burned before — somebody who'd been overcharged or sold something they didn't need by another company — and what it was like serving them after.</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Two stories. First — Janice. A friend of Angel's from middle school.</p>
+      <p>Two of the bigger Easley-area companies (Complete and McGee) had been to her house. They charged her thousands of dollars to replace a coil.</p>
+      <p>The actual problem: whoever changed out the coil overcharged the unit, so the compressor was overheating and shutting down. Janice found Steven through Angel's Facebook.</p>
+      <p>Second — a friend's mom in Belton (about an hour drive, out of ECS's normal area). His Carolina Heating buddy called him:</p>
+      <blockquote>Man, my mom's unit's freezing up. Katie said it needs a TXV and a compressor.</blockquote>
+      <p>Steven's instant reaction:</p>
+      <blockquote>There is no way that it needs both of those... if it needs a compressor, then it wouldn't be freezing up because a compressor wouldn't be able to compress anything. It doesn't make sense.</blockquote>
+      <p>Steven drove out there anyway. The only thing wrong with her unit was that her filters were dirty.</p>
+      <p>Third — a customer named Chris something. He left a one-star Google review on Carolina Heating Service after a Carolina tech told him his unit was failing and needed to be replaced.</p>
+      <p>He's been updating that review every year for four years to keep it relevant. Recently he called Steven directly to get a real estimate.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q13</span>Have you ever had to make a hard call on a job — tell a customer something they didn't want to hear, or walk away?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven described being chased off a customer's porch by a belligerent drunk in Myrtle Beach. The customer's brand-new unit (less than six months old) had been installed so poorly it was a fire hazard.</p>
+      <p>The woman was drunk and had been waiting all day in summer heat. Steven told her:</p>
+      <blockquote>Look, you need to call the company that installed it and you need to have them make this right. I'm not going to touch that and put my name on it.</blockquote>
+      <p>She got angry. Her neighbor literally had to come across the street and physically restrain her ("you need to get in your truck and go") while Steven left.</p>
+      <p>She wrote him a one-star review. Steven was clear — the install wasn't his fault, it was a fire hazard, and he wasn't going to put his name on it.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q14</span>Is there a story about somebody on the team that captures the kind of team you're building?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p><em>Not directly asked — Steven doesn't have a built-out team yet.</em></p>
+      <span class="qa-label related-label">Related material</span>
+      <p>He gave a strong indicator through the story of training a tech at Carolina ("one of the best technicians I've ever trained") who later moved to Michelin to do maintenance.</p>
+      <p>That tech is the one who called Steven after his brother (also a former Carolina tech) misdiagnosed his mom's unit — and Steven drove an hour out of his territory to make it right.</p>
+      <p>That triangle — Steven training, the trainee going on to be excellent, and Steven still being the trusted name — is the closest thing he gave to a "team story."</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q15</span>When you show up at a homeowner's door — the first 60 seconds, before you've said much — what do you want them to immediately notice about you?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>That he's in uniform and clean. That his truck in the background is uniform and professional. Everything matches.</p>
+      <p>But for Steven this starts before the door — it starts on the phone. No noise in the background, no kids, no dogs. Quiet. Professional speech.</p>
+      <p>When he calls a customer it's:</p>
+      <blockquote>Hey, this is Stephen from Exceptional Comfort Services. Um, I'm looking for such and such.</blockquote>
+      <p>Not "Hey Maryanne, this is Stephen." Even when he's driving, if he answers, he'll say:</p>
+      <blockquote>If you give me a few minutes, I'll find somewhere to safely pull over and then I could get some information.</blockquote>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q16</span>As ECS grows and you bring techs on, what's the culture you want them to walk into? What's the kind of person you'd hire — and the kind you'd never hire?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>The kind he'd hire: honest, good and comfortable talking to people, high integrity, "the whole package."</p>
+      <p>Shows up to work every day, on time, in uniform — not showing up late, not showing up out of uniform and then getting dressed at the truck. Clean cut. Ready to walk into someone's home and represent the brand well.</p>
+      <p>The kind he'd never hire: cocky, arrogant, attention-w**re know-it-alls. The car-salesman type.</p>
+      <p>He acknowledged that these guys often "know stuff," but they also carry "all the things that you learned from this company and this company and this company" — meaning bad habits and bad training picked up at the big shops. They're the hardest to hire because you have to undo whatever nonsense they've got going on first.</p>
+      <p>He extended this into broader cultural commentary — young techs get thrown into trucks with tool bags and told to make a living. That's dangerous for the tech and dangerous for the homeowner.</p>
+      <p>You have to be humbled in this trade. He's been humbled himself — shocked, almost fell out of attics, fell off ladders, hung from attic hatches.</p>
+      <p>Errors in attics or with electrical can mean fires, falls, real consequences. The trade has gravity and the person you hire needs to feel that gravity.</p>
+    </div>
+  </article>
+
+  <div class="standout">
+    <div class="standout-header">
+      <span class="standout-icon">🎯</span>
+      <span class="standout-title">Standout quotes from this segment</span>
+    </div>
+    <blockquote>We wrote down this motto, family run, friendly feel, and exceptional quality.</blockquote>
+    <blockquote>Like even on the weekends if I'm on call, she'll go with me... we went on Easter Sunday, I was up on a ladder over a restaurant dining room handing her buckets of water with a rope like as people were running back and forth by her. I mean, we have fun doing it though.</blockquote>
+    <blockquote>She is one of the best office people I have ever seen, you know? Like I if I asked her, she was always my brain.</blockquote>
+    <blockquote>I'm going to be heavily involved. It's not going to be one of these where, you know, oh, I'm going to just disappear. I mean, I'll take my vacations and whatever, but I'm going to be part of all of it. We're not going to use subcontractors. We're not going to use, you know, this is going to be our company.</blockquote>
+    <blockquote>She didn't really have a whole lot of money, so I told her not to worry about it. Just fixed it up for her and told her merry Christmas.</blockquote>
+    <blockquote>Guys wouldn't... they use that as an excuse to not have to do it.</blockquote>
+    <blockquote>I'm going to let the homeowner look, look, you've had this pipe dripping for the last such and such amount of time. I took care of it for you today. No charge.</blockquote>
+    <blockquote>I'm not going to touch that and put my name on it.</blockquote>
+    <blockquote>You have got to be humbled. I've been humbled a couple of times. I've shocked myself. I've almost fallen out of addicts. I've smacked my head on stuff. I've fallen off of ladders and hung from uh attic hashes, you know? I mean, that happens. Like, that's real life stuff.</blockquote>
+    <blockquote>These companies, you take these young guys and they just throw them in a truck with a tool bag and say, 'Here, go make a living.' Well, number one, it's dangerous. Number two, it's dangerous for the homeowner, too.</blockquote>
+  </div>
+</section>
+
+<div class="segment-divider"></div>
+
+<!-- ============================== SEGMENT 3 ============================== -->
+<section class="segment" id="segment-3">
+  <div class="segment-header">
+    <div class="segment-time">0:40 — 0:50</div>
+    <h2 class="segment-title">Brand Feeling, Customers &amp; The Right Fit</h2>
+  </div>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q1</span>When a customer hangs up the phone after talking with ECS, how do you want them to feel?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Happy that they called. Warm and fuzzy.</p>
+      <blockquote>Like I feel warm and fuzzy talking to him.</blockquote>
+      <p>(Angel jumped in here.) Steven noted that this actually happens a lot — when Angel answers the company phone, customers wonder where he is, but she handles them and they end up loving her too.</p>
+      <p>He gave examples of customers giving them gifts after service calls — sourdough bagels from one baker customer (her husband sent him home with English muffins yesterday), bottles of wine, moonshine, beer.</p>
+      <p>He even bought a truck from a customer for $500 for his son ("he drove it until he totaled it"). Customers offload stuff on them sometimes — the beer nobody else wants — but the gifts are the indicator that they feel taken care of.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q2</span>Describe the kind of customer you love serving.</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>The house doesn't matter to Steven.</p>
+      <blockquote>A house is a house.</blockquote>
+      <p>He cares about the conversation. The customers he loves are the ones you can have a comfortable adult conversation with. Not necessarily like family, but down-to-earth.</p>
+      <p>People who speak nicely, communicate well — which Steven says "is kind of going away as the generations change."</p>
+      <p>Middle-aged and older skew best. Younger customers are hit or miss. He acknowledged that "the really heavy money people are not nice people" sometimes.</p>
+      <p>He clarified the flip side — he doesn't enjoy working with very low-income customers, not because of them as people, but because those are the calls he loses money on. His heartstrings get pulled, he ends up taking care of them anyway, but it's financially painful for the business.</p>
+      <p>He understands they need HVAC too.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q3</span>Tell me about a "Steven moment" — something you've done for a customer that the big franchised guys would never do.</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven led with pricing.</p>
+      <blockquote>I just don't feel like everybody's got to be making a killing. Like you got to scale the amount of money that you're making.</blockquote>
+      <p>He pays himself $40,000 a year right now (less than a gas station job) to keep overhead down and avoid debt. He acknowledged growth will increase overhead eventually — at some point they'll get a building and more trucks — but the foundational principle is fair pricing.</p>
+      <p>He won't pay techs $35–40/hr plus 8% commission because that's the formula that turns techs into ripoff artists ($1,600 systems sold for $3,000+). He doesn't want that to be ECS.</p>
+      <p>He also pointed back to the 86-year-old chandelier customer earlier — staying until the electrician showed up, picking one who didn't also do HVAC so she wouldn't get upsold.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q4</span>What gets you genuinely angry about how HVAC gets done in this industry?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>The laziness, and people not being trained. Not just HVAC — all the trades except construction ("you can't really fake construction").</p>
+      <p>Plumbing, HVAC, electricians — they go out and know the bare minimum, get the bare minimum training, and the only training the company invests in is sales training. The technical side gets neglected.</p>
+      <p>Steven argues there should be balance — sales training for guys who struggle talking to customers, fine, but you can't sacrifice the technical depth because the trade keeps growing and equipment keeps changing.</p>
+      <p>He extended this into a management critique. As former service manager of 30 techs at Carolina, he was the only manager actually holding people accountable — writing techs up, doing spot checks, finding leaves in equipment from yesterday's maintenance, finding unwashed coils.</p>
+      <p>Other managers let it go, let it go, let it go — then did mass firings of 7–10 people, calling it "reduction of staff" so they couldn't rehire for 90 days in those positions. The cancer is the manager who never held anyone accountable, not the techs who got let go.</p>
+      <p>He talked through the alternative. If a manager comes to a tech and says:</p>
+      <blockquote>Shane, you're not making your sales on indoor air quality, I need you to do a little better.</blockquote>
+      <p>That puts something in the tech's head and opens the door for them to ask "Hey, can you teach me?" The big companies don't do that.</p>
+      <p>They run monthly meetings, put numbers on the board, and publicly shame the bottom while making the top feel cocky and arrogant. The good techs at the bottom leave because no one taught them.</p>
+      <p>Ten years later all you have is cocky arrogant people who cost you money.</p>
+      <p>He also called out the licensing loophole in South Carolina — only one license holder per company is required. So companies hire guys with good talk skills, hand them a script, and send them out to charge $345 for a $20–$30 capacitor (plus a $69–$99 service call fee).</p>
+      <p>He's seen "21, 22 year old kid" techs he personally trained start their own HVAC companies — uninsured, unbonded, unlicensed. It's a combination of greed and incompetence.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q5</span>A homeowner in Greenville or Easley is sitting on hold with one of the big brands right now. What would you tell them, in one sentence, about why they should hang up and call you instead?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven initially struggled with this. He said he's licensed, the tech they'd send isn't. He said he cares.</p>
+      <p>Then Shayne re-asked the question and Steven nailed it on the second pass:</p>
+      <blockquote>Because I'll answer the phone.</blockquote>
+      <p>They're on hold with them — call someone who actually answers.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q6</span>The lake-home folks at Keowee and Jocassee — what's different about serving those customers? Any stories there?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven clarified he serves Lake Keowee but doesn't go as far as Lake Jocassee — "that's way too far."</p>
+      <p>Lake Keowee customers have high-dollar homes — one of his customers' second home is worth around $5.5 million. The expectations are different — shoe covers, trucks that don't leak oil ("their driveways probably cost more than my house"), trucks kept up, presentation matters.</p>
+      <p>Technically the equipment is different too — fresh air intakes, energy recovery ventilators, dehumidifiers, steam humidifiers. Some homes are geothermal.</p>
+      <p>Steven doesn't want to advertise geothermal because he can't replace those systems, but he can service them — and he'd take a service call on geothermal anyway just for the word-of-mouth from that affluent customer base.</p>
+      <p>He referenced the first maintenance agreement he ever sold at ECS — in Sunset (Lake Keowee area), a 10-system house with a wine cellar, a $3,000 maintenance agreement that has turned into roughly $20,000 of work so far.</p>
+    </div>
+  </article>
+
+  <article class="qa">
+    <h3 class="qa-question"><span class="q-num">Q7</span>Anything else you want a customer to know about you that they'd never know from a Google search?</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>Steven said no.</p>
+      <blockquote>I don't think so. We covered a lot.</blockquote>
+      <p>Brief.</p>
+    </div>
+  </article>
+
+  <div class="standout">
+    <div class="standout-header">
+      <span class="standout-icon">🎯</span>
+      <span class="standout-title">Standout quotes from this segment</span>
+    </div>
+    <blockquote>I want him to feel warm and fuzzy like I feel warm and fuzzy talking to him.</blockquote>
+    <blockquote>She makes the best sourdough bagels. Oh my god... She's a baker. She gave me a bag full of them suckers the last time I was at her house. Yesterday, her husband made me take English muffins home.</blockquote>
+    <blockquote>I'm only paying myself $40,000 a year... which is less than somebody that's working at a gas station would make probably.</blockquote>
+    <blockquote>If I can sell it for $199 and make money, why are you selling it for $345?</blockquote>
+    <blockquote>The laziness. The laziness and the people not being trained and literally all the training. And it's not just HBAC, it's all the trades.</blockquote>
+    <blockquote>All the training that that company is going to invest in that technician is going to be sales trained, you know, and that's where that's what rubs me a little bit wrong.</blockquote>
+    <blockquote>Because I'll answer the phone. They're on hold with them.</blockquote>
+    <blockquote>Their driveways probably cost more than my house. Like I'm not even joking.</blockquote>
+    <blockquote>I had a good friend that... his mom's unit's freezing up. Katie said that the unit's freezing up because it needs a TXV and a compressor. And I'm like, there is no way that it needs both of those... The only thing that was wrong with her unit was that her filters were dirty.</blockquote>
+    <blockquote>It's a political game to everybody now. The people that they like, they're going to keep, and the people they don't like go... Then a corporation like that, they do a mass firing of seven to 10 people and call it a reduction of staff.</blockquote>
+    <blockquote>We're in the Bible belt here... I don't talk to people about religion. I don't talk to people about politics. I don't talk to people most of the time about sports.</blockquote>
+  </div>
+</section>
+
+<div class="segment-divider"></div>
+
+<!-- ============================== SEGMENT 4 ============================== -->
+<section class="segment" id="segment-4">
+  <div class="segment-header">
+    <div class="segment-time">0:50 — 0:58</div>
+    <h2 class="segment-title">Roadmap: What Happens After Launch</h2>
+  </div>
+
+  <article class="qa">
+    <h3 class="qa-question">Reactions and Questions From Steven During the Roadmap Walkthrough</h3>
+    <div class="qa-body">
+      <span class="qa-label answer-label">Answer</span>
+      <p>This segment was mostly Shayne walking through the post-launch flow and pre-framing the next investments (GBP optimization, review generation, ongoing content, paid layer). Steven's contributions were lighter but worth capturing:</p>
+      <ul>
+        <li>He asked Shayne to confirm that the names of his previous employers (Carolina Heating, One Hour, Benjamin Franklin) would not appear by name on the website. Angel had specifically asked him about this the night before the call. Shayne confirmed — they'll reference "one of the bigger players" without naming names.</li>
+        <li>Steven asked when Shayne would ask him for license/certification info. Shayne said it'd be in the intake document going out the next day.</li>
+        <li>Steven listed the services ECS offers when prompted: gas furnace service and maintenance, AC service, heat pump service and maintenance, PTAC units, mini-splits, generator service. He explicitly said he does NOT want generator installation on the website because SC requires a separate plumbing license and a separate electrical license he doesn't hold. He can service and replace existing generators where infrastructure is already in place, and he is a certified Generac dealer for service and installation, but the install path is reserved for existing customers where his brother-in-law (master electrician) can be brought in and the customer pulls permits.</li>
+        <li>Steven brought up a current pain point — he can't link his Facebook and Instagram accounts together ("stupid meta") and would like help with social media down the line.</li>
+        <li>He confirmed he'd give Shayne's number to the karate dojo / cleaning business owner referral.</li>
+      </ul>
+    </div>
+  </article>
+
+  <div class="standout">
+    <div class="standout-header">
+      <span class="standout-icon">🎯</span>
+      <span class="standout-title">Standout quotes from this segment</span>
+    </div>
+    <blockquote>So now, are you actually you're not actually going to mention those companies on there, right?</blockquote>
+    <blockquote>We are a certified Generac dealer as far as service and installation.</blockquote>
+    <blockquote>I'm having a problem with stupid meta and I can't link my accounts together. It's being a real pain.</blockquote>
+  </div>
+</section>
+
+</main>
+
+</body>
+</html>
