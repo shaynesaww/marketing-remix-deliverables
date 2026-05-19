@@ -1,0 +1,10 @@
+{
+  "name": "ecs-intake-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Steven Tibball / Exceptional Comfort Services website intake — hosted on Vercel, draft persistence via Vercel KV, submission via n8n webhook.",
+  "type": "module",
+  "dependencies": {
+    "@vercel/kv": "^3.0.0"
+  }
+}

@@ -1,0 +1,2043 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Website Intake — Exceptional Comfort Services</title>
+  <meta name="description" content="Intake form for Exceptional Comfort Services website build with Marketing Remix." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="./config.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  <style>
+    /* ============ DESIGN TOKENS ============ */
+    :root {
+      --bg: #FAF7F1;
+      --bg-warm: #F3EDE0;
+      --surface: #FFFFFF;
+      --surface-2: #F7F3EA;
+      --surface-3: #EFE9DA;
+      --ink: #0F1923;
+      --ink-soft: #38454F;
+      --ink-mute: #6B7682;
+      --line: #E2DCC9;
+      --line-strong: #C9C2AC;
+      --line-stronger: #A89F84;
+      --primary: #0E2D4A;
+      --primary-hover: #163C61;
+      --primary-soft: #E6EDF4;
+      --accent: #C2410C;
+      --accent-hover: #9A3308;
+      --accent-soft: #FEF1E2;
+      --accent-line: #F7C896;
+      --focus: #F59E0B;
+      --emerald: #047857;
+      --emerald-soft: #D1FAE5;
+      --rose: #B91C1C;
+      --rose-soft: #FEE2E2;
+      --amber-soft: #FEF3C7;
+      --amber-line: #FCD34D;
+
+      --shadow-card: 0 1px 2px rgba(15,42,74,0.04), 0 4px 12px -2px rgba(15,42,74,0.05), 0 24px 48px -16px rgba(15,42,74,0.08);
+      --shadow-card-hover: 0 2px 4px rgba(15,42,74,0.06), 0 8px 20px -2px rgba(15,42,74,0.08), 0 32px 64px -16px rgba(15,42,74,0.12);
+      --shadow-btn: 0 1px 0 rgba(255,255,255,0.10) inset, 0 1px 2px rgba(15,25,35,0.20), 0 2px 4px -1px rgba(15,25,35,0.08);
+      --shadow-btn-hover: 0 1px 0 rgba(255,255,255,0.12) inset, 0 4px 10px -2px rgba(15,25,35,0.22), 0 2px 6px -1px rgba(15,25,35,0.10);
+      --shadow-btn-secondary: 0 1px 2px rgba(15,42,74,0.06), 0 2px 6px -1px rgba(15,42,74,0.05);
+      --shadow-input: 0 1px 0 rgba(15,25,35,0.02) inset;
+      --shadow-input-focus: 0 0 0 4px rgba(245,158,11,0.25);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(14,45,74,0.045) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 100% 100%, rgba(194,65,12,0.04) 0%, transparent 60%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.55;
+      font-feature-settings: 'ss01', 'kern';
+      -webkit-font-smoothing: antialiased;
+    }
+    [x-cloak] { display: none !important; }
+
+    /* ============ TYPOGRAPHY ============ */
+    h1, h2, h3, .font-display {
+      font-family: 'Bricolage Grotesque', 'Public Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin: 0;
+    }
+    h1 { font-size: clamp(28px, 4vw + 14px, 44px); line-height: 1.05; font-weight: 800; }
+    h2 { font-size: clamp(22px, 2vw + 14px, 32px); line-height: 1.15; }
+    h3 { font-size: 18px; line-height: 1.3; }
+    p { margin: 0; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; letter-spacing: -0.01em; }
+
+    /* ============ LAYOUT ============ */
+    .app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+    .container-narrow { max-width: 720px; margin: 0 auto; padding: 0 16px; }
+    @media (min-width: 640px) { .container-narrow { padding: 0 24px; } }
+
+    /* ============ HEADER ============ */
+    .app-header {
+      position: sticky; top: 0; z-index: 40;
+      background: rgba(250,247,241,0.85);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid var(--line);
+    }
+    .app-header__bar { display: flex; align-items: flex-start; gap: 14px; padding: 12px 0; }
+    .brand-mark {
+      display: inline-flex; align-items: center; gap: 10px;
+      flex: 1; min-width: 0; padding-top: 2px;
+    }
+    .app-header__right { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; min-width: 0; }
+    .header-contact { text-align: right; min-width: 0; }
+    .header-contact__title {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      color: var(--ink-mute);
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 3px;
+      white-space: nowrap;
+    }
+    .header-contact__links {
+      display: flex; flex-direction: column; align-items: flex-end;
+      gap: 2px;
+    }
+    .header-contact__link {
+      display: inline-flex; align-items: center; gap: 5px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink);
+      text-decoration: none;
+      white-space: nowrap;
+      font-family: 'Public Sans', sans-serif;
+      line-height: 1.35;
+      font-variant-numeric: tabular-nums;
+      padding: 2px 6px;
+      border-radius: 6px;
+      transition: background 150ms, color 150ms;
+      max-width: 100%;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .header-contact__link svg { color: var(--accent); flex-shrink: 0; }
+    .header-contact__link:hover { color: var(--accent-hover); background: var(--accent-soft); }
+    @media (min-width: 768px) {
+      .header-contact__links { flex-direction: row; gap: 4px 12px; }
+    }
+    .brand-logo {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 36px; height: 36px;
+      background: linear-gradient(135deg, var(--primary) 0%, #163C61 100%);
+      color: #FAF7F1;
+      border-radius: 10px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: -0.04em;
+      flex-shrink: 0;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.10) inset, 0 2px 4px rgba(15,25,35,0.15);
+    }
+    .brand-text { min-width: 0; }
+    .brand-eyebrow {
+      font-size: 10.5px; text-transform: uppercase; letter-spacing: 0.14em;
+      color: var(--ink-mute); font-weight: 600;
+    }
+    .brand-name {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px; font-weight: 700; line-height: 1.15;
+      color: var(--ink);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+    .header-meta { text-align: right; font-size: 11px; line-height: 1.4; min-width: 0; }
+    .header-meta .step { font-weight: 700; color: var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; letter-spacing: -0.01em; }
+    .header-meta .save { color: var(--ink-mute); }
+    .save.is-saving { color: var(--emerald); }
+
+    /* progress bar */
+    .progress-track {
+      height: 4px;
+      background: var(--line);
+      position: relative; overflow: hidden;
+    }
+    .progress-fill {
+      position: absolute; inset: 0 auto 0 0;
+      background: linear-gradient(90deg, var(--primary) 0%, var(--accent) 100%);
+      transition: width 500ms cubic-bezier(0.16,1,0.3,1);
+      box-shadow: 0 0 8px rgba(194,65,12,0.4);
+    }
+
+    /* ============ CARD ============ */
+    .section-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 28px 24px;
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+    @media (min-width: 640px) { .section-card { padding: 44px 48px; border-radius: 28px; } }
+
+    .section-head { margin-bottom: 24px; }
+    @media (min-width: 640px) { .section-head { margin-bottom: 32px; } }
+
+    /* ============ SECTION CHIP (numbered) ============ */
+    .section-chip {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 5px 14px 5px 5px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--accent-hover);
+      font-family: 'Public Sans', sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+    .section-chip__num {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 24px; height: 24px;
+      background: var(--accent);
+      color: white;
+      border-radius: 999px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: 0;
+      text-transform: none;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 1px 2px rgba(154,51,8,0.4);
+    }
+    .section-dek { color: var(--ink-soft); font-size: 15px; margin-top: 8px; max-width: 56ch; }
+
+    /* ============ FIELD GROUP ============ */
+    .field-group {
+      padding: 22px 0;
+      border-top: 1px solid var(--line);
+    }
+    .field-group:first-of-type { border-top: 0; padding-top: 0; }
+    .field-group:last-of-type { padding-bottom: 4px; }
+    @media (min-width: 640px) { .field-group { padding: 26px 0; } }
+
+    .field-label {
+      display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      line-height: 1.3;
+      margin: 0 0 6px;
+    }
+    .field-label--sm { font-size: 14px; font-weight: 600; color: var(--ink-soft); letter-spacing: 0; }
+    .field-help {
+      font-size: 14px;
+      color: var(--ink-mute);
+      line-height: 1.5;
+      margin: 0 0 12px;
+    }
+    .field-help--inline { margin-top: 8px; margin-bottom: 0; }
+
+    /* ============ INPUTS ============ */
+    .input-base {
+      width: 100%;
+      display: block;
+      border: 1.5px solid var(--line-strong);
+      background: var(--surface);
+      border-radius: 12px;
+      padding: 14px 16px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 16px;
+      color: var(--ink);
+      line-height: 1.4;
+      transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+      -webkit-appearance: none;
+      appearance: none;
+      box-shadow: var(--shadow-input);
+    }
+    .input-base::placeholder { color: var(--ink-mute); opacity: 0.65; }
+    .input-base:hover { border-color: var(--ink-mute); }
+    .input-base:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: var(--shadow-input-focus);
+      background: #FFFEFB;
+    }
+    textarea.input-base { resize: vertical; min-height: 96px; line-height: 1.5; }
+    .input-mono { font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.02em; }
+
+    select.input-base {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%2338454F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      background-size: 12px;
+      padding-right: 44px;
+      cursor: pointer;
+    }
+
+    /* ============ OPTION CARD (radio/checkbox) ============ */
+    .opt-grid { display: grid; gap: 10px; }
+    .opt-grid-2 { grid-template-columns: repeat(2, 1fr); }
+    .opt-grid-3 { grid-template-columns: 1fr; }
+    .opt-grid-yn { grid-template-columns: repeat(2, 1fr); max-width: 320px; }
+    @media (min-width: 640px) {
+      .opt-grid-3 { grid-template-columns: repeat(3, 1fr); }
+      .opt-grid-2-sm { grid-template-columns: repeat(2, 1fr); }
+      .opt-grid-3-sm { grid-template-columns: repeat(3, 1fr); }
+      .opt-grid-4-sm { grid-template-columns: repeat(4, 1fr); }
+    }
+    .opt-grid-stacked { grid-template-columns: 1fr; }
+
+    .opt {
+      position: relative;
+      display: flex; align-items: center; gap: 12px;
+      padding: 13px 16px;
+      background: var(--surface);
+      border: 1.5px solid var(--line-strong);
+      border-radius: 12px;
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--ink);
+      cursor: pointer;
+      transition: all 160ms ease;
+      user-select: none;
+      box-shadow: var(--shadow-input);
+    }
+    .opt:hover {
+      border-color: var(--ink-mute);
+      background: #FFFEFB;
+      transform: translateY(-1px);
+      box-shadow: 0 2px 4px rgba(15,25,35,0.05);
+    }
+    .opt input[type="radio"],
+    .opt input[type="checkbox"] {
+      position: absolute;
+      width: 1px; height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .opt .ind {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      border: 2px solid var(--line-stronger);
+      border-radius: 999px;
+      flex-shrink: 0;
+      transition: all 160ms ease;
+      background: white;
+      position: relative;
+    }
+    .opt.is-check .ind { border-radius: 6px; }
+    .opt .ind::after { content: ''; display: block; transition: opacity 120ms ease; opacity: 0; }
+    .opt:not(.is-check) .ind::after {
+      width: 10px; height: 10px;
+      border-radius: 999px;
+      background: white;
+    }
+    .opt.is-check .ind::after {
+      width: 11px; height: 6px;
+      border-left: 2px solid white;
+      border-bottom: 2px solid white;
+      transform: rotate(-45deg) translate(1px, -2px);
+    }
+    .opt:has(input:checked) {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      box-shadow: 0 0 0 1px var(--primary) inset, var(--shadow-input);
+    }
+    .opt:has(input:checked) .ind {
+      background: var(--primary);
+      border-color: var(--primary);
+    }
+    .opt:has(input:checked) .ind::after { opacity: 1; }
+    .opt:focus-within { box-shadow: 0 0 0 4px rgba(245,158,11,0.25), 0 0 0 1px var(--primary) inset; }
+
+    /* ============ SUBCARD (group within section) ============ */
+    .subcard {
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 18px;
+    }
+    .subcard__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: -0.005em;
+      margin-bottom: 4px;
+    }
+    .subcard__dek { font-size: 13px; color: var(--ink-mute); margin-bottom: 14px; }
+
+    .repeater-row {
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: var(--shadow-input);
+    }
+    .repeater-row + .repeater-row { margin-top: 12px; }
+    .repeater-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    .repeater-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .repeater-label .pip {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      background: var(--primary);
+      color: white;
+      border-radius: 6px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+
+    /* ============ CHIPS / BADGES ============ */
+    .chip {
+      display: inline-flex; align-items: center; gap: 5px;
+      padding: 3px 9px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-line);
+      border-radius: 999px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: #92400E;
+      font-family: 'Public Sans', sans-serif;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .chip-success { background: var(--emerald-soft); border-color: #6EE7B7; color: var(--emerald); }
+    .chip-info { background: var(--primary-soft); border-color: #93C5FD; color: var(--primary); }
+    .chip-required { background: var(--rose-soft); border-color: #FCA5A5; color: var(--rose); }
+
+    /* ============ BUTTONS ============ */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px;
+      border-radius: 12px;
+      padding: 13px 22px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: all 160ms ease;
+      white-space: nowrap;
+      border: none;
+      text-decoration: none;
+      line-height: 1;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .btn:focus-visible { outline: none; box-shadow: 0 0 0 3px var(--bg), 0 0 0 5px var(--focus); }
+    .btn-block { width: 100%; }
+    .btn-lg { padding: 16px 28px; font-size: 16px; border-radius: 14px; }
+
+    .btn-primary {
+      background: linear-gradient(180deg, #194A78 0%, var(--primary) 100%);
+      color: white;
+      box-shadow: var(--shadow-btn);
+      border: 1px solid #0A2138;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(180deg, #1F5689 0%, #133D63 100%);
+      box-shadow: var(--shadow-btn-hover);
+      transform: translateY(-1px);
+    }
+    .btn-primary:active { transform: translateY(0); box-shadow: var(--shadow-btn); }
+    .btn-primary:disabled {
+      background: var(--surface-3);
+      color: var(--ink-mute);
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+      border-color: var(--line-strong);
+    }
+
+    .btn-accent {
+      background: linear-gradient(180deg, #DC5710 0%, var(--accent) 100%);
+      color: white;
+      box-shadow: var(--shadow-btn);
+      border: 1px solid #8A2D07;
+    }
+    .btn-accent:hover {
+      background: linear-gradient(180deg, #E96623 0%, #B83B0A 100%);
+      box-shadow: var(--shadow-btn-hover);
+      transform: translateY(-1px);
+    }
+    .btn-accent:active { transform: translateY(0); }
+    .btn-accent:disabled {
+      background: var(--surface-3); color: var(--ink-mute);
+      cursor: not-allowed; box-shadow: none; transform: none; border-color: var(--line-strong);
+    }
+
+    .btn-secondary {
+      background: var(--surface);
+      color: var(--primary);
+      border: 1.5px solid var(--line-stronger);
+      box-shadow: var(--shadow-btn-secondary);
+    }
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      background: #FFFEFB;
+      box-shadow: 0 2px 6px rgba(15,42,74,0.10), 0 4px 12px -2px rgba(15,42,74,0.08);
+      transform: translateY(-1px);
+    }
+
+    .btn-outline-accent {
+      background: var(--surface);
+      color: var(--accent-hover);
+      border: 1.5px solid var(--accent-line);
+      box-shadow: var(--shadow-btn-secondary);
+    }
+    .btn-outline-accent:hover {
+      border-color: var(--accent);
+      background: var(--accent-soft);
+      transform: translateY(-1px);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--ink-soft);
+      border: 1.5px solid transparent;
+      font-weight: 500;
+    }
+    .btn-ghost:hover { color: var(--primary); background: var(--surface-2); }
+
+    .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 9px; }
+    .btn-danger {
+      background: transparent;
+      color: var(--rose);
+      border: 1.5px solid transparent;
+      padding: 6px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      border-radius: 8px;
+    }
+    .btn-danger:hover { background: var(--rose-soft); }
+
+    /* preset CNAM picker buttons */
+    .preset-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 12px 14px;
+      background: var(--surface);
+      border: 1.5px dashed var(--line-strong);
+      border-radius: 10px;
+      cursor: pointer;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--ink-soft);
+      transition: all 160ms ease;
+    }
+    .preset-btn:hover { border-style: solid; border-color: var(--primary); color: var(--primary); background: var(--primary-soft); }
+
+    /* ============ INFO BLOCKS ============ */
+    .infobox {
+      display: flex; gap: 12px; align-items: flex-start;
+      padding: 16px 18px;
+      border-radius: 14px;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+    .infobox-icon { flex-shrink: 0; }
+    .infobox-warn { background: var(--amber-soft); border: 1px solid var(--amber-line); color: #78350F; }
+    .infobox-warn .infobox-icon { color: #B45309; }
+    .infobox-info { background: var(--primary-soft); border: 1px solid #BBD3E8; color: #0F1923; }
+    .infobox-info .infobox-icon { color: var(--primary); }
+    .infobox-success { background: var(--emerald-soft); border: 1px solid #6EE7B7; color: #064E3B; }
+    .infobox-success .infobox-icon { color: var(--emerald); }
+    .infobox-danger { background: var(--rose-soft); border: 1px solid #FCA5A5; color: #7F1D1D; }
+    .infobox-danger .infobox-icon { color: var(--rose); }
+
+    /* ============ REVIEW LIST ============ */
+    .review-row {
+      width: 100%;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+      padding: 16px 18px;
+      background: var(--surface);
+      border: 1px solid var(--line-strong);
+      border-radius: 14px;
+      cursor: pointer;
+      transition: all 160ms ease;
+      text-align: left;
+    }
+    .review-row:hover { border-color: var(--primary); background: #FFFEFB; transform: translateY(-1px); box-shadow: var(--shadow-btn-secondary); }
+    .review-row__num { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--ink-mute); font-weight: 500; }
+    .review-row__title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-top: 2px; }
+    .review-row + .review-row { margin-top: 8px; }
+
+    /* ============ BACKUP CTA ============ */
+    .backup-cta {
+      background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 18px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    .backup-cta::before {
+      content: ''; position: absolute; right: -40px; top: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(194,65,12,0.10) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .backup-cta__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+    }
+    .backup-cta__dek { font-size: 13.5px; color: var(--ink-soft); line-height: 1.5; }
+
+    /* ============ NAV FOOTER ============ */
+    .nav-footer {
+      display: flex; align-items: center; justify-content: space-between; gap: 12px;
+      margin-top: 24px;
+    }
+    .nav-footer__right { display: flex; gap: 8px; align-items: center; }
+
+    /* ============ ANIMATIONS ============ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .anim-fade-up { animation: fadeUp 380ms cubic-bezier(0.16,1,0.3,1) both; }
+    @keyframes pulse-success {
+      0% { transform: scale(0.6); opacity: 0; }
+      60% { transform: scale(1.06); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .anim-pulse { animation: pulse-success 600ms cubic-bezier(0.16,1,0.3,1) both; }
+
+    /* ============ MISC ============ */
+    .hr-soft { height: 1px; background: var(--line); border: none; margin: 18px 0; }
+    .text-mute { color: var(--ink-mute); }
+    .text-soft { color: var(--ink-soft); }
+    .text-success { color: var(--emerald); }
+    .text-danger { color: var(--rose); }
+    .text-accent { color: var(--accent-hover); }
+
+    .skip-disabled { background: var(--surface-2); color: var(--ink-mute); cursor: not-allowed; pointer-events: none; opacity: 0.55; }
+
+    /* small details: tabular numbers for character counters */
+    .tabular { font-variant-numeric: tabular-nums; }
+    .badge-counter {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 3px 9px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--ink-soft);
+    }
+    .badge-counter.is-error { background: var(--rose-soft); border-color: #FCA5A5; color: var(--rose); }
+
+    /* footer */
+    .app-footer {
+      padding: 28px 16px 36px;
+      text-align: center;
+      font-size: 12px;
+      color: var(--ink-mute);
+      letter-spacing: 0.04em;
+    }
+    .app-footer__brand {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--ink-soft);
+    }
+
+    /* visually hidden */
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+
+    /* mobile niceties */
+    @media (max-width: 480px) {
+      .section-card { padding: 24px 20px; }
+      .nav-footer { flex-direction: row; }
+      .nav-footer .btn { padding: 13px 16px; font-size: 14px; }
+      .btn-lg { padding: 14px 22px; font-size: 15px; }
+      .opt { padding: 12px 14px; font-size: 14.5px; }
+      .opt .ind { width: 20px; height: 20px; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div
+  x-data="intake()"
+  x-init="init()"
+  x-cloak
+  class="app-shell">
+
+  <!-- ============ STICKY HEADER ============ -->
+  <header class="app-header">
+    <div class="container-narrow app-header__bar">
+      <div class="brand-mark">
+        <div class="brand-logo" aria-hidden="true">MR</div>
+        <div class="brand-text">
+          <div class="brand-eyebrow">Marketing Remix · Intake</div>
+          <div class="brand-name">Exceptional Comfort Services</div>
+        </div>
+      </div>
+      <div class="app-header__right">
+        <div class="header-contact">
+          <div class="header-contact__title">Call or text if you have questions</div>
+          <div class="header-contact__links">
+            <a href="tel:+17193579633" class="header-contact__link" aria-label="Call (719) 357-9633">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <span>(719) 357-9633</span>
+            </a>
+            <a href="mailto:shayne@shaynechamplin.com" class="header-contact__link" aria-label="Email Shayne">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              <span>shayne@shaynechamplin.com</span>
+            </a>
+          </div>
+        </div>
+        <div class="header-meta" x-show="currentStep > 0 && currentStep <= totalSections">
+          <div class="step" x-text="`Section ${currentStep} / ${totalSections}`"></div>
+          <div class="save" :class="recentlySaved ? 'is-saving' : ''" x-text="saveLabel"></div>
+        </div>
+      </div>
+    </div>
+    <div class="progress-track" x-show="currentStep > 0 && currentStep <= totalSections">
+      <div class="progress-fill" :style="`width: ${(currentStep / totalSections) * 100}%`"></div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN ============ -->
+  <main class="flex-1" style="flex:1;">
+    <div class="container-narrow" style="padding-top: 24px; padding-bottom: 32px;">
+
+      <!-- ========== WELCOME (step 0) ========== -->
+      <template x-if="currentStep === 0">
+        <div class="section-card anim-fade-up">
+          <div class="section-chip">
+            <span class="section-chip__num">0</span>
+            <span>Welcome, Steven</span>
+          </div>
+          <h1>Let's get your new website built.</h1>
+          <p class="section-dek" style="margin-top: 16px; font-size: 16px;">
+            This is the operational stuff I need to build your site, set up your CRM, and get your phone number registered for text messages.
+            Should take about 20–30 minutes total. You don't have to do it in one sitting.
+          </p>
+
+          <div class="infobox infobox-info" style="margin-top: 24px;">
+            <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+            <div>
+              <div style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; color: var(--ink); margin-bottom: 4px;">Your progress saves automatically</div>
+              <div>Close this page any time. Come back in the same browser on this device and you'll pick up where you left off. Switching to a different phone or computer? Use the <strong>Send link</strong> button at the bottom of any section to email yourself a backup link.</div>
+            </div>
+          </div>
+
+          <ul style="margin-top: 24px; padding: 0; list-style: none; display: grid; gap: 12px;">
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="display:inline-flex;width:24px;height:24px;background:var(--primary-soft);color:var(--primary);border-radius:6px;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:12px;font-weight:700;flex-shrink:0;">13</span>
+              <span class="text-soft">Short sections. Skip anything you don't know off the top of your head.</span>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="display:inline-flex;width:24px;height:24px;background:var(--primary-soft);color:var(--primary);border-radius:6px;align-items:center;justify-content:center;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;flex-shrink:0;">TBD</span>
+              <span class="text-soft">Anything you mark "TBD" we'll circle back on.</span>
+            </li>
+            <li style="display: flex; gap: 12px; align-items: flex-start;">
+              <span style="display:inline-flex;width:24px;height:24px;background:var(--accent-soft);color:var(--accent-hover);border-radius:6px;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;">⏱</span>
+              <span class="text-soft">The 2-week build clock starts once the required sections are submitted.</span>
+            </li>
+          </ul>
+
+          <div style="margin-top: 32px; display: flex; justify-content: flex-end;">
+            <button @click="goTo(1)" class="btn btn-accent btn-lg">
+              Let's get started
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </button>
+          </div>
+
+          <div style="margin-top: 24px; text-align: center; font-size: 12px; color: var(--ink-mute);">
+            Questions? Text Shayne at <strong style="color: var(--ink-soft);">(719) 357-9633</strong>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 1: Credentials ========== -->
+      <template x-if="currentStep === 1">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">1</span><span>Section 1 of 13</span></div>
+            <h2>Credentials & trust signals</h2>
+            <p class="section-dek">These show up across your site as trust badges and in your bio.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Are you NATE certified?</label>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s1.nateCertified" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s1.nateCertified" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+            <template x-if="state.s1.nateCertified === 'yes'">
+              <div style="margin-top: 14px;">
+                <label class="field-label field-label--sm">Which techs are NATE certified?</label>
+                <textarea class="input-base" rows="2" x-model="state.s1.nateTechs" placeholder="List names"></textarea>
+              </div>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">EPA Universal certified?</label>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s1.epaUniversal" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s1.epaUniversal" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">South Carolina HVAC contractor license number</label>
+            <input class="input-base input-mono" type="text" x-model="state.s1.scLicenseNumber" placeholder="e.g., M115678" />
+          </div>
+
+          <div class="field-group">
+            <div style="display: grid; gap: 18px;" class="sm:grid-cols-2">
+              <div>
+                <label class="field-label">Bonded?</label>
+                <div class="opt-grid opt-grid-2">
+                  <label class="opt"><input type="radio" x-model="state.s1.bonded" value="yes"><span class="ind"></span><span>Yes</span></label>
+                  <label class="opt"><input type="radio" x-model="state.s1.bonded" value="no"><span class="ind"></span><span>No</span></label>
+                </div>
+              </div>
+              <div>
+                <label class="field-label">Insured?</label>
+                <div class="opt-grid opt-grid-2">
+                  <label class="opt"><input type="radio" x-model="state.s1.insured" value="yes"><span class="ind"></span><span>Yes</span></label>
+                  <label class="opt"><input type="radio" x-model="state.s1.insured" value="no"><span class="ind"></span><span>No</span></label>
+                </div>
+              </div>
+            </div>
+            <template x-if="state.s1.insured === 'yes'">
+              <div style="margin-top: 14px;">
+                <label class="field-label field-label--sm">General liability coverage amount</label>
+                <input class="input-base" type="text" x-model="state.s1.liabilityCoverage" placeholder="e.g., $1,000,000" />
+              </div>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">BBB accredited?</label>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s1.bbbAccredited" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s1.bbbAccredited" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+            <template x-if="state.s1.bbbAccredited === 'yes'">
+              <div style="margin-top: 14px;">
+                <label class="field-label field-label--sm">Current BBB rating</label>
+                <select class="input-base" x-model="state.s1.bbbRating">
+                  <option value="">Select rating…</option>
+                  <option>A+</option><option>A</option><option>A-</option>
+                  <option>B+</option><option>B</option><option>B-</option>
+                  <option>Other</option>
+                </select>
+              </div>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Other memberships</label>
+            <p class="field-help">Chamber of Commerce (which one?), ACCA, any others.</p>
+            <textarea class="input-base" rows="3" x-model="state.s1.otherMemberships" placeholder="List anything else you're a member of"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Awards, press, "Best Of" recognition</label>
+            <textarea class="input-base" rows="3" x-model="state.s1.awards" placeholder="Anything you've won, been featured in, or been recognized for"></textarea>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 2: Vendors & Brands ========== -->
+      <template x-if="currentStep === 2">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">2</span><span>Section 2 of 13</span></div>
+            <h2>Vendors & brands</h2>
+            <p class="section-dek">Logos of brands you're authorized to display end up in a trust strip on your site.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Equipment brands you install or service</label>
+            <p class="field-help">Check all that apply.</p>
+            <div class="opt-grid opt-grid-2 opt-grid-3-sm">
+              <template x-for="brand in ['Trane','Carrier','Lennox','Goodman','Rheem','Mitsubishi','Daikin','York','Bryant','American Standard','Amana','Ruud']" :key="brand">
+                <label class="opt is-check">
+                  <input type="checkbox" :value="brand" x-model="state.s2.brands">
+                  <span class="ind"></span>
+                  <span x-text="brand"></span>
+                </label>
+              </template>
+            </div>
+            <div style="margin-top: 16px;">
+              <label class="field-label field-label--sm">Other brands</label>
+              <input class="input-base" type="text" x-model="state.s2.otherBrands" placeholder="Comma-separated" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Generac dealer status</label>
+            <div class="opt-grid opt-grid-2 opt-grid-4-sm">
+              <template x-for="opt in ['Authorized','Preferred','Elite','N/A']" :key="opt">
+                <label class="opt"><input type="radio" :value="opt" x-model="state.s2.generacStatus"><span class="ind"></span><span x-text="opt"></span></label>
+              </template>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Financing partners</label>
+            <p class="field-help">Check all that apply.</p>
+            <div class="opt-grid opt-grid-2 opt-grid-3-sm">
+              <template x-for="fp in ['Wisetack','GoodLeap','Synchrony','Service Finance Co.','FTL Finance','Greensky']" :key="fp">
+                <label class="opt is-check"><input type="checkbox" :value="fp" x-model="state.s2.financingPartners"><span class="ind"></span><span x-text="fp"></span></label>
+              </template>
+            </div>
+            <div style="margin-top: 16px;">
+              <label class="field-label field-label--sm">Other financing partners</label>
+              <input class="input-base" type="text" x-model="state.s2.otherFinancing" placeholder="Comma-separated" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Logos available for the above?</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-3-sm">
+              <template x-for="opt in ['Yes — all','No','Some — see notes']" :key="opt">
+                <label class="opt"><input type="radio" :value="opt" x-model="state.s2.logosAvailable"><span class="ind"></span><span x-text="opt"></span></label>
+              </template>
+            </div>
+            <template x-if="state.s2.logosAvailable === 'Some — see notes'">
+              <textarea class="input-base" rows="2" x-model="state.s2.logosNotes" placeholder="Which ones you have / don't have" style="margin-top: 14px;"></textarea>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 3: Guarantees ========== -->
+      <template x-if="currentStep === 3">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">3</span><span>Section 3 of 13</span></div>
+            <h2>Guarantees & warranty</h2>
+            <p class="section-dek">The exact wording matters here — we'll feature these prominently.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">100% Satisfaction Guarantee — what does it actually cover?</label>
+            <p class="field-help">How is it honored if a customer isn't satisfied? Be specific.</p>
+            <textarea class="input-base" rows="4" x-model="state.s3.satisfactionTerms" placeholder="e.g., If you're not 100% satisfied with the work, we'll come back at no charge to make it right…"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Workmanship warranty on labor</label>
+            <div class="opt-grid opt-grid-2" style="grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));">
+              <template x-for="d in ['1 year','2 years','5 years','Lifetime','Custom']" :key="d">
+                <label class="opt"><input type="radio" :value="d" x-model="state.s3.workmanshipDuration"><span class="ind"></span><span x-text="d"></span></label>
+              </template>
+            </div>
+            <template x-if="state.s3.workmanshipDuration === 'Custom'">
+              <input class="input-base" type="text" x-model="state.s3.workmanshipCustom" placeholder="Describe the workmanship warranty terms" style="margin-top: 14px;" />
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Parts warranty</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <label class="opt"><input type="radio" value="Manufacturer pass-through only" x-model="state.s3.partsWarranty"><span class="ind"></span><span>Manufacturer pass-through only</span></label>
+              <label class="opt"><input type="radio" value="Extended" x-model="state.s3.partsWarranty"><span class="ind"></span><span>Extended (we add on)</span></label>
+            </div>
+            <template x-if="state.s3.partsWarranty === 'Extended'">
+              <textarea class="input-base" rows="2" x-model="state.s3.partsWarrantyTerms" placeholder="How long, and on what parts" style="margin-top: 14px;"></textarea>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">On-time guarantee?</label>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s3.onTimeGuarantee" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s3.onTimeGuarantee" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+            <template x-if="state.s3.onTimeGuarantee === 'yes'">
+              <textarea class="input-base" rows="2" x-model="state.s3.onTimeTerms" placeholder="What the on-time guarantee actually says" style="margin-top: 14px;"></textarea>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Any other guarantees you want featured?</label>
+            <textarea class="input-base" rows="3" x-model="state.s3.otherGuarantees" placeholder="No-lemon clause, money-back, anything else"></textarea>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 4: Services & Pricing ========== -->
+      <template x-if="currentStep === 4">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">4</span><span>Section 4 of 13</span></div>
+            <h2>Services & pricing posture</h2>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Services to feature on the site</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <template x-for="svc in ['AC repair','AC installation / replacement','Heating / furnace repair','Heating / furnace installation','HVAC maintenance & tune-up plans','Indoor air quality (IAQ)','Duct cleaning','Ductless mini-split installs','Heat pump installs','Geothermal','Generator install (Generac)','Commercial HVAC']" :key="svc">
+                <label class="opt is-check"><input type="checkbox" :value="svc" x-model="state.s4.services"><span class="ind"></span><span x-text="svc"></span></label>
+              </template>
+            </div>
+            <div style="margin-top: 16px;">
+              <label class="field-label field-label--sm">Other services to feature</label>
+              <input class="input-base" type="text" x-model="state.s4.otherServices" placeholder="Anything else" />
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Service-call / diagnostic fee — do you publish it on the site?</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-3-sm">
+              <label class="opt"><input type="radio" value="publish" x-model="state.s4.publishFee"><span class="ind"></span><span>Yes, publish it</span></label>
+              <label class="opt"><input type="radio" value="hide" x-model="state.s4.publishFee"><span class="ind"></span><span>No, hide it</span></label>
+              <label class="opt"><input type="radio" value="waive" x-model="state.s4.publishFee"><span class="ind"></span><span>Waived with repair</span></label>
+            </div>
+            <div style="margin-top: 16px; display: grid; gap: 16px;" class="grid sm:grid-cols-2">
+              <div>
+                <label class="field-label field-label--sm">Normal diagnostic fee</label>
+                <input class="input-base" type="text" x-model="state.s4.feeAmount" placeholder="e.g., $89" />
+              </div>
+              <div>
+                <label class="field-label field-label--sm">After-hours & weekend diagnostic fee</label>
+                <input class="input-base" type="text" x-model="state.s4.feeAfterHours" placeholder="e.g., $149" />
+              </div>
+              <div style="grid-column: 1 / -1;">
+                <label class="field-label field-label--sm">Free estimates on installs?</label>
+                <div class="opt-grid opt-grid-yn">
+                  <label class="opt"><input type="radio" x-model="state.s4.freeEstimates" value="yes"><span class="ind"></span><span>Yes</span></label>
+                  <label class="opt"><input type="radio" x-model="state.s4.freeEstimates" value="no"><span class="ind"></span><span>No</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <label class="field-label" style="margin-bottom: 0;">Maintenance plan tiers</label>
+              <button type="button" class="btn btn-outline-accent btn-sm" @click="addTier()">+ Add a tier</button>
+            </div>
+            <p class="field-help">If you don't have plans yet, leave this empty.</p>
+
+            <div style="margin-top: 4px;">
+              <template x-for="(tier, idx) in state.s4.tiers" :key="idx">
+                <div class="repeater-row">
+                  <div class="repeater-head">
+                    <span class="repeater-label">
+                      <span class="pip" x-text="`T${idx + 1}`"></span>
+                      <span x-text="`Tier ${idx + 1}`"></span>
+                    </span>
+                    <button type="button" class="btn-danger" @click="state.s4.tiers.splice(idx, 1)">Remove</button>
+                  </div>
+                  <div style="display: grid; gap: 12px;" class="grid sm:grid-cols-2">
+                    <div><label class="field-label field-label--sm">Plan name</label><input class="input-base" type="text" x-model="tier.name" placeholder="e.g., Comfort Club"/></div>
+                    <div><label class="field-label field-label--sm">Monthly / annual price</label><input class="input-base" type="text" x-model="tier.price" placeholder="$19/mo or $199/yr"/></div>
+                    <div style="grid-column: 1/-1;"><label class="field-label field-label--sm">What's included</label><textarea class="input-base" rows="3" x-model="tier.inclusions" placeholder="Tune-ups, discounts, priority scheduling…"></textarea></div>
+                  </div>
+                </div>
+              </template>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 5: Service Area ========== -->
+      <template x-if="currentStep === 5">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">5</span><span>Section 5 of 13</span></div>
+            <h2>Service area</h2>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">ZIP codes you cover</label>
+            <p class="field-help">I pre-filled the list from our notes. Edit anything that's wrong. Separate with commas or new lines.</p>
+            <textarea class="input-base input-mono" rows="6" x-model="state.s5.zipList"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Specific lake/region coverage</label>
+            <div style="display: grid; gap: 16px;" class="grid sm:grid-cols-2">
+              <div>
+                <label class="field-label field-label--sm">Oconee County?</label>
+                <div class="opt-grid opt-grid-yn"><label class="opt"><input type="radio" x-model="state.s5.oconeeCounty" value="yes"><span class="ind"></span><span>Yes</span></label><label class="opt"><input type="radio" x-model="state.s5.oconeeCounty" value="no"><span class="ind"></span><span>No</span></label></div>
+              </div>
+              <div>
+                <label class="field-label field-label--sm">Lake Jocassee?</label>
+                <div class="opt-grid opt-grid-yn"><label class="opt"><input type="radio" x-model="state.s5.lakeJocassee" value="yes"><span class="ind"></span><span>Yes</span></label><label class="opt"><input type="radio" x-model="state.s5.lakeJocassee" value="no"><span class="ind"></span><span>No</span></label></div>
+              </div>
+              <div>
+                <label class="field-label field-label--sm">Mountain Rest?</label>
+                <div class="opt-grid opt-grid-yn"><label class="opt"><input type="radio" x-model="state.s5.mountainRest" value="yes"><span class="ind"></span><span>Yes</span></label><label class="opt"><input type="radio" x-model="state.s5.mountainRest" value="no"><span class="ind"></span><span>No</span></label></div>
+              </div>
+              <div>
+                <label class="field-label field-label--sm">Westminster?</label>
+                <div class="opt-grid opt-grid-yn"><label class="opt"><input type="radio" x-model="state.s5.westminster" value="yes"><span class="ind"></span><span>Yes</span></label><label class="opt"><input type="radio" x-model="state.s5.westminster" value="no"><span class="ind"></span><span>No</span></label></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Hours of operation</label>
+            <textarea class="input-base" rows="3" x-model="state.s5.hoursOfOperation" placeholder="e.g., Mon–Fri 7am–6pm, Sat 8am–2pm, Closed Sundays"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">24/7 emergency service?</label>
+            <div class="opt-grid opt-grid-stacked">
+              <label class="opt"><input type="radio" value="live" x-model="state.s5.emergencyService"><span class="ind"></span><span>Yes — calls go straight to a live tech</span></label>
+              <label class="opt"><input type="radio" value="answering" x-model="state.s5.emergencyService"><span class="ind"></span><span>Yes — calls go to an answering service first</span></label>
+              <label class="opt"><input type="radio" value="nextday" x-model="state.s5.emergencyService"><span class="ind"></span><span>No — calls handled next business day</span></label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Languages spoken in the office or on trucks</label>
+            <input class="input-base" type="text" x-model="state.s5.languages" placeholder="English, Spanish, …" />
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 6: Brand Assets ========== -->
+      <template x-if="currentStep === 6">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">6</span><span>Section 6 of 13</span></div>
+            <h2>Brand assets</h2>
+            <p class="section-dek">Drop files into a shared Google Drive or Dropbox folder and paste the link here. If you don't have a folder yet, share with shayne@shaynechamplin.com and I'll set one up.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Logo files folder</label>
+            <p class="field-help">We'll provide you with the URL by email — drop your logo files (vector preferred — .ai, .svg, or high-res PNG) into the shared folder once you receive it.</p>
+            <input class="input-base" type="url" x-model="state.s6.logoFolderLink" placeholder="Paste the shared folder URL once you have it (optional)" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Brand colors, fonts, existing style guide</label>
+            <p class="field-help">Give us what you have as far as colors and anything already, and we'll figure out the rest.</p>
+            <textarea class="input-base" rows="3" x-model="state.s6.brandColorsFonts" placeholder="e.g., Primary navy, accent orange. Font: Open Sans. Or link to a brand doc."></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Current images folder (if you already have one)</label>
+            <p class="field-help">Truck wraps, team in uniform, before/afters, install jobs.</p>
+            <input class="input-base" type="url" x-model="state.s6.photoFolderLink" placeholder="https://drive.google.com/…" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Notes on equipment brand logos / financing logos</label>
+            <textarea class="input-base" rows="2" x-model="state.s6.logoNotes" placeholder="Which brand logos are in the folder, anything you can't use"></textarea>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 7: Accounts & Logins ========== -->
+      <template x-if="currentStep === 7">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">7</span><span>Section 7 of 13</span></div>
+            <h2>Existing accounts & logins</h2>
+          </div>
+
+          <div class="field-group">
+            <div class="subcard">
+              <div class="subcard__title">Google Business Profile</div>
+              <div style="display: grid; gap: 14px;">
+                <div><label class="field-label field-label--sm">Email of the person who owns the listing</label><input class="input-base" type="email" x-model="state.s7.gbpOwner" /></div>
+                <div>
+                  <label class="field-label field-label--sm">Willing to grant me admin access?</label>
+                  <div class="opt-grid opt-grid-yn">
+                    <label class="opt"><input type="radio" x-model="state.s7.gbpAdminAccess" value="yes"><span class="ind"></span><span>Yes</span></label>
+                    <label class="opt"><input type="radio" x-model="state.s7.gbpAdminAccess" value="no"><span class="ind"></span><span>No</span></label>
+                  </div>
+                </div>
+                <div style="display: grid; gap: 14px;" class="grid sm:grid-cols-2">
+                  <div><label class="field-label field-label--sm">Current review count</label><input class="input-base" type="text" x-model="state.s7.gbpReviewCount" /></div>
+                  <div><label class="field-label field-label--sm">Current rating</label><input class="input-base" type="text" x-model="state.s7.gbpRating" placeholder="e.g., 4.9" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Domain — currently registered through Housecall Pro</label>
+            <p class="field-help">Willing to transfer to a standard registrar (Cloudflare or Namecheap) so we can host the new site?</p>
+            <div class="opt-grid opt-grid-stacked opt-grid-3-sm">
+              <label class="opt"><input type="radio" value="yes" x-model="state.s7.willTransferDomain"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" value="no" x-model="state.s7.willTransferDomain"><span class="ind"></span><span>No</span></label>
+              <label class="opt"><input type="radio" value="talk" x-model="state.s7.willTransferDomain"><span class="ind"></span><span>Let's talk</span></label>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Google Analytics — existing property?</label>
+            <p class="field-help">We'll create a Google Analytics account and install it on your website if you don't already have one. <strong>If you don't know, just select No.</strong></p>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s7.gaProperty" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s7.gaProperty" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+            <template x-if="state.s7.gaProperty === 'yes'">
+              <div style="margin-top: 14px;">
+                <label class="field-label field-label--sm">Will you grant me access?</label>
+                <div class="opt-grid opt-grid-yn">
+                  <label class="opt"><input type="radio" x-model="state.s7.gaGrantAccess" value="yes"><span class="ind"></span><span>Yes</span></label>
+                  <label class="opt"><input type="radio" x-model="state.s7.gaGrantAccess" value="no"><span class="ind"></span><span>No</span></label>
+                </div>
+              </div>
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Email platform</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <template x-for="p in ['Google Workspace','Microsoft 365','Housecall','Other']" :key="p">
+                <label class="opt"><input type="radio" :value="p" x-model="state.s7.emailPlatform"><span class="ind"></span><span x-text="p"></span></label>
+              </template>
+            </div>
+            <template x-if="state.s7.emailPlatform === 'Other'">
+              <input class="input-base" type="text" x-model="state.s7.emailPlatformOther" placeholder="Which one?" style="margin-top: 14px;" />
+            </template>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Phone system</label>
+            <p class="field-help">Tell us about how calls are handled today:</p>
+            <ul style="margin: 0 0 12px 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-mute); line-height: 1.7;">
+              <li>Who answers your calls during <strong>business hours</strong>?</li>
+              <li>Who answers your calls <strong>after hours</strong>?</li>
+              <li>What <strong>phone services</strong> are you using currently? (e.g., RingCentral, OpenPhone, cell phone forwarding, answering service)</li>
+            </ul>
+            <textarea class="input-base" rows="5" x-model="state.s7.phoneSystem" placeholder="Walk us through who's on the other end of the phone during the day and at night, and what phone provider you're using."></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Housecall Pro integration <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(optional)</span></label>
+            <p class="field-help">You're keeping Housecall Pro for dispatch + invoicing — GoHighLevel will be the front-end CRM for new website leads. Any specific integration needs between the two? Leave blank if you're not sure; we can figure it out together.</p>
+            <textarea class="input-base" rows="3" x-model="state.s7.housecallProNotes" placeholder="e.g., Push new GHL leads to HCP as customers, or sync job statuses, or…"></textarea>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 8: Social Profiles ========== -->
+      <template x-if="currentStep === 8">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">8</span><span>Section 8 of 13</span></div>
+            <h2>Social profiles</h2>
+            <p class="section-dek">Paste the URL or check "Skip" if it doesn't exist.</p>
+          </div>
+
+          <div style="display: grid; gap: 10px;">
+            <template x-for="row in socialRows" :key="row.key">
+              <div class="repeater-row" style="padding: 14px 16px;">
+                <div style="display: grid; gap: 10px; align-items: center;" class="grid sm:grid-cols-[160px_1fr_auto]">
+                  <label class="field-label field-label--sm" style="margin: 0;" x-text="row.label"></label>
+                  <input class="input-base" type="url" :placeholder="row.placeholder" x-model="state.s8[row.key]" :disabled="state.s8[`${row.key}_skip`]" :style="state.s8[`${row.key}_skip`] ? 'opacity: 0.5;' : ''" />
+                  <label class="opt is-check" style="padding: 8px 12px; font-size: 13px; gap: 8px;">
+                    <input type="checkbox" x-model="state.s8[`${row.key}_skip`]">
+                    <span class="ind" style="width: 18px; height: 18px;"></span>
+                    <span>Skip</span>
+                  </label>
+                </div>
+              </div>
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 9: GHL Users ========== -->
+      <template x-if="currentStep === 9">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">9</span><span>Section 9 of 13</span></div>
+            <h2>GoHighLevel users</h2>
+            <p class="section-dek">Anyone who needs access to the CRM. Suggested tiers: <strong>Admin</strong> (full access — usually just you), <strong>Full user</strong> (office staff), <strong>Limited</strong> (techs who only need leads/chat).</p>
+          </div>
+
+          <div>
+            <template x-for="(u, idx) in state.s9.users" :key="idx">
+              <div class="repeater-row">
+                <div class="repeater-head">
+                  <span class="repeater-label">
+                    <span class="pip" x-text="`U${idx + 1}`"></span>
+                    <span x-text="`User ${idx + 1}`"></span>
+                  </span>
+                  <button type="button" class="btn-danger" @click="state.s9.users.splice(idx, 1)" x-show="state.s9.users.length > 1">Remove</button>
+                </div>
+                <div style="display: grid; gap: 12px;" class="grid sm:grid-cols-2">
+                  <div><label class="field-label field-label--sm">Full name</label><input class="input-base" type="text" x-model="u.name" /></div>
+                  <div><label class="field-label field-label--sm">Email</label><input class="input-base" type="email" x-model="u.email" /></div>
+                  <div><label class="field-label field-label--sm">Mobile</label><input class="input-base" type="tel" x-model="u.mobile" placeholder="(864) 555-0100" /></div>
+                  <div>
+                    <label class="field-label field-label--sm">Role</label>
+                    <select class="input-base" x-model="u.role">
+                      <option value="">Select role…</option>
+                      <option>Admin</option>
+                      <option>Full user</option>
+                      <option>Limited</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </template>
+
+            <button type="button" class="btn btn-outline-accent btn-block" style="margin-top: 14px;" @click="state.s9.users.push({name:'',email:'',mobile:'',role:''})">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add another user
+            </button>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 10: Lead Routing ========== -->
+      <template x-if="currentStep === 10">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">10</span><span>Section 10 of 13</span></div>
+            <h2>Lead routing</h2>
+            <p class="section-dek">When a form's submitted on the new site or someone chats with the bot, where should the alert go?</p>
+          </div>
+
+          <div class="field-group">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <label class="field-label" style="margin-bottom: 0;">Email recipients <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
+              <button type="button" class="btn btn-outline-accent btn-sm" @click="state.s10.emailRecipients.push('')" x-show="state.s10.emailRecipients.length < 3">+ Add</button>
+            </div>
+            <div style="margin-top: 12px; display: grid; gap: 10px;">
+              <template x-for="(em, idx) in state.s10.emailRecipients" :key="idx">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <input class="input-base" type="email" x-model="state.s10.emailRecipients[idx]" placeholder="email@example.com" />
+                  <button type="button" class="btn-danger" @click="state.s10.emailRecipients.splice(idx, 1)" x-show="state.s10.emailRecipients.length > 1">Remove</button>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+              <label class="field-label" style="margin-bottom: 0;">SMS notification recipients <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
+              <button type="button" class="btn btn-outline-accent btn-sm" @click="state.s10.smsRecipients.push('')" x-show="state.s10.smsRecipients.length < 3">+ Add</button>
+            </div>
+            <p class="field-help">The phones that buzz when a lead comes in.</p>
+            <div style="display: grid; gap: 10px;">
+              <template x-for="(sm, idx) in state.s10.smsRecipients" :key="idx">
+                <div style="display: flex; gap: 8px; align-items: center;">
+                  <input class="input-base" type="tel" x-model="state.s10.smsRecipients[idx]" placeholder="(864) 555-0100" />
+                  <button type="button" class="btn-danger" @click="state.s10.smsRecipients.splice(idx, 1)" x-show="state.s10.smsRecipients.length > 1">Remove</button>
+                </div>
+              </template>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">After-hours behavior</label>
+            <div class="opt-grid opt-grid-stacked">
+              <label class="opt"><input type="radio" value="same" x-model="state.s10.afterHours"><span class="ind"></span><span>Same recipients get notified, same as business hours</span></label>
+              <label class="opt"><input type="radio" value="answering" x-model="state.s10.afterHours"><span class="ind"></span><span>Roll to answering service</span></label>
+              <label class="opt"><input type="radio" value="specific" x-model="state.s10.afterHours"><span class="ind"></span><span>Specific after-hours contact</span></label>
+              <label class="opt"><input type="radio" value="none" x-model="state.s10.afterHours"><span class="ind"></span><span>Currently no after-hours coverage</span></label>
+            </div>
+            <template x-if="state.s10.afterHours === 'specific'">
+              <input class="input-base" type="text" x-model="state.s10.afterHoursContact" placeholder="Who and how" style="margin-top: 14px;" />
+            </template>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 11: Chat Agent Guardrails ========== -->
+      <template x-if="currentStep === 11">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">11</span><span>Section 11 of 13</span></div>
+            <h2>Chat agent guardrails</h2>
+            <p class="section-dek">The chat agent on your site is trained on your business info. Tell us what it can say, and what it should never quote.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Questions it can answer freely</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <template x-for="q in ['Hours of operation','Service area','General pricing ranges','Financing options','Brands you install','Services you offer','How to schedule']" :key="q">
+                <label class="opt is-check"><input type="checkbox" :value="q" x-model="state.s11.answerFreely"><span class="ind"></span><span x-text="q"></span></label>
+              </template>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Questions it should <span class="chip chip-required">Never</span> quote a firm answer on</label>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <template x-for="q in ['Exact repair/install prices','Diagnostic fee amount','Emergency dispatch ETA','Warranty coverage details']" :key="q">
+                <label class="opt is-check"><input type="checkbox" :value="q" x-model="state.s11.neverQuote"><span class="ind"></span><span x-text="q"></span></label>
+              </template>
+            </div>
+            <input class="input-base" type="text" x-model="state.s11.otherNeverQuote" placeholder="Anything else off-limits" style="margin-top: 14px;" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">When should it hand off to a human?</label>
+            <textarea class="input-base" rows="3" x-model="state.s11.handoffTrigger" placeholder="e.g., If they say 'emergency', if it can't answer after 2 tries, if they ask for a quote"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Hand-off channel — how does the human get notified?</label>
+            <p class="field-help">Check all the ways the chat agent should alert a person, and add anything else in the box.</p>
+            <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
+              <label class="opt is-check"><input type="checkbox" value="Email Steven" x-model="state.s11.handoffChannels"><span class="ind"></span><span>Email Steven</span></label>
+              <label class="opt is-check"><input type="checkbox" value="Email office" x-model="state.s11.handoffChannels"><span class="ind"></span><span>Email office</span></label>
+              <label class="opt is-check"><input type="checkbox" value="Direct phone call connection" x-model="state.s11.handoffChannels"><span class="ind"></span><span>Direct phone call connection</span></label>
+              <label class="opt is-check"><input type="checkbox" value="Call office phone" x-model="state.s11.handoffChannels"><span class="ind"></span><span>Call office phone</span></label>
+            </div>
+            <input class="input-base" type="text" x-model="state.s11.handoffChannel" placeholder="Anything else — specific email addresses, numbers, etc." style="margin-top: 14px;" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Tone preference</label>
+            <div class="opt-grid opt-grid-stacked">
+              <label class="opt"><input type="radio" value="warm" x-model="state.s11.tone"><span class="ind"></span><span>Warm and folksy</span></label>
+              <label class="opt"><input type="radio" value="fast" x-model="state.s11.tone"><span class="ind"></span><span>Fast and professional</span></label>
+              <label class="opt"><input type="radio" value="balanced" x-model="state.s11.tone"><span class="ind"></span><span>Balanced — friendly but efficient</span></label>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 12: Testimonials ========== -->
+      <template x-if="currentStep === 12">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">12</span><span>Section 12 of 13</span></div>
+            <h2>Testimonials</h2>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Paste 5–10 customer testimonials</label>
+            <p class="field-help">Even rough — first names + city + one or two sentences each is plenty.</p>
+            <textarea class="input-base" rows="8" x-model="state.s12.testimonials" placeholder="Jane D., Easley — Best HVAC company we've ever used. Steven came out on a Saturday…"></textarea>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Or — give written approval to pull from your Google Reviews?</label>
+            <div class="opt-grid opt-grid-yn">
+              <label class="opt"><input type="radio" x-model="state.s12.pullFromGoogle" value="yes"><span class="ind"></span><span>Yes</span></label>
+              <label class="opt"><input type="radio" x-model="state.s12.pullFromGoogle" value="no"><span class="ind"></span><span>No</span></label>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== SECTION 13: A2P / CNAM ========== -->
+      <template x-if="currentStep === 13">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">13</span><span>Section 13 of 13 · Final</span></div>
+            <h2>SMS registration (A2P 10DLC)</h2>
+          </div>
+
+          <div class="infobox infobox-warn" style="margin-bottom: 8px;">
+            <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            <div>
+              <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700;">Important — these must match exactly what the IRS has on file for your EIN.</strong>
+              <span style="display: block; margin-top: 4px;">Look at your SS-4 letter or any IRS correspondence. The legal business name, address, and entity type below have to be character-for-character what's on that document. Even a typo (LLC vs L.L.C., abbreviated state vs spelled out) can fail carrier vetting and block your texts from going out.</span>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Exact legal business name <span class="chip">Must match EIN</span></label>
+            <input class="input-base" type="text" x-model="state.s13.legalName" placeholder="e.g., Exceptional Comfort Services LLC" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">DBA / "doing business as" name <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(if different)</span></label>
+            <input class="input-base" type="text" x-model="state.s13.dba" />
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">EIN (federal tax ID)</label>
+            <input class="input-base input-mono" type="text" x-model="state.s13.ein" placeholder="XX-XXXXXXX" maxlength="10" />
+            <p class="field-help field-help--inline">9 digits, formatted XX-XXXXXXX.</p>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Business entity type <span class="chip">Must match EIN</span></label>
+            <select class="input-base" x-model="state.s13.entityType">
+              <option value="">Select entity type…</option>
+              <option>LLC</option>
+              <option>S-Corporation</option>
+              <option>C-Corporation</option>
+              <option>Sole Proprietorship</option>
+              <option>Partnership</option>
+              <option>Other</option>
+            </select>
+          </div>
+
+          <div class="field-group">
+            <div style="display: grid; gap: 14px;" class="grid sm:grid-cols-2">
+              <div>
+                <label class="field-label">State of registration</label>
+                <input class="input-base" type="text" x-model="state.s13.state" />
+              </div>
+              <div>
+                <label class="field-label">Year formed</label>
+                <input class="input-base input-mono" type="text" x-model="state.s13.yearFormed" placeholder="YYYY" maxlength="4" />
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Registered business address <span class="chip">Must match EIN</span></label>
+            <textarea class="input-base" rows="3" x-model="state.s13.registeredAddress" placeholder="Street, City, State, ZIP"></textarea>
+          </div>
+
+          <div class="field-group">
+            <div class="subcard">
+              <div class="subcard__title">Authorized representative</div>
+              <div class="subcard__dek">The person carriers will contact to verify your business. Must be reachable.</div>
+              <div style="display: grid; gap: 14px;" class="grid sm:grid-cols-2">
+                <div><label class="field-label field-label--sm">Full legal name</label><input class="input-base" type="text" x-model="state.s13.authRepName" /></div>
+                <div><label class="field-label field-label--sm">Job title</label><input class="input-base" type="text" x-model="state.s13.authRepTitle" /></div>
+                <div><label class="field-label field-label--sm">Business email <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:11.5px;">(not personal Gmail)</span></label><input class="input-base" type="email" x-model="state.s13.authRepEmail" /></div>
+                <div><label class="field-label field-label--sm">Business phone</label><input class="input-base" type="tel" x-model="state.s13.authRepPhone" /></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="field-group">
+            <label class="field-label">Caller ID display name <span class="badge-counter tabular" :class="state.s13.cnam.length > 15 ? 'is-error' : ''" x-text="`${state.s13.cnam.length} / 15`"></span></label>
+            <p class="field-help">Pick a preset or type your own (15 char max):</p>
+            <div style="display: grid; gap: 10px; margin-bottom: 14px;" class="grid sm:grid-cols-3">
+              <button type="button" class="preset-btn" @click="state.s13.cnam = 'ECS HVAC'">ECS HVAC</button>
+              <button type="button" class="preset-btn" @click="state.s13.cnam = 'Excptnl Comfort'">Excptnl Comfort</button>
+              <button type="button" class="preset-btn" @click="state.s13.cnam = 'Exceptional HVAC'">Exceptional HVAC</button>
+            </div>
+            <input class="input-base input-mono" type="text" maxlength="15" x-model="state.s13.cnam" placeholder="Or type your own (15 char max)" />
+          </div>
+
+          <div class="infobox infobox-info" style="margin-top: 8px;">
+            <svg class="infobox-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div>Sample SMS templates — I'll draft a lead-reply, an appointment reminder, and a seasonal touch. You'll get them in a separate email to approve.</div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== REVIEW (step 14) ========== -->
+      <template x-if="currentStep === 14">
+        <div class="section-card anim-fade-up">
+          <div class="section-head">
+            <div class="section-chip"><span class="section-chip__num">✓</span><span>Final step · Review</span></div>
+            <h2>Review & submit</h2>
+            <p class="section-dek">Quick scan of everything you filled in. Click any section to edit.</p>
+          </div>
+
+          <div>
+            <template x-for="(sec, idx) in sectionTitles" :key="idx">
+              <button type="button" class="review-row" @click="goTo(idx + 1)">
+                <div>
+                  <div class="review-row__num" x-text="`Section ${String(idx + 1).padStart(2, '0')}`"></div>
+                  <div class="review-row__title" x-text="sec"></div>
+                </div>
+                <div>
+                  <template x-if="isSectionComplete(idx + 1)">
+                    <span class="chip chip-success">
+                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                      Complete
+                    </span>
+                  </template>
+                  <template x-if="!isSectionComplete(idx + 1)">
+                    <span class="chip" x-text="requiredSections.includes(idx + 1) ? 'Required' : 'Optional'" :class="requiredSections.includes(idx + 1) ? 'chip-required' : ''"></span>
+                  </template>
+                </div>
+              </button>
+            </template>
+          </div>
+
+          <div class="infobox" style="margin-top: 24px;" :class="requiredComplete ? 'infobox-success' : 'infobox-warn'">
+            <template x-if="requiredComplete">
+              <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </template>
+            <template x-if="!requiredComplete">
+              <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            </template>
+            <div x-show="requiredComplete">
+              <strong style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;">Required sections complete.</strong>
+              <span> The 2-week build clock starts when you submit.</span>
+            </div>
+            <div x-show="!requiredComplete">
+              <strong style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;">Required sections still need info.</strong>
+              <span> Sections 1, 7, 9, 10, and 13 are required. The rest can come in later.</span>
+            </div>
+          </div>
+
+          <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 10px;" class="sm:flex-row sm:justify-end sm:items-center">
+            <button type="button" class="btn btn-secondary" @click="goTo(13)">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+              Back
+            </button>
+            <button type="button" class="btn btn-accent btn-lg" :disabled="!requiredComplete || submitting" @click="submitFinal()">
+              <span x-show="!submitting" style="display:inline-flex;align-items:center;gap:8px;">Submit intake
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </span>
+              <span x-show="submitting">Submitting…</span>
+            </button>
+          </div>
+
+          <div x-show="submitError" class="infobox infobox-danger" style="margin-top: 16px;">
+            <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+            <div>
+              <strong>Submit didn't go through.</strong>
+              <span x-text="submitError"></span>
+              <button type="button" class="btn btn-secondary btn-sm" style="margin-top: 10px;" @click="downloadFallback()">Download as a file + email me instead</button>
+            </div>
+          </div>
+        </div>
+      </template>
+
+      <!-- ========== THANK YOU (step 15) ========== -->
+      <template x-if="currentStep === 15">
+        <div class="section-card anim-fade-up" style="text-align: center;">
+          <div style="margin: 0 auto 24px; width: 80px; height: 80px; border-radius: 999px; background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px -8px rgba(4,120,87,0.4);" class="anim-pulse">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1 style="font-size: clamp(32px, 5vw, 48px);">We got it.</h1>
+          <p style="margin-top: 16px; color: var(--ink-soft); font-size: 17px; max-width: 32rem; margin-left: auto; margin-right: auto;">Thanks Steven. Your intake is in. The 2-week build clock starts now — I'll text you within 24 hours with what's next.</p>
+
+          <div style="margin-top: 32px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+            <button type="button" class="btn btn-secondary" @click="downloadSnapshot()">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download a copy for your records
+            </button>
+          </div>
+
+          <div style="margin-top: 32px; font-size: 12px; color: var(--ink-mute); letter-spacing: 0.04em;">
+            Questions? Text Shayne at <strong style="color:var(--ink-soft);">(719) 357-9633</strong>
+          </div>
+        </div>
+      </template>
+
+      <!-- ============ NAV FOOTER (sections 1–13) ============ -->
+      <div x-show="currentStep >= 1 && currentStep <= 13" class="nav-footer">
+        <button type="button" class="btn btn-secondary" @click="goTo(currentStep - 1)">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          Back
+        </button>
+        <div class="nav-footer__right">
+          <button type="button" class="btn btn-ghost" @click="goTo(currentStep + 1)">Skip section</button>
+          <button type="button" class="btn btn-accent" @click="goTo(currentStep + 1)">
+            <span x-text="currentStep === 13 ? 'Review' : 'Next'"></span>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ============ BACKUP-LINK CTA ============ -->
+      <div x-show="currentStep >= 1 && currentStep <= 13" class="backup-cta" style="margin-top: 24px;">
+        <div style="position: relative; display: flex; flex-direction: column; gap: 12px;" class="sm:flex-row sm:items-center">
+          <div style="flex: 1;">
+            <div class="backup-cta__title">Switching devices?</div>
+            <div class="backup-cta__dek">Email yourself a backup link so you can pick up on another phone or computer.</div>
+          </div>
+          <div style="display: flex; gap: 8px; width: 100%;" class="sm:w-auto">
+            <input type="email" class="input-base" style="flex: 1;" x-model="email" placeholder="your@email.com" />
+            <button type="button" class="btn btn-primary" @click="emailBackupLink()" :disabled="backupSending || !email">
+              <span x-show="!backupSending" style="display:inline-flex;align-items:center;gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                Send link
+              </span>
+              <span x-show="backupSending">Sending…</span>
+            </button>
+          </div>
+        </div>
+        <div x-show="backupMessage" style="margin-top: 10px; font-size: 13px;" :class="backupError ? 'text-danger' : 'text-success'" x-text="backupMessage"></div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <span class="app-footer__brand">Marketing Remix</span>
+    <span> · Colorado Springs, CO · (719) 357-9633</span>
+  </footer>
+</div>
+
+<!-- inline Tailwind-shim utilities (just for the few grid responsive classes used) -->
+<style>
+  /* Tiny responsive grid utilities (replacing Tailwind classes used above) */
+  @media (min-width: 640px) {
+    .sm\:flex-row { flex-direction: row !important; }
+    .sm\:justify-end { justify-content: flex-end !important; }
+    .sm\:items-center { align-items: center !important; }
+    .sm\:w-auto { width: auto !important; }
+    .grid.sm\:grid-cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)) !important; }
+    .grid.sm\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)) !important; }
+    .grid.sm\:grid-cols-\[160px_1fr_auto\] { grid-template-columns: 160px 1fr auto !important; }
+    .grid.sm\:grid-cols-\[180px_1fr_auto\] { grid-template-columns: 180px 1fr auto !important; }
+  }
+  /* keep "grid" without sm: working too */
+  .grid { display: grid; }
+</style>
+
+<script>
+  function intake() {
+    return {
+      // ============ CONFIG ============
+      totalSections: 13,
+      requiredSections: [1, 7, 9, 10, 13],
+      sectionTitles: [
+        'Credentials & trust signals',
+        'Vendors & brands',
+        'Guarantees & warranty',
+        'Services & pricing',
+        'Service area',
+        'Brand assets',
+        'Accounts & logins',
+        'Social profiles',
+        'GoHighLevel users',
+        'Lead routing',
+        'Chat agent guardrails',
+        'Testimonials',
+        'SMS registration (A2P)'
+      ],
+      socialRows: [
+        { key: 'facebook',       label: 'Facebook',         placeholder: 'https://facebook.com/…' },
+        { key: 'instagram',      label: 'Instagram',        placeholder: '@handle or URL' },
+        { key: 'googleBusiness', label: 'Google Business',  placeholder: 'https://g.co/kgs/…' },
+        { key: 'youtube',        label: 'YouTube',          placeholder: 'https://youtube.com/@…' },
+        { key: 'linkedin',       label: 'LinkedIn',         placeholder: 'https://linkedin.com/company/…' },
+        { key: 'tiktok',         label: 'TikTok',           placeholder: '@handle' },
+        { key: 'nextdoor',       label: 'Nextdoor',         placeholder: 'URL' },
+        { key: 'x',              label: 'X / Twitter',      placeholder: '@handle' },
+        { key: 'yelp',           label: 'Yelp',             placeholder: 'URL' }
+      ],
+
+      // ============ STATE ============
+      currentStep: 0,
+      email: '',
+      draftId: '',
+      savedAt: null,
+      saveLabel: 'Saved',
+      recentlySaved: false,
+      backupSending: false,
+      backupMessage: '',
+      backupError: false,
+      submitting: false,
+      submitError: '',
+      state: {
+        s1: { nateCertified: '', nateTechs: '', epaUniversal: '', scLicenseNumber: '', bonded: '', insured: '', liabilityCoverage: '', bbbAccredited: '', bbbRating: '', otherMemberships: '', awards: '' },
+        s2: { brands: [], otherBrands: '', generacStatus: '', financingPartners: [], otherFinancing: '', logosAvailable: '', logosNotes: '' },
+        s3: { satisfactionTerms: '', workmanshipDuration: '', workmanshipCustom: '', partsWarranty: '', partsWarrantyTerms: '', onTimeGuarantee: '', onTimeTerms: '', otherGuarantees: '' },
+        s4: { services: [], otherServices: '', publishFee: '', feeAmount: '', feeAfterHours: '', freeEstimates: '', tiers: [] },
+        s5: { zipList: '29601, 29605, 29607, 29609, 29611, 29615, 29617, 29635, 29661, 29662, 29669, 29673, 29680, 29681, 29687, 29690, 29664, 29665, 29672, 29676, 29678, 29679, 29686, 29691, 29693, 29696, 29631, 29635, 29640, 29641, 29642, 29657, 29667, 29671, 29682, 29685, 29630, 29697', oconeeCounty: '', lakeJocassee: '', mountainRest: '', westminster: '', hoursOfOperation: '', emergencyService: '', languages: '' },
+        s6: { logoFolderLink: '', brandColorsFonts: '', photoFolderLink: '', logoNotes: '' },
+        s7: { gbpOwner: '', gbpAdminAccess: '', gbpReviewCount: '', gbpRating: '', willTransferDomain: '', gaProperty: '', gaGrantAccess: '', emailPlatform: '', emailPlatformOther: '', phoneSystem: '', housecallProNotes: '' },
+        s8: { facebook: '', instagram: '', googleBusiness: '', youtube: '', linkedin: '', tiktok: '', nextdoor: '', x: '', yelp: '' },
+        s9: { users: [{ name: '', email: '', mobile: '', role: '' }] },
+        s10: { emailRecipients: [''], smsRecipients: [''], afterHours: '', afterHoursContact: '' },
+        s11: { answerFreely: [], neverQuote: [], otherNeverQuote: '', handoffTrigger: '', handoffChannels: [], handoffChannel: '', tone: '' },
+        s12: { testimonials: '', pullFromGoogle: '' },
+        s13: { legalName: '', dba: '', ein: '', entityType: '', state: 'South Carolina', yearFormed: '', registeredAddress: '', authRepName: '', authRepTitle: '', authRepEmail: '', authRepPhone: '', cnam: '' }
+      },
+
+      async init() {
+        const resumeId = new URLSearchParams(window.location.search).get('resume');
+        if (resumeId) {
+          try {
+            const res = await fetch(`/api/get-draft?id=${encodeURIComponent(resumeId)}`);
+            if (res.ok) {
+              const data = await res.json();
+              if (data && data.state) {
+                this.state = Object.assign(this.state, data.state);
+                this.email = data.email || '';
+                this.draftId = resumeId;
+                this.currentStep = data.lastStep || 1;
+                this.saveLabel = 'Restored from backup';
+              }
+            }
+          } catch (e) { /* fall through */ }
+        }
+        if (!this.draftId) {
+          try {
+            const raw = localStorage.getItem('ecs-intake-draft');
+            if (raw) {
+              const parsed = JSON.parse(raw);
+              if (parsed.state) this.state = Object.assign(this.state, parsed.state);
+              if (parsed.email) this.email = parsed.email;
+              if (parsed.draftId) this.draftId = parsed.draftId;
+              if (parsed.currentStep != null) this.currentStep = parsed.currentStep;
+              this.savedAt = parsed.savedAt || Date.now();
+              this.updateSaveLabel();
+            }
+          } catch (e) { /* ignore */ }
+        }
+        this.$watch('state', () => this.saveLocal(), { deep: true });
+        this.$watch('currentStep', () => this.saveLocal());
+        this.$watch('email', () => this.saveLocal());
+        setInterval(() => this.updateSaveLabel(), 10000);
+      },
+
+      goTo(step) {
+        if (step < 0) step = 0;
+        if (step > 15) step = 15;
+        this.currentStep = step;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      _saveTimer: null,
+      saveLocal() {
+        clearTimeout(this._saveTimer);
+        this._saveTimer = setTimeout(() => {
+          const payload = {
+            state: this.state,
+            email: this.email,
+            draftId: this.draftId,
+            currentStep: this.currentStep,
+            savedAt: Date.now()
+          };
+          try {
+            localStorage.setItem('ecs-intake-draft', JSON.stringify(payload));
+            this.savedAt = payload.savedAt;
+            this.saveLabel = 'Saved';
+            this.recentlySaved = true;
+            setTimeout(() => { this.recentlySaved = false; }, 1500);
+          } catch (e) { /* storage full or disabled */ }
+        }, 500);
+      },
+      updateSaveLabel() {
+        if (!this.savedAt) return;
+        const secs = Math.round((Date.now() - this.savedAt) / 1000);
+        if (secs < 10) this.saveLabel = 'Saved just now';
+        else if (secs < 60) this.saveLabel = `Saved ${secs}s ago`;
+        else if (secs < 3600) this.saveLabel = `Saved ${Math.round(secs/60)}m ago`;
+        else this.saveLabel = `Saved ${Math.round(secs/3600)}h ago`;
+      },
+
+      async emailBackupLink() {
+        if (!this.email) return;
+        this.backupSending = true;
+        this.backupMessage = '';
+        this.backupError = false;
+        try {
+          const res = await fetch('/api/save-draft', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: this.email,
+              draftId: this.draftId || undefined,
+              state: this.state,
+              lastStep: this.currentStep
+            })
+          });
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          const data = await res.json();
+          if (data.uuid) this.draftId = data.uuid;
+          this.backupMessage = `Sent. Check ${this.email} for your resume link.`;
+        } catch (e) {
+          this.backupError = true;
+          this.backupMessage = `Couldn't send right now. Your progress is still saved in this browser. (${e.message})`;
+        } finally {
+          this.backupSending = false;
+        }
+      },
+
+      addTier() {
+        this.state.s4.tiers.push({ name: '', price: '', inclusions: '' });
+      },
+
+      isSectionComplete(n) {
+        const s = this.state;
+        switch (n) {
+          case 1: return !!(s.s1.scLicenseNumber && s.s1.nateCertified && s.s1.epaUniversal && s.s1.bonded && s.s1.insured && s.s1.bbbAccredited);
+          case 7: return !!(s.s7.gbpAdminAccess && s.s7.willTransferDomain && s.s7.emailPlatform && s.s7.phoneSystem);
+          case 9: return s.s9.users.length > 0 && s.s9.users.every(u => u.name && u.email && u.role);
+          case 10: return s.s10.emailRecipients.some(e => e) && s.s10.smsRecipients.some(p => p) && !!s.s10.afterHours;
+          case 13: return !!(s.s13.legalName && s.s13.ein && /^\d{2}-?\d{7}$/.test(s.s13.ein) && s.s13.entityType && s.s13.registeredAddress && s.s13.authRepName && s.s13.authRepEmail && s.s13.authRepPhone && s.s13.cnam && s.s13.cnam.length <= 15);
+
+          default: return true;
+        }
+      },
+      get requiredComplete() {
+        return this.requiredSections.every(n => this.isSectionComplete(n));
+      },
+
+      toMarkdown() {
+        const s = this.state;
+        const yn = v => v === 'yes' ? 'Yes' : (v === 'no' ? 'No' : (v || '—'));
+        const list = arr => (arr && arr.length) ? arr.filter(Boolean).join(', ') : '—';
+        const v = x => (x === '' || x == null) ? '—' : x;
+        const lines = [];
+
+        lines.push(`# Exceptional Comfort Services — Website Intake Submission`);
+        lines.push(`\n*Submitted:* ${new Date().toLocaleString()}  `);
+        lines.push(`*Steven's contact email (if entered):* ${this.email || '—'}\n`);
+
+        lines.push(`\n## 1. Credentials & Trust Signals`);
+        lines.push(`- NATE certified: **${yn(s.s1.nateCertified)}** ${s.s1.nateCertified === 'yes' ? `(${v(s.s1.nateTechs)})` : ''}`);
+        lines.push(`- EPA Universal: **${yn(s.s1.epaUniversal)}**`);
+        lines.push(`- SC HVAC license #: **${v(s.s1.scLicenseNumber)}**`);
+        lines.push(`- Bonded: **${yn(s.s1.bonded)}** · Insured: **${yn(s.s1.insured)}** · Coverage: ${v(s.s1.liabilityCoverage)}`);
+        lines.push(`- BBB accredited: **${yn(s.s1.bbbAccredited)}** · Rating: ${v(s.s1.bbbRating)}`);
+        lines.push(`- Other memberships: ${v(s.s1.otherMemberships)}`);
+        lines.push(`- Awards / press: ${v(s.s1.awards)}`);
+
+        lines.push(`\n## 2. Vendors & Brands`);
+        lines.push(`- Brands: ${list(s.s2.brands)}${s.s2.otherBrands ? `, ${s.s2.otherBrands}` : ''}`);
+        lines.push(`- Generac status: **${v(s.s2.generacStatus)}**`);
+        lines.push(`- Financing partners: ${list(s.s2.financingPartners)}${s.s2.otherFinancing ? `, ${s.s2.otherFinancing}` : ''}`);
+        lines.push(`- Logos available: ${v(s.s2.logosAvailable)} ${s.s2.logosNotes ? `— ${s.s2.logosNotes}` : ''}`);
+
+        lines.push(`\n## 3. Guarantees & Warranty`);
+        lines.push(`- 100% satisfaction terms: ${v(s.s3.satisfactionTerms)}`);
+        lines.push(`- Workmanship warranty: ${v(s.s3.workmanshipDuration)}${s.s3.workmanshipCustom ? ` — ${s.s3.workmanshipCustom}` : ''}`);
+        lines.push(`- Parts warranty: ${v(s.s3.partsWarranty)}${s.s3.partsWarrantyTerms ? ` — ${s.s3.partsWarrantyTerms}` : ''}`);
+        lines.push(`- On-time guarantee: ${yn(s.s3.onTimeGuarantee)}${s.s3.onTimeTerms ? ` — ${s.s3.onTimeTerms}` : ''}`);
+        lines.push(`- Other guarantees: ${v(s.s3.otherGuarantees)}`);
+
+        lines.push(`\n## 4. Services & Pricing`);
+        lines.push(`- Services: ${list(s.s4.services)}${s.s4.otherServices ? `, ${s.s4.otherServices}` : ''}`);
+        lines.push(`- Service-call fee posture: ${v(s.s4.publishFee)}`);
+        lines.push(`- Normal diagnostic fee: ${v(s.s4.feeAmount)}`);
+        lines.push(`- After-hours & weekend diagnostic fee: ${v(s.s4.feeAfterHours)}`);
+        lines.push(`- Free estimates: ${yn(s.s4.freeEstimates)}`);
+        if (s.s4.tiers.length) {
+          lines.push(`- Maintenance plan tiers:`);
+          s.s4.tiers.forEach((t,i) => lines.push(`  - **${t.name || `Tier ${i+1}`}** — ${t.price || '—'}\n    - Includes: ${t.inclusions || '—'}`));
+        }
+
+        lines.push(`\n## 5. Service Area`);
+        lines.push(`- ZIP codes: ${v(s.s5.zipList)}`);
+        lines.push(`- Oconee County: ${yn(s.s5.oconeeCounty)} · Lake Jocassee: ${yn(s.s5.lakeJocassee)} · Mountain Rest: ${yn(s.s5.mountainRest)} · Westminster: ${yn(s.s5.westminster)}`);
+        lines.push(`- Hours: ${v(s.s5.hoursOfOperation)}`);
+        lines.push(`- Emergency: ${v(s.s5.emergencyService)}`);
+        lines.push(`- Languages: ${v(s.s5.languages)}`);
+
+        lines.push(`\n## 6. Brand Assets`);
+        lines.push(`- Logo folder (URL provided by Marketing Remix by email): ${v(s.s6.logoFolderLink)}`);
+        lines.push(`- Brand colors/fonts: ${v(s.s6.brandColorsFonts)}`);
+        lines.push(`- Current images folder: ${v(s.s6.photoFolderLink)}`);
+        lines.push(`- Notes: ${v(s.s6.logoNotes)}`);
+
+        lines.push(`\n## 7. Accounts & Logins`);
+        lines.push(`- GBP owner email: ${v(s.s7.gbpOwner)} · admin access: ${yn(s.s7.gbpAdminAccess)} · reviews: ${v(s.s7.gbpReviewCount)} · rating: ${v(s.s7.gbpRating)}`);
+        lines.push(`- Domain transfer: ${v(s.s7.willTransferDomain)}`);
+        lines.push(`- GA property exists: ${yn(s.s7.gaProperty)} · grant access: ${yn(s.s7.gaGrantAccess)}`);
+        lines.push(`- Email platform: ${v(s.s7.emailPlatform)}${s.s7.emailPlatformOther ? ` (${s.s7.emailPlatformOther})` : ''}`);
+        lines.push(`- Phone system (business hours / after hours / current services): ${v(s.s7.phoneSystem)}`);
+        lines.push(`- Housecall Pro integration notes: ${v(s.s7.housecallProNotes)}`);
+
+        lines.push(`\n## 8. Social Profiles`);
+        this.socialRows.forEach(r => {
+          const url = s.s8[r.key];
+          const skip = s.s8[`${r.key}_skip`];
+          lines.push(`- ${r.label}: ${skip ? '*skip*' : v(url)}`);
+        });
+
+        lines.push(`\n## 9. GoHighLevel Users`);
+        s.s9.users.forEach((u,i) => {
+          lines.push(`- **User ${i+1}**: ${v(u.name)} | ${v(u.email)} | ${v(u.mobile)} | Role: ${v(u.role)}`);
+        });
+
+        lines.push(`\n## 10. Lead Routing`);
+        lines.push(`- Email recipients: ${list(s.s10.emailRecipients)}`);
+        lines.push(`- SMS recipients: ${list(s.s10.smsRecipients)}`);
+        lines.push(`- After-hours: ${v(s.s10.afterHours)}${s.s10.afterHoursContact ? ` — ${s.s10.afterHoursContact}` : ''}`);
+
+        lines.push(`\n## 11. Chat Agent Guardrails`);
+        lines.push(`- Answer freely: ${list(s.s11.answerFreely)}`);
+        lines.push(`- Never quote: ${list(s.s11.neverQuote)}${s.s11.otherNeverQuote ? `, ${s.s11.otherNeverQuote}` : ''}`);
+        lines.push(`- Hand-off trigger: ${v(s.s11.handoffTrigger)}`);
+        lines.push(`- Hand-off channels: ${list(s.s11.handoffChannels)}${s.s11.handoffChannel ? ` — ${s.s11.handoffChannel}` : ''}`);
+        lines.push(`- Tone: ${v(s.s11.tone)}`);
+
+        lines.push(`\n## 12. Testimonials`);
+        lines.push(`- ${v(s.s12.testimonials)}`);
+        lines.push(`- Permission to pull from Google Reviews: ${yn(s.s12.pullFromGoogle)}`);
+
+        lines.push(`\n## 13. A2P 10DLC / CNAM`);
+        lines.push(`- Legal business name: **${v(s.s13.legalName)}**`);
+        lines.push(`- DBA: ${v(s.s13.dba)}`);
+        lines.push(`- EIN: **${v(s.s13.ein)}**`);
+        lines.push(`- Entity type: ${v(s.s13.entityType)} · State: ${v(s.s13.state)} · Year formed: ${v(s.s13.yearFormed)}`);
+        lines.push(`- Registered address: ${v(s.s13.registeredAddress)}`);
+        lines.push(`- Authorized rep: ${v(s.s13.authRepName)}, ${v(s.s13.authRepTitle)} · ${v(s.s13.authRepEmail)} · ${v(s.s13.authRepPhone)}`);
+        lines.push(`- CNAM display name: **${v(s.s13.cnam)}** (${s.s13.cnam.length}/15)`);
+        lines.push(`- SMS phone number: TBD (will be determined when number is purchased)`);
+
+        return lines.join('\n');
+      },
+
+      async submitFinal() {
+        if (!this.requiredComplete) return;
+        this.submitting = true;
+        this.submitError = '';
+        const payload = {
+          submittedAt: new Date().toISOString(),
+          email: this.email,
+          state: this.state,
+          markdown: this.toMarkdown()
+        };
+        try {
+          const url = (window.ECS_CONFIG && window.ECS_CONFIG.WEBHOOK_SUBMIT) || '';
+          if (!url) throw new Error('No submission webhook configured. Contact Shayne.');
+          const res = await fetch(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          localStorage.removeItem('ecs-intake-draft');
+          this.currentStep = 15;
+        } catch (e) {
+          this.submitError = ` ${e.message}`;
+        } finally {
+          this.submitting = false;
+        }
+      },
+      downloadSnapshot() {
+        this._downloadMd(this.toMarkdown(), 'exceptional-comfort-services-intake.md');
+      },
+      downloadFallback() {
+        const md = this.toMarkdown();
+        this._downloadMd(md, 'exceptional-comfort-services-intake.md');
+        const subject = encodeURIComponent('ECS Website Intake — Steven Tibball');
+        const body = encodeURIComponent('Shayne — attaching my intake form. (File should be in your downloads — please attach to this email before sending.)');
+        window.location.href = `mailto:shayne@shaynechamplin.com?subject=${subject}&body=${body}`;
+      },
+      _downloadMd(content, filename) {
+        const blob = new Blob([content], { type: 'text/markdown' });
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(blob);
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+      }
+    }
+  }
+</script>
+</body>
+</html>

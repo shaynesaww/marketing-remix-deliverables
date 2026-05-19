@@ -1,0 +1,127 @@
+{
+  "_readme": "This file contains TWO n8n workflows. In n8n, create two new workflows and import the JSON under each top-level key separately (copy the value of `workflowA_finalSubmit` into the first workflow, `workflowB_draftEmail` into the second). After importing, activate each workflow, copy the production webhook URL from the Webhook node, and paste it into the appropriate config (see README.md).",
+
+  "workflowA_finalSubmit": {
+    "name": "ECS Intake — Final Submission",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "ecs-intake-submit",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [240, 300],
+        "webhookId": "ecs-intake-submit"
+      },
+      {
+        "parameters": {
+          "fromEmail": "intake@marketingremix.com",
+          "toEmail": "shayne@shaynechamplin.com",
+          "subject": "=ECS Intake — Steven Tibball submitted {{$json.body.submittedAt}}",
+          "emailType": "text",
+          "text": "={{$json.body.markdown}}",
+          "options": {
+            "attachments": ""
+          }
+        },
+        "name": "Email Shayne",
+        "type": "n8n-nodes-base.emailSend",
+        "typeVersion": 2.1,
+        "position": [500, 300],
+        "credentials": {
+          "smtp": {
+            "id": "REPLACE_WITH_YOUR_SMTP_CREDENTIAL_ID",
+            "name": "Marketing Remix SMTP"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={ \"success\": true }",
+          "options": {}
+        },
+        "name": "Respond OK",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [760, 300]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [[ { "node": "Email Shayne", "type": "main", "index": 0 } ]]
+      },
+      "Email Shayne": {
+        "main": [[ { "node": "Respond OK", "type": "main", "index": 0 } ]]
+      }
+    },
+    "active": false,
+    "settings": { "executionOrder": "v1" },
+    "tags": [{ "name": "ECS Intake" }]
+  },
+
+  "workflowB_draftEmail": {
+    "name": "ECS Intake — Resume Link Email",
+    "nodes": [
+      {
+        "parameters": {
+          "httpMethod": "POST",
+          "path": "ecs-intake-draft-email",
+          "responseMode": "responseNode",
+          "options": {}
+        },
+        "name": "Webhook",
+        "type": "n8n-nodes-base.webhook",
+        "typeVersion": 2,
+        "position": [240, 300],
+        "webhookId": "ecs-intake-draft-email"
+      },
+      {
+        "parameters": {
+          "fromEmail": "intake@marketingremix.com",
+          "toEmail": "={{$json.body.email}}",
+          "subject": "Your ECS intake — save & resume link",
+          "emailType": "html",
+          "html": "=<p>Hi Steven,</p>\n<p>Here's your link to pick up your Exceptional Comfort Services intake where you left off. You can open this on any phone or computer:</p>\n<p><a href=\"{{$json.body.resumeUrl}}\" style=\"display:inline-block;background:#1d4ed8;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600\">Resume my intake</a></p>\n<p>Or copy &amp; paste this URL:<br><code style=\"background:#f1f5f9;padding:6px 10px;border-radius:4px;font-size:13px\">{{$json.body.resumeUrl}}</code></p>\n<p>Your progress was last updated {{$json.body.updatedAt}}. The link is good for 90 days.</p>\n<p>— Shayne<br>Marketing Remix<br>(719) 357-9633</p>",
+          "options": {}
+        },
+        "name": "Email Steven",
+        "type": "n8n-nodes-base.emailSend",
+        "typeVersion": 2.1,
+        "position": [500, 300],
+        "credentials": {
+          "smtp": {
+            "id": "REPLACE_WITH_YOUR_SMTP_CREDENTIAL_ID",
+            "name": "Marketing Remix SMTP"
+          }
+        }
+      },
+      {
+        "parameters": {
+          "respondWith": "json",
+          "responseBody": "={ \"success\": true }",
+          "options": {}
+        },
+        "name": "Respond OK",
+        "type": "n8n-nodes-base.respondToWebhook",
+        "typeVersion": 1.1,
+        "position": [760, 300]
+      }
+    ],
+    "connections": {
+      "Webhook": {
+        "main": [[ { "node": "Email Steven", "type": "main", "index": 0 } ]]
+      },
+      "Email Steven": {
+        "main": [[ { "node": "Respond OK", "type": "main", "index": 0 } ]]
+      }
+    },
+    "active": false,
+    "settings": { "executionOrder": "v1" },
+    "tags": [{ "name": "ECS Intake" }]
+  }
+}
