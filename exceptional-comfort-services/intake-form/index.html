@@ -162,8 +162,37 @@
     }
     .header-meta { text-align: right; font-size: 11px; line-height: 1.4; min-width: 0; }
     .header-meta .step { font-weight: 700; color: var(--ink); font-family: 'Bricolage Grotesque', sans-serif; font-size: 13px; letter-spacing: -0.01em; }
-    .header-meta .save { color: var(--ink-mute); }
-    .save.is-saving { color: var(--emerald); }
+    .header-meta .save {
+      display: inline-flex; align-items: center; gap: 5px;
+      color: var(--ink-mute);
+      font-size: 12px;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .save-check {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 14px; height: 14px;
+      background: var(--ink-mute);
+      color: white;
+      border-radius: 999px;
+      flex-shrink: 0;
+      transition: background 200ms;
+    }
+    .save-check svg { width: 9px; height: 9px; }
+    .save.is-saving {
+      color: var(--emerald);
+      font-weight: 600;
+    }
+    .save.is-saving .save-check {
+      background: var(--emerald);
+      animation: save-pulse 1100ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes save-pulse {
+      0%   { transform: scale(0.5); }
+      30%  { transform: scale(1.25); }
+      60%  { transform: scale(0.95); }
+      100% { transform: scale(1); }
+    }
 
     /* progress bar */
     .progress-track {
@@ -277,6 +306,19 @@
     }
     textarea.input-base { resize: vertical; min-height: 96px; line-height: 1.5; }
     .input-mono { font-family: 'JetBrains Mono', monospace; font-size: 15px; letter-spacing: 0.02em; }
+    .input-base.is-invalid {
+      border-color: var(--rose);
+      box-shadow: 0 0 0 3px rgba(185,28,28,0.12);
+      background: #FEF7F7;
+    }
+    .field-error {
+      display: flex; align-items: center; gap: 6px;
+      margin-top: 6px;
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--rose);
+    }
+    .field-error svg { flex-shrink: 0; }
 
     select.input-base {
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%2338454F' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' d='M1 1l5 5 5-5'/%3E%3C/svg%3E");
@@ -428,6 +470,166 @@
     .chip-info { background: var(--primary-soft); border-color: #93C5FD; color: var(--primary); }
     .chip-required { background: var(--rose-soft); border-color: #FCA5A5; color: var(--rose); }
 
+    /* required-field markers */
+    .req-mark {
+      display: inline-block;
+      color: var(--rose);
+      font-weight: 800;
+      margin-left: 4px;
+      font-size: 1em;
+      line-height: 1;
+      vertical-align: baseline;
+    }
+    .req-banner {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px 5px 9px;
+      background: var(--rose-soft);
+      border: 1px solid #FCA5A5;
+      border-radius: 999px;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--rose);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 18px;
+      margin-top: -4px;
+    }
+    .req-banner svg { color: var(--rose); flex-shrink: 0; }
+    .req-banner.is-complete {
+      background: var(--emerald-soft);
+      border-color: #6EE7B7;
+      color: var(--emerald);
+    }
+    .req-banner.is-complete svg { color: var(--emerald); }
+
+    /* required-fields live counter */
+    .req-counter {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-left: 8px;
+      font-variant-numeric: tabular-nums;
+    }
+    .req-counter.is-complete {
+      background: var(--emerald-soft);
+      border-color: #6EE7B7;
+      color: var(--emerald);
+    }
+    .req-counter .dot {
+      display: inline-block; width: 7px; height: 7px; border-radius: 999px;
+      background: var(--rose);
+      flex-shrink: 0;
+    }
+    .req-counter.is-complete .dot { background: var(--emerald); }
+
+    /* welcome screen */
+    .welcome-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 7px 14px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--ink-soft);
+      margin-bottom: 4px;
+    }
+    .welcome-pill svg { color: var(--accent); flex-shrink: 0; }
+
+    .timeline {
+      display: grid; gap: 14px;
+      margin-top: 28px;
+      padding: 22px;
+      background: linear-gradient(135deg, var(--surface-2) 0%, var(--surface) 100%);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+    }
+    .timeline__row { display: flex; gap: 14px; align-items: flex-start; }
+    .timeline__num {
+      display: inline-flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      width: 32px; height: 32px;
+      background: var(--primary);
+      color: white;
+      border-radius: 999px;
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      box-shadow: 0 1px 0 rgba(255,255,255,0.10) inset, 0 2px 4px rgba(14,45,74,0.20);
+    }
+    .timeline__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px; font-weight: 700; color: var(--ink);
+      line-height: 1.25;
+    }
+    .timeline__dek {
+      font-size: 13.5px; color: var(--ink-mute);
+      margin-top: 2px; line-height: 1.5;
+    }
+
+    .privacy-note {
+      display: flex; align-items: center; gap: 10px;
+      margin-top: 28px;
+      padding: 12px 16px;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      font-size: 12.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .privacy-note svg { color: var(--ink-mute); flex-shrink: 0; }
+
+    /* "Why we ask" tooltip */
+    .why-ask {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 19px; height: 19px;
+      margin-left: 6px;
+      background: var(--surface-2);
+      border: 1.5px solid var(--line-strong);
+      border-radius: 999px;
+      color: var(--ink-mute);
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 0;
+      line-height: 1;
+      transition: all 150ms;
+      vertical-align: middle;
+    }
+    .why-ask:hover, .why-ask:focus-visible {
+      background: var(--primary-soft);
+      border-color: var(--primary);
+      color: var(--primary);
+      outline: none;
+    }
+    .why-ask.is-open {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: white;
+    }
+    .tooltip-card {
+      display: flex; gap: 10px; align-items: flex-start;
+      background: var(--surface-2);
+      border: 1px solid var(--line);
+      border-left: 3px solid var(--primary);
+      border-radius: 10px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.55;
+      margin-top: 10px;
+      margin-bottom: 4px;
+    }
+    .tooltip-card svg { color: var(--primary); flex-shrink: 0; margin-top: 2px; }
+
     /* ============ BUTTONS ============ */
     .btn {
       display: inline-flex; align-items: center; justify-content: center;
@@ -521,6 +723,107 @@
     }
     .btn-ghost:hover { color: var(--primary); background: var(--surface-2); }
 
+    /* skip-section text link (less prominent than other nav buttons) */
+    .skip-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: transparent;
+      border: none;
+      color: var(--ink-mute);
+      font-size: 12.5px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 6px 8px;
+      border-radius: 6px;
+      text-decoration: underline dotted;
+      text-underline-offset: 3px;
+      transition: color 150ms;
+    }
+    .skip-link:hover, .skip-link:focus-visible { color: var(--primary); outline: none; }
+
+    .skip-confirm {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--amber-soft);
+      border: 1px solid var(--amber-line);
+      border-radius: 10px;
+      padding: 6px 10px 6px 12px;
+      font-size: 12.5px;
+      color: #78350F;
+    }
+    .skip-confirm__btn {
+      background: var(--rose);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      padding: 5px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .skip-confirm__btn:hover { background: #991B1B; }
+    .skip-confirm__cancel {
+      background: transparent;
+      border: none;
+      color: var(--ink-soft);
+      font-size: 12px;
+      font-weight: 500;
+      cursor: pointer;
+      padding: 4px 6px;
+    }
+    .skip-confirm__cancel:hover { color: var(--ink); }
+
+    /* pre-submit modal */
+    .modal-backdrop {
+      position: fixed; inset: 0;
+      background: rgba(15, 25, 35, 0.55);
+      backdrop-filter: blur(4px);
+      z-index: 100;
+      display: flex; align-items: center; justify-content: center;
+      padding: 16px;
+      animation: fadeIn 200ms ease-out;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to   { opacity: 1; }
+    }
+    .modal {
+      width: 100%; max-width: 460px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 32px 28px 24px;
+      box-shadow: 0 24px 64px -16px rgba(15, 25, 35, 0.40), 0 8px 24px -4px rgba(15, 25, 35, 0.15);
+      animation: modalIn 280ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes modalIn {
+      from { opacity: 0; transform: scale(0.92) translateY(12px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .modal__icon {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 48px; height: 48px;
+      background: var(--accent-soft);
+      border: 1px solid var(--accent-line);
+      color: var(--accent);
+      border-radius: 14px;
+      margin-bottom: 16px;
+    }
+    .modal__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 22px; font-weight: 700; color: var(--ink);
+      letter-spacing: -0.015em;
+      margin-bottom: 8px;
+    }
+    .modal__body {
+      font-size: 14.5px; color: var(--ink-soft); line-height: 1.55;
+    }
+    .modal__actions {
+      display: flex; flex-direction: column-reverse; gap: 10px;
+      margin-top: 24px;
+    }
+    @media (min-width: 480px) {
+      .modal__actions { flex-direction: row; justify-content: flex-end; }
+    }
+
     .btn-sm { padding: 8px 14px; font-size: 13px; border-radius: 9px; }
     .btn-danger {
       background: transparent;
@@ -584,6 +887,112 @@
     .review-row__title { font-family: 'Bricolage Grotesque', sans-serif; font-size: 16px; font-weight: 600; color: var(--ink); margin-top: 2px; }
     .review-row + .review-row { margin-top: 8px; }
 
+    .review-group { margin-top: 24px; }
+    .review-group:first-of-type { margin-top: 0; }
+    .review-group__heading {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px; font-weight: 700;
+      color: var(--ink-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.10em;
+      margin-bottom: 10px;
+      padding-left: 4px;
+      display: flex; align-items: center; gap: 8px;
+    }
+    .review-group__heading::after {
+      content: ''; flex: 1; height: 1px; background: var(--line);
+    }
+
+    .review-row__right { display: inline-flex; align-items: center; gap: 12px; }
+    .review-row__chevron {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 22px; height: 22px;
+      color: var(--ink-mute);
+      transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+    }
+    .review-row__chevron.is-open { transform: rotate(90deg); color: var(--primary); }
+
+    /* expanded detail block */
+    .review-detail {
+      background: var(--surface-2);
+      border: 1px solid var(--line-strong);
+      border-top: 1.5px dashed var(--line-strong);
+      border-radius: 0 0 14px 14px;
+      margin-top: -2px;
+      padding: 16px 20px;
+      animation: fadeIn 200ms ease-out;
+    }
+    .review-data {
+      margin: 0 0 14px;
+      padding: 0;
+      list-style: none;
+    }
+    .review-data__row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2px;
+      padding: 9px 0;
+      border-top: 1px solid var(--line);
+      font-size: 13.5px;
+      line-height: 1.5;
+    }
+    .review-data__row:first-child { border-top: none; padding-top: 2px; }
+    @media (min-width: 600px) {
+      .review-data__row { grid-template-columns: 200px 1fr; gap: 18px; align-items: baseline; padding: 8px 0; }
+      .review-data__row.is-wide { grid-template-columns: 1fr; gap: 4px; }
+    }
+    .review-data dt {
+      color: var(--ink-mute);
+      font-weight: 600;
+      margin: 0;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    @media (min-width: 600px) {
+      .review-data dt { font-size: 13px; text-transform: none; letter-spacing: 0; }
+    }
+    .review-data dd {
+      color: var(--ink);
+      margin: 0;
+      font-weight: 500;
+      word-break: break-word;
+      white-space: pre-wrap;
+    }
+    .review-data dd.is-empty { color: var(--ink-mute); font-style: italic; font-weight: 400; }
+    .review-data dd.font-mono { font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.01em; }
+
+    .review-detail__edit {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 8px 14px;
+      background: var(--surface);
+      border: 1.5px solid var(--line-strong);
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 600;
+      color: var(--primary);
+      cursor: pointer;
+      transition: all 150ms;
+    }
+    .review-detail__edit:hover {
+      border-color: var(--primary);
+      background: var(--primary-soft);
+      transform: translateY(-1px);
+    }
+
+    /* expand-all button row */
+    .review-toolbar {
+      display: flex; justify-content: space-between; align-items: center; gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+    .review-toolbar__label {
+      font-size: 12.5px;
+      color: var(--ink-mute);
+      font-weight: 500;
+    }
+
     /* ============ BACKUP CTA ============ */
     .backup-cta {
       background: linear-gradient(135deg, var(--surface) 0%, var(--surface-2) 100%);
@@ -627,6 +1036,52 @@
       100% { transform: scale(1); opacity: 1; }
     }
     .anim-pulse { animation: pulse-success 600ms cubic-bezier(0.16,1,0.3,1) both; }
+
+    /* submit-success confetti */
+    .confetti-wrap {
+      position: relative;
+      width: 80px; height: 80px;
+      margin: 0 auto 24px;
+    }
+    .confetti-wrap .check-badge {
+      position: relative;
+      width: 80px; height: 80px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px -8px rgba(4,120,87,0.4);
+      z-index: 2;
+    }
+    .confetti {
+      position: absolute; top: 50%; left: 50%;
+      width: 8px; height: 8px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      animation: confetti-burst 1100ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    .confetti.c1 { background: #F59E0B; --tx: -64px; --ty: -52px; animation-delay: 60ms; }
+    .confetti.c2 { background: var(--accent); --tx: 64px; --ty: -52px; animation-delay: 90ms; }
+    .confetti.c3 { background: var(--primary); --tx: -76px; --ty: 8px; animation-delay: 120ms; }
+    .confetti.c4 { background: var(--emerald); --tx: 76px; --ty: 8px; animation-delay: 70ms; }
+    .confetti.c5 { background: #F59E0B; --tx: -50px; --ty: 60px; animation-delay: 110ms; width: 6px; height: 6px; }
+    .confetti.c6 { background: var(--accent); --tx: 50px; --ty: 60px; animation-delay: 100ms; width: 6px; height: 6px; }
+    .confetti.c7 { background: var(--primary); --tx: -32px; --ty: -76px; animation-delay: 150ms; width: 5px; height: 5px; }
+    .confetti.c8 { background: var(--emerald); --tx: 32px; --ty: -76px; animation-delay: 130ms; width: 5px; height: 5px; }
+    @keyframes confetti-burst {
+      0%   { opacity: 0; transform: translate(-50%, -50%) scale(0); }
+      30%  { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+      100% { opacity: 0; transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(0.5); }
+    }
+
+    @keyframes scaleIn {
+      from { opacity: 0; transform: scale(0.95) translateY(8px); }
+      to   { opacity: 1; transform: scale(1) translateY(0); }
+    }
+    .anim-scale-in { animation: scaleIn 500ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+    .anim-scale-in--d1 { animation-delay: 280ms; }
+    .anim-scale-in--d2 { animation-delay: 400ms; }
+    .anim-scale-in--d3 { animation-delay: 540ms; }
 
     /* ============ MISC ============ */
     .hr-soft { height: 1px; background: var(--line); border: none; margin: 18px 0; }
@@ -717,7 +1172,12 @@
         </div>
         <div class="header-meta" x-show="currentStep > 0 && currentStep <= totalSections">
           <div class="step" x-text="`Section ${currentStep} / ${totalSections}`"></div>
-          <div class="save" :class="recentlySaved ? 'is-saving' : ''" x-text="saveLabel"></div>
+          <div class="save" :class="recentlySaved ? 'is-saving' : ''">
+            <span class="save-check" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </span>
+            <span x-text="saveLabel"></span>
+          </div>
         </div>
       </div>
     </div>
@@ -733,15 +1193,43 @@
       <!-- ========== WELCOME (step 0) ========== -->
       <template x-if="currentStep === 0">
         <div class="section-card anim-fade-up">
-          <div class="section-chip">
+          <div class="welcome-pill">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            Takes about 20–30 min · Save and resume any time
+          </div>
+          <div class="section-chip" style="margin-top: 8px;">
             <span class="section-chip__num">0</span>
             <span>Welcome, Steven</span>
           </div>
           <h1>Let's get your new website built.</h1>
           <p class="section-dek" style="margin-top: 16px; font-size: 16px;">
             This is the operational stuff I need to build your site, set up your CRM, and get your phone number registered for text messages.
-            Should take about 20–30 minutes total. You don't have to do it in one sitting.
+            You don't have to do it in one sitting.
           </p>
+
+          <div class="timeline">
+            <div class="timeline__row">
+              <span class="timeline__num">1</span>
+              <div>
+                <div class="timeline__title">You fill this out</div>
+                <div class="timeline__dek">~20–30 minutes, at your pace. Today, tomorrow, or in pieces over a few days.</div>
+              </div>
+            </div>
+            <div class="timeline__row">
+              <span class="timeline__num">2</span>
+              <div>
+                <div class="timeline__title">Marketing Remix builds your site</div>
+                <div class="timeline__dek">Two-week build sprint starts the day the required sections come back.</div>
+              </div>
+            </div>
+            <div class="timeline__row">
+              <span class="timeline__num">3</span>
+              <div>
+                <div class="timeline__title">We launch live + train your team</div>
+                <div class="timeline__dek">Recorded training session, then ongoing monthly management.</div>
+              </div>
+            </div>
+          </div>
 
           <div class="infobox infobox-info" style="margin-top: 24px;">
             <svg class="infobox-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
@@ -773,7 +1261,12 @@
             </button>
           </div>
 
-          <div style="margin-top: 24px; text-align: center; font-size: 12px; color: var(--ink-mute);">
+          <div class="privacy-note">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            <span>Your info goes only to Shayne at Marketing Remix. Stored encrypted. Never shared. You can request deletion any time.</span>
+          </div>
+
+          <div style="margin-top: 16px; text-align: center; font-size: 12px; color: var(--ink-mute);">
             Questions? Text Shayne at <strong style="color: var(--ink-soft);">(719) 357-9633</strong>
           </div>
         </div>
@@ -786,10 +1279,26 @@
             <div class="section-chip"><span class="section-chip__num">1</span><span>Section 1 of 13</span></div>
             <h2>Credentials & trust signals</h2>
             <p class="section-dek">These show up across your site as trust badges and in your bio.</p>
+            <div class="req-banner" style="margin-top: 14px;" :class="requiredCount(1)[0] === requiredCount(1)[1] ? 'is-complete' : ''">
+              <template x-if="requiredCount(1)[0] < requiredCount(1)[1]">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+              </template>
+              <template x-if="requiredCount(1)[0] === requiredCount(1)[1]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </template>
+              <span x-text="requiredCount(1)[0] === requiredCount(1)[1] ? 'All required fields filled' : `${requiredCount(1)[0]} of ${requiredCount(1)[1]} required fields filled`"></span>
+            </div>
           </div>
 
           <div class="field-group">
-            <label class="field-label">Are you NATE certified?</label>
+            <label class="field-label">
+              Are you NATE certified?<span class="req-mark" aria-label="required">*</span>
+              <button type="button" class="why-ask" :class="activeTooltip === 'nate' ? 'is-open' : ''" @click="toggleTooltip('nate')" aria-label="What is NATE certification?">?</button>
+            </label>
+            <div class="tooltip-card" x-show="activeTooltip === 'nate'" x-transition>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span><strong>NATE = North American Technician Excellence.</strong> The industry-standard certification for HVAC techs. We feature this as a trust signal on your site.</span>
+            </div>
             <div class="opt-grid opt-grid-yn">
               <label class="opt"><input type="radio" x-model="state.s1.nateCertified" value="yes"><span class="ind"></span><span>Yes</span></label>
               <label class="opt"><input type="radio" x-model="state.s1.nateCertified" value="no"><span class="ind"></span><span>No</span></label>
@@ -803,7 +1312,14 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">EPA Universal certified?</label>
+            <label class="field-label">
+              EPA Universal certified?<span class="req-mark" aria-label="required">*</span>
+              <button type="button" class="why-ask" :class="activeTooltip === 'epa' ? 'is-open' : ''" @click="toggleTooltip('epa')" aria-label="What is EPA Universal?">?</button>
+            </label>
+            <div class="tooltip-card" x-show="activeTooltip === 'epa'" x-transition>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span><strong>EPA Section 608 Universal certification</strong> — required by federal law to handle refrigerants in any system size (Type I, II, and III). Most HVAC pros have it; we display it on your site as a credential.</span>
+            </div>
             <div class="opt-grid opt-grid-yn">
               <label class="opt"><input type="radio" x-model="state.s1.epaUniversal" value="yes"><span class="ind"></span><span>Yes</span></label>
               <label class="opt"><input type="radio" x-model="state.s1.epaUniversal" value="no"><span class="ind"></span><span>No</span></label>
@@ -811,21 +1327,21 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">South Carolina HVAC contractor license number</label>
+            <label class="field-label">South Carolina HVAC contractor license number<span class="req-mark" aria-label="required">*</span></label>
             <input class="input-base input-mono" type="text" x-model="state.s1.scLicenseNumber" placeholder="e.g., M115678" />
           </div>
 
           <div class="field-group">
             <div style="display: grid; gap: 18px;" class="sm:grid-cols-2">
               <div>
-                <label class="field-label">Bonded?</label>
+                <label class="field-label">Bonded?<span class="req-mark" aria-label="required">*</span></label>
                 <div class="opt-grid opt-grid-2">
                   <label class="opt"><input type="radio" x-model="state.s1.bonded" value="yes"><span class="ind"></span><span>Yes</span></label>
                   <label class="opt"><input type="radio" x-model="state.s1.bonded" value="no"><span class="ind"></span><span>No</span></label>
                 </div>
               </div>
               <div>
-                <label class="field-label">Insured?</label>
+                <label class="field-label">Insured?<span class="req-mark" aria-label="required">*</span></label>
                 <div class="opt-grid opt-grid-2">
                   <label class="opt"><input type="radio" x-model="state.s1.insured" value="yes"><span class="ind"></span><span>Yes</span></label>
                   <label class="opt"><input type="radio" x-model="state.s1.insured" value="no"><span class="ind"></span><span>No</span></label>
@@ -841,7 +1357,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">BBB accredited?</label>
+            <label class="field-label">BBB accredited?<span class="req-mark" aria-label="required">*</span></label>
             <div class="opt-grid opt-grid-yn">
               <label class="opt"><input type="radio" x-model="state.s1.bbbAccredited" value="yes"><span class="ind"></span><span>Yes</span></label>
               <label class="opt"><input type="radio" x-model="state.s1.bbbAccredited" value="no"><span class="ind"></span><span>No</span></label>
@@ -1165,15 +1681,38 @@
           <div class="section-head">
             <div class="section-chip"><span class="section-chip__num">7</span><span>Section 7 of 13</span></div>
             <h2>Existing accounts & logins</h2>
+            <div class="req-banner" style="margin-top: 14px;" :class="requiredCount(7)[0] === requiredCount(7)[1] ? 'is-complete' : ''">
+              <template x-if="requiredCount(7)[0] < requiredCount(7)[1]">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+              </template>
+              <template x-if="requiredCount(7)[0] === requiredCount(7)[1]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </template>
+              <span x-text="requiredCount(7)[0] === requiredCount(7)[1] ? 'All required fields filled' : `${requiredCount(7)[0]} of ${requiredCount(7)[1]} required fields filled`"></span>
+            </div>
           </div>
 
           <div class="field-group">
             <div class="subcard">
               <div class="subcard__title">Google Business Profile</div>
               <div style="display: grid; gap: 14px;">
-                <div><label class="field-label field-label--sm">Email of the person who owns the listing</label><input class="input-base" type="email" x-model="state.s7.gbpOwner" /></div>
                 <div>
-                  <label class="field-label field-label--sm">Willing to grant me admin access?</label>
+                  <label class="field-label field-label--sm">Email of the person who owns the listing</label>
+                  <input class="input-base" :class="emailErrors.gbpOwner ? 'is-invalid' : ''" type="email" x-model="state.s7.gbpOwner" @blur="validateEmail('gbpOwner', state.s7.gbpOwner)" @input="emailErrors.gbpOwner && validateEmail('gbpOwner', state.s7.gbpOwner)" />
+                  <div class="field-error" x-show="emailErrors.gbpOwner">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span x-text="emailErrors.gbpOwner"></span>
+                  </div>
+                </div>
+                <div>
+                  <label class="field-label field-label--sm">
+                    Willing to grant me admin access?<span class="req-mark" aria-label="required">*</span>
+                    <button type="button" class="why-ask" :class="activeTooltip === 'gbp' ? 'is-open' : ''" @click="toggleTooltip('gbp')" aria-label="What is admin access?">?</button>
+                  </label>
+                  <div class="tooltip-card" x-show="activeTooltip === 'gbp'" x-transition>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                    <span><strong>Admin access</strong> lets us post updates, respond to reviews, and run review-request automations on your behalf. You stay the listing owner — admin is one tier below.</span>
+                  </div>
                   <div class="opt-grid opt-grid-yn">
                     <label class="opt"><input type="radio" x-model="state.s7.gbpAdminAccess" value="yes"><span class="ind"></span><span>Yes</span></label>
                     <label class="opt"><input type="radio" x-model="state.s7.gbpAdminAccess" value="no"><span class="ind"></span><span>No</span></label>
@@ -1188,7 +1727,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Domain — currently registered through Housecall Pro</label>
+            <label class="field-label">Domain — currently registered through Housecall Pro<span class="req-mark" aria-label="required">*</span></label>
             <p class="field-help">Willing to transfer to a standard registrar (Cloudflare or Namecheap) so we can host the new site?</p>
             <div class="opt-grid opt-grid-stacked opt-grid-3-sm">
               <label class="opt"><input type="radio" value="yes" x-model="state.s7.willTransferDomain"><span class="ind"></span><span>Yes</span></label>
@@ -1216,7 +1755,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Email platform</label>
+            <label class="field-label">Email platform<span class="req-mark" aria-label="required">*</span></label>
             <div class="opt-grid opt-grid-stacked opt-grid-2-sm">
               <template x-for="p in ['Google Workspace','Microsoft 365','Housecall','Other']" :key="p">
                 <label class="opt"><input type="radio" :value="p" x-model="state.s7.emailPlatform"><span class="ind"></span><span x-text="p"></span></label>
@@ -1228,7 +1767,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Phone system</label>
+            <label class="field-label">Phone system<span class="req-mark" aria-label="required">*</span></label>
             <p class="field-help">Tell us about how calls are handled today:</p>
             <ul style="margin: 0 0 12px 0; padding-left: 18px; font-size: 13.5px; color: var(--ink-mute); line-height: 1.7;">
               <li>Who answers your calls during <strong>business hours</strong>?</li>
@@ -1280,6 +1819,15 @@
             <div class="section-chip"><span class="section-chip__num">9</span><span>Section 9 of 13</span></div>
             <h2>GoHighLevel users</h2>
             <p class="section-dek">Anyone who needs access to the CRM. Suggested tiers: <strong>Admin</strong> (full access — usually just you), <strong>Full user</strong> (office staff), <strong>Limited</strong> (techs who only need leads/chat).</p>
+            <div class="req-banner" style="margin-top: 14px;" :class="requiredCount(9)[0] === requiredCount(9)[1] ? 'is-complete' : ''">
+              <template x-if="requiredCount(9)[0] < requiredCount(9)[1]">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+              </template>
+              <template x-if="requiredCount(9)[0] === requiredCount(9)[1]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </template>
+              <span x-text="requiredCount(9)[0] === requiredCount(9)[1] ? 'At least one complete user added' : 'At least one user with name, email, and role is required'"></span>
+            </div>
           </div>
 
           <div>
@@ -1293,11 +1841,18 @@
                   <button type="button" class="btn-danger" @click="state.s9.users.splice(idx, 1)" x-show="state.s9.users.length > 1">Remove</button>
                 </div>
                 <div style="display: grid; gap: 12px;" class="grid sm:grid-cols-2">
-                  <div><label class="field-label field-label--sm">Full name</label><input class="input-base" type="text" x-model="u.name" /></div>
-                  <div><label class="field-label field-label--sm">Email</label><input class="input-base" type="email" x-model="u.email" /></div>
-                  <div><label class="field-label field-label--sm">Mobile</label><input class="input-base" type="tel" x-model="u.mobile" placeholder="(864) 555-0100" /></div>
+                  <div><label class="field-label field-label--sm">Full name<span class="req-mark" aria-label="required">*</span></label><input class="input-base" type="text" x-model="u.name" /></div>
                   <div>
-                    <label class="field-label field-label--sm">Role</label>
+                    <label class="field-label field-label--sm">Email<span class="req-mark" aria-label="required">*</span></label>
+                    <input class="input-base" :class="emailErrors[`user_${idx}_email`] ? 'is-invalid' : ''" type="email" x-model="u.email" @blur="validateEmail(`user_${idx}_email`, u.email)" @input="emailErrors[`user_${idx}_email`] && validateEmail(`user_${idx}_email`, u.email)" />
+                    <div class="field-error" x-show="emailErrors[`user_${idx}_email`]">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                      <span x-text="emailErrors[`user_${idx}_email`]"></span>
+                    </div>
+                  </div>
+                  <div><label class="field-label field-label--sm">Mobile</label><input class="input-base" type="tel" :value="u.mobile" @input="u.mobile = formatPhone($event.target.value)" placeholder="(864) 555-0100" inputmode="tel" /></div>
+                  <div>
+                    <label class="field-label field-label--sm">Role<span class="req-mark" aria-label="required">*</span></label>
                     <select class="input-base" x-model="u.role">
                       <option value="">Select role…</option>
                       <option>Admin</option>
@@ -1324,18 +1879,33 @@
             <div class="section-chip"><span class="section-chip__num">10</span><span>Section 10 of 13</span></div>
             <h2>Lead routing</h2>
             <p class="section-dek">When a form's submitted on the new site or someone chats with the bot, where should the alert go?</p>
+            <div class="req-banner" style="margin-top: 14px;" :class="requiredCount(10)[0] === requiredCount(10)[1] ? 'is-complete' : ''">
+              <template x-if="requiredCount(10)[0] < requiredCount(10)[1]">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+              </template>
+              <template x-if="requiredCount(10)[0] === requiredCount(10)[1]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </template>
+              <span x-text="requiredCount(10)[0] === requiredCount(10)[1] ? 'All required fields filled' : `${requiredCount(10)[0]} of ${requiredCount(10)[1]} required fields filled`"></span>
+            </div>
           </div>
 
           <div class="field-group">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-              <label class="field-label" style="margin-bottom: 0;">Email recipients <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
+              <label class="field-label" style="margin-bottom: 0;">Email recipients<span class="req-mark" aria-label="required">*</span> <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
               <button type="button" class="btn btn-outline-accent btn-sm" @click="state.s10.emailRecipients.push('')" x-show="state.s10.emailRecipients.length < 3">+ Add</button>
             </div>
             <div style="margin-top: 12px; display: grid; gap: 10px;">
               <template x-for="(em, idx) in state.s10.emailRecipients" :key="idx">
-                <div style="display: flex; gap: 8px; align-items: center;">
-                  <input class="input-base" type="email" x-model="state.s10.emailRecipients[idx]" placeholder="email@example.com" />
-                  <button type="button" class="btn-danger" @click="state.s10.emailRecipients.splice(idx, 1)" x-show="state.s10.emailRecipients.length > 1">Remove</button>
+                <div>
+                  <div style="display: flex; gap: 8px; align-items: center;">
+                    <input class="input-base" :class="emailErrors[`lead_email_${idx}`] ? 'is-invalid' : ''" type="email" x-model="state.s10.emailRecipients[idx]" @blur="validateEmail(`lead_email_${idx}`, state.s10.emailRecipients[idx])" @input="emailErrors[`lead_email_${idx}`] && validateEmail(`lead_email_${idx}`, state.s10.emailRecipients[idx])" placeholder="email@example.com" />
+                    <button type="button" class="btn-danger" @click="state.s10.emailRecipients.splice(idx, 1)" x-show="state.s10.emailRecipients.length > 1">Remove</button>
+                  </div>
+                  <div class="field-error" x-show="emailErrors[`lead_email_${idx}`]">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span x-text="emailErrors[`lead_email_${idx}`]"></span>
+                  </div>
                 </div>
               </template>
             </div>
@@ -1343,14 +1913,14 @@
 
           <div class="field-group">
             <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
-              <label class="field-label" style="margin-bottom: 0;">SMS notification recipients <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
+              <label class="field-label" style="margin-bottom: 0;">SMS notification recipients<span class="req-mark" aria-label="required">*</span> <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:13px;">(up to 3)</span></label>
               <button type="button" class="btn btn-outline-accent btn-sm" @click="state.s10.smsRecipients.push('')" x-show="state.s10.smsRecipients.length < 3">+ Add</button>
             </div>
             <p class="field-help">The phones that buzz when a lead comes in.</p>
             <div style="display: grid; gap: 10px;">
               <template x-for="(sm, idx) in state.s10.smsRecipients" :key="idx">
                 <div style="display: flex; gap: 8px; align-items: center;">
-                  <input class="input-base" type="tel" x-model="state.s10.smsRecipients[idx]" placeholder="(864) 555-0100" />
+                  <input class="input-base" type="tel" :value="state.s10.smsRecipients[idx]" @input="state.s10.smsRecipients[idx] = formatPhone($event.target.value)" placeholder="(864) 555-0100" inputmode="tel" />
                   <button type="button" class="btn-danger" @click="state.s10.smsRecipients.splice(idx, 1)" x-show="state.s10.smsRecipients.length > 1">Remove</button>
                 </div>
               </template>
@@ -1358,7 +1928,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">After-hours behavior</label>
+            <label class="field-label">After-hours behavior<span class="req-mark" aria-label="required">*</span></label>
             <div class="opt-grid opt-grid-stacked">
               <label class="opt"><input type="radio" value="same" x-model="state.s10.afterHours"><span class="ind"></span><span>Same recipients get notified, same as business hours</span></label>
               <label class="opt"><input type="radio" value="answering" x-model="state.s10.afterHours"><span class="ind"></span><span>Roll to answering service</span></label>
@@ -1458,6 +2028,15 @@
           <div class="section-head">
             <div class="section-chip"><span class="section-chip__num">13</span><span>Section 13 of 13 · Final</span></div>
             <h2>SMS registration (A2P 10DLC)</h2>
+            <div class="req-banner" style="margin-top: 14px;" :class="requiredCount(13)[0] === requiredCount(13)[1] ? 'is-complete' : ''">
+              <template x-if="requiredCount(13)[0] < requiredCount(13)[1]">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="4"/></svg>
+              </template>
+              <template x-if="requiredCount(13)[0] === requiredCount(13)[1]">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </template>
+              <span x-text="requiredCount(13)[0] === requiredCount(13)[1] ? 'All required fields filled' : `${requiredCount(13)[0]} of ${requiredCount(13)[1]} required fields filled`"></span>
+            </div>
           </div>
 
           <div class="infobox infobox-warn" style="margin-bottom: 8px;">
@@ -1469,7 +2048,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Exact legal business name <span class="chip">Must match EIN</span></label>
+            <label class="field-label">Exact legal business name<span class="req-mark" aria-label="required">*</span> <span class="chip">Must match EIN</span></label>
             <input class="input-base" type="text" x-model="state.s13.legalName" placeholder="e.g., Exceptional Comfort Services LLC" />
           </div>
 
@@ -1479,13 +2058,20 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">EIN (federal tax ID)</label>
+            <label class="field-label">
+              EIN (federal tax ID)<span class="req-mark" aria-label="required">*</span>
+              <button type="button" class="why-ask" :class="activeTooltip === 'ein' ? 'is-open' : ''" @click="toggleTooltip('ein')" aria-label="Where to find your EIN?">?</button>
+            </label>
+            <div class="tooltip-card" x-show="activeTooltip === 'ein'" x-transition>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>Your <strong>federal tax ID</strong> — a 9-digit number on your IRS SS-4 letter, formatted <span class="font-mono">XX-XXXXXXX</span>. If you can't find the SS-4, look on any IRS notice or your last business tax return.</span>
+            </div>
             <input class="input-base input-mono" type="text" x-model="state.s13.ein" placeholder="XX-XXXXXXX" maxlength="10" />
             <p class="field-help field-help--inline">9 digits, formatted XX-XXXXXXX.</p>
           </div>
 
           <div class="field-group">
-            <label class="field-label">Business entity type <span class="chip">Must match EIN</span></label>
+            <label class="field-label">Business entity type<span class="req-mark" aria-label="required">*</span> <span class="chip">Must match EIN</span></label>
             <select class="input-base" x-model="state.s13.entityType">
               <option value="">Select entity type…</option>
               <option>LLC</option>
@@ -1511,7 +2097,7 @@
           </div>
 
           <div class="field-group">
-            <label class="field-label">Registered business address <span class="chip">Must match EIN</span></label>
+            <label class="field-label">Registered business address<span class="req-mark" aria-label="required">*</span> <span class="chip">Must match EIN</span></label>
             <textarea class="input-base" rows="3" x-model="state.s13.registeredAddress" placeholder="Street, City, State, ZIP"></textarea>
           </div>
 
@@ -1520,16 +2106,31 @@
               <div class="subcard__title">Authorized representative</div>
               <div class="subcard__dek">The person carriers will contact to verify your business. Must be reachable.</div>
               <div style="display: grid; gap: 14px;" class="grid sm:grid-cols-2">
-                <div><label class="field-label field-label--sm">Full legal name</label><input class="input-base" type="text" x-model="state.s13.authRepName" /></div>
+                <div><label class="field-label field-label--sm">Full legal name<span class="req-mark" aria-label="required">*</span></label><input class="input-base" type="text" x-model="state.s13.authRepName" /></div>
                 <div><label class="field-label field-label--sm">Job title</label><input class="input-base" type="text" x-model="state.s13.authRepTitle" /></div>
-                <div><label class="field-label field-label--sm">Business email <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:11.5px;">(not personal Gmail)</span></label><input class="input-base" type="email" x-model="state.s13.authRepEmail" /></div>
-                <div><label class="field-label field-label--sm">Business phone</label><input class="input-base" type="tel" x-model="state.s13.authRepPhone" /></div>
+                <div>
+                  <label class="field-label field-label--sm">Business email<span class="req-mark" aria-label="required">*</span> <span class="text-mute" style="font-weight:400;font-family:'Public Sans',sans-serif;font-size:11.5px;">(not personal Gmail)</span></label>
+                  <input class="input-base" :class="emailErrors.authRepEmail ? 'is-invalid' : ''" type="email" x-model="state.s13.authRepEmail" @blur="validateEmail('authRepEmail', state.s13.authRepEmail)" @input="emailErrors.authRepEmail && validateEmail('authRepEmail', state.s13.authRepEmail)" />
+                  <div class="field-error" x-show="emailErrors.authRepEmail">
+                    <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span x-text="emailErrors.authRepEmail"></span>
+                  </div>
+                </div>
+                <div><label class="field-label field-label--sm">Business phone<span class="req-mark" aria-label="required">*</span></label><input class="input-base" type="tel" :value="state.s13.authRepPhone" @input="state.s13.authRepPhone = formatPhone($event.target.value)" placeholder="(864) 555-0100" inputmode="tel" /></div>
               </div>
             </div>
           </div>
 
           <div class="field-group">
-            <label class="field-label">Caller ID display name <span class="badge-counter tabular" :class="state.s13.cnam.length > 15 ? 'is-error' : ''" x-text="`${state.s13.cnam.length} / 15`"></span></label>
+            <label class="field-label">
+              Caller ID display name<span class="req-mark" aria-label="required">*</span>
+              <button type="button" class="why-ask" :class="activeTooltip === 'cnam' ? 'is-open' : ''" @click="toggleTooltip('cnam')" aria-label="What is a caller ID display name?">?</button>
+              <span class="badge-counter tabular" :class="state.s13.cnam.length > 15 ? 'is-error' : ''" x-text="`${state.s13.cnam.length} / 15`"></span>
+            </label>
+            <div class="tooltip-card" x-show="activeTooltip === 'cnam'" x-transition>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+              <span>The <strong>name that shows up on caller ID</strong> when you call a customer. Limited to 15 characters by the phone networks. Pick something a customer would recognize — usually your business name (or a short version of it).</span>
+            </div>
             <p class="field-help">Pick a preset or type your own (15 char max):</p>
             <div style="display: grid; gap: 10px; margin-bottom: 14px;" class="grid sm:grid-cols-3">
               <button type="button" class="preset-btn" @click="state.s13.cnam = 'ECS HVAC'">ECS HVAC</button>
@@ -1552,28 +2153,62 @@
           <div class="section-head">
             <div class="section-chip"><span class="section-chip__num">✓</span><span>Final step · Review</span></div>
             <h2>Review & submit</h2>
-            <p class="section-dek">Quick scan of everything you filled in. Click any section to edit.</p>
+            <p class="section-dek">Tap any section to see what you filled in. Use "Edit this section" to make changes.</p>
+          </div>
+
+          <div class="review-toolbar">
+            <span class="review-toolbar__label">All 13 sections, your answers</span>
+            <button type="button" class="btn btn-outline-accent btn-sm" @click="toggleAllExpand()">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" :style="allExpanded ? 'transform: rotate(180deg);' : ''" style="transition: transform 200ms;"><polyline points="6 9 12 15 18 9"/></svg>
+              <span x-text="allExpanded ? 'Collapse all answers' : 'Show all my answers'"></span>
+            </button>
           </div>
 
           <div>
-            <template x-for="(sec, idx) in sectionTitles" :key="idx">
-              <button type="button" class="review-row" @click="goTo(idx + 1)">
-                <div>
-                  <div class="review-row__num" x-text="`Section ${String(idx + 1).padStart(2, '0')}`"></div>
-                  <div class="review-row__title" x-text="sec"></div>
-                </div>
-                <div>
-                  <template x-if="isSectionComplete(idx + 1)">
-                    <span class="chip chip-success">
-                      <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-                      Complete
-                    </span>
-                  </template>
-                  <template x-if="!isSectionComplete(idx + 1)">
-                    <span class="chip" x-text="requiredSections.includes(idx + 1) ? 'Required' : 'Optional'" :class="requiredSections.includes(idx + 1) ? 'chip-required' : ''"></span>
-                  </template>
-                </div>
-              </button>
+            <template x-for="group in reviewGroups" :key="group.heading">
+              <div class="review-group">
+                <div class="review-group__heading" x-text="group.heading"></div>
+                <template x-for="idx in group.indexes" :key="idx">
+                  <div>
+                    <button type="button" class="review-row" @click="toggleReviewExpand(idx)" :aria-expanded="expandedReview.includes(idx) ? 'true' : 'false'">
+                      <div>
+                        <div class="review-row__num" x-text="`Section ${String(idx + 1).padStart(2, '0')}`"></div>
+                        <div class="review-row__title" x-text="sectionTitles[idx]"></div>
+                      </div>
+                      <div class="review-row__right">
+                        <template x-if="isSectionComplete(idx + 1)">
+                          <span class="chip chip-success">
+                            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                            Complete
+                          </span>
+                        </template>
+                        <template x-if="!isSectionComplete(idx + 1)">
+                          <span class="chip" x-text="requiredSections.includes(idx + 1) ? 'Required' : 'Optional'" :class="requiredSections.includes(idx + 1) ? 'chip-required' : ''"></span>
+                        </template>
+                        <span class="review-row__chevron" :class="expandedReview.includes(idx) ? 'is-open' : ''" aria-hidden="true">
+                          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+                        </span>
+                      </div>
+                    </button>
+                    <template x-if="expandedReview.includes(idx)">
+                      <div class="review-detail">
+                        <dl class="review-data">
+                          <template x-for="row in sectionData(idx + 1)" :key="row.label">
+                            <div class="review-data__row" :class="row.wide ? 'is-wide' : ''">
+                              <dt x-text="row.label"></dt>
+                              <dd :class="(!row.value ? 'is-empty ' : '') + (row.mono ? 'font-mono' : '')" x-text="row.value || '(not provided)'"></dd>
+                            </div>
+                          </template>
+                        </dl>
+                        <button type="button" class="review-detail__edit" @click.stop="goTo(idx + 1)">
+                          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                          Edit this section
+                        </button>
+                      </div>
+                    </template>
+                  </div>
+                </template>
+              </div>
             </template>
           </div>
 
@@ -1599,7 +2234,7 @@
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
               Back
             </button>
-            <button type="button" class="btn btn-accent btn-lg" :disabled="!requiredComplete || submitting" @click="submitFinal()">
+            <button type="button" class="btn btn-accent btn-lg" :disabled="!requiredComplete || submitting" @click="submitConfirmOpen = true">
               <span x-show="!submitting" style="display:inline-flex;align-items:center;gap:8px;">Submit intake
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
               </span>
@@ -1620,17 +2255,33 @@
 
       <!-- ========== THANK YOU (step 15) ========== -->
       <template x-if="currentStep === 15">
-        <div class="section-card anim-fade-up" style="text-align: center;">
-          <div style="margin: 0 auto 24px; width: 80px; height: 80px; border-radius: 999px; background: linear-gradient(135deg, var(--emerald) 0%, #059669 100%); display: flex; align-items: center; justify-content: center; box-shadow: 0 8px 32px -8px rgba(4,120,87,0.4);" class="anim-pulse">
-            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <div class="section-card" style="text-align: center;">
+          <div class="confetti-wrap">
+            <span class="confetti c1"></span>
+            <span class="confetti c2"></span>
+            <span class="confetti c3"></span>
+            <span class="confetti c4"></span>
+            <span class="confetti c5"></span>
+            <span class="confetti c6"></span>
+            <span class="confetti c7"></span>
+            <span class="confetti c8"></span>
+            <div class="check-badge anim-pulse">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
           </div>
-          <h1 style="font-size: clamp(32px, 5vw, 48px);">We got it.</h1>
-          <p style="margin-top: 16px; color: var(--ink-soft); font-size: 17px; max-width: 32rem; margin-left: auto; margin-right: auto;">Thanks Steven. Your intake is in. The 2-week build clock starts now — I'll text you within 24 hours with what's next.</p>
+          <h1 style="font-size: clamp(32px, 5vw, 48px);" class="anim-scale-in anim-scale-in--d1">We got it.</h1>
+          <p style="margin-top: 16px; color: var(--ink-soft); font-size: 17px; max-width: 32rem; margin-left: auto; margin-right: auto;" class="anim-scale-in anim-scale-in--d2">Thanks Steven. Your intake is in. The 2-week build clock starts now — I'll text you within 24 hours with what's next. You should also see a confirmation email land in your inbox in the next few minutes.</p>
 
-          <div style="margin-top: 32px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+          <div style="margin-top: 32px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;" class="anim-scale-in anim-scale-in--d3">
             <button type="button" class="btn btn-secondary" @click="downloadSnapshot()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               Download a copy for your records
+            </button>
+          </div>
+
+          <div style="margin-top: 24px;">
+            <button type="button" class="btn-ghost" style="font-size: 13px; cursor: pointer; background: none; border: none; color: var(--ink-mute); text-decoration: underline dotted; text-underline-offset: 4px; padding: 6px 10px;" @click="localStorage.removeItem('ecs-intake-draft'); window.location.href = window.location.pathname;">
+              Start a new intake
             </button>
           </div>
 
@@ -1647,7 +2298,20 @@
           Back
         </button>
         <div class="nav-footer__right">
-          <button type="button" class="btn btn-ghost" @click="goTo(currentStep + 1)">Skip section</button>
+          <template x-if="!skipPending">
+            <button type="button" class="skip-link" @click="trySkip()">Skip section</button>
+          </template>
+          <template x-if="skipPending">
+            <div class="skip-confirm">
+              <span>Section has required fields — skip anyway?</span>
+              <button type="button" class="skip-confirm__btn" @click="trySkip()">Yes, skip</button>
+              <button type="button" class="skip-confirm__cancel" @click="skipPending = false">Cancel</button>
+            </div>
+          </template>
+          <button type="button" class="btn btn-outline-accent" @click="goTo(14)" title="Jump to the Review screen">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            <span>Review</span>
+          </button>
           <button type="button" class="btn btn-accent" @click="goTo(currentStep + 1)">
             <span x-text="currentStep === 13 ? 'Review' : 'Next'"></span>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
@@ -1663,8 +2327,8 @@
             <div class="backup-cta__dek">Email yourself a backup link so you can pick up on another phone or computer.</div>
           </div>
           <div style="display: flex; gap: 8px; width: 100%;" class="sm:w-auto">
-            <input type="email" class="input-base" style="flex: 1;" x-model="email" placeholder="your@email.com" />
-            <button type="button" class="btn btn-primary" @click="emailBackupLink()" :disabled="backupSending || !email">
+            <input type="email" class="input-base" :class="emailErrors.backupEmail ? 'is-invalid' : ''" style="flex: 1;" x-model="email" @blur="validateEmail('backupEmail', email)" @input="emailErrors.backupEmail && validateEmail('backupEmail', email)" placeholder="your@email.com" />
+            <button type="button" class="btn btn-primary" @click="emailBackupLink()" :disabled="backupSending || !email || emailErrors.backupEmail">
               <span x-show="!backupSending" style="display:inline-flex;align-items:center;gap:6px;">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                 Send link
@@ -1678,6 +2342,26 @@
 
     </div>
   </main>
+
+  <!-- ============ PRE-SUBMIT MODAL ============ -->
+  <div class="modal-backdrop" x-show="submitConfirmOpen" x-cloak @keydown.escape.window="submitConfirmOpen = false" @click.self="submitConfirmOpen = false">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="submit-modal-title">
+      <div class="modal__icon" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div class="modal__title" id="submit-modal-title">Ready to submit?</div>
+      <div class="modal__body">
+        Your intake goes to Shayne and the <strong>2-week build clock starts now</strong>. You can still email Shayne changes after this — but this is the official starting line.
+      </div>
+      <div class="modal__actions">
+        <button type="button" class="btn btn-secondary" @click="submitConfirmOpen = false">Cancel</button>
+        <button type="button" class="btn btn-accent" @click="submitConfirmOpen = false; submitFinal()">
+          Yes, submit
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <footer class="app-footer">
     <span class="app-footer__brand">Marketing Remix</span>
@@ -1723,6 +2407,11 @@
         'Testimonials',
         'SMS registration (A2P)'
       ],
+      reviewGroups: [
+        { heading: 'About your business', indexes: [0, 1, 2, 3, 4, 5] },
+        { heading: 'Tech & lead setup',   indexes: [6, 7, 8, 9, 10] },
+        { heading: 'Final details',       indexes: [11, 12] }
+      ],
       socialRows: [
         { key: 'facebook',       label: 'Facebook',         placeholder: 'https://facebook.com/…' },
         { key: 'instagram',      label: 'Instagram',        placeholder: '@handle or URL' },
@@ -1742,6 +2431,12 @@
       savedAt: null,
       saveLabel: 'Saved',
       recentlySaved: false,
+      activeTooltip: '',
+      emailErrors: {},
+      skipPending: false,
+      submitConfirmOpen: false,
+      expandedReview: [],
+      submitted: false,
       backupSending: false,
       backupMessage: '',
       backupError: false,
@@ -1785,12 +2480,18 @@
             const raw = localStorage.getItem('ecs-intake-draft');
             if (raw) {
               const parsed = JSON.parse(raw);
-              if (parsed.state) this.state = Object.assign(this.state, parsed.state);
-              if (parsed.email) this.email = parsed.email;
-              if (parsed.draftId) this.draftId = parsed.draftId;
-              if (parsed.currentStep != null) this.currentStep = parsed.currentStep;
-              this.savedAt = parsed.savedAt || Date.now();
-              this.updateSaveLabel();
+              // Defensive: if a previous session ended on the thank-you screen,
+              // wipe the stale draft so the form starts fresh.
+              if (parsed.currentStep === 15 || parsed.submitted === true) {
+                localStorage.removeItem('ecs-intake-draft');
+              } else {
+                if (parsed.state) this.state = Object.assign(this.state, parsed.state);
+                if (parsed.email) this.email = parsed.email;
+                if (parsed.draftId) this.draftId = parsed.draftId;
+                if (parsed.currentStep != null) this.currentStep = parsed.currentStep;
+                this.savedAt = parsed.savedAt || Date.now();
+                this.updateSaveLabel();
+              }
             }
           } catch (e) { /* ignore */ }
         }
@@ -1804,13 +2505,250 @@
         if (step < 0) step = 0;
         if (step > 15) step = 15;
         this.currentStep = step;
+        this.activeTooltip = '';
+        this.skipPending = false;
         window.scrollTo({ top: 0, behavior: 'smooth' });
+      },
+
+      toggleTooltip(key) {
+        this.activeTooltip = this.activeTooltip === key ? '' : key;
+      },
+
+      formatPhone(value) {
+        if (!value) return '';
+        const digits = String(value).replace(/\D/g, '').slice(0, 10);
+        if (digits.length === 0) return '';
+        if (digits.length <= 3) return `(${digits}`;
+        if (digits.length <= 6) return `(${digits.slice(0,3)}) ${digits.slice(3)}`;
+        return `(${digits.slice(0,3)}) ${digits.slice(3,6)}-${digits.slice(6)}`;
+      },
+
+      validateEmail(key, value) {
+        if (!value) { delete this.emailErrors[key]; this.emailErrors = { ...this.emailErrors }; return; }
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!regex.test(value)) {
+          this.emailErrors = { ...this.emailErrors, [key]: "That doesn't look like a complete email — double-check?" };
+        } else {
+          delete this.emailErrors[key];
+          this.emailErrors = { ...this.emailErrors };
+        }
+      },
+
+      requiredCount(n) {
+        const s = this.state;
+        let filled = 0, total = 0;
+        const check = (cond) => { total++; if (cond) filled++; };
+        switch (n) {
+          case 1:
+            check(!!s.s1.nateCertified);
+            check(!!s.s1.epaUniversal);
+            check(!!s.s1.scLicenseNumber);
+            check(!!s.s1.bonded);
+            check(!!s.s1.insured);
+            check(!!s.s1.bbbAccredited);
+            break;
+          case 7:
+            check(!!s.s7.gbpAdminAccess);
+            check(!!s.s7.willTransferDomain);
+            check(!!s.s7.emailPlatform);
+            check(!!s.s7.phoneSystem);
+            break;
+          case 9:
+            // count: at least one complete user
+            total = 1;
+            filled = s.s9.users.some(u => u.name && u.email && u.role) ? 1 : 0;
+            break;
+          case 10:
+            check(s.s10.emailRecipients.some(e => e));
+            check(s.s10.smsRecipients.some(p => p));
+            check(!!s.s10.afterHours);
+            break;
+          case 13:
+            check(!!s.s13.legalName);
+            check(!!s.s13.ein && /^\d{2}-?\d{7}$/.test(s.s13.ein));
+            check(!!s.s13.entityType);
+            check(!!s.s13.registeredAddress);
+            check(!!s.s13.authRepName);
+            check(!!s.s13.authRepEmail);
+            check(!!s.s13.authRepPhone);
+            check(!!s.s13.cnam && s.s13.cnam.length <= 15);
+            break;
+          default: return [0, 0];
+        }
+        return [filled, total];
+      },
+
+      trySkip() {
+        const isReq = this.requiredSections.includes(this.currentStep);
+        const [filled, total] = this.requiredCount(this.currentStep);
+        if (isReq && filled < total && !this.skipPending) {
+          this.skipPending = true;
+          return;
+        }
+        this.skipPending = false;
+        this.goTo(this.currentStep + 1);
+      },
+
+      toggleReviewExpand(idx) {
+        const i = this.expandedReview.indexOf(idx);
+        if (i >= 0) this.expandedReview.splice(i, 1);
+        else this.expandedReview.push(idx);
+      },
+      toggleAllExpand() {
+        if (this.expandedReview.length === this.sectionTitles.length) {
+          this.expandedReview = [];
+        } else {
+          this.expandedReview = this.sectionTitles.map((_, i) => i);
+        }
+      },
+      get allExpanded() {
+        return this.expandedReview.length === this.sectionTitles.length;
+      },
+
+      // formatting helpers for sectionData
+      _yn(v) { return v === 'yes' ? 'Yes' : (v === 'no' ? 'No' : (v || '')); },
+      _v(x) { return (x === '' || x == null) ? '' : String(x); },
+      _list(arr) { return (arr && arr.length) ? arr.filter(Boolean).join(', ') : ''; },
+
+      sectionData(n) {
+        const s = this.state;
+        const yn = this._yn.bind(this);
+        const v = this._v.bind(this);
+        const list = this._list.bind(this);
+
+        switch (n) {
+          case 1:
+            return [
+              { label: 'NATE certified', value: yn(s.s1.nateCertified) },
+              ...(s.s1.nateCertified === 'yes' ? [{ label: 'NATE techs', value: v(s.s1.nateTechs), wide: true }] : []),
+              { label: 'EPA Universal certified', value: yn(s.s1.epaUniversal) },
+              { label: 'SC HVAC contractor license #', value: v(s.s1.scLicenseNumber), mono: true },
+              { label: 'Bonded', value: yn(s.s1.bonded) },
+              { label: 'Insured', value: yn(s.s1.insured) },
+              ...(s.s1.insured === 'yes' ? [{ label: 'Liability coverage', value: v(s.s1.liabilityCoverage) }] : []),
+              { label: 'BBB accredited', value: yn(s.s1.bbbAccredited) },
+              ...(s.s1.bbbAccredited === 'yes' ? [{ label: 'BBB rating', value: v(s.s1.bbbRating) }] : []),
+              { label: 'Other memberships', value: v(s.s1.otherMemberships), wide: true },
+              { label: 'Awards / press', value: v(s.s1.awards), wide: true }
+            ];
+          case 2:
+            return [
+              { label: 'Equipment brands', value: list(s.s2.brands) + (s.s2.otherBrands ? `, ${s.s2.otherBrands}` : ''), wide: true },
+              { label: 'Generac dealer status', value: v(s.s2.generacStatus) },
+              { label: 'Financing partners', value: list(s.s2.financingPartners) + (s.s2.otherFinancing ? `, ${s.s2.otherFinancing}` : ''), wide: true },
+              { label: 'Logos available', value: v(s.s2.logosAvailable) + (s.s2.logosNotes ? ` — ${s.s2.logosNotes}` : '') }
+            ];
+          case 3:
+            return [
+              { label: '100% satisfaction terms', value: v(s.s3.satisfactionTerms), wide: true },
+              { label: 'Workmanship warranty', value: v(s.s3.workmanshipDuration) + (s.s3.workmanshipCustom ? ` — ${s.s3.workmanshipCustom}` : '') },
+              { label: 'Parts warranty', value: v(s.s3.partsWarranty) + (s.s3.partsWarrantyTerms ? ` — ${s.s3.partsWarrantyTerms}` : '') },
+              { label: 'On-time guarantee', value: yn(s.s3.onTimeGuarantee) + (s.s3.onTimeTerms ? ` — ${s.s3.onTimeTerms}` : '') },
+              { label: 'Other guarantees', value: v(s.s3.otherGuarantees), wide: true }
+            ];
+          case 4: {
+            const tierRows = s.s4.tiers.map((t, i) => ({
+              label: `Plan tier ${i + 1}`,
+              value: `${t.name || '(unnamed)'} — ${t.price || '—'}\n${t.inclusions || ''}`.trim(),
+              wide: true
+            }));
+            return [
+              { label: 'Services', value: list(s.s4.services) + (s.s4.otherServices ? `, ${s.s4.otherServices}` : ''), wide: true },
+              { label: 'Fee posture', value: v(s.s4.publishFee) },
+              { label: 'Normal diagnostic fee', value: v(s.s4.feeAmount) },
+              { label: 'After-hours fee', value: v(s.s4.feeAfterHours) },
+              { label: 'Free estimates on installs', value: yn(s.s4.freeEstimates) },
+              ...tierRows
+            ];
+          }
+          case 5:
+            return [
+              { label: 'ZIP codes', value: v(s.s5.zipList), wide: true, mono: true },
+              { label: 'Oconee County', value: yn(s.s5.oconeeCounty) },
+              { label: 'Lake Jocassee', value: yn(s.s5.lakeJocassee) },
+              { label: 'Mountain Rest', value: yn(s.s5.mountainRest) },
+              { label: 'Westminster', value: yn(s.s5.westminster) },
+              { label: 'Hours of operation', value: v(s.s5.hoursOfOperation), wide: true },
+              { label: 'Emergency service', value: v(s.s5.emergencyService) },
+              { label: 'Languages', value: v(s.s5.languages) }
+            ];
+          case 6:
+            return [
+              { label: 'Logo folder', value: v(s.s6.logoFolderLink), wide: true },
+              { label: 'Brand colors / fonts', value: v(s.s6.brandColorsFonts), wide: true },
+              { label: 'Current images folder', value: v(s.s6.photoFolderLink), wide: true },
+              { label: 'Notes', value: v(s.s6.logoNotes), wide: true }
+            ];
+          case 7:
+            return [
+              { label: 'GBP owner email', value: v(s.s7.gbpOwner) },
+              { label: 'GBP admin access', value: yn(s.s7.gbpAdminAccess) },
+              { label: 'GBP reviews', value: v(s.s7.gbpReviewCount) },
+              { label: 'GBP rating', value: v(s.s7.gbpRating) },
+              { label: 'Willing to transfer domain', value: v(s.s7.willTransferDomain) },
+              { label: 'GA property exists', value: yn(s.s7.gaProperty) },
+              ...(s.s7.gaProperty === 'yes' ? [{ label: 'Will grant GA access', value: yn(s.s7.gaGrantAccess) }] : []),
+              { label: 'Email platform', value: v(s.s7.emailPlatform) + (s.s7.emailPlatformOther ? ` (${s.s7.emailPlatformOther})` : '') },
+              { label: 'Phone system', value: v(s.s7.phoneSystem), wide: true },
+              { label: 'Housecall Pro integration', value: v(s.s7.housecallProNotes), wide: true }
+            ];
+          case 8:
+            return this.socialRows.map(r => ({
+              label: r.label,
+              value: s.s8[`${r.key}_skip`] ? '(skipped)' : v(s.s8[r.key])
+            }));
+          case 9:
+            return s.s9.users.map((u, i) => ({
+              label: `User ${i + 1}`,
+              value: `${v(u.name) || '(no name)'} · ${v(u.email) || '(no email)'} · ${v(u.mobile) || '(no mobile)'} · Role: ${v(u.role) || '—'}`,
+              wide: true
+            }));
+          case 10:
+            return [
+              { label: 'Email recipients', value: list(s.s10.emailRecipients), wide: true },
+              { label: 'SMS recipients', value: list(s.s10.smsRecipients), wide: true },
+              { label: 'After-hours behavior', value: v(s.s10.afterHours) + (s.s10.afterHoursContact ? ` — ${s.s10.afterHoursContact}` : '') }
+            ];
+          case 11:
+            return [
+              { label: 'Answer freely', value: list(s.s11.answerFreely), wide: true },
+              { label: 'Never quote', value: list(s.s11.neverQuote) + (s.s11.otherNeverQuote ? `, ${s.s11.otherNeverQuote}` : ''), wide: true },
+              { label: 'Hand-off trigger', value: v(s.s11.handoffTrigger), wide: true },
+              { label: 'Hand-off channels', value: list(s.s11.handoffChannels) + (s.s11.handoffChannel ? ` — ${s.s11.handoffChannel}` : ''), wide: true },
+              { label: 'Tone preference', value: v(s.s11.tone) }
+            ];
+          case 12:
+            return [
+              { label: 'Testimonials', value: v(s.s12.testimonials), wide: true },
+              { label: 'Permission to pull from Google Reviews', value: yn(s.s12.pullFromGoogle) }
+            ];
+          case 13:
+            return [
+              { label: 'Legal business name', value: v(s.s13.legalName) },
+              { label: 'DBA', value: v(s.s13.dba) },
+              { label: 'EIN', value: v(s.s13.ein), mono: true },
+              { label: 'Entity type', value: v(s.s13.entityType) },
+              { label: 'State of registration', value: v(s.s13.state) },
+              { label: 'Year formed', value: v(s.s13.yearFormed), mono: true },
+              { label: 'Registered address', value: v(s.s13.registeredAddress), wide: true },
+              { label: 'Auth rep — name', value: v(s.s13.authRepName) },
+              { label: 'Auth rep — title', value: v(s.s13.authRepTitle) },
+              { label: 'Auth rep — email', value: v(s.s13.authRepEmail) },
+              { label: 'Auth rep — phone', value: v(s.s13.authRepPhone) },
+              { label: 'CNAM display name', value: v(s.s13.cnam), mono: true }
+            ];
+          default: return [];
+        }
       },
 
       _saveTimer: null,
       saveLocal() {
+        // Don't write to localStorage once the form has been submitted —
+        // we want the next page-load to start fresh.
+        if (this.submitted) return;
         clearTimeout(this._saveTimer);
         this._saveTimer = setTimeout(() => {
+          if (this.submitted) return;
           const payload = {
             state: this.state,
             email: this.email,
@@ -2009,6 +2947,8 @@
             body: JSON.stringify(payload)
           });
           if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          this.submitted = true;
+          clearTimeout(this._saveTimer);
           localStorage.removeItem('ecs-intake-draft');
           this.currentStep = 15;
         } catch (e) {

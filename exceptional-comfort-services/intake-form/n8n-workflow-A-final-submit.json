@@ -72,6 +72,21 @@
     },
     {
       "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $('Prepare File').item.json.stevenEmail }}",
+        "subject": "We got your intake — here's what's next",
+        "emailType": "html",
+        "message": "=<p>Hi Steven,</p>\n\n<p>Got it — thanks for filling that out. The <strong>2-week build clock starts now</strong>.</p>\n\n<p>Here's what happens from here:</p>\n\n<ul>\n  <li><strong>This week:</strong> I'll start the SEO research, content rewrites, and the first few pages of your new site.</li>\n  <li><strong>End of week 1:</strong> I'll text you to schedule a quick draft-review call — you'll see your homepage and a couple of service pages.</li>\n  <li><strong>Week 2:</strong> Remaining pages, lead forms, the chat agent, GBP integration, and A2P registration kicked off in parallel.</li>\n  <li><strong>Week 3:</strong> Domain cutover, training session, launch live.</li>\n</ul>\n\n<p>If anything changes on your end between now and launch — new tech hired, new financing partner, anything — just text me. We can update as we go.</p>\n\n<p>Talk soon,<br>\n<strong>Shayne</strong><br>\nMarketing Remix<br>\n📞 <a href=\"tel:+17193579633\">(719) 357-9633</a><br>\n✉ <a href=\"mailto:shayne@shaynechamplin.com\">shayne@shaynechamplin.com</a></p>",
+        "options": {}
+      },
+      "name": "Gmail Client Confirmation",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1380, 300]
+    },
+    {
+      "parameters": {
         "respondWith": "json",
         "responseBody": "={ \"success\": true, \"driveLink\": \"{{ $('Save to Google Drive').item.json.webViewLink }}\" }",
         "options": {}
@@ -79,15 +94,16 @@
       "name": "Respond OK",
       "type": "n8n-nodes-base.respondToWebhook",
       "typeVersion": 1.1,
-      "position": [1380, 300]
+      "position": [1620, 300]
     }
   ],
   "connections": {
-    "Webhook":              { "main": [[ { "node": "Prepare File",         "type": "main", "index": 0 } ]] },
-    "Prepare File":         { "main": [[ { "node": "Save to Google Drive", "type": "main", "index": 0 } ]] },
-    "Save to Google Drive": { "main": [[ { "node": "Slack Notify",         "type": "main", "index": 0 } ]] },
-    "Slack Notify":         { "main": [[ { "node": "Gmail Shayne",         "type": "main", "index": 0 } ]] },
-    "Gmail Shayne":         { "main": [[ { "node": "Respond OK",           "type": "main", "index": 0 } ]] }
+    "Webhook":                   { "main": [[ { "node": "Prepare File",              "type": "main", "index": 0 } ]] },
+    "Prepare File":              { "main": [[ { "node": "Save to Google Drive",      "type": "main", "index": 0 } ]] },
+    "Save to Google Drive":      { "main": [[ { "node": "Slack Notify",              "type": "main", "index": 0 } ]] },
+    "Slack Notify":              { "main": [[ { "node": "Gmail Shayne",              "type": "main", "index": 0 } ]] },
+    "Gmail Shayne":              { "main": [[ { "node": "Gmail Client Confirmation", "type": "main", "index": 0 } ]] },
+    "Gmail Client Confirmation": { "main": [[ { "node": "Respond OK",                "type": "main", "index": 0 } ]] }
   },
   "active": false,
   "settings": { "executionOrder": "v1" },
