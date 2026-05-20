@@ -6,6 +6,19 @@
   <title>Exceptional Comfort Services — Knowledge Base & Deliverables</title>
   <meta name="description" content="Everything Marketing Remix built for Exceptional Comfort Services from the May 18, 2026 onboarding call." />
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2D4A'/%3E%3Ctext x='50%25' y='52%25' font-family='Arial,sans-serif' font-size='28' font-weight='800' fill='%23FAF7F1' text-anchor='middle' dominant-baseline='middle'%3EECS%3C/text%3E%3C/svg%3E">
+  <script>
+    // Set a <base> tag that makes relative URLs resolve correctly even when
+    // Vercel serves us without a trailing slash. Runs synchronously before
+    // any other resource loads.
+    (function() {
+      var p = location.pathname;
+      // If path doesn't end in / or .html, force a base path with trailing slash
+      // (handles e.g. /exceptional-comfort-services → base /exceptional-comfort-services/)
+      if (!/\/$/.test(p) && !/\.html?$/i.test(p)) {
+        document.write('<base href="' + p + '/">');
+      }
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -1086,19 +1099,32 @@
     `;
 
     let md;
+    let diagnostic = '';
     try {
       if (window.__BUNDLED_DATA__ && Object.prototype.hasOwnProperty.call(window.__BUNDLED_DATA__, path)) {
         md = window.__BUNDLED_DATA__[path];
       } else {
+        diagnostic = 'Bundle missing or path not in bundle. ';
         const res = await fetch(path);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
+        if (!res.ok) throw new Error('Fetch returned HTTP ' + res.status);
         md = await res.text();
       }
     } catch (err) {
+      const bundleStatus = (typeof window.__BUNDLED_DATA__ === 'undefined')
+        ? '<strong>brand-kb-data.js did not load</strong> (window.__BUNDLED_DATA__ is undefined).'
+        : `<strong>bundle loaded with ${Object.keys(window.__BUNDLED_DATA__).length} files</strong>, but this path wasn't in it.`;
       host.innerHTML = `
         <div class="content">
           <h1>Could not load that page</h1>
-          <p>We tried to load <code>${escapeHtml(path)}</code> but it didn't come back. If you're viewing this locally without a server and the bundled data file is missing, regenerate it by running <code>python build-bundle.py</code> in the deliverable folder. Or open <a href="#/">the home page</a>.</p>
+          <p>We tried to load <code>${escapeHtml(path)}</code> but it didn't come back.</p>
+          <p><strong>Diagnostic:</strong></p>
+          <ul>
+            <li>${bundleStatus}</li>
+            <li>Fetch error: <code>${escapeHtml(String(err && err.message || err))}</code></li>
+            <li>Current page URL: <code>${escapeHtml(location.href)}</code></li>
+            <li>Base href: <code>${escapeHtml(document.baseURI)}</code></li>
+          </ul>
+          <p><a href="#/">↩ Back to home</a> or open DevTools (F12) → Console / Network to see what's blocked.</p>
         </div>
       `;
       return;
