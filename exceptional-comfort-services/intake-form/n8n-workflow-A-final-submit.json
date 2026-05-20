@@ -1,0 +1,95 @@
+{
+  "name": "ECS Intake — Final Submission",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecs-intake-submit",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "ecs-intake-submit"
+    },
+    {
+      "parameters": {
+        "jsCode": "// Build the markdown file binary + a clean filename\nconst item = $input.first();\nconst body = item.json.body || item.json;\nconst markdown = body.markdown || '# (empty submission)';\nconst submittedAt = body.submittedAt || new Date().toISOString();\nconst stevenEmail = body.email || '';\nconst legalName = (body.state && body.state.s13 && body.state.s13.legalName) || 'Exceptional Comfort Services';\n\nconst now = new Date();\nconst pad = (n) => String(n).padStart(2, '0');\nconst stamp = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;\nconst fileName = `ECS-Website-Intake-${stamp}.md`;\n\nconst binary = await this.helpers.prepareBinaryData(\n  Buffer.from(markdown, 'utf-8'),\n  fileName,\n  'text/markdown'\n);\n\nreturn [{\n  json: {\n    fileName,\n    submittedAt,\n    stevenEmail,\n    legalName,\n    markdown\n  },\n  binary: { data: binary }\n}];"
+      },
+      "name": "Prepare File",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [460, 300]
+    },
+    {
+      "parameters": {
+        "resource": "file",
+        "operation": "upload",
+        "inputDataFieldName": "data",
+        "name": "={{ $json.fileName }}",
+        "driveId": { "__rl": true, "mode": "list", "value": "My Drive" },
+        "folderId": { "__rl": true, "mode": "id", "value": "REPLACE_WITH_DRIVE_FOLDER_ID" },
+        "options": {}
+      },
+      "name": "Save to Google Drive",
+      "type": "n8n-nodes-base.googleDrive",
+      "typeVersion": 3,
+      "position": [680, 300]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "post",
+        "select": "channel",
+        "channelId": { "__rl": true, "mode": "list", "value": "REPLACE_WITH_SLACK_CHANNEL_OR_DM" },
+        "text": "=🎉 *Steven Tibball just submitted his ECS website intake.*\n\n📅 *Submitted:* {{ $('Prepare File').item.json.submittedAt }}\n📧 *Steven's email:* {{ $('Prepare File').item.json.stevenEmail || '—' }}\n📁 *Drive file:* <{{ $json.webViewLink }}|{{ $('Prepare File').item.json.fileName }}>\n\nThe 2-week build clock just started. Check your inbox for the full markdown.",
+        "otherOptions": {
+          "link_names": true,
+          "mrkdwn": true
+        }
+      },
+      "name": "Slack Notify",
+      "type": "n8n-nodes-base.slack",
+      "typeVersion": 2.2,
+      "position": [900, 300]
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "shayne@shaynechamplin.com",
+        "subject": "=ECS Intake — Steven Tibball submitted {{ $('Prepare File').item.json.submittedAt }}",
+        "emailType": "html",
+        "message": "=<p><strong>Steven Tibball submitted his intake.</strong></p>\n<p>Saved to Google Drive:<br>\n<a href=\"{{ $('Save to Google Drive').item.json.webViewLink }}\">{{ $('Prepare File').item.json.fileName }}</a></p>\n<p>Steven's contact: {{ $('Prepare File').item.json.stevenEmail || '—' }}</p>\n<hr>\n<pre style=\"font-family:ui-monospace,monospace;font-size:13px;white-space:pre-wrap;background:#f6f5f1;padding:16px;border-radius:8px;\">{{ $('Prepare File').item.json.markdown }}</pre>",
+        "options": {}
+      },
+      "name": "Gmail Shayne",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [1140, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"success\": true, \"driveLink\": \"{{ $('Save to Google Drive').item.json.webViewLink }}\" }",
+        "options": {}
+      },
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1380, 300]
+    }
+  ],
+  "connections": {
+    "Webhook":              { "main": [[ { "node": "Prepare File",         "type": "main", "index": 0 } ]] },
+    "Prepare File":         { "main": [[ { "node": "Save to Google Drive", "type": "main", "index": 0 } ]] },
+    "Save to Google Drive": { "main": [[ { "node": "Slack Notify",         "type": "main", "index": 0 } ]] },
+    "Slack Notify":         { "main": [[ { "node": "Gmail Shayne",         "type": "main", "index": 0 } ]] },
+    "Gmail Shayne":         { "main": [[ { "node": "Respond OK",           "type": "main", "index": 0 } ]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

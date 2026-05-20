@@ -1,5 +1,5 @@
 {
-  "_readme": "This file contains TWO n8n workflows. In n8n, create two new workflows and import the JSON under each top-level key separately (copy the value of `workflowA_finalSubmit` into the first workflow, `workflowB_draftEmail` into the second). After importing, activate each workflow, copy the production webhook URL from the Webhook node, and paste it into the appropriate config (see README.md).",
+  "_readme": "This file contains TWO n8n workflows. In n8n, create two new workflows and import the JSON under each top-level key separately (copy the value of `workflowA_finalSubmit` into the first workflow, `workflowB_draftEmail` into the second). After importing, bind credentials, activate each workflow, copy the production webhook URL from the Webhook node, and paste it into the appropriate config (see README.md).\n\nWorkflow A does two things on submit: (1) saves the markdown to a Google Drive folder as a .md file, (2) emails Shayne with a link to the saved file plus the full markdown inline.",
 
   "workflowA_finalSubmit": {
     "name": "ECS Intake — Final Submission",
@@ -19,19 +19,47 @@
       },
       {
         "parameters": {
+          "jsCode": "// Build the markdown file binary + a clean filename\nconst item = $input.first();\nconst body = item.json.body || item.json;\nconst markdown = body.markdown || '# (empty submission)';\nconst submittedAt = body.submittedAt || new Date().toISOString();\nconst stevenEmail = body.email || '';\nconst legalName = (body.state && body.state.s13 && body.state.s13.legalName) || 'Exceptional Comfort Services';\n\nconst now = new Date();\nconst pad = (n) => String(n).padStart(2, '0');\nconst stamp = `${now.getFullYear()}-${pad(now.getMonth()+1)}-${pad(now.getDate())}-${pad(now.getHours())}${pad(now.getMinutes())}`;\nconst safeName = legalName.replace(/[^a-zA-Z0-9 \\-_]/g, '').replace(/\\s+/g, '-').slice(0, 40);\nconst fileName = `ECS-Website-Intake-${stamp}.md`;\n\nconst binary = await this.helpers.prepareBinaryData(\n  Buffer.from(markdown, 'utf-8'),\n  fileName,\n  'text/markdown'\n);\n\nreturn [{\n  json: {\n    fileName,\n    submittedAt,\n    stevenEmail,\n    legalName,\n    markdown\n  },\n  binary: { data: binary }\n}];"
+        },
+        "name": "Prepare File",
+        "type": "n8n-nodes-base.code",
+        "typeVersion": 2,
+        "position": [460, 300]
+      },
+      {
+        "parameters": {
+          "resource": "file",
+          "operation": "upload",
+          "inputDataFieldName": "data",
+          "name": "={{ $json.fileName }}",
+          "driveId": { "__rl": true, "mode": "list", "value": "My Drive" },
+          "folderId": { "__rl": true, "mode": "id", "value": "REPLACE_WITH_DRIVE_FOLDER_ID" },
+          "options": {}
+        },
+        "name": "Save to Google Drive",
+        "type": "n8n-nodes-base.googleDrive",
+        "typeVersion": 3,
+        "position": [680, 300],
+        "credentials": {
+          "googleDriveOAuth2Api": {
+            "id": "REPLACE_WITH_YOUR_GOOGLE_DRIVE_CREDENTIAL_ID",
+            "name": "Marketing Remix Google Drive"
+          }
+        }
+      },
+      {
+        "parameters": {
           "fromEmail": "intake@marketingremix.com",
           "toEmail": "shayne@shaynechamplin.com",
-          "subject": "=ECS Intake — Steven Tibball submitted {{$json.body.submittedAt}}",
-          "emailType": "text",
-          "text": "={{$json.body.markdown}}",
-          "options": {
-            "attachments": ""
-          }
+          "subject": "=ECS Intake — Steven Tibball submitted {{ $('Prepare File').item.json.submittedAt }}",
+          "emailType": "html",
+          "html": "=<p><strong>Steven Tibball submitted his intake.</strong></p>\n<p>Saved to Google Drive:<br>\n<a href=\"{{ $json.webViewLink }}\">{{ $('Prepare File').item.json.fileName }}</a></p>\n<p>Steven's contact: {{ $('Prepare File').item.json.stevenEmail || '—' }}</p>\n<hr>\n<pre style=\"font-family:ui-monospace,monospace;font-size:13px;white-space:pre-wrap;background:#f6f5f1;padding:16px;border-radius:8px;\">{{ $('Prepare File').item.json.markdown }}</pre>",
+          "options": {}
         },
         "name": "Email Shayne",
         "type": "n8n-nodes-base.emailSend",
         "typeVersion": 2.1,
-        "position": [500, 300],
+        "position": [900, 300],
         "credentials": {
           "smtp": {
             "id": "REPLACE_WITH_YOUR_SMTP_CREDENTIAL_ID",
@@ -42,22 +70,20 @@
       {
         "parameters": {
           "respondWith": "json",
-          "responseBody": "={ \"success\": true }",
+          "responseBody": "={ \"success\": true, \"driveLink\": \"{{ $('Save to Google Drive').item.json.webViewLink }}\" }",
           "options": {}
         },
         "name": "Respond OK",
         "type": "n8n-nodes-base.respondToWebhook",
         "typeVersion": 1.1,
-        "position": [760, 300]
+        "position": [1140, 300]
       }
     ],
     "connections": {
-      "Webhook": {
-        "main": [[ { "node": "Email Shayne", "type": "main", "index": 0 } ]]
-      },
-      "Email Shayne": {
-        "main": [[ { "node": "Respond OK", "type": "main", "index": 0 } ]]
-      }
+      "Webhook":              { "main": [[ { "node": "Prepare File",         "type": "main", "index": 0 } ]] },
+      "Prepare File":         { "main": [[ { "node": "Save to Google Drive", "type": "main", "index": 0 } ]] },
+      "Save to Google Drive": { "main": [[ { "node": "Email Shayne",         "type": "main", "index": 0 } ]] },
+      "Email Shayne":         { "main": [[ { "node": "Respond OK",           "type": "main", "index": 0 } ]] }
     },
     "active": false,
     "settings": { "executionOrder": "v1" },
@@ -83,10 +109,10 @@
       {
         "parameters": {
           "fromEmail": "intake@marketingremix.com",
-          "toEmail": "={{$json.body.email}}",
+          "toEmail": "={{ $json.body.email }}",
           "subject": "Your ECS intake — save & resume link",
           "emailType": "html",
-          "html": "=<p>Hi Steven,</p>\n<p>Here's your link to pick up your Exceptional Comfort Services intake where you left off. You can open this on any phone or computer:</p>\n<p><a href=\"{{$json.body.resumeUrl}}\" style=\"display:inline-block;background:#1d4ed8;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600\">Resume my intake</a></p>\n<p>Or copy &amp; paste this URL:<br><code style=\"background:#f1f5f9;padding:6px 10px;border-radius:4px;font-size:13px\">{{$json.body.resumeUrl}}</code></p>\n<p>Your progress was last updated {{$json.body.updatedAt}}. The link is good for 90 days.</p>\n<p>— Shayne<br>Marketing Remix<br>(719) 357-9633</p>",
+          "html": "=<p>Hi Steven,</p>\n<p>Here's your link to pick up your Exceptional Comfort Services intake where you left off. You can open this on any phone or computer:</p>\n<p><a href=\"{{ $json.body.resumeUrl }}\" style=\"display:inline-block;background:#1d4ed8;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600\">Resume my intake</a></p>\n<p>Or copy &amp; paste this URL:<br><code style=\"background:#f1f5f9;padding:6px 10px;border-radius:4px;font-size:13px\">{{ $json.body.resumeUrl }}</code></p>\n<p>Your progress was last updated {{ $json.body.updatedAt }}. The link is good for 90 days.</p>\n<p>— Shayne<br>Marketing Remix<br>(719) 357-9633</p>",
           "options": {}
         },
         "name": "Email Steven",
@@ -113,12 +139,8 @@
       }
     ],
     "connections": {
-      "Webhook": {
-        "main": [[ { "node": "Email Steven", "type": "main", "index": 0 } ]]
-      },
-      "Email Steven": {
-        "main": [[ { "node": "Respond OK", "type": "main", "index": 0 } ]]
-      }
+      "Webhook":      { "main": [[ { "node": "Email Steven", "type": "main", "index": 0 } ]] },
+      "Email Steven": { "main": [[ { "node": "Respond OK",   "type": "main", "index": 0 } ]] }
     },
     "active": false,
     "settings": { "executionOrder": "v1" },

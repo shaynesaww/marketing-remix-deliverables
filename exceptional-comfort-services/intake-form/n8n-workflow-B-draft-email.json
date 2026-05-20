@@ -1,0 +1,51 @@
+{
+  "name": "ECS Intake — Resume Link Email",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ecs-intake-draft-email",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "name": "Webhook",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [240, 300],
+      "webhookId": "ecs-intake-draft-email"
+    },
+    {
+      "parameters": {
+        "resource": "message",
+        "operation": "send",
+        "sendTo": "={{ $json.body.email }}",
+        "subject": "Your ECS intake — save & resume link",
+        "emailType": "html",
+        "message": "=<p>Hi Steven,</p>\n<p>Here's your link to pick up your Exceptional Comfort Services intake where you left off. You can open this on any phone or computer:</p>\n<p><a href=\"{{ $json.body.resumeUrl }}\" style=\"display:inline-block;background:#1d4ed8;color:#fff;padding:12px 20px;border-radius:8px;text-decoration:none;font-weight:600\">Resume my intake</a></p>\n<p>Or copy &amp; paste this URL:<br><code style=\"background:#f1f5f9;padding:6px 10px;border-radius:4px;font-size:13px\">{{ $json.body.resumeUrl }}</code></p>\n<p>Your progress was last updated {{ $json.body.updatedAt }}. The link is good for 90 days.</p>\n<p>— Shayne<br>Marketing Remix<br>(719) 357-9633</p>",
+        "options": {}
+      },
+      "name": "Gmail Steven",
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [500, 300]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={ \"success\": true }",
+        "options": {}
+      },
+      "name": "Respond OK",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [760, 300]
+    }
+  ],
+  "connections": {
+    "Webhook":      { "main": [[ { "node": "Gmail Steven", "type": "main", "index": 0 } ]] },
+    "Gmail Steven": { "main": [[ { "node": "Respond OK",   "type": "main", "index": 0 } ]] }
+  },
+  "active": false,
+  "settings": { "executionOrder": "v1" },
+  "pinData": {}
+}

@@ -4,5 +4,5 @@
 window.ECS_CONFIG = {
   // POST endpoint that receives the final intake submission and emails Shayne.
   // This is an n8n production webhook URL (Workflow A in n8n-workflow.json).
-  WEBHOOK_SUBMIT: ''
+  WEBHOOK_SUBMIT: 'https://shayne.up.railway.app/webhook/ecs-intake-submit'
 };
