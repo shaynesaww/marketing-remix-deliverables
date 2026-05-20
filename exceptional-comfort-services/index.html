@@ -1,0 +1,1268 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Exceptional Comfort Services — Knowledge Base & Deliverables</title>
+  <meta name="description" content="Everything Marketing Remix built for Exceptional Comfort Services from the May 18, 2026 onboarding call." />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E2D4A'/%3E%3Ctext x='50%25' y='52%25' font-family='Arial,sans-serif' font-size='28' font-weight='800' fill='%23FAF7F1' text-anchor='middle' dominant-baseline='middle'%3EECS%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/marked@12.0.0/marked.min.js"></script>
+  <script src="brand-kb-data.js"></script>
+  <style>
+    /* ========== DESIGN TOKENS (warm trust-building, matches intake-form) ========== */
+    :root {
+      --bg: #FAF7F1;
+      --bg-warm: #F3EDE0;
+      --surface: #FFFFFF;
+      --surface-2: #F7F3EA;
+      --surface-3: #EFE9DA;
+      --ink: #0F1923;
+      --ink-soft: #38454F;
+      --ink-mute: #6B7682;
+      --line: #E2DCC9;
+      --line-strong: #C9C2AC;
+      --primary: #0E2D4A;
+      --primary-hover: #163C61;
+      --primary-soft: #E6EDF4;
+      --accent: #C2410C;
+      --accent-hover: #9A3308;
+      --accent-soft: #FEF1E2;
+      --accent-line: #F7C896;
+      --focus: #F59E0B;
+      --emerald: #047857;
+      --emerald-soft: #D1FAE5;
+      --rose: #B91C1C;
+      --rose-soft: #FEE2E2;
+      --amber-soft: #FEF3C7;
+
+      --shadow-card: 0 1px 2px rgba(15,42,74,0.04), 0 4px 12px -2px rgba(15,42,74,0.05), 0 24px 48px -16px rgba(15,42,74,0.08);
+      --shadow-btn: 0 1px 0 rgba(255,255,255,0.10) inset, 0 1px 2px rgba(15,25,35,0.20), 0 2px 4px -1px rgba(15,25,35,0.08);
+      --shadow-input-focus: 0 0 0 4px rgba(245,158,11,0.25);
+
+      --sidebar-w: 304px;
+    }
+
+    /* ========== RESET ========== */
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(ellipse 100% 60% at 50% 0%, rgba(14,45,74,0.045) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 50% at 100% 100%, rgba(194,65,12,0.04) 0%, transparent 60%);
+      background-attachment: fixed;
+      color: var(--ink);
+      font-family: 'Public Sans', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      font-feature-settings: 'ss01', 'kern';
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3, h4, .font-display {
+      font-family: 'Bricolage Grotesque', 'Public Sans', sans-serif;
+      font-weight: 700;
+      letter-spacing: -0.022em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .content h1 { font-size: clamp(28px, 4vw + 14px, 40px); line-height: 1.1; font-weight: 800; margin: 0 0 16px; }
+    .content h2 { font-size: clamp(22px, 2vw + 14px, 28px); line-height: 1.2; margin: 36px 0 14px; }
+    .content h3 { font-size: 19px; line-height: 1.3; margin: 28px 0 10px; }
+    .content h4 { font-size: 16px; line-height: 1.3; margin: 22px 0 8px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--ink-soft); }
+    .content p { margin: 0 0 14px; }
+    .content ul, .content ol { margin: 0 0 14px; padding-left: 24px; }
+    .content li { margin: 4px 0; }
+    .content a { color: var(--accent); text-decoration: underline; text-decoration-thickness: 1.5px; text-underline-offset: 3px; }
+    .content a:hover { color: var(--accent-hover); }
+    .content code { font-family: 'JetBrains Mono', monospace; font-size: 0.9em; background: var(--surface-3); padding: 1px 6px; border-radius: 4px; color: var(--ink); }
+    .content pre { background: var(--surface-3); padding: 14px 16px; border-radius: 8px; overflow-x: auto; font-size: 13px; line-height: 1.5; margin: 0 0 14px; border: 1px solid var(--line); }
+    .content pre code { background: transparent; padding: 0; font-size: inherit; }
+    .content blockquote {
+      margin: 18px 0;
+      padding: 14px 20px;
+      border-left: 4px solid var(--accent);
+      background: var(--accent-soft);
+      border-radius: 0 8px 8px 0;
+      color: var(--ink-soft);
+      font-style: italic;
+    }
+    .content blockquote p { margin: 0; }
+    .content blockquote p + p { margin-top: 8px; }
+    .content hr { border: none; border-top: 1px solid var(--line); margin: 28px 0; }
+    .content table { width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 14px; }
+    .content table th, .content table td { padding: 8px 12px; border: 1px solid var(--line); text-align: left; }
+    .content table th { background: var(--surface-2); font-weight: 600; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* ========== APP SHELL ========== */
+    .app-shell { min-height: 100vh; display: flex; flex-direction: column; }
+
+    .app-header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(250,247,241,0.9);
+      backdrop-filter: blur(14px) saturate(140%);
+      -webkit-backdrop-filter: blur(14px) saturate(140%);
+      border-bottom: 1px solid var(--line);
+    }
+    .app-header__bar {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 12px 22px;
+      gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      text-decoration: none; color: var(--ink);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+    }
+    .brand__logo {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      color: white;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 15px;
+      font-weight: 800;
+      box-shadow: var(--shadow-btn);
+    }
+    .brand__name { font-size: 16px; line-height: 1.1; }
+    .brand__sub { display: block; font-size: 11px; font-weight: 500; color: var(--ink-mute); letter-spacing: 0.02em; margin-top: 1px; font-family: 'Public Sans', sans-serif; }
+
+    .header-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      color: var(--ink-mute);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 8px 10px;
+      cursor: pointer;
+      font-size: 18px;
+      box-shadow: var(--shadow-btn);
+    }
+    .menu-toggle:hover { background: var(--surface-2); }
+
+    /* ========== LAYOUT ========== */
+    .app-layout {
+      display: grid;
+      grid-template-columns: var(--sidebar-w) 1fr;
+      flex: 1;
+      min-height: 0;
+    }
+
+    /* ========== SIDEBAR ========== */
+    .sidebar {
+      background: var(--surface);
+      border-right: 1px solid var(--line);
+      padding: 22px 0 80px;
+      height: calc(100vh - 60px);
+      position: sticky;
+      top: 60px;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+    .sidebar::-webkit-scrollbar { width: 8px; }
+    .sidebar::-webkit-scrollbar-track { background: transparent; }
+    .sidebar::-webkit-scrollbar-thumb { background: var(--line); border-radius: 4px; }
+    .sidebar::-webkit-scrollbar-thumb:hover { background: var(--line-strong); }
+
+    .nav-section { padding: 8px 14px; }
+    .nav-section + .nav-section { border-top: 1px solid var(--line); margin-top: 6px; padding-top: 14px; }
+    .nav-section__title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-mute);
+      padding: 4px 10px 8px;
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .nav-item:hover { background: var(--surface-2); color: var(--ink); }
+    .nav-item.active {
+      background: var(--primary-soft);
+      color: var(--primary);
+      font-weight: 600;
+    }
+    .nav-item.active::before {
+      content: ''; width: 3px; align-self: stretch; background: var(--primary); border-radius: 2px; margin-right: 4px; margin-left: -4px;
+    }
+    .nav-group {
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--ink);
+      user-select: none;
+    }
+    .nav-group:hover { background: var(--surface-2); }
+    .nav-group__chevron {
+      transition: transform 0.2s;
+      color: var(--ink-mute);
+      font-size: 12px;
+    }
+    .nav-group.collapsed .nav-group__chevron { transform: rotate(-90deg); }
+    .nav-group__count { font-size: 11px; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; }
+    .nav-children { padding-left: 14px; border-left: 1px solid var(--line); margin: 4px 0 6px 14px; }
+    .nav-group.collapsed + .nav-children { display: none; }
+
+    .nav-item .ext-icon { font-size: 11px; color: var(--ink-mute); margin-left: auto; }
+
+    /* ========== MAIN CONTENT ========== */
+    .main {
+      padding: 32px 0 80px;
+      min-width: 0;
+    }
+    .content-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--ink-mute);
+      margin-bottom: 14px;
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    .breadcrumb a {
+      color: var(--ink-mute);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover { color: var(--accent); }
+    .breadcrumb__sep { color: var(--line-strong); }
+    .breadcrumb__current { color: var(--ink-soft); font-weight: 500; }
+
+    .info-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 18px;
+    }
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 500;
+      font-family: 'JetBrains Mono', monospace;
+      background: var(--surface-2);
+      color: var(--ink-soft);
+      border: 1px solid var(--line);
+    }
+    .chip--status-ready { background: var(--emerald-soft); color: var(--emerald); border-color: rgba(4,120,87,0.2); }
+    .chip--status-needs-info { background: var(--rose-soft); color: var(--rose); border-color: rgba(185,28,28,0.2); }
+    .chip--status-draft { background: var(--amber-soft); color: #92400e; border-color: rgba(245,158,11,0.3); }
+    .chip--category { background: var(--primary-soft); color: var(--primary); border-color: rgba(14,45,74,0.15); }
+    .chip--theme { background: var(--accent-soft); color: var(--accent); border-color: var(--accent-line); }
+
+    .meta-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--ink-mute);
+      font-size: 13px;
+      margin-bottom: 22px;
+    }
+    .meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--line-strong); }
+
+    /* Action bar at bottom of pages */
+    .actions {
+      margin-top: 40px;
+      padding: 24px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      box-shadow: var(--shadow-card);
+    }
+    .actions__heading { font-size: 14px; font-weight: 600; color: var(--ink); margin-bottom: 4px; }
+    .actions__row { display: flex; flex-wrap: wrap; gap: 10px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-family: 'Public Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: 1px solid transparent;
+      transition: all 0.15s;
+      box-shadow: var(--shadow-btn);
+    }
+    .btn--primary {
+      background: var(--primary);
+      color: white;
+    }
+    .btn--primary:hover { background: var(--primary-hover); }
+    .btn--secondary {
+      background: var(--surface);
+      color: var(--ink);
+      border-color: var(--line-strong);
+    }
+    .btn--secondary:hover { background: var(--surface-2); border-color: var(--ink-mute); }
+    .btn--ghost {
+      background: transparent;
+      color: var(--ink-soft);
+      border-color: var(--line);
+      box-shadow: none;
+    }
+    .btn--ghost:hover { background: var(--surface-2); color: var(--ink); }
+
+    /* ========== PREV/NEXT SIBLING NAV ========== */
+    .sibling-nav {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .sibling-nav__link {
+      padding: 14px 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: all 0.15s;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .sibling-nav__link:hover { border-color: var(--accent-line); background: var(--accent-soft); }
+    .sibling-nav__label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.06em; color: var(--ink-mute); font-family: 'JetBrains Mono', monospace; }
+    .sibling-nav__title { font-size: 15px; font-weight: 600; color: var(--ink); }
+    .sibling-nav__link--next { text-align: right; }
+    .sibling-nav__link--empty { opacity: 0.4; pointer-events: none; background: transparent; border-style: dashed; }
+
+    /* ========== HOME ========== */
+    .home-hero {
+      padding: 40px 0 16px;
+    }
+    .home-hero__eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 14px;
+    }
+    .home-hero__title {
+      font-size: clamp(32px, 4vw + 18px, 52px);
+      font-weight: 800;
+      letter-spacing: -0.025em;
+      line-height: 1.05;
+      margin-bottom: 18px;
+      color: var(--ink);
+    }
+    .home-hero__lede {
+      font-size: 18px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      max-width: 620px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+      margin-top: 32px;
+    }
+    .home-card {
+      padding: 22px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--ink);
+      transition: all 0.2s;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .home-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--accent-line);
+    }
+    .home-card__eyebrow {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      font-weight: 600;
+    }
+    .home-card__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .home-card__desc {
+      font-size: 14px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+    .home-card__arrow {
+      margin-top: 6px;
+      font-size: 14px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .home-section { margin-top: 48px; }
+    .home-section__title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--ink);
+    }
+    .summary-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      gap: 8px;
+    }
+    .summary-list li {
+      padding: 10px 14px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+    .summary-list strong { color: var(--ink); font-weight: 600; }
+
+    /* ========== TOC (right rail for long pages) ========== */
+    .has-toc { grid-template-columns: var(--sidebar-w) 1fr 240px; }
+    .toc {
+      position: sticky;
+      top: 80px;
+      max-height: calc(100vh - 100px);
+      overflow-y: auto;
+      padding: 22px 18px;
+      font-size: 13px;
+      align-self: start;
+    }
+    .toc__title {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--ink-mute);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .toc__list { list-style: none; padding: 0; margin: 0; }
+    .toc__list a {
+      display: block;
+      padding: 4px 8px;
+      color: var(--ink-soft);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      line-height: 1.4;
+    }
+    .toc__list a:hover { color: var(--accent); }
+    .toc__list a.active { color: var(--accent); border-left-color: var(--accent); font-weight: 600; }
+    .toc__list .h3 { padding-left: 18px; font-size: 12.5px; }
+
+    /* ========== BACK TO TOP ========== */
+    .back-to-top {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--primary);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      box-shadow: var(--shadow-btn);
+      cursor: pointer;
+      font-size: 18px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 40;
+      transition: opacity 0.2s, transform 0.2s;
+    }
+    .back-to-top:hover { background: var(--primary-hover); transform: translateY(-2px); }
+    .back-to-top.visible { display: flex; }
+
+    /* ========== LOADING ========== */
+    .skeleton {
+      background: linear-gradient(90deg, var(--surface-2) 0%, var(--surface-3) 50%, var(--surface-2) 100%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 4px;
+    }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+    .skeleton--title { height: 36px; width: 70%; margin-bottom: 18px; }
+    .skeleton--line { height: 14px; margin-bottom: 10px; }
+    .skeleton--line.w-90 { width: 90%; }
+    .skeleton--line.w-80 { width: 80%; }
+    .skeleton--line.w-95 { width: 95%; }
+
+    /* ========== FOOTER ========== */
+    .app-footer {
+      margin-top: 60px;
+      padding: 24px 32px;
+      border-top: 1px solid var(--line);
+      color: var(--ink-mute);
+      font-size: 13px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .app-footer a { color: var(--ink-soft); text-decoration: none; }
+    .app-footer a:hover { color: var(--accent); }
+
+    /* ========== MOBILE ========== */
+    @media (max-width: 880px) {
+      .menu-toggle { display: inline-flex; align-items: center; }
+      .app-layout { grid-template-columns: 1fr; }
+      .has-toc { grid-template-columns: 1fr; }
+      .toc { display: none; }
+      .sidebar {
+        position: fixed;
+        top: 60px;
+        left: 0;
+        bottom: 0;
+        width: 84%;
+        max-width: 320px;
+        height: auto;
+        z-index: 60;
+        transform: translateX(-100%);
+        transition: transform 0.22s ease-out;
+        box-shadow: 12px 0 24px rgba(15,42,74,0.08);
+      }
+      body.menu-open .sidebar { transform: translateX(0); }
+      .menu-backdrop {
+        position: fixed;
+        inset: 60px 0 0 0;
+        background: rgba(15,25,35,0.4);
+        z-index: 55;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+      }
+      body.menu-open .menu-backdrop { opacity: 1; pointer-events: auto; }
+      .content-wrap { padding: 0 20px; }
+      .sibling-nav { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 480px) {
+      .home-hero__lede { font-size: 16px; }
+    }
+
+    /* ========== PRINT ========== */
+    @media print {
+      .app-header, .sidebar, .menu-backdrop, .back-to-top, .toc, .actions, .sibling-nav, .app-footer { display: none !important; }
+      .app-layout { grid-template-columns: 1fr; }
+      .has-toc { grid-template-columns: 1fr; }
+      .main { padding: 0; }
+      .content-wrap { max-width: 100%; padding: 0; }
+      body { background: white; }
+      .content blockquote { background: transparent; }
+      a { color: var(--ink) !important; text-decoration: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="app-header">
+      <div class="app-header__bar">
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle navigation">☰</button>
+        <a href="#/" class="brand">
+          <span class="brand__logo">ECS</span>
+          <span class="brand__name">
+            Exceptional Comfort Services
+            <span class="brand__sub">Knowledge Base &amp; Deliverables</span>
+          </span>
+        </a>
+        <span class="header-tag">By Marketing Remix</span>
+      </div>
+    </header>
+
+    <div class="menu-backdrop" id="menuBackdrop"></div>
+
+    <div class="app-layout" id="appLayout">
+      <aside class="sidebar" id="sidebar"></aside>
+      <main class="main">
+        <div class="content-wrap" id="contentHost"></div>
+      </main>
+    </div>
+
+    <footer class="app-footer">
+      <span>Built by Marketing Remix from your May 18, 2026 onboarding call.</span>
+      <span>Questions? <a href="mailto:shayne@shaynechamplin.com">shayne@shaynechamplin.com</a></span>
+    </footer>
+  </div>
+
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
+
+  <script>
+  /* ============================================================
+     SIDEBAR TREE — single source of truth for navigation
+     ============================================================ */
+  const TREE = [
+    {
+      section: 'Brand Knowledge Base',
+      items: [
+        { title: 'Voice Profile', path: 'brand-kb/steven-voice-profile.md', icon: '🎙' },
+        { title: 'How to Use This KB', path: 'brand-kb/README.md', icon: 'ℹ' },
+        { title: 'Source of Truth (combined)', path: 'brand-kb/_source-of-truth.md', icon: '📚' },
+        { group: '00 Core', icon: '◉', children: [
+          { title: 'Identity', path: 'brand-kb/00-core/identity.md' },
+          { title: 'Audience', path: 'brand-kb/00-core/audience.md' },
+          { title: 'Guardrails', path: 'brand-kb/00-core/guardrails.md' },
+        ]},
+        { group: '01 Story', icon: '✍', children: [
+          { title: "Steven's Origin", path: 'brand-kb/01-story/steven-origin.md' },
+          { title: 'Founding ECS', path: 'brand-kb/01-story/founding-ecs.md' },
+          { title: 'Angel — The Partner', path: 'brand-kb/01-story/angel-the-partner.md' },
+          { title: 'Kids and the Future', path: 'brand-kb/01-story/kids-and-future.md' },
+        ]},
+        { group: '02 Services', icon: '🔧', children: [
+          { title: 'AC Repair', path: 'brand-kb/02-services/ac-repair.md' },
+          { title: 'AC Install', path: 'brand-kb/02-services/ac-install.md' },
+          { title: 'Heating — Furnace', path: 'brand-kb/02-services/heating-furnace.md' },
+          { title: 'Heating — Heat Pump', path: 'brand-kb/02-services/heating-heat-pump.md' },
+          { title: 'Maintenance Plans', path: 'brand-kb/02-services/maintenance-plans.md' },
+          { title: 'Mini-Split / PTAC', path: 'brand-kb/02-services/mini-split-ptac.md' },
+          { title: 'Generator Service', path: 'brand-kb/02-services/generator-service.md' },
+          { title: 'Lake Homes Premium', path: 'brand-kb/02-services/lake-homes-premium.md' },
+        ]},
+        { group: '03 Customer Stories', icon: '👥', children: [
+          { title: "Allison's Mom — Christmas", path: 'brand-kb/03-customer-stories/allisons-mom-christmas.md' },
+          { title: 'COVID Water Heater', path: 'brand-kb/03-customer-stories/covid-water-heater.md' },
+          { title: '86-Year-Old Chandelier', path: 'brand-kb/03-customer-stories/eighty-six-year-old-chandelier.md' },
+          { title: 'Janice — Overcharged Coil', path: 'brand-kb/03-customer-stories/janice-overcharged-coil.md' },
+          { title: 'Sam — The Plumber', path: 'brand-kb/03-customer-stories/sam-the-plumber-referrals.md' },
+          { title: 'Myrtle Beach Walkaway', path: 'brand-kb/03-customer-stories/myrtle-beach-walkaway.md' },
+          { title: 'Loyal Customer (Carolina)', path: 'brand-kb/03-customer-stories/carolina-loyal-customer.md' },
+          { title: 'Chris — Bad Review', path: 'brand-kb/03-customer-stories/chris-bad-review.md' },
+          { title: 'Filter, Not Compressor', path: 'brand-kb/03-customer-stories/filter-not-compressor.md' },
+          { title: 'Sunset 10-System House', path: 'brand-kb/03-customer-stories/sunset-10-system-house.md' },
+          { title: 'Pipe Insulation, No Charge', path: 'brand-kb/03-customer-stories/pipe-insulation-no-charge.md' },
+          { title: 'Sewer-Line Crawl Space', path: 'brand-kb/03-customer-stories/sewer-line-crawl-space.md' },
+        ]},
+        { group: '04 Positioning', icon: '🎯', children: [
+          { title: 'Why ECS vs Big Shops', path: 'brand-kb/04-positioning/why-ecs-vs-big-shops.md' },
+          { title: 'Pricing Philosophy', path: 'brand-kb/04-positioning/pricing-philosophy.md' },
+          { title: 'Technical Standards', path: 'brand-kb/04-positioning/technical-standards.md' },
+          { title: 'Industry Critique', path: 'brand-kb/04-positioning/industry-critique.md' },
+          { title: 'Hiring & Team Vision', path: 'brand-kb/04-positioning/hiring-and-team-vision.md' },
+        ]},
+        { group: '05 Trust Signals', icon: '✓', children: [
+          { title: 'Credentials & Licenses', path: 'brand-kb/05-trust-signals/credentials-licenses.md' },
+          { title: 'Certifications', path: 'brand-kb/05-trust-signals/certifications.md' },
+          { title: 'Memberships', path: 'brand-kb/05-trust-signals/memberships.md' },
+          { title: 'Testimonials', path: 'brand-kb/05-trust-signals/testimonials.md' },
+        ]},
+        { group: '06 FAQ', icon: '❓', children: [
+          { title: 'FAQ Master', path: 'brand-kb/06-faq/faq-master.md' },
+        ]},
+        { group: '07 Recipes', icon: '📋', children: [
+          { title: 'Website Page Recipes', path: 'brand-kb/07-recipes/website-page-recipes.md' },
+          { title: 'Social Posts Bank', path: 'brand-kb/07-recipes/social-posts-bank.md' },
+          { title: 'Email Recipes', path: 'brand-kb/07-recipes/email-recipes.md' },
+          { title: 'Ad Recipes', path: 'brand-kb/07-recipes/ad-recipes.md' },
+        ]},
+      ]
+    },
+    {
+      section: 'Deliverables',
+      items: [
+        { title: 'Competitor Strategy Report', external: 'competitor-report/index.html', icon: '📊' },
+        { title: 'Post-Launch Roadmap', path: 'onboarding/post-launch-roadmap.md', icon: '🗺' },
+        { title: 'Onboarding Call (HTML)', external: 'Onboarding Call/index.html', icon: '🎙' },
+        { title: 'Onboarding Call — Extracted Q&A', path: 'onboarding/onboarding-call-recap.md', icon: '📝' },
+      ]
+    },
+    {
+      section: 'Action Items',
+      items: [
+        { title: 'Intake Form (fill this in)', external: 'intake-form/index.html', icon: '✍' },
+      ]
+    },
+  ];
+
+  /* ============================================================
+     UTILITIES
+     ============================================================ */
+  function flatItems() {
+    const out = [];
+    for (const sec of TREE) {
+      for (const item of sec.items) {
+        if (item.group) {
+          for (const child of item.children) out.push({ ...child, group: item.group });
+        } else if (item.path) {
+          out.push(item);
+        }
+      }
+    }
+    return out;
+  }
+  const ALL_ITEMS = flatItems();
+  const BY_PATH = Object.fromEntries(ALL_ITEMS.map(i => [i.path, i]));
+
+  function parseFrontmatter(md) {
+    const m = md.match(/^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/);
+    if (!m) return { fm: {}, body: md };
+    const fmText = m[1];
+    const body = m[2];
+    const fm = {};
+    let buffer = null;
+    let bufferKey = null;
+    fmText.split('\n').forEach(line => {
+      if (!line.trim()) return;
+      const km = line.match(/^([a-zA-Z_-]+):\s*(.*)$/);
+      if (km) {
+        const k = km[1];
+        let v = km[2].trim();
+        if (v.startsWith('[') && v.endsWith(']')) {
+          v = v.slice(1,-1).split(',').map(s => s.trim().replace(/^['"]|['"]$/g,'')).filter(Boolean);
+        } else if ((v.startsWith('"') && v.endsWith('"')) || (v.startsWith("'") && v.endsWith("'"))) {
+          v = v.slice(1,-1);
+        }
+        fm[k] = v;
+      }
+    });
+    return { fm, body };
+  }
+
+  function readingTime(text) {
+    const words = (text || '').trim().split(/\s+/).length;
+    return Math.max(1, Math.round(words / 220));
+  }
+
+  function escapeHtml(s) {
+    return String(s).replace(/[&<>"']/g, c => ({ '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;' }[c]));
+  }
+
+  function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,''); }
+
+  /* ============================================================
+     SIDEBAR RENDER
+     ============================================================ */
+  function renderSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    let html = '';
+    for (const sec of TREE) {
+      html += `<div class="nav-section">`;
+      html += `<div class="nav-section__title">${escapeHtml(sec.section)}</div>`;
+      for (const item of sec.items) {
+        if (item.group) {
+          const groupId = 'g-' + slugify(item.group);
+          html += `<div class="nav-group" data-group="${groupId}">
+            <span>${item.icon ? `<span style="opacity:0.7">${item.icon}</span> ` : ''}${escapeHtml(item.group)}</span>
+            <span style="display:flex;align-items:center;gap:6px;">
+              <span class="nav-group__count">${item.children.length}</span>
+              <span class="nav-group__chevron">▾</span>
+            </span>
+          </div>`;
+          html += `<div class="nav-children" data-children="${groupId}">`;
+          for (const child of item.children) {
+            html += `<a class="nav-item" data-path="${escapeHtml(child.path)}" href="#/${escapeHtml(child.path)}">${escapeHtml(child.title)}</a>`;
+          }
+          html += `</div>`;
+        } else if (item.external) {
+          html += `<a class="nav-item" href="${escapeHtml(item.external)}" target="_self">
+            <span style="opacity:0.7;">${item.icon || ''}</span>
+            <span>${escapeHtml(item.title)}</span>
+            <span class="ext-icon">↗</span>
+          </a>`;
+        } else if (item.path) {
+          html += `<a class="nav-item" data-path="${escapeHtml(item.path)}" href="#/${escapeHtml(item.path)}">
+            <span style="opacity:0.7;">${item.icon || ''}</span>
+            <span>${escapeHtml(item.title)}</span>
+          </a>`;
+        }
+      }
+      html += `</div>`;
+    }
+    sidebar.innerHTML = html;
+
+    // Group toggle
+    sidebar.querySelectorAll('.nav-group').forEach(el => {
+      el.addEventListener('click', () => {
+        el.classList.toggle('collapsed');
+      });
+    });
+
+    // Mobile auto-close on nav click
+    sidebar.querySelectorAll('.nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        if (window.innerWidth <= 880) document.body.classList.remove('menu-open');
+      });
+    });
+  }
+
+  function setActiveNav(path) {
+    document.querySelectorAll('.nav-item').forEach(el => {
+      el.classList.toggle('active', el.dataset.path === path);
+    });
+    // Expand the parent group if collapsed
+    if (path) {
+      const active = document.querySelector(`.nav-item[data-path="${path}"]`);
+      if (active) {
+        const parent = active.closest('.nav-children');
+        if (parent) {
+          const group = parent.previousElementSibling;
+          if (group && group.classList.contains('nav-group')) group.classList.remove('collapsed');
+        }
+      }
+    }
+  }
+
+  /* ============================================================
+     CONTENT RENDER
+     ============================================================ */
+  function renderHome() {
+    const stats = {
+      atoms: ALL_ITEMS.length,
+      services: 8,
+      stories: 12,
+      socialPosts: 35,
+    };
+    const html = `
+      <section class="home-hero">
+        <div class="home-hero__eyebrow">Built from your May 18 onboarding call</div>
+        <h1 class="home-hero__title">Everything we built for ECS, in one place.</h1>
+        <p class="home-hero__lede">
+          Hey Steven and Angel. This is the knowledge base, brand voice profile, recipes, customer stories, and deliverables we put together for Exceptional Comfort Services. Read through any of it from the sidebar. Each page can be downloaded as a markdown file at the bottom if you want a copy.
+        </p>
+      </section>
+
+      <div class="card-grid">
+        <a class="home-card" href="#/brand-kb/steven-voice-profile.md">
+          <div class="home-card__eyebrow">Start Here</div>
+          <div class="home-card__title">🎙 Voice Profile</div>
+          <div class="home-card__desc">How Steven sounds, in writing. The canonical voice doc for everything we produce.</div>
+          <div class="home-card__arrow">Read →</div>
+        </a>
+        <a class="home-card" href="#/brand-kb/03-customer-stories/allisons-mom-christmas.md">
+          <div class="home-card__eyebrow">12 Real Moments</div>
+          <div class="home-card__title">👥 Customer Stories</div>
+          <div class="home-card__desc">The real stories from the call, written up as reusable building blocks for content and ads.</div>
+          <div class="home-card__arrow">Browse →</div>
+        </a>
+        <a class="home-card" href="#/brand-kb/07-recipes/social-posts-bank.md">
+          <div class="home-card__eyebrow">35 Ready Captions</div>
+          <div class="home-card__title">📋 Social Posts Bank</div>
+          <div class="home-card__desc">Pre-written Facebook and Instagram captions in your voice. Copy, pair with an image, post.</div>
+          <div class="home-card__arrow">Open →</div>
+        </a>
+        <a class="home-card" href="competitor-report/index.html">
+          <div class="home-card__eyebrow">SEO Strategy</div>
+          <div class="home-card__title">📊 Competitor Strategy Report</div>
+          <div class="home-card__desc">Where you rank, who your competitors are, and what to do next.</div>
+          <div class="home-card__arrow">Open →</div>
+        </a>
+        <a class="home-card" href="intake-form/index.html">
+          <div class="home-card__eyebrow">Action Required</div>
+          <div class="home-card__title">✍ Intake Form</div>
+          <div class="home-card__desc">Fill in the operational details we still need (license #, brands, financing, etc.) and download when you're done.</div>
+          <div class="home-card__arrow">Open →</div>
+        </a>
+        <a class="home-card" href="#/brand-kb/_source-of-truth.md">
+          <div class="home-card__eyebrow">Everything, One File</div>
+          <div class="home-card__title">📚 Source of Truth</div>
+          <div class="home-card__desc">The full combined knowledge base in a single document. Big read.</div>
+          <div class="home-card__arrow">Open →</div>
+        </a>
+      </div>
+
+      <section class="home-section">
+        <h2 class="home-section__title">What's in here</h2>
+        <ul class="summary-list">
+          <li><strong>Voice Profile</strong> — the canonical doc on how Steven sounds. Read this first if you're going to write anything for the brand.</li>
+          <li><strong>Brand Story</strong> — Steven's origin, the founding of ECS, Angel's role, the family vision.</li>
+          <li><strong>Services</strong> — 8 service-positioning briefs covering AC, heating, generators, maintenance, mini-splits, and lake homes.</li>
+          <li><strong>Customer Stories</strong> — 12 real moments from the onboarding call, written up as reusable building blocks for website and social.</li>
+          <li><strong>Positioning</strong> — the why-ECS angles: answer-the-phone differentiator, pricing philosophy, technical standards, the industry-critique fire topics with usage caps baked in.</li>
+          <li><strong>Trust Signals</strong> — credentials, certifications, memberships, testimonials (some still need your input via the intake form).</li>
+          <li><strong>FAQ</strong> — Steven-answered questions from the call plus standard HVAC FAQs, with placeholders flagged where we need your answer.</li>
+          <li><strong>Recipes</strong> — playbooks for assembling each website page, a bank of 35 ready-to-post social captions, email templates, ad templates.</li>
+          <li><strong>Deliverables</strong> — competitor strategy report, website proposal, post-launch roadmap, onboarding call recap.</li>
+        </ul>
+      </section>
+
+      <section class="home-section">
+        <h2 class="home-section__title">Two things we still need from you</h2>
+        <ul class="summary-list">
+          <li><strong>Fill the intake form.</strong> Trust-signal details (license #, bond carrier, insurance, BBB membership), financing terms, brand preferences, exact pricing tiers for maintenance plans, etc. <a href="intake-form/index.html">Open the intake form →</a></li>
+          <li><strong>Read the voice profile.</strong> So you can flag anything that doesn't sound like you before we start writing the site. <a href="#/brand-kb/steven-voice-profile.md">Open voice profile →</a></li>
+        </ul>
+      </section>
+    `;
+    document.getElementById('contentHost').innerHTML = html;
+    document.getElementById('appLayout').classList.remove('has-toc');
+    document.title = 'Exceptional Comfort Services — KB & Deliverables';
+    setActiveNav(null);
+  }
+
+  function findSiblings(path) {
+    // Find current item and locate prev/next within the same group/section
+    for (const sec of TREE) {
+      for (let i = 0; i < sec.items.length; i++) {
+        const item = sec.items[i];
+        if (item.group) {
+          const idx = item.children.findIndex(c => c.path === path);
+          if (idx >= 0) {
+            return {
+              prev: item.children[idx - 1] || null,
+              next: item.children[idx + 1] || null,
+              groupTitle: item.group,
+            };
+          }
+        } else if (item.path === path) {
+          // Top-level item in a section — siblings are other top-level items in the same section
+          const tops = sec.items.filter(x => x.path);
+          const idx = tops.findIndex(x => x.path === path);
+          return {
+            prev: tops[idx - 1] || null,
+            next: tops[idx + 1] || null,
+            groupTitle: sec.section,
+          };
+        }
+      }
+    }
+    return { prev: null, next: null };
+  }
+
+  function buildBreadcrumb(path, title, groupTitle) {
+    let sectionTitle = '';
+    for (const sec of TREE) {
+      const has = sec.items.some(i => i.path === path || (i.children && i.children.some(c => c.path === path)));
+      if (has) { sectionTitle = sec.section; break; }
+    }
+    const parts = [
+      `<a href="#/">Home</a>`,
+      `<span class="breadcrumb__sep">›</span>`,
+      `<span style="color:var(--ink-soft);">${escapeHtml(sectionTitle)}</span>`,
+    ];
+    if (groupTitle && groupTitle !== sectionTitle) {
+      parts.push(`<span class="breadcrumb__sep">›</span>`);
+      parts.push(`<span style="color:var(--ink-soft);">${escapeHtml(groupTitle)}</span>`);
+    }
+    parts.push(`<span class="breadcrumb__sep">›</span>`);
+    parts.push(`<span class="breadcrumb__current">${escapeHtml(title)}</span>`);
+    return `<div class="breadcrumb">${parts.join(' ')}</div>`;
+  }
+
+  function buildInfoStrip(fm) {
+    const chips = [];
+    if (fm.status) {
+      const cls = fm.status === 'ready' ? 'chip--status-ready' : (fm.status === 'needs-info' ? 'chip--status-needs-info' : 'chip--status-draft');
+      chips.push(`<span class="chip ${cls}">● ${escapeHtml(fm.status)}</span>`);
+    }
+    if (fm.category) chips.push(`<span class="chip chip--category">${escapeHtml(fm.category)}</span>`);
+    if (Array.isArray(fm.themes)) {
+      for (const t of fm.themes.slice(0, 6)) chips.push(`<span class="chip chip--theme">#${escapeHtml(t)}</span>`);
+    } else if (fm.themes) {
+      chips.push(`<span class="chip chip--theme">#${escapeHtml(fm.themes)}</span>`);
+    }
+    if (chips.length === 0) return '';
+    return `<div class="info-strip">${chips.join('')}</div>`;
+  }
+
+  function buildMetaRow(fm, mins) {
+    const parts = [`<span>~${mins} min read</span>`];
+    if (fm.last_updated) parts.push(`<span class="dot"></span><span>Updated ${escapeHtml(fm.last_updated)}</span>`);
+    if (fm.sensitivity) parts.push(`<span class="dot"></span><span>Sensitivity: ${escapeHtml(fm.sensitivity)}</span>`);
+    return `<div class="meta-row">${parts.join(' ')}</div>`;
+  }
+
+  function buildSiblingNav(sib) {
+    const prev = sib.prev
+      ? `<a class="sibling-nav__link" href="#/${escapeHtml(sib.prev.path)}">
+          <span class="sibling-nav__label">← Previous</span>
+          <span class="sibling-nav__title">${escapeHtml(sib.prev.title)}</span>
+        </a>`
+      : `<div class="sibling-nav__link sibling-nav__link--empty"><span class="sibling-nav__label">No previous</span><span class="sibling-nav__title">—</span></div>`;
+    const next = sib.next
+      ? `<a class="sibling-nav__link sibling-nav__link--next" href="#/${escapeHtml(sib.next.path)}">
+          <span class="sibling-nav__label">Next →</span>
+          <span class="sibling-nav__title">${escapeHtml(sib.next.title)}</span>
+        </a>`
+      : `<div class="sibling-nav__link sibling-nav__link--next sibling-nav__link--empty"><span class="sibling-nav__label">End of section</span><span class="sibling-nav__title">—</span></div>`;
+    return `<div class="sibling-nav">${prev}${next}</div>`;
+  }
+
+  function buildActions(path, fm) {
+    const filename = path.split('/').pop();
+    return `
+      <div class="actions">
+        <div>
+          <div class="actions__heading">Take this page with you</div>
+          <div style="font-size:13px;color:var(--ink-mute);">Download the raw markdown for this page, or print it.</div>
+        </div>
+        <div class="actions__row">
+          <button class="btn btn--primary" data-download="${escapeHtml(path)}">⬇ Download as .md</button>
+          <button class="btn btn--secondary" onclick="window.print()">🖨 Print</button>
+          <a class="btn btn--ghost" href="#/">↩ Back to home</a>
+        </div>
+      </div>
+    `;
+  }
+
+  function buildTOC(bodyHtml) {
+    const div = document.createElement('div');
+    div.innerHTML = bodyHtml;
+    const headings = Array.from(div.querySelectorAll('h2, h3'));
+    if (headings.length < 3) return '';
+    const items = headings.map(h => {
+      const text = h.textContent.trim();
+      const id = slugify(text);
+      h.id = id;
+      return { text, id, level: h.tagName.toLowerCase() };
+    });
+    let html = '<div class="toc"><div class="toc__title">On this page</div><ul class="toc__list">';
+    for (const i of items) {
+      html += `<li><a href="#${i.id}" class="${i.level === 'h3' ? 'h3' : ''}" data-toc="${i.id}">${escapeHtml(i.text)}</a></li>`;
+    }
+    html += '</ul></div>';
+    return { html, processedBody: div.innerHTML };
+  }
+
+  async function renderPage(path) {
+    const host = document.getElementById('contentHost');
+    const item = BY_PATH[path] || { title: path.split('/').pop().replace(/\.md$/, ''), path };
+
+    // Skeleton
+    host.innerHTML = `
+      <div class="skeleton skeleton--title"></div>
+      <div class="skeleton skeleton--line w-95"></div>
+      <div class="skeleton skeleton--line w-90"></div>
+      <div class="skeleton skeleton--line w-80"></div>
+      <div class="skeleton skeleton--line w-95"></div>
+    `;
+
+    let md;
+    try {
+      if (window.__BUNDLED_DATA__ && Object.prototype.hasOwnProperty.call(window.__BUNDLED_DATA__, path)) {
+        md = window.__BUNDLED_DATA__[path];
+      } else {
+        const res = await fetch(path);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        md = await res.text();
+      }
+    } catch (err) {
+      host.innerHTML = `
+        <div class="content">
+          <h1>Could not load that page</h1>
+          <p>We tried to load <code>${escapeHtml(path)}</code> but it didn't come back. If you're viewing this locally without a server and the bundled data file is missing, regenerate it by running <code>python build-bundle.py</code> in the deliverable folder. Or open <a href="#/">the home page</a>.</p>
+        </div>
+      `;
+      return;
+    }
+
+    const { fm, body } = parseFrontmatter(md);
+    const mins = readingTime(body);
+    const sib = findSiblings(path);
+    const groupTitle = sib.groupTitle || '';
+
+    // Configure marked
+    marked.setOptions({ gfm: true, breaks: false, headerIds: false, mangle: false });
+    let bodyHtml = marked.parse(body);
+
+    // Generate TOC for long pages
+    let tocHtml = '';
+    if (body.split(/\s+/).length > 600) {
+      const toc = buildTOC(bodyHtml);
+      if (toc) { tocHtml = toc.html; bodyHtml = toc.processedBody; }
+    }
+
+    const title = fm.title || item.title || path.split('/').pop().replace(/\.md$/, '');
+
+    const pageHtml = `
+      ${buildBreadcrumb(path, title, groupTitle)}
+      <article class="content">
+        <h1>${escapeHtml(title)}</h1>
+        ${buildInfoStrip(fm)}
+        ${buildMetaRow(fm, mins)}
+        ${bodyHtml}
+      </article>
+      ${buildSiblingNav(sib)}
+      ${buildActions(path, fm)}
+    `;
+
+    // Always remove any previously-injected TOC before rendering the new page
+    document.querySelectorAll('#appLayout > .toc').forEach(el => el.remove());
+
+    // Write the new page body
+    host.innerHTML = pageHtml;
+
+    // Inject TOC into the grid as the third column, if this page has one
+    if (tocHtml) {
+      document.getElementById('appLayout').classList.add('has-toc');
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = tocHtml;
+      const tocNode = wrapper.firstElementChild;
+      if (tocNode) document.getElementById('appLayout').appendChild(tocNode);
+    } else {
+      document.getElementById('appLayout').classList.remove('has-toc');
+    }
+
+    // Wire up download
+    const dlBtn = host.querySelector('[data-download]');
+    if (dlBtn) {
+      dlBtn.addEventListener('click', () => downloadMarkdown(path, md));
+    }
+
+    document.title = title + ' — ECS Knowledge Base';
+    setActiveNav(path);
+
+    // Scroll to top of new content
+    window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+
+    // Activate TOC scrollspy
+    if (tocHtml) wireTOCSpy();
+  }
+
+  function wireTOCSpy() {
+    const tocLinks = document.querySelectorAll('.toc__list a');
+    if (tocLinks.length === 0) return;
+    const sections = Array.from(tocLinks).map(a => {
+      const id = a.dataset.toc;
+      return { id, el: document.getElementById(id), link: a };
+    }).filter(s => s.el);
+    function update() {
+      const y = window.scrollY + 120;
+      let active = sections[0];
+      for (const s of sections) {
+        if (s.el.offsetTop <= y) active = s;
+      }
+      tocLinks.forEach(l => l.classList.remove('active'));
+      if (active) active.link.classList.add('active');
+    }
+    window.addEventListener('scroll', update, { passive: true });
+    update();
+  }
+
+  /* ============================================================
+     DOWNLOAD
+     ============================================================ */
+  function downloadMarkdown(path, content) {
+    const filename = path.split('/').pop();
+    const blob = new Blob([content], { type: 'text/markdown;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(() => URL.revokeObjectURL(url), 100);
+  }
+
+  /* ============================================================
+     ROUTING
+     ============================================================ */
+  function route() {
+    const hash = window.location.hash || '#/';
+    if (hash === '#/' || hash === '#' || hash === '') {
+      renderHome();
+      return;
+    }
+    // In-page anchor jumps (TOC links, #h2-id) leave the route alone.
+    // Our app routes only use the #/path/... shape.
+    if (!hash.startsWith('#/')) {
+      return;
+    }
+    const path = decodeURIComponent(hash.replace(/^#\//, ''));
+    if (path.endsWith('.md')) {
+      renderPage(path);
+    } else {
+      renderHome();
+    }
+  }
+
+  /* ============================================================
+     INIT
+     ============================================================ */
+  document.addEventListener('DOMContentLoaded', () => {
+    renderSidebar();
+    route();
+
+    window.addEventListener('hashchange', route);
+
+    // Mobile menu
+    document.getElementById('menuToggle').addEventListener('click', () => {
+      document.body.classList.toggle('menu-open');
+    });
+    document.getElementById('menuBackdrop').addEventListener('click', () => {
+      document.body.classList.remove('menu-open');
+    });
+
+    // Back to top
+    const btt = document.getElementById('backToTop');
+    btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+    window.addEventListener('scroll', () => {
+      btt.classList.toggle('visible', window.scrollY > 600);
+    }, { passive: true });
+
+    // Default-collapse most groups except the first one with the active item
+    setTimeout(() => {
+      const groups = document.querySelectorAll('.nav-group');
+      groups.forEach(g => g.classList.add('collapsed'));
+      const activeNav = document.querySelector('.nav-item.active');
+      if (activeNav) {
+        const parent = activeNav.closest('.nav-children');
+        if (parent) {
+          const group = parent.previousElementSibling;
+          if (group && group.classList.contains('nav-group')) group.classList.remove('collapsed');
+        }
+      }
+    }, 50);
+  });
+  </script>
+</body>
+</html>
