@@ -259,13 +259,35 @@
     .srow{flex-wrap:wrap;gap:10px}
     .srow .sseg{margin-left:46px}
   }
+  /* ===== cross-page document nav ===== */
+  .doc-nav{display:flex;flex-direction:column;gap:2px;margin-bottom:8px;padding-bottom:16px;border-bottom:1px solid var(--line)}
+  .doc-nav .dn-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);padding:0 2px 9px}
+  .doc-nav a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-soft);font-family:var(--display);font-weight:500;font-size:15.5px;line-height:1.3;padding:8px 12px;border-radius:9px;border:1px solid transparent;transition:all .2s ease}
+  .doc-nav a .di{color:var(--marigold);font-size:8px;opacity:.4;transition:opacity .2s ease}
+  .doc-nav a:hover{color:var(--ink);background:var(--paper-3);border-color:var(--line-soft)}
+  .doc-nav a:hover .di{opacity:.8}
+  .doc-nav a.is-active{color:var(--marigold-deep);background:var(--marigold-wash);font-weight:600}
+  .doc-nav a.is-active .di{opacity:1;color:var(--marigold-deep)}
+  @media (max-width:1080px){
+    .doc-nav{flex-direction:row;flex-wrap:wrap;gap:6px;width:100%;margin:0;padding:0;border-bottom:0}
+    .doc-nav .dn-eyebrow{display:none}
+    .doc-nav a{font-size:13.5px;padding:6px 12px;border:1px solid var(--line);background:var(--paper-3)}
+    .doc-nav a.is-active{border-color:var(--marigold)}
+  }
 </style>
 </head>
 <body>
 <div class="shell">
 
   <aside class="sidebar" id="sidebar">
-    <a class="brandmark" href="#top"><span class="glyph">M</span><span class="bt">The Offer &amp; Doorway<b>Megha Bhouraskar</b></span></a>
+    <a class="brandmark" href="/megha-bhouraskar/"><span class="glyph">M</span><span class="bt">The Offer &amp; Doorway<b>Megha Bhouraskar</b></span></a>
+    <nav class="doc-nav" aria-label="Documents">
+      <span class="dn-eyebrow">The Documents</span>
+      <a href="/megha-bhouraskar/"><span class="di">◆</span>Overview</a>
+      <a href="/megha-bhouraskar/first-look/"><span class="di">◆</span>The Vision</a>
+      <a href="/megha-bhouraskar/offer/" class="is-active" aria-current="page"><span class="di">◆</span>The Offer</a>
+      <a href="/megha-bhouraskar/build-plan/"><span class="di">◆</span>The Build Plan</a>
+    </nav>
     <button class="nav-toggle" id="navToggle" aria-label="Toggle contents">Contents ▾</button>
     <span class="nav-eyebrow">Inside</span>
     <nav class="toc" id="toc">
