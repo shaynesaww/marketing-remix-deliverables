@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Platform Built Around You · Megha Bhouraskar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500;1,9..144,600&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Spline+Sans+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F8F1E3;
+    --paper-2:#FCF7EC;
+    --paper-3:#FFFCF5;
+    --letter:#FBF3E4;
+    --ink:#2A1F14;
+    --ink-soft:#6E6051;
+    --ink-faint:#9C8C77;
+    --line:#E7DAC4;
+    --line-soft:#F0E7D6;
+    --marigold:#D98A18;
+    --marigold-deep:#A7610F;
+    --marigold-wash:#F7E6C9;
+    --peacock:#136E6B;
+    --peacock-deep:#0B4A48;
+    --peacock-wash:#D8E8E4;
+    --rose:#B23F66;
+    --rose-deep:#8C2F50;
+    --rose-wash:#F3DDE4;
+    --shadow:0 1px 2px rgba(70,45,15,.04), 0 10px 34px -14px rgba(70,45,15,.18);
+    --shadow-lg:0 2px 8px rgba(70,45,15,.06), 0 28px 64px -24px rgba(70,45,15,.30);
+    --r:16px;
+    --maxw:880px;
+    --navw:262px;
+    --serif:"Newsreader",Georgia,serif;
+    --display:"Fraunces",Georgia,serif;
+    --mono:"Spline Sans Mono",ui-monospace,monospace;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--serif);font-size:18.5px;line-height:1.72;
+    -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+    position:relative;overflow-x:hidden;
+  }
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;opacity:.6;
+  }
+  body::after{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background:
+      radial-gradient(1000px 560px at 82% -6%, rgba(217,138,24,.12), transparent 60%),
+      radial-gradient(820px 520px at -4% 2%, rgba(19,110,107,.07), transparent 55%),
+      radial-gradient(700px 600px at 50% 108%, rgba(178,63,102,.05), transparent 60%);
+  }
+  ::selection{background:var(--marigold-wash);color:var(--ink)}
+
+  /* ===== layout ===== */
+  .shell{position:relative;z-index:1}
+  .sidebar{
+    position:fixed;top:0;left:0;width:var(--navw);height:100vh;padding:34px 20px 28px 32px;
+    border-right:1px solid var(--line);
+    background:linear-gradient(180deg, rgba(252,247,236,.9), rgba(248,241,227,.82));
+    backdrop-filter:blur(7px);display:flex;flex-direction:column;gap:20px;z-index:40;overflow-y:auto;
+  }
+  .brandmark{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}
+  .brandmark .glyph{width:38px;height:38px;flex:none;border-radius:10px;display:grid;place-items:center;
+    background:linear-gradient(140deg,var(--marigold),var(--marigold-deep));color:#fff;font-family:var(--display);font-weight:600;font-size:21px;box-shadow:var(--shadow)}
+  .brandmark .bt{font-family:var(--mono);font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);line-height:1.4}
+  .brandmark .bt b{display:block;color:var(--ink);font-weight:500;letter-spacing:.08em;font-size:11.5px}
+  .nav-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);padding-left:2px}
+  nav.toc{display:flex;flex-direction:column;gap:2px}
+  nav.toc a{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink-soft);
+    font-family:var(--serif);font-size:15px;line-height:1.3;padding:8px 12px;border-radius:9px;border:1px solid transparent;transition:all .2s ease}
+  nav.toc a .di{color:var(--marigold);font-size:8px;opacity:.5;transition:opacity .2s ease}
+  nav.toc a:hover{color:var(--ink);background:var(--paper-3);border-color:var(--line-soft)}
+  nav.toc a.active{color:var(--peacock-deep);background:var(--peacock-wash);font-weight:500}
+  nav.toc a.active .di{opacity:1;color:var(--peacock)}
+  .nav-foot{margin-top:auto;font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;color:var(--ink-faint);line-height:1.7;text-transform:uppercase;border-top:1px solid var(--line);padding-top:14px}
+  .nav-toggle{display:none}
+
+  .main{margin-left:var(--navw)}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 52px 150px}
+
+  /* ===== cover ===== */
+  .cover{min-height:92vh;display:flex;flex-direction:column;justify-content:center;padding:60px 0 50px;position:relative}
+  .cover .orn{font-family:var(--display);color:var(--marigold);font-size:22px;letter-spacing:.5em;margin-bottom:26px}
+  .cover .prepared{font-family:var(--mono);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--peacock-deep);margin-bottom:30px}
+  h1.title{font-family:var(--display);font-weight:500;font-optical-sizing:auto;font-size:clamp(46px,8vw,92px);line-height:.96;letter-spacing:-.025em;margin:0 0 30px;color:var(--ink)}
+  h1.title em{font-style:italic;color:var(--marigold-deep)}
+  .cover .sub{font-size:22px;line-height:1.5;color:var(--ink-soft);max-width:50ch;margin:0 0 40px}
+  .cover .footline{font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--ink-faint);text-transform:uppercase;display:flex;align-items:center;gap:12px}
+  .cover .footline .pip{width:6px;height:6px;background:var(--marigold);transform:rotate(45deg)}
+  .scrollcue{margin-top:64px;font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);display:flex;align-items:center;gap:10px}
+  .scrollcue .ln{width:46px;height:1px;background:var(--ink-faint);position:relative;overflow:hidden}
+  .scrollcue .ln::after{content:"";position:absolute;left:-46px;top:0;width:46px;height:1px;background:var(--marigold);animation:slide 2.6s ease-in-out infinite}
+  @keyframes slide{0%{left:-46px}60%,100%{left:46px}}
+
+  /* ===== sections ===== */
+  section{padding:64px 0 10px;scroll-margin-top:24px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep);display:flex;align-items:center;gap:10px;margin-bottom:18px}
+  .eyebrow::before{content:"◆";font-size:9px;color:var(--marigold)}
+  h2{font-family:var(--display);font-weight:550;font-size:clamp(30px,4.4vw,46px);line-height:1.04;letter-spacing:-.02em;margin:0 0 22px;color:var(--ink)}
+  h2 em{font-style:italic;color:var(--marigold-deep)}
+  h3{font-family:var(--display);font-weight:600;font-size:24px;letter-spacing:-.01em;margin:34px 0 12px;color:var(--ink)}
+  p{margin:0 0 18px;max-width:64ch}
+  p.lead{font-size:21px;line-height:1.6;color:var(--ink)}
+  strong{font-weight:600;color:var(--ink)}
+  em{font-style:italic}
+  .soft{color:var(--ink-soft)}
+
+  /* ===== letter blocks ===== */
+  .letter{background:var(--letter);border:1px solid var(--line);border-radius:var(--r);padding:48px 52px;box-shadow:var(--shadow);position:relative;margin-top:8px}
+  .letter::before{content:"";position:absolute;left:0;top:30px;bottom:30px;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg,var(--marigold),var(--rose))}
+  .letter .lhead{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--marigold-deep);margin-bottom:24px}
+  .letter p{font-size:19.5px;line-height:1.74;color:var(--ink);max-width:60ch}
+  .letter p.opener{font-family:var(--display);font-weight:500;font-size:26px;line-height:1.2;color:var(--ink);margin-bottom:24px}
+  .letter .sig{margin-top:30px}
+  .letter .sig .name{font-family:var(--display);font-style:italic;font-weight:500;font-size:30px;color:var(--ink);line-height:1}
+  .letter .sig .role{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-top:8px}
+  .letter .lets{font-family:var(--display);font-style:italic;font-weight:500;font-size:23px;color:var(--marigold-deep);margin:22px 0 4px}
+
+  /* ===== pull quote ===== */
+  .pq{margin:46px 0;text-align:center;padding:10px 0}
+  .pq .mark{font-family:var(--display);font-style:italic;color:var(--marigold);font-size:64px;line-height:0;display:block;height:30px}
+  .pq blockquote{margin:0;font-family:var(--display);font-style:italic;font-weight:500;font-size:clamp(26px,4vw,40px);line-height:1.18;color:var(--ink);letter-spacing:-.015em;max-width:20ch;margin:0 auto}
+  .pq cite{display:block;margin-top:18px;font-family:var(--mono);font-style:normal;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ===== continuum ===== */
+  .continuum{margin:14px 0 6px;padding:34px 32px 28px;background:var(--paper-2);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow)}
+  .cont-cap{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:8px}
+  .cont-bar{position:relative;height:16px;border-radius:999px;background:linear-gradient(90deg,var(--marigold),#C77A3A 34%,var(--peacock) 100%);margin:52px 0 38px}
+  .cont-letters{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--ink-faint);letter-spacing:.12em}
+  .pin{position:absolute;top:50%;transform:translate(-50%,-50%)}
+  .pin .head{width:20px;height:20px;border-radius:50%;background:var(--paper-2);border:3px solid var(--marigold-deep);box-shadow:var(--shadow);display:block}
+  .pin .lab{position:absolute;bottom:30px;left:50%;transform:translateX(-50%);white-space:nowrap;font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;background:var(--marigold-deep);color:#fff;padding:5px 11px;border-radius:7px;text-transform:uppercase}
+  .pin .lab::after{content:"";position:absolute;left:50%;bottom:-5px;transform:translateX(-50%);border:5px solid transparent;border-top-color:var(--marigold-deep);border-bottom:0}
+  .pin.a{left:9%}
+  .pin.b{left:62%}
+  .pin.b .head{border-color:var(--peacock-deep)}
+  .pin.b .lab{background:var(--peacock-deep)}
+  .pin.b .lab::after{border-top-color:var(--peacock-deep)}
+
+  .persona-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:22px}
+  .persona{border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper-2);box-shadow:var(--shadow)}
+  .persona .ph{padding:22px 26px;color:#fff}
+  .persona.p1 .ph{background:linear-gradient(135deg,var(--marigold),var(--marigold-deep))}
+  .persona.p2 .ph{background:linear-gradient(135deg,var(--peacock),var(--peacock-deep))}
+  .persona .ph .tag{font-family:var(--mono);font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.9}
+  .persona .ph h4{font-family:var(--display);font-weight:600;font-size:23px;margin:7px 0 0;line-height:1.05}
+  .persona .pb{padding:22px 26px}
+  .persona .pb p{margin:0;font-size:16.5px;color:var(--ink-soft);line-height:1.55;max-width:none}
+  .persona .pb .need{display:block;margin-top:14px;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-faint)}
+  .persona .pb .need b{color:var(--ink);font-weight:600;text-transform:none;font-family:var(--serif);letter-spacing:0;font-size:16px}
+
+  /* ===== SHINE ===== */
+  .shine{margin-top:14px;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;background:var(--paper-2);box-shadow:var(--shadow)}
+  .shine-row{display:grid;grid-template-columns:108px 1fr;align-items:center;border-bottom:1px solid var(--line-soft);transition:background .2s ease}
+  .shine-row:last-child{border-bottom:0}
+  .shine-row:hover{background:var(--paper-3)}
+  .shine-row .sl{font-family:var(--display);font-weight:600;font-size:66px;line-height:1;text-align:center;padding:20px 0;color:var(--rose);background:linear-gradient(180deg,var(--rose-wash),transparent)}
+  .shine-row:nth-child(even) .sl{color:var(--marigold-deep);background:linear-gradient(180deg,var(--marigold-wash),transparent)}
+  .shine-row .sc{padding:16px 30px}
+  .shine-row .sc h4{font-family:var(--display);font-weight:600;font-size:21px;margin:0 0 3px;color:var(--ink)}
+  .shine-row .sc p{margin:0;font-size:16.5px;color:var(--ink-soft);line-height:1.5;max-width:none}
+
+  /* ===== journey / ladder ===== */
+  .climb-note{display:flex;align-items:center;gap:13px;background:var(--marigold-wash);border:1px solid #E6CFA3;border-radius:12px;padding:13px 18px;margin-top:16px;font-family:var(--display);font-style:italic;font-size:16px;color:var(--marigold-deep);line-height:1.4}
+  .climb-note .up{flex:none;font-style:normal;font-family:var(--mono);font-weight:600;font-size:16px;background:var(--marigold);color:#fff;width:30px;height:30px;border-radius:8px;display:grid;place-items:center}
+  .journey{display:grid;grid-template-columns:42px 1fr;gap:16px;margin-top:14px;align-items:stretch}
+  .climb-rail{position:relative}
+  .climb-rail::before{content:"";position:absolute;left:50%;top:20px;bottom:8px;width:2px;transform:translateX(-50%);background:linear-gradient(180deg,var(--marigold),var(--peacock));border-radius:2px}
+  .climb-rail .arrowhead{position:absolute;top:0;left:50%;transform:translateX(-50%);color:var(--marigold-deep);font-size:13px;line-height:1}
+  .climb-rail .climb-label{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%) rotate(180deg);writing-mode:vertical-rl;font-family:var(--mono);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-faint);background:var(--paper);padding:12px 0}
+  .ladder{display:flex;flex-direction:column-reverse;gap:8px}
+  .rung{position:relative;display:grid;grid-template-columns:50px 1fr;align-items:center;gap:18px;padding:18px 22px;background:var(--paper-2);border:1px solid var(--line);border-radius:13px;box-shadow:var(--shadow);transition:transform .2s ease}
+  .rung:hover{transform:translateX(7px)}
+  .rung .rn{width:40px;height:40px;border-radius:10px;display:grid;place-items:center;font-family:var(--display);font-weight:600;font-size:17px;color:#fff}
+  .rung .rb h4{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 2px;color:var(--ink)}
+  .rung .rb p{margin:0;font-size:15.5px;color:var(--ink-soft);line-height:1.45;max-width:none}
+  .rung-flag{position:absolute;top:-9px;right:16px;font-family:var(--mono);font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;padding:3px 10px;border-radius:7px;box-shadow:var(--shadow);color:#fff}
+  .rung-flag.start{background:var(--peacock-deep)}
+  .rung-flag.top{background:var(--rose-deep)}
+  .rung[data-r="1"] .rn{background:var(--ink-faint)}
+  .rung[data-r="2"] .rn{background:#5FA0A0}
+  .rung[data-r="3"] .rn{background:var(--peacock)}
+  .rung[data-r="4"] .rn{background:var(--peacock-deep)}
+  .rung[data-r="5"] .rn{background:var(--marigold)}
+  .rung[data-r="6"] .rn{background:var(--marigold-deep)}
+  .rung[data-r="7"] .rn{background:var(--rose)}
+  .ladder-cap{font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--ink-faint);text-align:center;margin-top:16px}
+
+  /* ===== scope grid ===== */
+  .scope{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+  .scope-item{background:var(--paper-2);border:1px solid var(--line);border-radius:14px;padding:22px 24px;box-shadow:var(--shadow);position:relative;transition:transform .22s ease, box-shadow .22s ease}
+  .scope-item:hover{transform:translateY(-3px);box-shadow:var(--shadow-lg)}
+  .scope-item .si-n{font-family:var(--mono);font-size:11px;color:var(--marigold-deep);letter-spacing:.1em;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+  .scope-item .si-n::before{content:"";width:8px;height:8px;background:var(--marigold);transform:rotate(45deg)}
+  .scope-item h4{font-family:var(--display);font-weight:600;font-size:19px;margin:0 0 7px;color:var(--ink);line-height:1.2}
+  .scope-item p{margin:0;font-size:15.5px;color:var(--ink-soft);line-height:1.5;max-width:none}
+  .scope-item.later{background:linear-gradient(160deg,var(--peacock-wash),var(--paper-2));border-style:dashed}
+  .scope-close{margin-top:20px;background:var(--ink);color:var(--paper-2);border-radius:var(--r);padding:26px 30px;font-family:var(--display);font-style:italic;font-weight:500;font-size:24px;line-height:1.3;text-align:center}
+  .scope-close b{color:var(--marigold);font-style:normal;font-weight:600}
+
+  /* ===== roadmap ===== */
+  .roadmap{position:relative;margin-top:16px;padding-left:34px}
+  .roadmap::before{content:"";position:absolute;left:9px;top:12px;bottom:24px;width:2px;background:linear-gradient(180deg,var(--marigold),var(--peacock),var(--rose))}
+  .rm{position:relative;padding:0 0 26px 28px}
+  .rm::before{content:"";position:absolute;left:-34px;top:6px;width:18px;height:18px;border-radius:50%;background:var(--paper);border:3px solid var(--marigold);box-shadow:0 0 0 5px var(--paper)}
+  .rm .when{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--peacock-deep);background:var(--peacock-wash);padding:3px 11px;border-radius:6px;display:inline-block;margin-bottom:9px}
+  .rm h4{font-family:var(--display);font-weight:600;font-size:22px;margin:0 0 7px;color:var(--ink)}
+  .rm p{margin:0;font-size:16.5px;color:var(--ink-soft);line-height:1.55}
+  .rm.launch::before{border-color:var(--rose);background:var(--rose-wash)}
+
+  /* ===== partnership callout ===== */
+  .partner-quote{background:linear-gradient(150deg,#2c2114,#3b2c18);color:var(--paper-2);border-radius:var(--r);padding:40px 44px;margin-top:14px;box-shadow:var(--shadow-lg)}
+  .partner-quote p{color:#ECE2D2;font-size:19.5px;line-height:1.7;max-width:62ch}
+  .partner-quote p strong{color:#fff}
+  .partner-quote .hl{color:var(--marigold);font-style:italic}
+  .partner-quote p:last-child{margin-bottom:0}
+
+  /* ===== misc ===== */
+  .divider{height:1px;background:linear-gradient(90deg,transparent,var(--line),transparent);margin:8px 0 0}
+  .endmark{text-align:center;font-family:var(--mono);font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint);margin:80px 0 0;padding-top:34px;border-top:1px solid var(--line)}
+  .endmark .di{color:var(--marigold);font-size:15px;letter-spacing:.5em;display:block;margin-bottom:16px}
+
+  .reveal{opacity:0;transform:translateY(20px);transition:opacity .8s cubic-bezier(.2,.7,.2,1), transform .8s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .reveal{opacity:1;transform:none;transition:none}
+    html{scroll-behavior:auto}
+    .scrollcue .ln::after{animation:none}
+    .rung:hover,.scope-item:hover{transform:none}
+  }
+
+  @media (max-width:1080px){
+    .sidebar{position:sticky;top:0;width:100%;height:auto;flex-direction:row;align-items:center;flex-wrap:wrap;padding:14px 20px;gap:14px;border-right:0;border-bottom:1px solid var(--line)}
+    .nav-eyebrow,.nav-foot{display:none}
+    nav.toc{flex-direction:row;flex-wrap:wrap;gap:5px;max-height:0;overflow:hidden;width:100%;transition:max-height .3s ease}
+    .sidebar.open nav.toc{max-height:560px}
+    nav.toc a{font-size:13.5px;padding:7px 11px}
+    .nav-toggle{display:inline-flex;align-items:center;gap:8px;margin-left:auto;background:var(--ink);color:var(--paper-2);border:0;border-radius:9px;padding:9px 15px;font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer}
+    .main{margin-left:0}
+    .wrap{padding:0 26px 100px}
+    .persona-grid,.scope{grid-template-columns:1fr}
+    .letter{padding:34px 30px}
+    .letter p,.letter p.opener{font-size:19px}
+  }
+  @media (max-width:560px){
+    body{font-size:17.5px}
+    .wrap{padding:0 20px 80px}
+    .cover{min-height:80vh}
+    .shine-row{grid-template-columns:74px 1fr}
+    .shine-row .sl{font-size:46px}
+    .rung{grid-template-columns:40px 1fr;gap:14px}
+    .letter{padding:28px 22px}
+  }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <aside class="sidebar" id="sidebar">
+    <a class="brandmark" href="#top"><span class="glyph">M</span><span class="bt">A first look<b>Megha Bhouraskar</b></span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle contents">Contents ▾</button>
+    <span class="nav-eyebrow">Inside</span>
+    <nav class="toc" id="toc">
+      <a href="#note"><span class="di">◆</span>A Note From Me</a>
+      <a href="#vision"><span class="di">◆</span>What You're Building</a>
+      <a href="#who"><span class="di">◆</span>Who It's For</a>
+      <a href="#shine"><span class="di">◆</span>SHINE · The Heart of It</a>
+      <a href="#journey"><span class="di">◆</span>The Journey</a>
+      <a href="#brand"><span class="di">◆</span>The Brand</a>
+      <a href="#scope"><span class="di">◆</span>What It Takes</a>
+      <a href="#roadmap"><span class="di">◆</span>The Roadmap</a>
+      <a href="#partnership"><span class="di">◆</span>Being In It With You</a>
+      <a href="#close"><span class="di">◆</span>Before You Go</a>
+    </nav>
+    <div class="nav-foot">Prepared for you<br>Before the proposal</div>
+  </aside>
+
+  <main class="main">
+    <div class="wrap" id="top">
+
+      <!-- COVER -->
+      <header class="cover">
+        <div class="orn reveal">◆ ◆ ◆</div>
+        <div class="prepared reveal">Prepared for Megha Bhouraskar</div>
+        <h1 class="title reveal">A Platform<br>Built <em>Around You</em></h1>
+        <p class="sub reveal">Helping the next generation of Indian founders build into the U.S. market without ever having to leave home.</p>
+        <div class="footline reveal"><span class="pip"></span> The vision, before the proposal <span class="pip"></span> A name we'll find together</div>
+        <div class="scrollcue reveal"><span class="ln"></span> Read on</div>
+      </header>
+
+      <!-- NOTE FROM ME -->
+      <section id="note">
+        <div class="eyebrow reveal">A note from me</div>
+        <h2 class="reveal">Before anything else, <em>I want you to know I heard you.</em></h2>
+        <div class="letter reveal">
+          <div class="lhead">Megha,</div>
+          <p class="opener">I've been thinking about our conversation since the moment we hung up, and I wanted to put something in your hands before we talk about proposals or numbers or any of that.</p>
+          <p>Because the truth is, what you're building deserves more than a quote. It deserves to be understood first. So that's what this is. This is me showing you that I was actually listening.</p>
+          <p>When we talked, you said that being visible is a scary thing for you, and I didn't breeze past that. The thing is, almost everything we're about to build will ask you to be more visible than you've ever been, and that means my whole job is to make that feel safe. You shouldn't have to carry the exposure on your own. You get to show up as yourself, and the rest of us handle the machinery around you so that you never feel exposed doing it.</p>
+          <p>The other thing that stuck with me was how you actually do business. You told me the story about Bollywood, how they came to you not because you knew entertainment law, but because you had taken care of someone's family and they trusted you, and they said we'll pay you to learn. That's the whole thing, right? You've built a twenty-five year practice on trust and care instead of marketing, and that's exactly why this is going to work. Because what we're really doing here is taking the way you already make people feel, and giving it a place to live online.</p>
+          <p>And then there's another reason underneath all of it. You grew up watching your father go through what he went through, and maybe, now you want to hand this next generation of founders the security and the belief that nobody ever handed you. That's much more of a mission than it is a course. And it changes everything about how I would build this.</p>
+          <p>So here is what I've laid out below. It isn't the proposal yet. Think of it as the shape of what's possible, the picture of where we could take this together, so that when we do sit down to talk specifics, we are already on the same page about how big and how meaningful this really is.</p>
+          <p class="lets">Read it slow. It's about you.</p>
+        </div>
+      </section>
+
+      <!-- VISION -->
+      <section id="vision">
+        <div class="eyebrow reveal">What you're building</div>
+        <h2 class="reveal">A way in that doesn't ask anyone to <em>leave home.</em></h2>
+        <p class="lead reveal">You're building a place where the smartest, most capable young people in India can learn how to bring their ideas into the U.S. market without moving across the world to do it.</p>
+        <p class="reveal soft">No visa. No uprooting their life. And no having to choose between their dream and the security their families want for them. They stay right where they are, and you help them build something that reaches all the way over here.</p>
+        <p class="reveal">And the beauty of it is that it works on three levels at once. The founder finally gets a path forward. Their parents get the reassurance that their child is not being pulled away from them. And the country keeps its talent at home, which is exactly what the Indian government is pushing for right now. So you are not fighting against the culture. Seems like a win for all.</p>
+
+        <div class="pq reveal">
+          <span class="mark">“</span>
+          <blockquote>You don't need a visa. Stay home.</blockquote>
+          <cite>The promise at the center of everything</cite>
+        </div>
+
+        <h3 class="reveal">And you are the guide</h3>
+        <p class="reveal soft">These founders don't just need information. They can find information anywhere. What they need is someone who has actually walked the path, who has the authority to be trusted and the warmth to be believed. That's you. You are the guide who has already carried so many across this bridge, and now you get to carry so many more.</p>
+      </section>
+
+      <!-- WHO -->
+      <section id="who">
+        <div class="eyebrow reveal">Who it's for</div>
+        <h2 class="reveal">Two kinds of people, <em>one journey.</em></h2>
+        <p class="reveal soft">You described two very different people you want to serve, and the more I listened, the more I realized they aren't two separate audiences at all. They're the same journey, caught at two different moments. So instead of building two separate things, we build one path, and we meet each person wherever they happen to be standing on it.</p>
+
+        <div class="continuum reveal">
+          <div class="cont-cap">The path, start to finish</div>
+          <div class="cont-bar">
+            <div class="pin a"><span class="lab">The Dreamer enters here</span><span class="head"></span></div>
+            <div class="pin b"><span class="lab">The Founder enters here</span><span class="head"></span></div>
+          </div>
+          <div class="cont-letters"><span>Just an idea</span><span>Building it</span><span>Reaching the U.S.</span></div>
+        </div>
+
+        <div class="persona-grid reveal">
+          <div class="persona p1">
+            <div class="ph"><div class="tag">Near the beginning</div><h4>The Dreamer, Still Employed</h4></div>
+            <div class="pb">
+              <p>Talented, well educated, often working for a U.S. company already. They have the idea and the late nights, but they haven't taken the leap, because the culture they grew up in rewards safety and the cost of failing feels too high.</p>
+              <span class="need"><b>What they need from you:</b> permission, encouragement, and the first real steps.</span>
+            </div>
+          </div>
+          <div class="persona p2">
+            <div class="ph"><div class="tag">Further along</div><h4>The Founder, Already Moving</h4></div>
+            <div class="pb">
+              <p>They've already leapt. They've registered, they may have government seed funding, and they're making sales. Now they want to formally establish in the U.S. and grow, and they need a real guide and real resources to get there.</p>
+              <span class="need"><b>What they need from you:</b> a closer relationship, and the people who can actually make it happen.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SHINE -->
+      <section id="shine">
+        <div class="eyebrow reveal">The heart of it</div>
+        <h2 class="reveal">SHINE might be the <em>whole reason this works.</em></h2>
+        <p class="reveal soft">Here is the part I don't want you to underestimate. When you walked me through SHINE, you almost waved it off, like it was a side project. But I think it's the soul of this entire thing. Anyone can teach someone how to form a company in Delaware. Nobody else can teach what you teach here, because it's pulled straight from your own life.</p>
+        <p class="reveal soft">You already tested it. You did that talk in Connecticut at an event built for women, and the people it hit the hardest weren't even who you expected. Two or three men saw it on the schedule and rerouted their entire day just to be in that room. That is not a bonus module. That's the part no competitor can ever copy.</p>
+
+        <div class="shine reveal">
+          <div class="shine-row"><div class="sl">S</div><div class="sc"><h4>Soul-aligned business</h4><p>Build something that actually fits who you are, not who you were told to become.</p></div></div>
+          <div class="shine-row"><div class="sl">H</div><div class="sc"><h4>Honoring your past and identity</h4><p>Every part of your story, even the hard parts, is a blessing you get to build from.</p></div></div>
+          <div class="shine-row"><div class="sl">I</div><div class="sc"><h4>Intuition</h4><p>Learning to trust your inner sense, which for many people is also their faith, whatever faith they hold.</p></div></div>
+          <div class="shine-row"><div class="sl">N</div><div class="sc"><h4>Nourishing yourself</h4><p>Founders pour everything out and refill nothing. This is the permission to take care of yourself too.</p></div></div>
+          <div class="shine-row"><div class="sl">E</div><div class="sc"><h4>Embodying your brilliance</h4><p>Especially in a culture that rewards copying what works, this is the call to bring your own gift forward.</p></div></div>
+        </div>
+        <p class="reveal soft" style="margin-top:22px">So whether someone ever sets foot in America or not, they walk away changed. And that feeling, that sense of being seen and equipped, is what turns a customer into a community member who stays for years.</p>
+      </section>
+
+      <!-- JOURNEY -->
+      <section id="journey">
+        <div class="eyebrow reveal">The journey</div>
+        <h2 class="reveal">How someone <em>grows with you.</em></h2>
+        <p class="reveal soft">Most people will meet you for the first time through something small and free, and a few of them will eventually work with you one on one. The whole art is in the steps between, because each step earns the next one. Here is how that path climbs, from the first hello all the way up to your firm.</p>
+
+        <div class="climb-note reveal"><span class="up">↑</span> Start at the bottom and climb. The first free hello sits at the base, and each step rises from there, all the way up to working with you.</div>
+
+        <div class="journey reveal">
+          <div class="climb-rail" aria-hidden="true">
+            <span class="arrowhead">▲</span>
+            <span class="climb-label">The climb</span>
+          </div>
+          <div class="ladder">
+          <div class="rung" data-r="1"><span class="rung-flag start">Start here</span><div class="rn">1</div><div class="rb"><h4>A free resource that's actually worth it</h4><p>A guide or download that answers the real questions, in exchange for an email. Now you have a way to stay in touch that nobody can take away from you.</p></div></div>
+          <div class="rung" data-r="2"><div class="rn">2</div><div class="rb"><h4>A free community to belong to</h4><p>A first taste of the world you're creating, and a place where the right people start to gather.</p></div></div>
+          <div class="rung" data-r="3"><div class="rn">3</div><div class="rb"><h4>A paid membership</h4><p>The real how-to, the modules and the workbooks, at a price that respects them and still asks for commitment.</p></div></div>
+          <div class="rung" data-r="4"><div class="rn">4</div><div class="rb"><h4>Live coaching and Q&amp;A</h4><p>Regular calls where they get you directly, and the community grows tighter around it.</p></div></div>
+          <div class="rung" data-r="5"><div class="rn">5</div><div class="rb"><h4>A mastermind or cohort</h4><p>A smaller, closer room for the founders who are ready to move faster and want you nearer.</p></div></div>
+          <div class="rung" data-r="6"><div class="rn">6</div><div class="rb"><h4>Working with you one on one</h4><p>For the ones ready to actually establish in the U.S., the done-with-you relationship you're known for.</p></div></div>
+          <div class="rung" data-r="7"><span class="rung-flag top">The top</span><div class="rn">7</div><div class="rb"><h4>Your firm</h4><p>When they're ready to execute, your practice handles it, kept entirely separate and protected.</p></div></div>
+          </div>
+        </div>
+        <p class="ladder-cap reveal">From a free first hello at the bottom, climbing all the way to your firm at the top</p>
+      </section>
+
+      <!-- BRAND -->
+      <section id="brand">
+        <div class="eyebrow reveal">The brand</div>
+        <h2 class="reveal">It has to feel <em>unmistakably like you.</em></h2>
+        <p class="reveal soft">Your law firm site is clean and gold and white and authoritative, and it does its job beautifully. But it's only one side of you. The version of you I saw on Instagram is warmer than that, and brighter, and far more colorful, and that is the version this platform gets to be built around.</p>
+        <p class="reveal">So we won't hand you a template with your name dropped into it. We'll build the brand out of who you actually are. Your photos, your stories, the way you talk, the colors you already lean toward, the culture you come from. It needs to be authoritative enough that a serious founder trusts it, and warm enough that they fall in love with it. Clean and credible on one hand, colorful and alive on the other. That balance is the hard part, and it's exactly the part worth getting right.</p>
+        <div class="pq reveal">
+          <span class="mark">“</span>
+          <blockquote>Authoritative enough to be trusted. Warm enough to be loved.</blockquote>
+          <cite>The line we'll walk on every page</cite>
+        </div>
+      </section>
+
+      <!-- SCOPE -->
+      <section id="scope">
+        <div class="eyebrow reveal">What it takes</div>
+        <h2 class="reveal">Everything it takes to do this <em>the right way.</em></h2>
+        <p class="reveal soft">I want to be honest with you about the size of this, not to make it feel heavy, but so you can see that it's real. Building this the way it deserves to be built takes a lot of moving pieces working together. Here is what goes into it. The good news is that almost none of it lands on your shoulders.</p>
+
+        <div class="scope reveal">
+          <div class="scope-item"><div class="si-n">01</div><h4>The brand and design</h4><p>A look and feel that's drawn from you and built to hold both authority and warmth, across every page someone touches.</p></div>
+          <div class="scope-item"><div class="si-n">02</div><h4>The platform itself</h4><p>The home where it all lives. The community, the courses, the memberships, all in one place that we can shape to look like you instead of everyone else.</p></div>
+          <div class="scope-item"><div class="si-n">03</div><h4>Your content, made simple</h4><p>Turning your books, your talks, and everything in your head into modules and workbooks people actually finish, with CJ handling the video and the studio so it feels effortless.</p></div>
+          <div class="scope-item"><div class="si-n">04</div><h4>The funnel and the emails</h4><p>How people find you, and how you stay close to them over time. The lead magnets, the sign-ups, and the nurture sequences that move someone from curious to committed.</p></div>
+          <div class="scope-item"><div class="si-n">05</div><h4>Payments that work in India</h4><p>The single most important detail. We make paying you effortless from a phone in any village, so you never lose someone at the very last step.</p></div>
+          <div class="scope-item"><div class="si-n">06</div><h4>Webinars and teaching at scale</h4><p>The one-to-many system you've never had, so you can teach a room of hundreds as easily as you'd teach one, with us running it behind the scenes.</p></div>
+          <div class="scope-item"><div class="si-n">07</div><h4>Community and cohorts</h4><p>The structure that lets your people connect with each other and grow together, which is the belonging they don't get inside their own families.</p></div>
+          <div class="scope-item"><div class="si-n">08</div><h4>The launch</h4><p>A real launch built to land before December, so you walk into the convention with buzz already moving and a story people are talking about.</p></div>
+          <div class="scope-item later"><div class="si-n">09 · later</div><h4>The resource hub</h4><p>Down the road, the one-stop place where you connect your founders to everyone they need. You, CJ, immigration, tax, financing, all vetted by you.</p></div>
+          <div class="scope-item later"><div class="si-n">◆</div><h4>And everything in between</h4><p>The thousand small decisions that make it feel finished, considered, and cared for. The part most people skip, and the part that makes it yours.</p></div>
+        </div>
+
+        <div class="scope-close reveal">Most of this you'll never have to touch. <b>That's the point.</b></div>
+      </section>
+
+      <!-- ROADMAP -->
+      <section id="roadmap">
+        <div class="eyebrow reveal">The roadmap</div>
+        <h2 class="reveal">How we'd get there, <em>step by step.</em></h2>
+        <p class="reveal soft">We don't build everything at once, and we don't guess. We move in phases, and each one sets up the next, so it always feels like progress instead of pressure.</p>
+
+        <div class="roadmap reveal">
+          <div class="rm">
+            <span class="when">First · before we build anything</span>
+            <h4>Strategy and blueprint</h4>
+            <p>We map the entire thing together before a single page gets built. Who we lead with, what we offer, how the brand looks, how people pay, and a clear plan that runs all the way to the convention. This is where we make sure we're building the right thing, not just building fast.</p>
+          </div>
+          <div class="rm">
+            <span class="when">Then</span>
+            <h4>The build</h4>
+            <p>Brand, platform, content, the funnel, the emails, payments, the first modules, the community. This is where the picture becomes real.</p>
+          </div>
+          <div class="rm launch">
+            <span class="when">By October → December 16–18</span>
+            <h4>The launch and the convention</h4>
+            <p>We launch with enough buzz that by the time you take the stage at the startup convention in India, people already know what you're building. We treat that event as a live launch moment, and we capture it.</p>
+          </div>
+          <div class="rm">
+            <span class="when">January → March and beyond</span>
+            <h4>Grow</h4>
+            <p>We add the resource hub, we refine what's working, and we keep building on the momentum. Because this is the beginning of something that keeps growing, not a finish line.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PARTNERSHIP -->
+      <section id="partnership">
+        <div class="eyebrow reveal">Being in it with you</div>
+        <h2 class="reveal">I want to be in this <em>with you.</em></h2>
+        <p class="reveal soft">I want to be careful with my words here, because this matters more to me than anything else on this page.</p>
+        <div class="partner-quote reveal">
+          <p>Honestly, the word I keep reaching for is <span class="hl">partner</span>. But I almost don't want to use it, because you're an attorney, and I don't want you to hear it and think I'm angling to be made a partner in your business, or to stand somewhere higher than I actually am. That's not what I mean at all.</p>
+          <p>What I mean is simpler, and maybe bigger. I want to be the person standing beside you, giving you the structure and the guidance and the steady support you need to bring this into the world. A partner in <em>that</em> sense. Someone who's in it with you, not someone with their name on the door.</p>
+          <p>And honestly, that fits how you've always worked anyway. You have never kept a client for a single transaction in your life. Some of them have been with you ten and fifteen years, because you stay in it with them, right? So a platform like this is never really finished. It's <strong>alive.</strong> The content keeps coming, the community needs tending, the webinars keep running, and the whole thing gets better the longer someone stays close to it and keeps shaping it with you.</p>
+          <p>So I'm not here to build you a website and disappear, and I'm not here to be elevated above what I am. I'm here to support you, and to keep supporting you as this grows and takes off. <span class="hl">We build it together, we launch it together, and then we keep making it better, together.</span></p>
+        </div>
+      </section>
+
+      <!-- CLOSE -->
+      <section id="close">
+        <div class="eyebrow reveal">Before you go</div>
+        <h2 class="reveal">Here's what I <em>keep coming back to.</em></h2>
+        <div class="letter reveal">
+          <div class="lhead">One more thing, Megha,</div>
+          <p>You already have everything that actually matters. You have the expertise, the stories, the network, the books sitting on your shelf, and a framework in SHINE that I genuinely think is worth more than you realize. What you don't have yet is the system that takes all of it and puts it in front of the people who need it, in a way that still feels like you. And that's the part I'm good at.</p>
+          <p>So when you're ready, let's talk about what the first step looks like, and I'll have the details for you. But I wanted you to see the heart of it first, because I think you're sitting on something that could genuinely change a lot of lives, and one of them might be your own.</p>
+          <p class="lets">Let's build it.</p>
+          <div class="sig">
+            <div class="name">Shayne</div>
+            <div class="role">Shayne Champlin · Strategy, build &amp; ongoing support</div>
+          </div>
+        </div>
+        <div class="endmark">
+          <span class="di">◆ ◆ ◆</span>
+          A first look, prepared with care for Megha Bhouraskar
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<script>
+  const sidebar=document.getElementById('sidebar');
+  const navToggle=document.getElementById('navToggle');
+  navToggle&&navToggle.addEventListener('click',()=>sidebar.classList.toggle('open'));
+  document.querySelectorAll('nav.toc a').forEach(a=>a.addEventListener('click',()=>sidebar.classList.remove('open')));
+
+  const links=[...document.querySelectorAll('nav.toc a')];
+  const map={};
+  links.forEach(a=>{const id=a.getAttribute('href').slice(1);const el=document.getElementById(id);if(el)map[id]=a;});
+  const spy=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){links.forEach(l=>l.classList.remove('active'));const a=map[e.target.id];if(a)a.classList.add('active');}});
+  },{rootMargin:'-18% 0px -74% 0px',threshold:0});
+  Object.keys(map).forEach(id=>{const el=document.getElementById(id);if(el)spy.observe(el);});
+
+  const rev=new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');rev.unobserve(e.target);}});
+  },{rootMargin:'0px 0px -8% 0px',threshold:.08});
+  document.querySelectorAll('.reveal').forEach(el=>rev.observe(el));
+  document.querySelectorAll('.cover .reveal').forEach((el,i)=>{setTimeout(()=>el.classList.add('in'),140+i*120);});
+</script>
+</body>
+</html>
