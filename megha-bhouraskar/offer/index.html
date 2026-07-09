@@ -268,6 +268,12 @@
   .doc-nav a:hover .di{opacity:.8}
   .doc-nav a.is-active{color:var(--marigold-deep);background:var(--marigold-wash);font-weight:600}
   .doc-nav a.is-active .di{opacity:1;color:var(--marigold-deep)}
+  @media (max-width:1080px){
+    .doc-nav{flex-direction:row;flex-wrap:wrap;gap:6px;width:100%;margin:0;padding:0;border-bottom:0}
+    .doc-nav .dn-eyebrow{display:none}
+    .doc-nav a{font-size:13.5px;padding:6px 12px;border:1px solid var(--line);background:var(--paper-3)}
+    .doc-nav a.is-active{border-color:var(--marigold)}
+  }
 </style>
 </head>
 <body>
