@@ -1,0 +1,1673 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Imprint Hospitality — Sales &amp; Booking System</title>
+<meta name="description" content="A proposal for Imprint Hospitality: one system that carries every property's leads from first inquiry to booked deposit. Prepared for Lauren Ripko.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..700&family=Jost:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23ee7623' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M16 5a11 11 0 0 1 0 22'/%3E%3Cpath d='M16 9.5a6.5 6.5 0 0 1 0 13'/%3E%3Cpath d='M16 14a2 2 0 0 1 0 4'/%3E%3Cpath d='M11 6.6a11 11 0 0 0 0 18.8'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   TOKENS
+   Palette derived from imprinthospitality.com's own CSS variables
+   (--orange #ee7623, --darkgrey #4d4d4f, --lightgrey #f1f1f1),
+   given the tint/shade ramp and the mid-level heading their
+   type scale is missing.
+   ============================================================ */
+:root{
+  --orange:#ee7623;
+  --orange-deep:#d86211;
+  --orange-press:#a8480c;
+  --orange-wash:#fdf1e8;
+  --orange-line:#f3c9a4;
+
+  --ink:#1a1a1c;
+  --ink-soft:#55555a;
+  --ink-faint:#8e8e94;
+
+  --paper:#fbfaf9;
+  --paper-2:#efece7;   /* alternating band — deep enough to actually read */
+  --paper-3:#e4e1dc;
+
+  --slate:#4d4d4f;
+  --slate-deep:#2b2b2d;
+  --slate-line:#3c3c3f;
+
+  --hairline:rgba(26,26,28,.10);
+  --hairline-strong:rgba(26,26,28,.18);
+  --hairline-rev:rgba(255,255,255,.16);
+
+  --f-body:'Mulish',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --f-label:'Jost',-apple-system,'Segoe UI',sans-serif;
+  --f-title:'Barlow Condensed','Arial Narrow',sans-serif;
+
+  --gut:clamp(1.25rem,5vw,6rem);
+  --wrap:1240px;
+  --prose:68ch;
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;font-weight:400;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:2px}
+
+/* ---------- type roles ---------- */
+.eyebrow{
+  font-family:var(--f-label);font-weight:600;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--orange-deep);
+}
+.eyebrow.rev{color:var(--orange)}
+h1,.display{
+  font-family:var(--f-body);font-weight:800;
+  font-size:clamp(2.5rem,5.6vw,4.4rem);line-height:1.02;letter-spacing:-.022em;
+}
+h2,.stitle{
+  font-family:var(--f-title);font-weight:600;
+  font-size:clamp(1.75rem,3.4vw,2.35rem);line-height:1.1;
+  letter-spacing:.085em;text-transform:uppercase;
+}
+h3,.subhead{
+  font-family:var(--f-body);font-weight:700;
+  font-size:1.3rem;line-height:1.35;letter-spacing:-.012em;
+}
+h4{
+  font-family:var(--f-label);font-weight:600;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+}
+.lede{font-size:1.28rem;line-height:1.5;color:var(--ink-soft);font-weight:400;max-width:var(--prose)}
+.prose{max-width:var(--prose)}
+.prose p+p{margin-top:1.1em}
+.mono-num{font-family:var(--f-label);font-weight:500;font-variant-numeric:tabular-nums}
+strong{font-weight:700;color:var(--ink)}
+em{font-style:italic}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+section{position:relative;padding-block:clamp(4.5rem,9vw,7.5rem)}
+.band{background:var(--slate-deep);color:#fff}
+.band .lede{color:rgba(255,255,255,.72)}
+.band h4{color:rgba(255,255,255,.55)}
+.band-soft{background:var(--paper-2)}
+
+/* section head: revives Imprint's rotated vertical label —
+   the one genuinely distinctive device on their site */
+.shead{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
+.vlabel{
+  font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-faint);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  border-left:4px solid var(--orange);padding:0 0 0 12px;
+  margin-left:2px;white-space:nowrap;align-self:stretch;
+  display:flex;align-items:center;   /* centre the label in the rail so it
+                                        sits consistently regardless of how
+                                        many lines the lede runs to */
+}
+.band .vlabel{color:rgba(255,255,255,.5)}
+.shead-body>*+*{margin-top:.85rem}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(251,250,249,.88);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);height:64px;display:flex;align-items:center;gap:2rem}
+.nav-brand{display:flex;align-items:center;gap:11px;font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.nav-brand svg{width:22px;height:22px;flex:none}
+.nav-brand span{color:var(--ink-faint)}
+.nav-links{display:flex;gap:clamp(.7rem,1.35vw,1.35rem);margin-left:auto;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 0 94%,transparent)}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-family:var(--f-label);font-weight:500;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-faint);
+  padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.on{color:var(--ink);border-bottom-color:var(--orange)}
+
+/* right rail — Imprint built an index-nav and disabled it; this turns it back on */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:11px}
+.rail a{width:7px;height:7px;border-radius:50%;background:var(--hairline-strong);transition:all .3s var(--ease);position:relative}
+.rail a::after{
+  content:attr(data-t);position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-family:var(--f-label);font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink);background:var(--paper);border:1px solid var(--hairline);
+  padding:4px 8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s
+}
+.rail a:hover::after{opacity:1}
+.rail a.on{background:var(--orange);transform:scale(1.5)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;background:var(--slate-deep);color:#fff;padding-block:clamp(4rem,10vw,7.5rem) clamp(4rem,8vw,6rem);overflow:hidden}
+.hero-mark{position:absolute;right:-14%;top:50%;transform:translateY(-50%);width:min(760px,86vw);opacity:.055;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{max-width:19ch;margin-top:1.4rem}
+.hero h1 .hl{color:var(--orange)}
+.hero-sub{font-size:clamp(1.1rem,1.9vw,1.35rem);line-height:1.55;color:rgba(255,255,255,.74);max-width:56ch;margin-top:1.6rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0 2.5rem;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--hairline-rev)}
+.hero-meta div{padding:.7rem 0}
+.hero-meta dt{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.hero-meta dd{margin:5px 0 0;font-weight:600;font-size:1.02rem}
+.hero-meta dd.accent{color:var(--orange)}
+
+/* ============================================================
+   THE FOLDER — the signature container.
+   "It's a booking, and inside the booking live all of the
+   events and rooms." A booking is a folder. So it gets a tab.
+   ============================================================ */
+.folder{position:relative;margin-top:2rem}
+.folder-tab{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--slate-deep);color:#fff;
+  font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:11px 34px 11px 20px;
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 100%,0 100%);
+}
+.folder-tab .cnt{color:var(--orange);font-weight:500;letter-spacing:.1em}
+.folder-body{
+  background:var(--paper-2);border:1px solid var(--hairline-strong);border-top-width:2px;
+  border-top-color:var(--slate-deep);padding:clamp(1.25rem,3vw,2rem);
+}
+.folder.on-dark .folder-tab{background:var(--orange);color:#fff}
+.folder.on-dark .folder-tab .cnt{color:rgba(255,255,255,.72)}
+.folder.on-dark .folder-body{background:rgba(255,255,255,.045);border-color:var(--hairline-rev);border-top-color:var(--orange)}
+.folder.ghost .folder-tab{background:transparent;color:var(--ink-faint);border:1px dashed var(--hairline-strong);border-bottom:0;clip-path:none;padding:9px 18px}
+.folder.ghost .folder-body{background:transparent;border:1px dashed var(--hairline-strong);border-top-width:1px;border-top-color:var(--hairline-strong)}
+
+/* ============================================================
+   §02 — BOOKING CONTAINER DIAGRAM
+   ============================================================ */
+.model{display:grid;grid-template-columns:minmax(170px,210px) 56px 1fr;align-items:center;gap:0;margin-top:1rem}
+.model-in{display:flex;flex-direction:column;gap:14px}
+.feeder{
+  border:1px solid var(--hairline-rev);background:rgba(255,255,255,.05);
+  padding:13px 15px;
+}
+.feeder .k{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.feeder .v{font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.62);margin-top:4px}
+.model-link{position:relative;height:100%;min-height:120px}
+.model-link::before{
+  content:'';position:absolute;left:0;right:9px;top:50%;height:1px;
+  background:repeating-linear-gradient(90deg,var(--orange) 0 5px,transparent 5px 10px);
+}
+.model-link::after{
+  content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
+  border:5px solid transparent;border-left-color:var(--orange);
+}
+
+/* Split 4 + 3 rather than 7 across four columns. The spine records carry
+   cardinality and fields; the three below attach to everything. */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;align-items:start}
+.chips.three{grid-template-columns:repeat(3,1fr)}
+.chips-split{display:flex;align-items:center;gap:14px;margin:22px 0 13px;
+  font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.45)}
+.chips-split::after{content:'';flex:1;height:1px;background:var(--hairline-rev)}
+.chip{
+  display:block;text-align:left;width:100%;
+  border:1px solid var(--hairline-rev);background:rgba(255,255,255,.05);
+  padding:14px 15px 32px;transition:all .25s var(--ease);position:relative;
+}
+.chip[aria-expanded="true"]{padding-bottom:15px}
+.chip:hover{background:rgba(238,118,35,.12);border-color:var(--orange)}
+.chip[aria-expanded="true"]{background:rgba(238,118,35,.14);border-color:var(--orange)}
+.chip-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.chip-name{font-family:var(--f-label);font-weight:600;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:#fff}
+.chip-card{font-family:var(--f-label);font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--orange);white-space:nowrap}
+.chip-note{font-size:13px;line-height:1.4;color:rgba(255,255,255,.58);margin-top:6px}
+.chip-fields{display:none;margin-top:11px;padding-top:11px;border-top:1px solid var(--hairline-rev)}
+.chip[aria-expanded="true"] .chip-fields{display:block}
+.chip-fields li{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.72);padding-left:13px;position:relative}
+.chip-fields li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:1px;background:var(--orange)}
+.chip-fields li b{color:#fff;font-weight:600}
+.chip-fields li.nest{padding-left:0}
+.chip-fields li.nest::before{display:none}
+.chip-nest{margin-top:9px;padding:9px 11px;background:rgba(0,0,0,.22);border-left:2px solid var(--orange)}
+.chip-nest .n{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--orange)}
+.chip-nest .d{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:3px;line-height:1.45}
+.chip-more{
+  position:absolute;right:13px;bottom:12px;font-family:var(--f-label);font-size:9.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);
+}
+.chip[aria-expanded="true"] .chip-more{display:none}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(255px,100%),1fr));gap:1px;background:var(--hairline-rev);margin-top:2.5rem;border:1px solid var(--hairline-rev)}
+.note{background:var(--slate-deep);padding:18px 20px}
+.note h4{color:var(--orange);margin-bottom:7px}
+.note p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.68)}
+
+/* ============================================================
+   §01 — QUOTES
+   ============================================================ */
+/* 2-up: four quotes divide evenly, and they get room to be read */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:1.75rem 2.5rem;margin-top:.5rem}
+.quote{border-left:3px solid var(--orange);padding:2px 0 2px 20px}
+.quote p{font-size:1.16rem;line-height:1.45;font-weight:500;letter-spacing:-.01em}
+.quote cite{display:block;margin-top:11px;font-family:var(--f-label);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-style:normal}
+.costwall{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:3rem}
+.cw{background:var(--paper);padding:22px 24px}
+.cw .n{font-family:var(--f-label);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1;letter-spacing:-.02em}
+.cw .n.hot{color:var(--orange-deep)}
+.cw .l{font-size:14px;line-height:1.45;color:var(--ink-soft);margin-top:9px}
+
+/* ============================================================
+   §03 — PIPELINE
+   ============================================================ */
+.pipe{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;margin-top:1.5rem}
+.stage{
+  display:block;text-align:left;position:relative;padding:15px 13px 34px;
+  background:var(--paper);border:1px solid var(--hairline-strong);
+  transition:all .25s var(--ease);
+}
+.stage::after{
+  content:'';position:absolute;right:-9px;top:34px;width:9px;height:1px;background:var(--hairline-strong);z-index:2
+}
+.stage:last-child::after{display:none}
+.stage:hover{border-color:var(--orange);transform:translateY(-2px)}
+.stage[aria-expanded="true"]{background:var(--orange-wash);border-color:var(--orange);border-width:1.5px}
+.stage .sn{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.12em;color:var(--ink-faint)}
+.stage .st{font-family:var(--f-label);font-weight:600;font-size:12.5px;letter-spacing:.11em;text-transform:uppercase;margin-top:9px;line-height:1.25}
+.stage .sd{font-size:12.5px;line-height:1.4;color:var(--ink-soft);margin-top:7px}
+.stage.done{background:var(--slate-deep);border-color:var(--slate-deep)}
+.stage.done .st{color:#fff}
+.stage.done .sn,.stage.done .sd{color:rgba(255,255,255,.6)}
+.stage.done[aria-expanded="true"]{background:var(--slate-deep)}
+.stage .exp{position:absolute;left:13px;bottom:11px;font-family:var(--f-label);font-size:9px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--orange-deep)}
+.stage.done .exp{color:var(--orange)}
+.stage[aria-expanded="true"] .exp{color:var(--ink-faint)}
+
+.spec{display:none;border:1.5px solid var(--orange);border-top:0;background:var(--orange-wash);padding:22px clamp(1rem,2.5vw,1.75rem)}
+.spec.open{display:block}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.4rem}
+.spec-grid h4{color:var(--orange-press);margin-bottom:6px}
+.spec-grid p{font-size:14px;line-height:1.5;color:var(--ink-soft)}
+.spec-grid p b{color:var(--ink);font-weight:700}
+.spec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:1.2rem;padding-bottom:.9rem;border-bottom:1px solid var(--orange-line)}
+.spec-head .t{font-family:var(--f-title);font-weight:600;font-size:1.5rem;letter-spacing:.07em;text-transform:uppercase}
+.spec-head .s{font-family:var(--f-label);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+
+.branch{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1.25rem;margin-top:1.75rem}
+.bx{border:1px dashed var(--hairline-strong);padding:16px 18px;background:var(--paper)}
+.bx.dead{border-color:#d9a2a2;background:#fdf4f4}
+.bx h4{margin-bottom:6px}
+.bx.dead h4{color:#b04141}
+.bx p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+.p2lane{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-top:1rem}
+.p2step{border:1px dashed var(--hairline-strong);padding:11px 13px;background:rgba(0,0,0,.015)}
+.p2step .n{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.p2step .d{font-size:12.5px;line-height:1.4;color:var(--ink-faint);margin-top:5px}
+
+/* ============================================================
+   §04 — SWIMLANE
+   ============================================================ */
+.lane-key{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-bottom:1.5rem}
+.lk{display:flex;align-items:center;gap:8px;font-family:var(--f-label);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.lk i{width:11px;height:11px;flex:none;border:1.5px solid}
+.lk.cu i{border-color:var(--slate);background:var(--paper-3)}
+.lk.sy i{border-color:var(--ink);background:#e6e4e1}
+.lk.la i{border-color:var(--orange);background:transparent}
+.lk.judge i{border-color:var(--orange);background:var(--orange)}
+.lk.st i{border-color:var(--ink-faint);background:transparent;border-style:dashed}
+.lk.judge{color:var(--orange-press)}
+
+/* No overflow:hidden here. It would make .swim the scroll container for the
+   sticky header, which never scrolls — so the header would ride out of the
+   box and clip instead of pinning under the nav. */
+.swim{border:1px solid var(--hairline);border-bottom:0}
+.swim-head{display:grid;grid-template-columns:44px repeat(4,1fr);position:sticky;top:64px;z-index:20;
+  background:var(--paper-3);border-bottom:1px solid var(--hairline-strong);
+  box-shadow:0 6px 14px -10px rgba(26,26,28,.35)}
+.swim-head div{padding:11px 12px;font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);border-left:1px solid var(--hairline)}
+.swim-head div:first-child{border-left:0}
+.swim-row{display:grid;grid-template-columns:44px repeat(4,1fr);border-bottom:1px solid var(--hairline);min-height:46px}
+.swim-row:nth-child(even){background:rgba(0,0,0,.015)}
+.swim-n{padding:12px 8px;font-family:var(--f-label);font-size:10.5px;font-weight:500;color:var(--ink-faint);border-right:1px solid var(--hairline);text-align:center}
+.swim-cell{padding:8px;border-left:1px solid var(--hairline);display:flex;align-items:center}
+.swim-cell:first-of-type{border-left:0}
+/* Only ONE treatment is filled orange: the three moments that need
+   Lauren's judgment. Her routine actions carry an orange rule but no
+   fill, so the three genuinely pop instead of competing with six others. */
+.act{font-size:13px;line-height:1.35;padding:7px 11px;width:100%;border-left:3px solid var(--slate);background:var(--paper-3)}
+.act.sy{border-left-color:var(--ink);background:#e6e4e1}
+.act.la{border-left-color:var(--orange);background:transparent;box-shadow:inset 0 0 0 1px var(--hairline)}
+.act.st{border-left:3px solid var(--ink-faint);background:transparent;box-shadow:inset 0 0 0 1px var(--hairline);border-top:1px dashed var(--hairline-strong);border-right:1px dashed var(--hairline-strong);border-bottom:1px dashed var(--hairline-strong)}
+.act.judge{background:var(--orange);color:#fff;border-left-color:var(--orange-press);font-weight:600;box-shadow:none}
+.swim-arrow{align-self:center;color:var(--ink-soft);font-weight:600;font-size:11.5px;padding:0 2px;flex:none;white-space:nowrap}
+.act.judge .swim-arrow{color:rgba(255,255,255,.85)}
+.swim-m{display:none}
+
+.judgebox{margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(275px,100%),1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.jb{background:var(--paper);padding:20px 22px}
+.jb.hot{background:var(--orange-wash);border-left:3px solid var(--orange)}
+.jb h4{margin-bottom:8px}
+.jb.hot h4{color:var(--orange-press)}
+.jb li{font-size:14px;line-height:1.6;padding-left:16px;position:relative;color:var(--ink-soft)}
+.jb li::before{content:'';position:absolute;left:0;top:.68em;width:7px;height:1px;background:var(--ink-faint)}
+.jb.hot li::before{background:var(--orange)}
+
+/* ============================================================
+   §05 — REPORTS
+   ============================================================ */
+/* 330px min -> 3 cols at full width. Six cards divide evenly by 3, 2 and 1,
+   so no orphan cells show the container background at any breakpoint. */
+.reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:.5rem}
+.rep{background:var(--paper);padding:22px 24px 24px;transition:background .25s var(--ease)}
+.rep:hover{background:var(--orange-wash)}
+.rep .cad{font-family:var(--f-label);font-weight:600;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-deep)}
+.rep h3{margin-top:9px;font-size:1.12rem}
+.rep p{font-size:14px;line-height:1.5;color:var(--ink-soft);margin-top:8px}
+.rep .src{font-family:var(--f-label);font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--ink-faint);margin-top:12px;padding-top:10px;border-top:1px solid var(--hairline)}
+.rep .fmt{display:inline-block;font-family:var(--f-label);font-weight:600;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:4px 9px;border:1px solid var(--hairline-strong);color:var(--ink-soft);margin-bottom:12px}
+.rep .fmt.chart{background:var(--orange-wash);border-color:var(--orange-line);color:var(--orange-press)}
+.rep .fmt.list{background:var(--paper-2)}
+.rep .need-you{font-size:12.5px;line-height:1.45;color:var(--orange-press);margin-top:10px;padding-top:9px;border-top:1px dashed var(--orange-line)}
+
+/* ============================================================
+   §06 — PLATFORM
+   ============================================================ */
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,2.75rem);align-items:center;border:1px solid var(--hairline-strong);border-left:4px solid var(--orange);padding:clamp(1.4rem,3vw,2rem);background:var(--paper);margin-bottom:2.5rem}
+.verdict .big{font-family:var(--f-title);font-weight:700;font-size:clamp(2rem,4.5vw,2.9rem);letter-spacing:.05em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.verdict p{font-size:15px;line-height:1.55;color:var(--ink-soft)}
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.sc{background:var(--paper);padding:18px 20px}
+.sc .n{font-family:var(--f-label);font-weight:600;font-size:2.1rem;line-height:1;letter-spacing:-.02em}
+.sc.ok .n{color:#3f7d4e}.sc.warn .n{color:var(--orange-deep)}.sc.gap .n{color:var(--slate)}
+.sc .l{font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin-top:8px}
+.sc .l b{display:block;font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+
+.tradeoffs{margin-top:2.5rem}
+.to{border:1px solid var(--hairline);border-left:3px solid var(--orange);background:var(--orange-wash);padding:20px 24px;margin-bottom:12px}
+.to h3{font-size:1.08rem}
+.to p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:7px}
+.to.plain{border-left-color:var(--hairline-strong);background:var(--paper)}
+
+.alts{width:100%;border-collapse:collapse;margin-top:1.25rem;font-size:14.5px}
+.alts th{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:0 14px 10px 0;border-bottom:1px solid var(--hairline-strong)}
+.alts td{padding:14px 14px 14px 0;border-bottom:1px solid var(--hairline);vertical-align:top;line-height:1.5;color:var(--ink-soft)}
+.alts td:first-child{font-family:var(--f-label);font-weight:600;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.alts td:nth-child(2){font-family:var(--f-label);font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+.alts tr.pick td{background:var(--orange-wash)}
+.alts tr.pick td:nth-child(2){color:var(--orange-press)}
+
+/* ============================================================
+   §07 — PHASES
+   ============================================================ */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.25rem;margin-top:.5rem;align-items:start}
+.ph{border:1px solid var(--hairline-strong);background:var(--paper);padding:0}
+.ph-h{padding:18px 22px;border-bottom:1px solid var(--hairline)}
+.ph-h .p{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+.ph-h h3{margin-top:7px}
+.ph-h .when{font-family:var(--f-label);font-size:11.5px;font-weight:500;letter-spacing:.06em;color:var(--ink-soft);margin-top:5px}
+.ph-b{padding:18px 22px 22px}
+.ph-b li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:15px;position:relative;margin-bottom:8px}
+.ph-b li::before{content:'';position:absolute;left:0;top:.65em;width:7px;height:1px;background:var(--ink-faint)}
+.ph-why{font-size:13px;line-height:1.5;color:var(--ink-faint);margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);font-style:italic}
+.ph.now{border-color:var(--orange);border-width:1.5px;transform:translateY(-10px)}
+.ph.now .ph-h{background:var(--orange);border-bottom-color:var(--orange)}
+.ph.now .ph-h .p{color:rgba(255,255,255,.72)}
+.ph.now .ph-h h3,.ph.now .ph-h .when{color:#fff}
+.ph.now .ph-b li::before{background:var(--orange)}
+
+/* ============================================================
+   DELIVERY — build / prove / roll out.
+   The pilot sits INSIDE the engagement, not after it, and each
+   payment attaches to something the client can watch happen.
+   ============================================================ */
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.5rem;margin-top:.5rem;align-items:stretch}
+.stg{display:flex;flex-direction:column;border:1px solid var(--hairline-strong);background:var(--paper);position:relative}
+.stg::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:var(--hairline-strong)}
+.stg.on::before{background:var(--orange)}
+.stg-h{padding:24px 26px 18px;border-bottom:1px solid var(--hairline)}
+.stg-n{display:flex;align-items:baseline;gap:12px}
+.stg-n .num{font-family:var(--f-title);font-weight:700;font-size:2.6rem;line-height:.85;letter-spacing:.02em;color:var(--orange)}
+.stg-n .wk{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.stg-h h3{font-family:var(--f-title);font-weight:600;font-size:1.75rem;letter-spacing:.07em;text-transform:uppercase;margin-top:11px;line-height:1}
+.stg-h .say{font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin-top:10px}
+.stg-b{padding:20px 26px;flex:1}
+.stg-b li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:9px}
+.stg-b li::before{content:'';position:absolute;left:0;top:.65em;width:8px;height:1px;background:var(--orange)}
+.stg-out{margin:0 26px 20px;padding:15px 17px;background:var(--paper-2);border-left:3px solid var(--slate)}
+.stg-out .k{font-family:var(--f-label);font-weight:600;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-faint)}
+.stg-out .v{font-size:14px;line-height:1.5;margin-top:6px;font-weight:600}
+.stg-pay{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:18px 26px;min-height:74px;background:var(--slate-deep);color:#fff;margin-top:auto}
+.stg-pay .amt{font-family:var(--f-title);font-weight:700;font-size:1.8rem;letter-spacing:.03em;color:var(--orange);line-height:1}
+.stg-pay .when{font-family:var(--f-label);font-weight:500;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.7);text-align:right;line-height:1.4}
+.why-staged{margin-top:2.25rem;border:1px solid var(--hairline-strong);border-left:3px solid var(--orange);background:var(--orange-wash);padding:22px 26px}
+.why-staged h3{font-size:1.1rem}
+.why-staged p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:9px;max-width:78ch}
+.accept{margin-top:1.25rem;border:1px solid var(--hairline);padding:22px 26px;background:var(--paper)}
+.accept h4{margin-bottom:11px}
+.accept li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:22px;position:relative;margin-bottom:7px}
+.accept li::before{content:'✓';position:absolute;left:0;top:0;font-size:12px;color:var(--orange);font-weight:700}
+.accept .note{font-size:13.5px;line-height:1.55;color:var(--ink-faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--hairline)}
+
+/* ============================================================
+   §08 — WORKSTREAMS
+   ============================================================ */
+.ws-list{border-top:1px solid var(--hairline-strong);margin-top:.5rem}
+.ws{border-bottom:1px solid var(--hairline)}
+.ws-btn{display:grid;grid-template-columns:1fr 120px 76px 26px;align-items:center;gap:1rem;width:100%;text-align:left;padding:17px 4px;transition:background .2s var(--ease)}
+.ws-btn:hover{background:var(--orange-wash)}
+.ws-name{font-family:var(--f-body);font-weight:700;font-size:1.04rem;letter-spacing:-.01em}
+.ws-bar{height:5px;background:var(--paper-3);position:relative;overflow:hidden}
+.ws-bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--orange);transition:width 1s var(--ease)}
+.ws-hrs{font-family:var(--f-label);font-weight:500;font-size:12.5px;letter-spacing:.05em;color:var(--ink-soft);text-align:right;white-space:nowrap}
+.ws-tog{font-family:var(--f-label);font-size:18px;font-weight:500;color:var(--orange);text-align:center;line-height:1;transition:transform .25s var(--ease)}
+.ws[data-open="1"] .ws-tog{color:var(--orange);transform:rotate(45deg)}
+.ws-body{display:none;padding:0 4px 22px}
+.ws[data-open="1"] .ws-body{display:block}
+.ws-body table{width:100%;border-collapse:collapse;font-size:14px}
+.ws-body td{padding:9px 14px 9px 0;border-bottom:1px solid var(--hairline);line-height:1.5;color:var(--ink-soft);vertical-align:top}
+.ws-body td:last-child{text-align:right;white-space:nowrap;font-family:var(--f-label);font-weight:500;font-size:12.5px;color:var(--ink-faint);padding-right:0;width:62px}
+.ws-body tr:last-child td{border-bottom:0}
+.ws-total{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:1rem;padding:22px 4px 0;border-top:2px solid var(--ink)}
+.ws-total .l{font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.ws-total .v{font-family:var(--f-title);font-weight:600;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:.05em;text-transform:uppercase}
+.after{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.25rem;margin-top:2.5rem}
+.af{border:1px solid var(--hairline);padding:20px 22px;background:var(--paper-2)}
+.af .h{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-deep)}
+.af h3{margin-top:8px;font-size:1.06rem}
+.af p{font-size:14px;line-height:1.55;color:var(--ink-soft);margin-top:8px}
+
+/* ============================================================
+   §09 — TIMELINE
+   ============================================================ */
+.tl{position:relative;margin-top:.5rem;padding-left:26px}
+/* connector stops at the final dot rather than dangling past it */
+.tl::before{content:'';position:absolute;left:5px;top:22px;bottom:0;width:1px;background:var(--hairline-strong)}
+.ms.live{position:relative}
+.ms.live::after{content:'';position:absolute;left:-21px;top:34px;bottom:-40px;width:1px;background:var(--paper)}
+.ms{position:relative;display:grid;grid-template-columns:150px 1fr;gap:1.5rem;padding:15px 0;border-bottom:1px solid var(--hairline)}
+.ms::before{content:'';position:absolute;left:-24px;top:22px;width:9px;height:9px;background:var(--paper);border:1.5px solid var(--ink-faint);border-radius:50%}
+.ms .w{font-family:var(--f-label);font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);padding-top:2px}
+.ms .m{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.ms.key::before{background:var(--orange);border-color:var(--orange);width:13px;height:13px;left:-26px;top:20px}
+.ms.key .w,.ms.key .m{color:var(--ink);font-weight:600}
+.ms.live{border-bottom:0;padding-top:22px}
+.ms.live::before{background:var(--orange);border-color:var(--orange);width:17px;height:17px;left:-28px;top:34px}
+.ms.live .w{font-family:var(--f-title);font-size:1.35rem;letter-spacing:.06em;color:var(--orange-deep);font-weight:700}
+.ms.live .m{font-family:var(--f-title);font-size:clamp(1.35rem,3vw,1.85rem);letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+
+/* ============================================================
+   §10 — INVESTMENT
+   ============================================================ */
+.inv{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline-rev);border:1px solid var(--hairline-rev)}
+.iv{display:grid;grid-template-columns:230px 190px 1fr;gap:1.5rem;align-items:baseline;background:var(--slate-deep);padding:22px 24px}
+.iv .k{font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.iv .a{font-family:var(--f-title);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.1rem);letter-spacing:.03em;color:var(--orange);line-height:1;white-space:nowrap}
+.iv .a small{display:block;font-family:var(--f-label);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px;white-space:normal}
+.iv .d{font-size:14px;line-height:1.55;color:rgba(255,255,255,.7)}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--hairline-rev)}
+.tm h4{color:var(--orange)!important;margin-bottom:8px}
+.tm p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.7)}
+
+/* ============================================================
+   §11 — WHAT I NEED
+   ============================================================ */
+.need{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(285px,100%),1fr));gap:1.25rem;margin-top:.5rem}
+/* seven items never divide evenly; the last one runs full width so the
+   final row reads as deliberate rather than orphaned */
+.nd:last-child{grid-column:1/-1}
+.nd{border:1px solid var(--hairline-strong);padding:18px 20px;background:var(--paper)}
+.nd .t{font-weight:700;font-size:15.5px;line-height:1.35}
+.nd .s{font-size:13.5px;line-height:1.5;color:var(--ink-soft);margin-top:7px}
+.nd.gate{border-left:3px solid var(--orange);background:var(--orange-wash)}
+.qs{counter-reset:q;margin-top:1.25rem;column-gap:2.5rem}
+.qs li{counter-increment:q;position:relative;padding-left:34px;margin-bottom:14px;font-size:15px;line-height:1.5;break-inside:avoid}
+.qs li::before{content:counter(q,decimal-leading-zero);position:absolute;left:0;top:.1em;font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.08em;color:var(--orange-deep)}
+
+/* ============================================================
+   §12 — NEXT + FOOTER
+   ============================================================ */
+.next-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:2rem}
+.ng{background:var(--paper);padding:22px 24px}
+.ng .s{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange-deep)}
+.ng p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:9px}
+/* ---------- the close ---------- */
+.close{background:var(--slate-deep);color:#fff;position:relative;overflow:hidden}
+.close-mark{position:absolute;left:-9%;top:50%;transform:translateY(-50%);width:min(560px,70vw);opacity:.05;pointer-events:none}
+.close .wrap{position:relative;z-index:1}
+.close-in{max-width:60ch;margin-left:auto}
+.close h2{color:#fff;margin-bottom:1.5rem}
+.close p{font-size:1.18rem;line-height:1.55;color:rgba(255,255,255,.78)}
+.close p+p{margin-top:1.1rem}
+.close p strong{color:#fff}
+.close .sig{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--hairline-rev)}
+.close .sig .n{font-family:var(--f-body);font-weight:700;font-size:1.05rem;color:#fff}
+.close .sig .e{font-family:var(--f-label);font-size:12.5px;letter-spacing:.06em;margin-top:5px}
+.close .sig .e a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.45)}
+footer{background:var(--slate-deep);color:rgba(255,255,255,.55);padding-block:3rem;font-size:13.5px;line-height:1.7;border-top:1px solid var(--hairline-rev)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:flex-start}
+footer strong{color:#fff;font-weight:600}
+footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.4)}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1180px){ .rail{display:none} }
+@media (max-width:1024px){
+  .pipe{grid-template-columns:repeat(4,1fr)}
+  .stage::after{display:none}
+  .chips,.chips.three{grid-template-columns:repeat(2,1fr)}
+  .close-in{max-width:none;margin-left:0}
+  .model{grid-template-columns:1fr}
+  .model-in{flex-direction:row;flex-wrap:wrap}
+  .model-in .feeder{flex:1 1 200px}
+  .model-link{min-height:0;height:34px;margin:6px 0}
+  .model-link::before{left:50%;right:auto;top:0;bottom:9px;width:1px;height:auto;background:repeating-linear-gradient(180deg,var(--orange) 0 5px,transparent 5px 10px)}
+  .model-link::after{left:50%;right:auto;top:auto;bottom:0;transform:translateX(-50%);border-left-color:transparent;border-top-color:var(--orange)}
+}
+@media (max-width:860px){
+  body{font-size:16px}
+  .swim-head{display:none}
+  .swim-row{grid-template-columns:34px 1fr;min-height:0}
+  .swim-cell{border-left:0;padding:7px 8px}
+  .swim-cell:empty{display:none}
+  .swim-m{display:inline-block;font-family:var(--f-label);font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px}
+  .act{width:100%}
+  .nav-brand span{display:none}
+}
+@media (min-width:820px){ .qs{column-count:2} }
+@media (max-width:860px){
+  .verdict{grid-template-columns:1fr;gap:1rem}
+  .verdict .big{white-space:normal}
+  .iv{grid-template-columns:1fr;gap:.5rem;padding:20px}
+  .iv .a{margin:4px 0 6px}
+  .iv .a small{display:inline;margin:0 0 0 10px}
+  .ws-btn{grid-template-columns:1fr 68px 22px;gap:.75rem}
+  .ws-bar{display:none}
+  .ph.now{transform:none}
+}
+@media (max-width:640px){
+  .pipe{grid-template-columns:repeat(2,1fr)}
+  .hero-meta{gap:0 1.5rem}
+  .shead{grid-template-columns:1fr}
+  .vlabel{writing-mode:horizontal-tb;transform:none;border-left:0;border-top:3px solid var(--orange);padding:9px 0 0;align-self:auto}
+  .ms{grid-template-columns:1fr;gap:.35rem}
+  .tl{padding-left:22px}
+  .chips,.chips.three{grid-template-columns:1fr}
+  .nd:last-child{grid-column:auto}
+  .alts,.alts tbody,.alts tr,.alts td{display:block;width:100%}
+  .alts thead{display:none}
+  .alts tr{padding:14px 0;border-bottom:1px solid var(--hairline)}
+  .alts td{border:0;padding:2px 0}
+  .alts td:nth-child(2){margin-bottom:6px}
+}
+
+/* ============================================================
+   PRINT — this proposal will be printed to PDF and forwarded.
+   Everything hidden behind a click must be open on paper.
+   ============================================================ */
+@media print{
+  @page{size:13in 18in;margin:.5in}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;
+    animation-duration:0s!important;transition-duration:0s!important}
+  html{scroll-behavior:auto}
+  body{font-size:12pt;background:#fff}
+  .nav,.rail,.chip-more,.stage .exp,.ws-tog{display:none!important}
+  .reveal,.reveal.in{opacity:1!important;transform:none!important}
+  section{padding-block:2.5rem;break-inside:auto}
+  .shead,.folder,.verdict,.quote,.rep,.to,.ph,.af,.jb,.iv,.nd,.ng,.note,.sc,.cw,.ms{break-inside:avoid}
+  h2,h3{break-after:avoid}
+
+  /* force every progressive-disclosure panel open */
+  .chip-fields{display:block!important}
+  .chip[aria-expanded]{background:rgba(238,118,35,.10)!important}
+  .spec{display:block!important;margin-bottom:10px;break-inside:avoid}
+  .ws-body{display:block!important}
+  .ws-bar i{width:var(--pw,0)!important}
+
+  /* Chrome's print engine trips responsive breakpoints off window size,
+     not page size — every desktop grid has to be re-forced here */
+  .model{grid-template-columns:minmax(170px,210px) 56px 1fr!important}
+  .pipe{grid-template-columns:repeat(7,1fr)!important}
+  .chips{grid-template-columns:repeat(4,1fr)!important}
+  .chips.three{grid-template-columns:repeat(3,1fr)!important}
+  .quotes{grid-template-columns:repeat(2,1fr)!important}
+  .nd:last-child{grid-column:1/-1!important}
+  .close,.close *{color:#fff!important}
+  .close .sig .e a{color:var(--orange)!important}
+  .swim-head,.swim-row{grid-template-columns:44px repeat(4,1fr)!important}
+  .swim-head{display:grid!important;position:static!important}
+  .swim-m{display:none!important}
+  .swim-cell{border-left:1px solid var(--hairline)!important;padding:8px!important}
+  .swim-cell:empty{display:block!important}
+  .qs{column-count:2!important}
+  .ws-btn{grid-template-columns:1fr 120px 76px 26px!important}
+  .ws-bar{display:block!important}
+  .ms{grid-template-columns:150px 1fr!important}
+  .iv{grid-template-columns:230px 190px 1fr!important}
+  .verdict{grid-template-columns:auto 1fr!important}
+  .alts,.alts tbody,.alts tr{display:table!important;width:100%}
+  .alts tr{display:table-row!important}
+  .alts td{display:table-cell!important;border-bottom:1px solid var(--hairline)!important;padding:12px 12px 12px 0!important}
+  .alts thead{display:table-header-group!important}
+  .hero,.band,footer{background:var(--slate-deep)!important;color:#fff!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#ee7623" stroke-width="2.4" stroke-linecap="round"><path d="M16 5a11 11 0 0 1 0 22"/><path d="M16 9.5a6.5 6.5 0 0 1 0 13"/><path d="M16 14a2 2 0 0 1 0 4"/><path d="M11 6.6a11 11 0 0 0 0 18.8"/></g></svg>
+      Imprint <span>&nbsp;/ Sales System</span>
+    </div>
+    <div class="nav-links">
+      <a href="#brief">Brief</a>
+      <a href="#model">Model</a>
+      <a href="#pipeline">Pipeline</a>
+      <a href="#roles">Roles</a>
+      <a href="#reports">Reports</a>
+      <a href="#platform">Platform</a>
+      <a href="#phases">Scope</a>
+      <a href="#delivery">Delivery</a>
+      <a href="#build">Build</a>
+      <a href="#timeline">Timeline</a>
+      <a href="#investment">Investment</a>
+      <a href="#next">Next</a>
+    </div>
+  </div>
+</nav>
+
+<div class="rail" aria-hidden="true">
+  <a href="#top" data-t="Top"></a>
+  <a href="#brief" data-t="The brief"></a>
+  <a href="#model" data-t="The model"></a>
+  <a href="#pipeline" data-t="Pipeline"></a>
+  <a href="#roles" data-t="Roles"></a>
+  <a href="#reports" data-t="Reports"></a>
+  <a href="#platform" data-t="Platform"></a>
+  <a href="#phases" data-t="Scope"></a>
+  <a href="#delivery" data-t="Delivery"></a>
+  <a href="#build" data-t="The build"></a>
+  <a href="#timeline" data-t="Timeline"></a>
+  <a href="#investment" data-t="Investment"></a>
+  <a href="#next" data-t="Next"></a>
+</div>
+
+<!-- ============ 00 HERO ============ -->
+<header class="hero" id="top">
+  <svg class="hero-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="#ee7623" stroke-width="7" stroke-linecap="round">
+      <circle cx="200" cy="200" r="188"/><circle cx="200" cy="200" r="152"/>
+      <circle cx="200" cy="200" r="116"/><circle cx="200" cy="200" r="80"/>
+      <circle cx="200" cy="200" r="44"/><circle cx="200" cy="200" r="14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow rev">Imprint Hospitality &nbsp;·&nbsp; Proposal &nbsp;·&nbsp; August 2026</p>
+    <h1>One system that carries every property from <span class="hl">first inquiry</span> to booked deposit.</h1>
+    <p class="hero-sub">Lead capture, qualification, proposals, contracts, signatures, deposits, and the reports your owners get every week. Built on one platform you own, live before booking season opens.</p>
+    <dl class="hero-meta">
+      <div><dt>Prepared for</dt><dd>Lauren Ripko</dd></div>
+      <div><dt>Prepared by</dt><dd>Shayne Champlin</dd></div>
+      <div><dt>Scope</dt><dd>Phase 1 — lead to booked</dd></div>
+      <div><dt>Live</dt><dd class="accent">November 1, 2026</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ============ 01 THE BRIEF ============ -->
+<section id="brief">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">What you told me</div>
+      <div class="shead-body">
+        <p class="eyebrow">The brief, in your words</p>
+        <h2>Two conversations, one problem</h2>
+        <p class="lede">Everything in this proposal traces back to something you said or drew across our July 24 and July 27 calls. Nothing here is a guess about your business.</p>
+      </div>
+    </div>
+
+    <div class="quotes reveal">
+      <figure class="quote">
+        <p>“It’s a booking, and inside the booking live all of the events and rooms. In the booking lives everything else.”</p>
+        <cite>Conversation one — the hierarchy sketch</cite>
+      </figure>
+      <figure class="quote">
+        <p>“That's the best part about TripleSeat. I don't have to go search through 10,000 emails.”</p>
+        <cite>Conversation one — what you can't lose</cite>
+      </figure>
+      <figure class="quote">
+        <p>“This is the biggest thing. Is this spot right here to booked.”</p>
+        <cite>Conversation two — the red circle on your diagram</cite>
+      </figure>
+      <figure class="quote">
+        <p>“As soon as I get this, I can get a human to work all these leads. This human is going to take this and go.”</p>
+        <cite>Conversation two — why it matters</cite>
+      </figure>
+    </div>
+
+    <div class="prose reveal" style="margin-top:3rem">
+      <p>The pattern underneath all four is the same. Your process already works. It works because you are personally holding it together across color-coded systems, a weekly spreadsheet you fill by hand, and an inbox where every booking's history lives in a thread nobody else can find.</p>
+      <p>That is not a software problem you can buy your way out of. TripleSeat is excellent, and it stays where it earns its keep. It just does not scale down to a boutique property.</p>
+    </div>
+
+    <div class="costwall reveal">
+      <div class="cw"><div class="n hot">$400</div><div class="l">Per property, per month, for TripleSeat. It only pencils above roughly $250k a year in bookings.</div></div>
+      <div class="cw"><div class="n">3</div><div class="l">Properties coming online this year that fall under that line. More behind them.</div></div>
+      <div class="cw"><div class="n">1</div><div class="l">Manual spreadsheet per property, filled in weekly, sent to owners by hand.</div></div>
+      <div class="cw"><div class="n hot">Nov</div><div class="l">Booking season opens. Whatever exists on November 1 is what carries the season.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 THE MODEL ============ -->
+<section id="model" class="band">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The core idea</div>
+      <div class="shead-body">
+        <p class="eyebrow rev">Diagram one</p>
+        <h2>The booking is the container</h2>
+        <p class="lede">You drew this on paper and it is the correct answer, so the system is built around it exactly. A booking is a folder. Every event, every room night, every document, every conversation and every dollar lives inside that folder and is reachable from it.</p>
+      </div>
+    </div>
+
+    <div class="model reveal">
+      <div class="model-in">
+        <div class="feeder"><div class="k">Property</div><div class="v">Branding, tax rates, deposit defaults, cutoff days, calendar, color</div></div>
+        <div class="feeder"><div class="k">Contact</div><div class="v">The client. One primary per booking today</div></div>
+      </div>
+      <div class="model-link" aria-hidden="true"></div>
+      <div class="folder on-dark" style="margin-top:0">
+        <div class="folder-tab">Booking <span class="cnt">event · rooms · both</span></div>
+        <div class="folder-body">
+          <div class="chips">
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Events</span><span class="chip-card">0 to many</span></div>
+              <p class="chip-note">One Aspen booking held twelve events under a single contract. The model allows for that.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li><b>Event type</b> — wedding, social, corporate. Feeds your reporting</li>
+                <li><b>Event date</b></li>
+                <li><b>Site fee</b></li>
+                <li><b>Setup details</b></li>
+                <li>No food and beverage. That stays in TripleSeat, where it talks to the kitchen</li>
+              </ul>
+            </button>
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Room block</span><span class="chip-card">0 or 1</span></div>
+              <p class="chip-note">Held room nights, itemized, with attrition terms attached.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li><b>Check in</b> / <b>check out</b></li>
+                <li><b>Room count</b></li>
+                <li><b>Attrition terms</b> — billing for held but unbooked rooms</li>
+                <li class="nest"><div class="chip-nest"><div class="n">Room lines</div><div class="d">Room type, night, rate. Rates differ by date, so Saturday prices separately from Monday. Entered by hand in version one.</div></div></li>
+              </ul>
+            </button>
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Proposal</span><span class="chip-card">versions</span></div>
+              <p class="chip-note">Generated from one shared template that fills in each property's own branding and rates.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li>Site fee, room lines, taxes, service charge</li>
+                <li>Deposit schedule dates</li>
+                <li><b>You approve every proposal before it sends.</b> That gate does not move</li>
+              </ul>
+            </button>
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Contract</span><span class="chip-card">0 or 1</span></div>
+              <p class="chip-note">The proposal plus your terms. The contract is what decides whether a booking is events, rooms, or both.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li><b>Type</b> — event, rooms, or combined</li>
+                <li><b>Payment schedule</b> — 25% / 50% / balance, dates keyed to the event</li>
+                <li><b>Signature status</b> — client signs, then you countersign</li>
+                <li class="nest"><div class="chip-nest"><div class="n">Payments</div><div class="d">Amount, due date (60 days out, 14 days out, balance plus 7), status, and method. Card or ACH.</div></div></li>
+              </ul>
+            </button>
+
+          </div>
+
+          <div class="chips-split">Attached to the booking, always</div>
+
+          <div class="chips three">
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Conversations</span><span class="chip-card">all of them</span></div>
+              <p class="chip-note">Email, text, and web chat in one thread. The 10,000-email problem, solved.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li>Every message in and out, in one view</li>
+                <li>One honest caveat on this one, named in the platform section below</li>
+              </ul>
+            </button>
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Documents</span><span class="chip-card">stored</span></div>
+              <p class="chip-note">Signed PDFs, floor plans, anything attached. Shared to the client portal automatically.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li>Proposals and contracts land here when they send</li>
+                <li>Clients can upload files back to you</li>
+              </ul>
+            </button>
+
+            <button class="chip" aria-expanded="false">
+              <div class="chip-top"><span class="chip-name">Tasks</span><span class="chip-card">driven</span></div>
+              <p class="chip-note">What the system tells a human to do next, and when.</p>
+              <span class="chip-more">Fields +</span>
+              <ul class="chip-fields">
+                <li>Created automatically on every stage change</li>
+                <li>Stale lead alerts, countersign prompts, soft hold reminders</li>
+              </ul>
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="notes reveal">
+      <div class="note"><h4>An event is not a booking</h4><p>Twelve events can live under one contract with one payment portal. Systems that treat the event as the top-level record cannot do that. This one can.</p></div>
+      <div class="note"><h4>The rooming list is a step, not data</h4><p>Your words: it would be a nightmare to track. So it stays a checkbox in the system and real work outside it.</p></div>
+      <div class="note"><h4>One template, many properties</h4><p>Property branding, tax rates and deposit defaults fill in automatically. Per-property values, not per-property layouts. That is what makes adding a property cheap.</p></div>
+      <div class="note"><h4>Rates are entered, not calculated</h4><p>Version one gives you a rate box on the contract. The rate intelligence engine you described is Phase 3, and it needs a year of your data to be worth anything.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 PIPELINE ============ -->
+<section id="pipeline">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Lead to booked</div>
+      <div class="shead-body">
+        <p class="eyebrow">Diagram two</p>
+        <h2>The pipeline you circled in red</h2>
+        <p class="lede">Seven stages, one board, every property on it and color-coded. This is the part you called the biggest thing. Click any stage to see exactly what enters it, what the system does on its own, and where a human has to touch it.</p>
+      </div>
+    </div>
+
+    <div class="folder reveal" style="margin-top:0">
+      <div class="folder-tab">Phase 1 <span class="cnt">the heart of the build</span></div>
+      <div class="folder-body" style="background:var(--paper)">
+        <p style="font-family:var(--f-label);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:14px">Sources &nbsp;→&nbsp; a webform on every property site, plus manual entry for phone and walk-in</p>
+
+        <div class="pipe" id="pipe">
+          <button class="stage" aria-expanded="false" data-spec="s1"><div class="sn">01</div><div class="st">Lead</div><div class="sd">New, untouched, tagged to its property</div><span class="exp">Detail +</span></button>
+          <button class="stage" aria-expanded="false" data-spec="s2"><div class="sn">02</div><div class="st">Qualify</div><div class="sd">A real conversation happened</div><span class="exp">Detail +</span></button>
+          <button class="stage" aria-expanded="false" data-spec="s3"><div class="sn">03</div><div class="st">Prospect</div><div class="sd">Soft hold placed, gathering details</div><span class="exp">Detail +</span></button>
+          <button class="stage" aria-expanded="false" data-spec="s4"><div class="sn">04</div><div class="st">Proposal</div><div class="sd">Approved by you, sent, open-tracked</div><span class="exp">Detail +</span></button>
+          <button class="stage" aria-expanded="false" data-spec="s5"><div class="sn">05</div><div class="st">Contract</div><div class="sd">E-signed, then countersigned</div><span class="exp">Detail +</span></button>
+          <button class="stage" aria-expanded="false" data-spec="s6"><div class="sn">06</div><div class="st">Deposit</div><div class="sd">Invoice out, awaiting payment</div><span class="exp">Detail +</span></button>
+          <button class="stage done" aria-expanded="false" data-spec="s7"><div class="sn">07</div><div class="st">Booked</div><div class="sd">Deposit cleared, staff can see it</div><span class="exp">Detail +</span></button>
+        </div>
+
+        <div class="spec" id="s1"><div class="spec-head"><span class="t">Lead</span><span class="s">Stage 01</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>A form submit on any property website, or a manual add for a phone call or walk-in.</p></div>
+          <div><h4>What gets captured</h4><p>Property, name, email, phone, event type, dates, guest count, rooms-needed checkbox, message.</p></div>
+          <div><h4>What the system does</h4><p>Sends your 24-hour acknowledgment instantly. Creates the booking, stamps the property, notifies the owner, and raises a task if nobody touches it in a day.</p></div>
+          <div><h4>Where you are</h4><p>Check availability against the property calendar, then reply with pricing and the deck.</p></div>
+          <div><h4>What moves it on</h4><p><b>A real conversation has happened.</b></p></div>
+        </div></div>
+
+        <div class="spec" id="s2"><div class="spec-head"><span class="t">Qualify</span><span class="s">Stage 02</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>Contact made. You are now waiting on their decision.</p></div>
+          <div><h4>What gets captured</h4><p>The conversation thread and your qualification notes.</p></div>
+          <div><h4>What the system does</h4><p>Runs the follow-up sequence while you wait, and flags the lead when it goes stale. Your words: this always needs to be touched.</p></div>
+          <div><h4>Where you are</h4><p>Working the conversation toward a soft hold.</p></div>
+          <div><h4>What moves it on</h4><p><b>Soft hold or proposal requested.</b> Or a no, which sends it to dead.</p></div>
+        </div></div>
+
+        <div class="spec" id="s3"><div class="spec-head"><span class="t">Prospect</span><span class="s">Stage 03</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>A soft hold gets placed on the dates.</p></div>
+          <div><h4>What gets captured</h4><p>Dates held, guest count, room needs, event details. Everything the proposal will need.</p></div>
+          <div><h4>What the system does</h4><p>Reminds you before the hold expires. How long a hold lasts is one of the questions at the bottom of this page.</p></div>
+          <div><h4>Where you are</h4><p>Talking through all of the details to get to a proposal.</p></div>
+          <div><h4>What moves it on</h4><p><b>The details are complete.</b></p></div>
+        </div></div>
+
+        <div class="spec" id="s4"><div class="spec-head"><span class="t">Proposal</span><span class="s">Stage 04</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>Details complete.</p></div>
+          <div><h4>What gets captured</h4><p>Site fee, room lines with their rates, tax and service charge, deposit dates. The $65 that has to land at $98 a head does it here.</p></div>
+          <div><h4>What the system does</h4><p>Builds the document from the template and the property's own values, then stops and puts it in front of you instead of sending it. Once you release it, the system sends it, tracks whether it was opened, and follows up if it goes quiet.</p></div>
+          <div><h4>Where you are</h4><p><b>You review and approve every proposal before it goes out.</b> This gate is deliberate.</p></div>
+          <div><h4>What moves it on</h4><p><b>Accepted.</b> Declined sends it to dead.</p></div>
+        </div></div>
+
+        <div class="spec" id="s5"><div class="spec-head"><span class="t">Contract</span><span class="s">Stage 05</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>The proposal is accepted.</p></div>
+          <div><h4>What gets captured</h4><p>The proposal plus your terms. Event, rooms, or combined. Payment schedule at 25 / 50 / balance with dates keyed to the event: 60 days out, 14 days out, balance seven days after. Attrition language when there are rooms.</p></div>
+          <div><h4>What the system does</h4><p>Generates it, sends it for signature, chases the signature until it lands, then tells you it is your turn.</p></div>
+          <div><h4>Where you are</h4><p>Client signs first, <b>then you countersign.</b> The signing order is enforced.</p></div>
+          <div><h4>What moves it on</h4><p><b>Fully executed by both parties.</b></p></div>
+        </div></div>
+
+        <div class="spec" id="s6"><div class="spec-head"><span class="t">Deposit</span><span class="s">Stage 06</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>The contract is fully executed.</p></div>
+          <div><h4>What gets captured</h4><p>The deposit invoice, payable by card or bank transfer.</p></div>
+          <div><h4>What the system does</h4><p>Generates the invoice the moment the last signature lands, walks the client straight to payment, sends reminders, issues the receipt, and schedules the remaining payments.</p></div>
+          <div><h4>Where you are</h4><p>Exceptions only. Nothing routine needs you here.</p></div>
+          <div><h4>What moves it on</h4><p><b>The deposit clears.</b></p></div>
+        </div></div>
+
+        <div class="spec" id="s7"><div class="spec-head"><span class="t">Booked</span><span class="s">Stage 07</span></div><div class="spec-grid">
+          <div><h4>What starts it</h4><p>Deposit paid.</p></div>
+          <div><h4>What gets captured</h4><p>The handoff assignment.</p></div>
+          <div><h4>What the system does</h4><p>Notifies internally, flips the visibility flag so staff can see it — your green — and creates the rest of the scheduled invoices.</p></div>
+          <div><h4>Where you are</h4><p>Deciding the route: back to the property, or into your own planner lane.</p></div>
+          <div><h4>What moves it on</h4><p><b>Handed off.</b></p></div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="branch reveal">
+      <div class="bx dead">
+        <h4>Dead</h4>
+        <p>No fit, ghosted, or turned the proposal down. Leads exit here from Qualify and from Proposal, and they stay reportable so you can see what you are losing and where.</p>
+      </div>
+      <div class="bx">
+        <h4>Handoff — the open business decision</h4>
+        <p>Once a booking is booked, does it go back to the property with a commission to you, or does it stay in-house with a planner? You flagged this as undecided. <b>Phase 1 builds to Booked either way</b>, so this decision cannot hold up the build.</p>
+      </div>
+    </div>
+
+    <div class="folder ghost reveal" style="margin-top:1.75rem">
+      <div class="folder-tab">Phase 2 — planner operations, spec'd when that decision lands</div>
+      <div class="folder-body">
+        <div class="p2lane">
+          <div class="p2step"><div class="n">Event order</div><div class="d">Drafted from the booking</div></div>
+          <div class="p2step"><div class="n">Client signs it</div><div class="d">Same signature flow</div></div>
+          <div class="p2step"><div class="n">Out to staff</div><div class="d">Turn it green</div></div>
+          <div class="p2step"><div class="n">Room block</div><div class="d">Rooming list worked outside, checked off inside</div></div>
+          <div class="p2step"><div class="n">Final bill</div><div class="d">Done by the planner</div></div>
+          <div class="p2step"><div class="n">Close</div><div class="d">Booking complete</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ROLES ============ -->
+<section id="roles" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Who does what</div>
+      <div class="shead-body">
+        <p class="eyebrow">Diagram three</p>
+        <h2>Where the hire takes over</h2>
+        <p class="lede">The same journey again, this time by who is acting. Three steps are filled solid orange, and those are the only moments that need your judgment. Everything else is either automatic or teachable, and that gap is what lets you hand this to someone.</p>
+      </div>
+    </div>
+
+    <div class="lane-key reveal">
+      <span class="lk cu"><i></i>Customer</span>
+      <span class="lk sy"><i></i>The system</span>
+      <span class="lk la"><i></i>You / coordinator</span>
+      <span class="lk judge"><i></i>Your judgment</span>
+      <span class="lk st"><i></i>Planner or property</span>
+    </div>
+
+    <div class="swim reveal">
+      <div class="swim-head"><div>Step</div><div>Customer</div><div>System</div><div>You / coordinator</div><div>Planner / property</div></div>
+
+      <div class="swim-row"><div class="swim-n">01</div><div class="swim-cell"><div class="act"><span class="swim-m">Customer</span>Submits the form on a property website <span class="swim-arrow">→ system</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">02</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Acknowledges instantly, keeping your 24-hour promise <span class="swim-arrow">→ customer</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">03</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Creates the lead, tags the property, raises the first task <span class="swim-arrow">→ you</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">04</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la"><span class="swim-m">You</span>Check the property calendar for availability</div></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">05</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la judge"><span class="swim-m">You</span>Send availability, pricing and the deck <span class="swim-arrow">→ customer</span></div></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">06</div><div class="swim-cell"><div class="act"><span class="swim-m">Customer</span>Conversation, then asks for a soft hold <span class="swim-arrow">→ you</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">07</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la"><span class="swim-m">You</span>Move to Prospect, enter details and rates</div></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">08</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Generates the proposal and holds it at the approval gate <span class="swim-arrow">→ you</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">09</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la judge"><span class="swim-m">You</span>Approve the proposal</div></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">10</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Sends it and tracks whether it was opened <span class="swim-arrow">→ customer</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">11</div><div class="swim-cell"><div class="act"><span class="swim-m">Customer</span>Accepts</div></div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">12</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Sends the contract for signature <span class="swim-arrow">→ customer</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">13</div><div class="swim-cell"><div class="act"><span class="swim-m">Customer</span>Signs</div></div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">14</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Prompts you to countersign <span class="swim-arrow">→ you</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">15</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la judge"><span class="swim-m">You</span>Countersign</div></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">16</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Issues the deposit invoice, card or bank transfer <span class="swim-arrow">→ customer</span></div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">17</div><div class="swim-cell"><div class="act"><span class="swim-m">Customer</span>Pays the deposit</div></div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">18</div><div class="swim-cell"></div><div class="swim-cell"><div class="act sy"><span class="swim-m">System</span>Marks it booked, raises the handoff task, turns it green for staff</div></div><div class="swim-cell"></div><div class="swim-cell"></div></div>
+      <div class="swim-row"><div class="swim-n">19</div><div class="swim-cell"></div><div class="swim-cell"></div><div class="swim-cell"><div class="act la"><span class="swim-m">You</span>Hand off <span class="swim-arrow">→</span></div></div><div class="swim-cell"><div class="act st"><span class="swim-m">Planner / property</span>Takes the booking from here</div></div></div>
+    </div>
+
+    <div class="judgebox reveal">
+      <div class="jb hot">
+        <h4>Stays yours — three moments</h4>
+        <ul>
+          <li>What to charge</li>
+          <li>Approving a proposal before it goes out</li>
+          <li>Countersigning the contract</li>
+        </ul>
+      </div>
+      <div class="jb">
+        <h4>Goes to your hire</h4>
+        <ul>
+          <li>Working every new lead</li>
+          <li>Checking availability</li>
+          <li>Chasing the conversation to a soft hold</li>
+          <li>Entering details and rates you set</li>
+          <li>Managing the handoff</li>
+        </ul>
+      </div>
+      <div class="jb">
+        <h4>Nobody touches</h4>
+        <ul>
+          <li>Acknowledgments and follow-up</li>
+          <li>Document generation</li>
+          <li>Signature chasing</li>
+          <li>Invoicing, reminders, receipts</li>
+          <li>Stage movement and task creation</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 REPORTS ============ -->
+<section id="reports">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">What comes out</div>
+      <div class="shead-body">
+        <p class="eyebrow">Reporting</p>
+        <h2>What you get out, per property</h2>
+        <p class="lede">Never aggregated, because the properties have separate owners. I checked every one of these against what the platform can actually do before putting it on this page, so each card says what shape it comes out in. Two of them are not charts, and I would rather tell you that now than in October.</p>
+      </div>
+    </div>
+
+    <div class="reports reveal">
+      <div class="rep"><div class="fmt chart">Live dashboard</div><div class="cad">Weekly</div><h3>Revenue vs. budget</h3><p>Booked revenue against target, with variance, by month and quarter. This is the spreadsheet you fill in by hand for every property today.</p><div class="src">Booked room revenue + site fees, against your targets</div><div class="need-you">Needs your budget numbers. The system has no way to know them, so somebody supplies them once a year.</div></div>
+      <div class="rep"><div class="fmt chart">Live dashboard</div><div class="cad">Monthly</div><h3>Revenue by category</h3><p>Rooms against site and venue fees, per property. Your words: I just need the totals.</p><div class="src">Room revenue and site fees, captured as real numbers on every booking</div></div>
+      <div class="rep"><div class="fmt chart">Live dashboard</div><div class="cad">Monthly</div><h3>Lead volume and conversion</h3><p>How many leads, which property they came from, and exactly where they convert or stall between stages.</p><div class="src">The pipeline itself</div></div>
+      <div class="rep"><div class="fmt chart">Live dashboard</div><div class="cad">On demand</div><h3>Bookings by event type</h3><p>How many weddings, socials or corporate events a property booked in a period.</p><div class="src">The event type on every event record</div></div>
+      <div class="rep"><div class="fmt list">Working list, not a chart</div><div class="cad">Always current</div><h3>Deposits due</h3><p>What is owed, by whom, and when. Every scheduled payment carries its own due date and its own paid or unpaid status, so you filter the list by status and date and work straight off it. It exports for your accountant.</p><div class="src">Every invoice and every scheduled payment inside it</div><div class="need-you">The chasing is automatic on the client side: reminders fire on their own before and after each due date, as many times as you want. Noticing what has gone unpaid stays a person checking the list, because the platform has no alert it can send you.</div></div>
+      <div class="rep" style="background:var(--paper-2)"><div class="fmt">Not possible</div><div class="cad">Cut from scope</div><h3>Forward cash forecast</h3><p>You asked for deposits landing by month, looking forward. HighLevel has no way to report on money that has not been collected yet, so I am not going to pretend otherwise. Deposits due covers the operational job — knowing what is coming and chasing it.</p><div class="src">Verified against platform documentation, August 2026</div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to plain">
+        <h3>The design decision underneath all of this</h3>
+        <p>Reporting is the part of any CRM that quietly fails eighteen months in, because the numbers were stored somewhere that cannot be totalled. So room revenue and site fees get captured as real, separate numbers on the booking records themselves, and property and event type get set up as selectable values rather than typed text. That sounds like a technical detail. It is the entire difference between these reports existing and not, and it is why it happens in week two rather than as an afterthought in October.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 PLATFORM ============ -->
+<section id="platform" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The platform</div>
+      <div class="shead-body">
+        <p class="eyebrow">Evaluation, verified August 3</p>
+        <h2>What it runs on, and why</h2>
+        <p class="lede">I checked all eighteen of your requirements against current platform documentation before writing a line of this proposal. Here is what I found, including the parts that are not perfect.</p>
+      </div>
+    </div>
+
+    <div class="verdict reveal">
+      <div class="big">HighLevel<br>passes</div>
+      <p>Every Phase 1 requirement is either natively supported or has a fallback you already approved in conversation. Imprint owns the account outright, in your name. One account at <strong>$297 a month covers every property and every user</strong> — it does not scale per property, which is exactly the economics that ruled TripleSeat out for these hotels in the first place. Reporting is the one area where the platform made me re-scope rather than promise; that section says precisely what it can and cannot do.</p>
+    </div>
+
+    <div class="score reveal">
+      <div class="sc ok"><div class="n">13</div><div class="l"><b>Verified</b>Confirmed against published platform documentation, with sources.</div></div>
+      <div class="sc warn"><div class="n">2</div><div class="l"><b>Confirm hands-on</b>How bookings associate to their events and rooms, and which plan tier the reporting features sit on. Both settled in the week-one validation run, before you commit to a plan.</div></div>
+      <div class="sc gap"><div class="n">3</div><div class="l"><b>Genuine gaps</b>No room inventory engine, no multi-state tax engine, and no forward-looking money reporting. All three named below with what we do instead.</div></div>
+    </div>
+
+    <div class="tradeoffs reveal">
+      <h3 style="margin-bottom:1rem">The compromises, named</h3>
+
+      <div class="to">
+        <h3>Conversations attach to the client, not to the booking</h3>
+        <p>This is the single biggest difference from TripleSeat and the one you will notice first. TripleSeat threads sixty-seven emails onto one booking. Here, the thread lives on the contact. In practice one client rarely runs two bookings at once, so the contact thread is the booking thread. We stamp booking references into email subjects and keep notes on the booking itself. I would rather you hear this from me now than discover it in October.</p>
+      </div>
+
+      <div class="to plain">
+        <h3>No room inventory engine</h3>
+        <p>Nothing on this platform holds room availability. You already approved the answer: check the property calendar by hand, the way you do today. The system holds the block once it exists, it just does not know what is free.</p>
+      </div>
+
+      <div class="to">
+        <h3>No forward-looking money reporting</h3>
+        <p>The platform reports on money it has collected. It has no way to report on money that is scheduled but not yet paid, which is why the cash forecast came out of scope rather than onto the list. What replaces it: a live list of what is owed and when, and reminders that chase the client automatically at every due date. You lose the chart and keep most of the outcome. I found this by checking rather than assuming, and it is the one thing on this proposal that got smaller after I verified it.</p>
+      </div>
+
+      <div class="to plain">
+        <h3>No multi-state tax engine</h3>
+        <p>Colorado, California and Vermont all tax differently. Each property carries its own rates as stored values that fill the proposal automatically. Your approval gate is what catches an error before a client sees it.</p>
+      </div>
+
+      <div class="to plain">
+        <h3>The money math is assisted, not automatic, in version one</h3>
+        <p>Rates, taxes and service charges are entered and verified by a person at proposal time. The rate intelligence engine you described — the one that reads Lighthouse and quotes for you — is Phase 3, and it needs a year of your own booking data behind it to be worth building.</p>
+      </div>
+
+      <div class="to plain">
+        <h3>Very large deposits may need splitting</h3>
+        <p>Bank transfers carry per-transaction limits. On a large deposit that means either splitting the payment or taking a card. Worth knowing before it happens, not during.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:3rem">
+      <h3>What else I looked at</h3>
+      <table class="alts">
+        <thead><tr><th>Platform</th><th>Verdict</th><th>Why</th></tr></thead>
+        <tbody>
+          <tr class="pick"><td>HighLevel</td><td>Selected</td><td>Custom objects, document generation, e-signature with signing order, invoicing with payment plans, client portal, and automation all native on one account you own. Priced per account, not per property. Weakest on reporting, which is why that section is scoped the way it is.</td></tr>
+          <tr><td>TripleSeat</td><td>Stays where it fits</td><td>Excellent for your large properties and it keeps all food and beverage. At $400 per property per month it only pencils above roughly $250k a year, which is why these three hotels were never going to be on it. That gap is this entire project.</td></tr>
+          <tr><td>Event Temple</td><td>Closest runner-up</td><td>A genuine hotel sales CRM with group blocks and a pipeline — the honest second choice. Per-property pricing breaks the same economics, the automation layer is weaker, and there is no path to the chat intake and rate tools on your roadmap.</td></tr>
+          <tr><td>HubSpot</td><td>No</td><td>Custom objects require the enterprise tier, and document generation, signatures and payments all need paid add-ons. You already found it does not have the capabilities.</td></tr>
+          <tr><td>HoneyBook</td><td>No</td><td>You evaluated it already. Built for one person, no multi-property structure.</td></tr>
+          <tr><td>Building from scratch</td><td>Not now</td><td>The hundred-million-dollar software joke from our first call. The rate tool may eventually become a custom piece that plugs into this system, but it is not a replacement for it.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 PHASES ============ -->
+<section id="phases">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Phasing</div>
+      <div class="shead-body">
+        <p class="eyebrow">Scope boundaries</p>
+        <h2>What is in scope, and what is not</h2>
+        <p class="lede">Your words: clean up the first part of the process, the rest I have got to figure out. That is exactly where the line is drawn. Phase 1 is what this proposal covers and what has to exist before November.</p>
+      </div>
+    </div>
+
+    <div class="phases reveal">
+      <div class="ph now">
+        <div class="ph-h"><div class="p">Phase 1 — this proposal</div><h3>Lead to booked</h3><div class="when">Built, proven, rolled out</div></div>
+        <div class="ph-b">
+          <ul>
+            <li>A form on every property site, all landing in one inbox</li>
+            <li>The full seven-stage pipeline, color-coded by property</li>
+            <li>Every conversation attached and findable</li>
+            <li>Proposals and contracts generated, e-signed, countersigned</li>
+            <li>Rates and taxes carried per property</li>
+            <li>Deposit invoicing and scheduled payments, card and bank transfer</li>
+            <li>Per-property calendars</li>
+            <li>Dashboards and the four reports, plus the deposits-due working list</li>
+            <li>Client portal — clients see their documents and invoices without a password</li>
+            <li>A property onboarding form, so adding a property is data entry rather than a rebuild</li>
+          </ul>
+          <p class="ph-why">Booking season starts in November. This is what carries it.</p>
+        </div>
+      </div>
+
+      <div class="ph">
+        <div class="ph-h"><div class="p">Phase 2</div><h3>Planner operations</h3><div class="when">Quoted when the model lands</div></div>
+        <div class="ph-b">
+          <ul>
+            <li>Event orders, drafted and signed</li>
+            <li>Handoff to property staff</li>
+            <li>Room block and rooming list checkoffs</li>
+            <li>Final bill and close</li>
+            <li>Owner reports sent automatically</li>
+            <li>Client file uploads — rooming lists land here</li>
+          </ul>
+          <p class="ph-why">Waiting on your property-versus-planner decision. Phase 1 does not depend on it.</p>
+        </div>
+      </div>
+
+      <div class="ph">
+        <div class="ph-h"><div class="p">Phase 3</div><h3>Intelligence</h3><div class="when">Needs a year of data first</div></div>
+        <div class="ph-b">
+          <ul>
+            <li>AI chat intake per property, web and text</li>
+            <li>Room type by date by rate tables</li>
+            <li>Rate intelligence quoting, reading market data</li>
+            <li>Accounting handoff</li>
+          </ul>
+          <p class="ph-why">Deferred in both conversations. Worth nothing without Phase 1 history behind it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ DELIVERY ============ -->
+<section id="delivery">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">How it ships</div>
+      <div class="shead-body">
+        <p class="eyebrow">The approach</p>
+        <h2>Build it, prove it, then roll it out</h2>
+        <p class="lede">Most systems get built, handed over, and then break in front of real customers. This one gets proven on a live booking at one property before it goes anywhere near the other two. The pilot is not a phase after the build. It is part of the build, and it is where the system stops being theoretical.</p>
+      </div>
+    </div>
+
+    <div class="stages reveal">
+
+      <div class="stg on">
+        <div class="stg-h">
+          <div class="stg-n"><span class="num">01</span><span class="wk">Weeks 1–6</span></div>
+          <h3>Build</h3>
+          <p class="say">Everything gets built and one property gets configured end to end.</p>
+        </div>
+        <div class="stg-b">
+          <ul>
+            <li>Platform validated before anything is built on top of it</li>
+            <li>Pipeline, booking model, forms, and property configuration</li>
+            <li>Proposals and contracts generating from your own templates</li>
+            <li>Deposit invoicing, payment plans, signatures, portal</li>
+            <li>Dashboards, reports, and the deposits-due list</li>
+          </ul>
+        </div>
+        <div class="stg-out">
+          <div class="k">At the end you have</div>
+          <div class="v">A complete system, with a test booking pushed through it start to finish — form to signed contract to paid deposit.</div>
+        </div>
+        <div class="stg-pay"><span class="amt">$5,000</span><span class="when">On signature</span></div>
+      </div>
+
+      <div class="stg on">
+        <div class="stg-h">
+          <div class="stg-n"><span class="num">02</span><span class="wk">Weeks 7–10</span></div>
+          <h3>Prove</h3>
+          <p class="say">Your pilot property runs real leads while I watch every part of it fire.</p>
+        </div>
+        <div class="stg-b">
+          <ul>
+            <li>Real inquiries enter the system and move through the board</li>
+            <li>I watch every automation fire on actual people, not test data</li>
+            <li>Follow-up copy tuned against real replies instead of guesses</li>
+            <li>The real world finds the break points, and we fix them</li>
+            <li>Weekly check-in with you the whole way through</li>
+          </ul>
+        </div>
+        <div class="stg-out">
+          <div class="k">At the end you have</div>
+          <div class="v">Real bookings that went from inquiry to deposit inside the system, and a written list of everything the pilot changed.</div>
+        </div>
+        <div class="stg-pay"><span class="amt">$3,750</span><span class="when">When the pilot starts</span></div>
+      </div>
+
+      <div class="stg">
+        <div class="stg-h">
+          <div class="stg-n"><span class="num">03</span><span class="wk">Weeks 11–12</span></div>
+          <h3>Roll out</h3>
+          <p class="say">The proven system goes to your remaining properties.</p>
+        </div>
+        <div class="stg-b">
+          <ul>
+            <li>Remaining properties configured against their own rates and taxes</li>
+            <li>Documents verified per property before a client ever sees one</li>
+            <li>Every test scenario re-run green on every property</li>
+            <li>Written operating procedure and video library handed over</li>
+            <li>Live training for you and your coordinator</li>
+          </ul>
+        </div>
+        <div class="stg-out">
+          <div class="k">At the end you have</div>
+          <div class="v">Every launch property live on a system that has already been tested on a paying customer.</div>
+        </div>
+        <div class="stg-pay"><span class="amt">$3,750</span><span class="when">On your sign-off</span></div>
+      </div>
+
+    </div>
+
+    <div class="why-staged reveal">
+      <h3>Why it is worth paying for the pilot separately</h3>
+      <p>Because you are not buying software, you are buying a system your team will run every day of booking season. The difference between one that works and one that quietly loses a lead is only ever found by putting a real customer through it. Staging it this way means you are never asked to pay for the next part until you have watched the last part work, and the version that reaches your other properties is the version that already survived a real booking.</p>
+    </div>
+
+    <div class="accept reveal">
+      <h4>What "done" means, agreed before we start</h4>
+      <ul>
+        <li>A test booking passes end to end on every launch property: form, proposal, contract, both signatures, deposit invoice, paid, booked</li>
+        <li>The four dashboards and the deposits-due list are live and reading real data</li>
+        <li>The client portal is live on your domain</li>
+        <li>The operating procedure and video walkthroughs are delivered</li>
+        <li>Training is complete for you and your coordinator</li>
+      </ul>
+      <p class="note">Once I present the finished stage, you have five business days to raise anything specific in writing. That protects you from accepting something half-built, and it protects me from a finish line that keeps moving. Anything outside the list above is a change request, quoted separately, so neither of us has to argue about what was included.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 THE BUILD ============ -->
+<section id="build" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The build</div>
+      <div class="shead-body">
+        <p class="eyebrow">Itemized</p>
+        <h2>Ten workstreams, task by task</h2>
+        <p class="lede">Hours are shown as ranges because some of this depends on how cooperative the platform, the DNS records and the payment processors decide to be. The low end is everything going smoothly, the high end is the realistic ceiling. <strong>The build is a fixed fee either way, so the ranges are for your visibility, not your bill.</strong> Open any workstream to see the tasks inside it.</p>
+      </div>
+    </div>
+
+    <div class="ws-list reveal" id="wslist">
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Foundations &amp; platform validation</span><span class="ws-bar"><i data-w="72"></i></span><span class="ws-hrs">9–13 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Account setup and the Imprint Sales Office workspace</td><td>1</td></tr><tr><td>Stripe account setup and connection, card and bank transfer</td><td>1–2</td></tr><tr><td>Dedicated sending domain with full authentication and a warm-up plan, so your mail lands in inboxes instead of spam</td><td>1–2</td></tr><tr><td>Client portal domain</td><td>0.5</td></tr><tr><td>Text messaging carrier registration, filed on day one because approval takes weeks</td><td>1</td></tr><tr><td>User accounts and permissions for you and your coordinator</td><td>0.5</td></tr><tr><td>Full validation run: a complete fake booking pushed end to end — form, pipeline, proposal, contract, signatures, invoice, portal — to prove every capability before we build on top of it</td><td>3–4</td></tr><tr><td>Contingency for whatever the validation run surfaces</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">System architecture</span><span class="ws-bar"><i data-w="72"></i></span><span class="ws-hrs">9–13 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Pipeline build: all seven stages, plus dead and cancelled handling</td><td>1</td></tr><tr><td>Booking data model: event records and room block records, carrying site fee and room revenue as real numbers</td><td>2–3</td></tr><tr><td>Revenue fields placed where the platform can actually total them, with property and event type set up as selectable values so every report can group by them</td><td>1–2</td></tr><tr><td>Budget records, one per property per month, so booked revenue can be reported against target</td><td>1</td></tr><tr><td>Contact fields and property attribution, so every lead is stamped with its hotel the moment it arrives</td><td>1</td></tr><tr><td>Property configuration for all three launch properties: branding, tax rates by category, deposit defaults, cutoff days</td><td>2–3</td></tr><tr><td>Record layouts, so everything connected to a booking is visible from that booking</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Lead intake</span><span class="ws-bar"><i data-w="44"></i></span><span class="ws-hrs">5–8 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Lead capture form with property-specific versions for all three websites</td><td>2–3</td></tr><tr><td>Form installation on each property website</td><td>1–2</td></tr><tr><td>Automatic acknowledgment per property — your 24-hour promise, kept automatically</td><td>1</td></tr><tr><td>Lead routing: booking created, property tagged, owner assigned, notification sent, first task generated</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Proposals &amp; contracts</span><span class="ws-bar"><i data-w="100"></i></span><span class="ws-hrs">12–18 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Convert your current contracts and templates into a complete field inventory</td><td>2–3</td></tr><tr><td>Proposal template: one shared layout that auto-fills each property's branding, rates, taxes and service charges</td><td>3–4</td></tr><tr><td>Contract templates for all three cases — event only, rooms only, combined — including payment schedule and attrition language</td><td>4–6</td></tr><tr><td>Field mapping and test fills across all three properties</td><td>2–3</td></tr><tr><td>Signature flow: client signs, you countersign, reminders fire until both happen</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Payments</span><span class="ws-bar"><i data-w="56"></i></span><span class="ws-hrs">6–10 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Revenue categories captured as real numbers on the booking records, not just as text inside the contract, so reporting can total them</td><td>1–2</td></tr><tr><td>Deposit invoice template with payment plans, dates keyed to the event</td><td>2–3</td></tr><tr><td>Automatic invoice generation the moment a contract is fully signed, client sent straight to payment</td><td>1–2</td></tr><tr><td>Payment reminders, receipts, and automatic pipeline movement when the deposit clears</td><td>1–2</td></tr><tr><td>Card and bank transfer configuration with live test transactions</td><td>1</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Automated follow-up &amp; communications</span><span class="ws-bar"><i data-w="78"></i></span><span class="ws-hrs">10–14 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Stage-change automation across all seven stages: tasks, notifications and timers so nothing sits untouched</td><td>3–4</td></tr><tr><td>Follow-up sequences written from your actual emails, in your voice, for the four moments that matter: new lead untouched, qualified lead waiting, proposal unopened, contract unsigned</td><td>4–6</td></tr><tr><td>Stale lead alerts and soft hold expiration reminders</td><td>1–2</td></tr><tr><td>Internal notifications: countersign prompts, deposit paid, booking turned green for staff</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Client portal</span><span class="ws-bar"><i data-w="22"></i></span><span class="ws-hrs">2–4 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Portal enabled on your domain with Imprint branding</td><td>1–2</td></tr><tr><td>Notifications, document sharing defaults, and one-click login links built into your proposal and contract emails, so every client sees their documents, invoices and invoices without a password. How the outstanding balance itself displays is one of the things I confirm in week one</td><td>1–2</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Calendars, dashboards &amp; reporting</span><span class="ws-bar"><i data-w="56"></i></span><span class="ws-hrs">7–10 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Property calendars for all three launch properties, with a blocking convention for availability checks</td><td>2–3</td></tr><tr><td>Pipeline dashboard with per-property views</td><td>2–3</td></tr><tr><td>Your reports: revenue vs. budget, revenue by category, lead volume and conversion, bookings by event type, plus the deposits-due working list with automatic payment reminders to clients</td><td>3–4</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">End-to-end testing</span><span class="ws-bar"><i data-w="78"></i></span><span class="ws-hrs">10–14 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Full scenario testing: event-only bookings, rooms-only, combined, declined proposals, dead leads, cancellations after contract, card and bank payments, attrition charges added mid-stream</td><td>5–7</td></tr><tr><td>Working sessions where you run realistic leads through the system yourself before anything goes live</td><td>2–3</td></tr><tr><td>Fix round from those sessions</td><td>3–4</td></tr></table></div></div>
+
+      <div class="ws" data-open="0"><button class="ws-btn" aria-expanded="false"><span class="ws-name">Documentation &amp; training</span><span class="ws-bar"><i data-w="56"></i></span><span class="ws-hrs">7–10 hrs</span><span class="ws-tog">+</span></button><div class="ws-body"><table><tr><td>Written operating procedure: how to work a lead from form to booked, step by step, by role. This is the document that lets you hand the system to a new hire</td><td>3–4</td></tr><tr><td>Video walkthrough library — five or six short recordings covering new lead, proposal, contract, payment, booked and handoff, portal</td><td>2–3</td></tr><tr><td>Live training for you and your coordinator</td><td>1–2</td></tr><tr><td>Onboarding checklist for your future full-time hire</td><td>1</td></tr></table></div></div>
+    </div>
+
+    <div class="ws-total reveal"><span class="l">Build total</span><span class="v">77 to 104 hours</span></div>
+
+    <div class="after reveal">
+      <div class="af"><div class="h">September · 12 to 20 hours</div><h3>Pilot</h3><p>Your pilot property runs live leads through the system while I watch every automation fire on real people, tune the follow-up copy against real replies, and fix whatever real-world use breaks. Weekly check-in throughout.</p></div>
+      <div class="af"><div class="h">October · 10 to 16 hours</div><h3>Onboarding &amp; hardening</h3><p>Your two remaining properties come online — configuration, forms, calendars, document testing for each. Reports get polished against your actual owner reporting. Training refreshed, and every test scenario re-run green on every property before booking season.</p></div>
+      <div class="af" style="background:var(--slate-deep);border-color:var(--slate-deep)"><div class="h" style="color:var(--orange)">Through November 1</div><h3 style="color:#fff">Roughly 99 to 140 hours</h3><p style="color:rgba(255,255,255,.7)">Total effort from kickoff to live, across build, pilot and onboarding.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 TIMELINE ============ -->
+<section id="timeline">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The calendar</div>
+      <div class="shead-body">
+        <p class="eyebrow">Twelve weeks</p>
+        <h2>Signature to booking season</h2>
+        <p class="lede">Week one starts the day you say yes, so this calendar does not go stale while the proposal sits on a desk. November 1 is the one date I cannot move, because booking season does not care when we started.</p>
+      </div>
+    </div>
+
+    <div class="tl reveal">
+      <div class="ms"><div class="w">Week 1</div><div class="m">Kickoff. Accounts, domains, payment setup, and the full validation run before anything gets built on top.</div></div>
+      <div class="ms"><div class="w">Week 2</div><div class="m">Architecture and lead intake. Pipeline, booking model, property configuration, forms live on the sites.</div></div>
+      <div class="ms"><div class="w">Weeks 3–4</div><div class="m">Proposals and contracts. The biggest workstream, and the one gated on your sample documents.</div></div>
+      <div class="ms"><div class="w">Week 5</div><div class="m">Payments and automations. Deposit invoicing, payment plans, follow-up sequences.</div></div>
+      <div class="ms"><div class="w">Week 6</div><div class="m">Portal, calendars, reporting, and full end-to-end testing.</div></div>
+      <div class="ms key"><div class="w">Week 7</div><div class="m">Build complete. <strong>Your pilot property starts taking real leads.</strong></div></div>
+      <div class="ms"><div class="w">Weeks 7–10</div><div class="m">The pilot runs on real customers. Weekly check-ins, copy tuned against real replies, break points found and fixed.</div></div>
+      <div class="ms key"><div class="w">Week 10</div><div class="m"><strong>You sign off on the pilot.</strong></div></div>
+      <div class="ms"><div class="w">Weeks 11–12</div><div class="m">Remaining properties configured and tested. Training, documentation, every scenario re-run green.</div></div>
+      <div class="ms live"><div class="w">Nov 1</div><div class="m">Live for booking season</div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to">
+        <h3>The one thing worth saying plainly about dates</h3>
+        <p>Twelve weeks from a mid-August start lands you live in early November, which is exactly where you need to be. Every week the decision waits comes out of the pilot or out of the rollout, and those are the two stretches you least want compressed, because they are the ones that catch problems before your clients do. If we start later than the end of August, I would rather shorten the property rollout and keep the pilot intact than the other way round, and I will tell you that at the time rather than quietly absorb it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 INVESTMENT ============ -->
+<section id="investment" class="band">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Investment</div>
+      <div class="shead-body">
+        <p class="eyebrow rev">The numbers</p>
+        <h2>What it costs</h2>
+        <p class="lede">Structured so the heaviest months are the ones where the most work happens, and it steps down in January right as your properties begin paying into the program.</p>
+      </div>
+    </div>
+
+    <div class="folder on-dark reveal" style="margin-top:0">
+      <div class="folder-tab">Phase 1 <span class="cnt">fixed fee</span></div>
+      <div class="folder-body" style="padding:0;border-top-color:var(--orange)">
+        <div class="inv">
+          <div class="iv"><div class="k">Build, prove &amp; roll out</div><div class="a">$12,500<small>Fixed, paid across the three stages</small></div><div class="d">Everything itemized above, the live pilot on a real customer, and every launch property configured and tested. $5,000 to begin, $3,750 when the pilot starts, $3,750 when you sign off on it.</div></div>
+          <div class="iv"><div class="k">First booking season</div><div class="a">$1,500<small>Per month, first two months live</small></div><div class="d">Priority support through the busiest stretch, when the system is new to your team and every question is a real booking on the line. Billed monthly in advance, starting the month after go-live.</div></div>
+          <div class="iv"><div class="k">Ongoing management</div><div class="a">$750<small>Per month, thereafter</small></div><div class="d">System health monitoring, deliverability watch, up to four hours of adjustments monthly, and a quarterly review. Thirty days' notice to cancel, any time.</div></div>
+          <div class="iv"><div class="k">Additional properties</div><div class="a">$500<small>Each, beyond the three</small></div><div class="d">You kick it off with a one-page intake form the moment a new property signs. I configure it, test the documents against its own rates and taxes, and turn it live.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="terms reveal">
+      <div class="tm"><h4>Payment terms</h4><p>Nothing is invoiced before the work it pays for. $5,000 begins the build, $3,750 falls due when the build is finished and your pilot property starts taking real leads, and the final $3,750 when you have signed off on that pilot. The monthly starts only once the system is live across your properties.</p></div>
+      <div class="tm"><h4>Platform costs, paid by Imprint directly</h4><p>HighLevel at roughly $297 a month, owned by you, covering every property and every user. Small usage-based email and text costs. Standard processing fees on payments. One reporting feature is documented inconsistently and may sit on a higher tier; I confirm that in week one, before you commit to a plan.</p></div>
+      <div class="tm"><h4>Quoted separately when you're ready</h4><p>Phase 2 planner operations and Phase 3 intelligence. Contract legal language and tax rates are supplied by Imprint; I configure them into the system.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 11 WHAT I NEED ============ -->
+<section id="next">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Your side</div>
+      <div class="shead-body">
+        <p class="eyebrow">What I need</p>
+        <h2>To hold the calendar</h2>
+        <p class="lede">Two of these gate real work. The rest can arrive across week one without moving anything.</p>
+      </div>
+    </div>
+
+    <div class="need reveal">
+      <div class="nd gate"><div class="t">Sample contracts and your current templates</div><div class="s">Rooms, event, and combined. These gate the proposals and contracts workstream — the largest one on the list.</div></div>
+      <div class="nd gate"><div class="t">Your weekly report set and a sample room-rate sheet</div><div class="s">The reports have to match what your owners already read, and the rate sheet shapes the rate box on the contract.</div></div>
+      <div class="nd"><div class="t">Budget targets per property, per month</div><div class="s">For the revenue-vs-budget report. The system has no way to know these, so somebody supplies them once a year. Not urgent, but the report is empty until they land.</div></div>
+      <div class="nd"><div class="t">Answers to the setup questions</div><div class="s">The launch property list, countersigning, tax rates per property, and where deposits land. All twelve are below.</div></div>
+      <div class="nd"><div class="t">Access to whoever runs each property website</div><div class="s">For installing the lead forms.</div></div>
+      <div class="nd"><div class="t">Imprint banking details</div><div class="s">For the payment account.</div></div>
+      <div class="nd"><div class="t">Your time in September</div><div class="s">The working sessions where you run real leads through it before it goes live.</div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:3.5rem">
+      <h3>The twelve questions</h3>
+      <p style="color:var(--ink-soft);margin-top:.6rem;max-width:var(--prose)">Answer these whenever you get a minute. None of them block kickoff, but numbers one and two shape the build the most.</p>
+      <ol class="qs">
+        <li>Which properties run through the new system at launch — just the non-TripleSeat ones, or do all leads land here first? Your exact launch list, please.</li>
+        <li>Those documents you offered: sample contracts for rooms, event and combined, the TripleSeat templates, your weekly report set, and a sample room-rate sheet.</li>
+        <li>Soft holds: how long does a hold last before you release it, and do you warn the client first?</li>
+        <li>Who countersigns contracts — always you, or do any property GMs sign?</li>
+        <li>Per launch property: tax rates for rooms versus site fees, and are we passing card fees to the client in that state?</li>
+        <li>Where should deposits land — one Imprint account, or per-property accounts?</li>
+        <li>Besides the main contact, who else needs to receive documents and invoices on a typical booking? Planner, spouse, finance person?</li>
+        <li>Emails to clients: sent as each property, or as one Imprint sales address?</li>
+        <li>Who is in the system at launch, and do property staff need to see inside it or just receive handoffs?</li>
+        <li>When a signed booking cancels or moves dates, what is your current policy on deposits and refunds?</li>
+        <li>Current leads sitting in your inbox: migrate them in at launch, or start with new leads only?</li>
+        <li>Forward me two or three of the real follow-up emails you send at each stage, so the sequences sound like you and not a robot.</li>
+      </ol>
+    </div>
+
+    <div class="next-grid reveal">
+      <div class="ng"><div class="s">Step one</div><p>Tell me yes, and send whatever documents you have handy. Partial is fine.</p></div>
+      <div class="ng"><div class="s">Step two</div><p>Imprint opens the platform account. It stays in your name, not mine.</p></div>
+      <div class="ng"><div class="s">Step three</div><p>I run the validation pass in week one and confirm every capability before building on top of it.</p></div>
+      <div class="ng"><div class="s">Then</div><p>We are on the calendar above, and your pilot property is taking real leads by mid-September.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <svg class="close-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="#ee7623" stroke-width="7" stroke-linecap="round">
+      <circle cx="200" cy="200" r="188"/><circle cx="200" cy="200" r="152"/>
+      <circle cx="200" cy="200" r="116"/><circle cx="200" cy="200" r="80"/>
+      <circle cx="200" cy="200" r="44"/><circle cx="200" cy="200" r="14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="close-in reveal">
+      <p class="eyebrow rev">The short version</p>
+      <h2>Say yes and we start Monday</h2>
+      <p>On November 1 a lead from any of your properties lands in one place, gets acknowledged inside a minute, and moves through a board you can hand to somebody else. The proposal writes itself from your own rates. The contract chases its own signature. The deposit invoices itself and tells you when it clears.</p>
+      <p>What you get back is the part that was never really software: <strong>the hours you currently spend being the system.</strong></p>
+      <p>I have built this shape of thing before and I have told you in this document exactly where the platform falls short, because you are going to find out either way and I would rather you hear it from me in August.</p>
+      <div class="sig">
+        <div class="n">Shayne Champlin</div>
+        <div class="e"><a href="mailto:shayne@shaynechamplin.com">shayne@shaynechamplin.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>Imprint Hospitality — Sales &amp; Booking System</strong><br>
+      Phase 1 proposal · Prepared for Lauren Ripko · August 2026
+    </div>
+    <div style="max-width:46ch">
+      Everything in this document traces to the July 24 and July 27 conversations. Platform capabilities were verified against published documentation on August 3, 2026, and the reporting scope was re-checked and narrowed on August 4.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var $  = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- scroll reveal ---------------------------------------------- */
+  var revealed = new WeakSet();
+  var revObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting || revealed.has(e.target)) return;
+      revealed.add(e.target);
+      e.target.classList.add('in');
+      revObs.unobserve(e.target);
+      if(e.target.id === 'wslist') growBars();
+    });
+  },{ rootMargin:'0px 0px -8% 0px', threshold:.06 });
+
+  $$('.reveal').forEach(function(el){
+    if(reduced){ el.classList.add('in'); if(el.id==='wslist') growBars(); return; }
+    revObs.observe(el);
+  });
+
+  /* ---- workstream weight bars ------------------------------------- */
+  var barsGrown = false;
+  function growBars(){
+    if(barsGrown) return; barsGrown = true;
+    $$('.ws-bar i').forEach(function(bar,i){
+      var w = bar.getAttribute('data-w') + '%';
+      bar.style.setProperty('--pw', w);          /* print fallback */
+      if(reduced){ bar.style.width = w; return; }
+      setTimeout(function(){ bar.style.width = w; }, 90 * i);
+    });
+  }
+
+  /* ---- scrollspy: top nav + right rail ---------------------------- */
+  var sections = $$('section[id], header[id]');
+  var navFor   = {};
+  $$('.nav-links a, .rail a').forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    (navFor[id] = navFor[id] || []).push(a);
+  });
+
+  var spyObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var links = navFor[e.target.id];
+      if(!links) return;
+      links.forEach(function(l){ l.classList.toggle('on', e.isIntersecting); });
+    });
+  },{ rootMargin:'-45% 0px -50% 0px' });
+  sections.forEach(function(s){ spyObs.observe(s); });
+
+  /* ---- §02 booking-container chips -------------------------------- */
+  $$('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var open = chip.getAttribute('aria-expanded') === 'true';
+      chip.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  /* ---- §03 pipeline stages -> spec panels ------------------------- */
+  var stages = $$('.stage');
+  stages.forEach(function(st){
+    var panel = document.getElementById(st.getAttribute('data-spec'));
+    if(!panel) return;
+    st.setAttribute('aria-controls', panel.id);
+    st.addEventListener('click', function(){
+      var wasOpen = st.getAttribute('aria-expanded') === 'true';
+      stages.forEach(function(o){
+        o.setAttribute('aria-expanded','false');
+        var p = document.getElementById(o.getAttribute('data-spec'));
+        if(p) p.classList.remove('open');
+      });
+      if(!wasOpen){
+        st.setAttribute('aria-expanded','true');
+        panel.classList.add('open');
+      }
+    });
+  });
+
+  /* ---- §08 workstream accordions ---------------------------------- */
+  $$('.ws').forEach(function(ws){
+    var btn  = $('.ws-btn', ws);
+    var body = $('.ws-body', ws);
+    var id   = 'wsb-' + Math.abs(($('.ws-name',ws).textContent).split('').reduce(function(a,c){ return ((a<<5)-a+c.charCodeAt(0))|0; },0));
+    body.id = id;
+    btn.setAttribute('aria-controls', id);
+    btn.addEventListener('click', function(){
+      var open = ws.getAttribute('data-open') === '1';
+      ws.setAttribute('data-open', open ? '0' : '1');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  /* ---- open everything before the browser prints ------------------ */
+  window.addEventListener('beforeprint', function(){
+    $$('.chip').forEach(function(c){ c.setAttribute('aria-expanded','true'); });
+    $$('.ws').forEach(function(w){ w.setAttribute('data-open','1'); });
+    $$('.spec').forEach(function(p){ p.classList.add('open'); });
+    $$('.reveal').forEach(function(r){ r.classList.add('in'); });
+    growBars();
+  });
+})();
+</script>
+
+</body>
+</html>
