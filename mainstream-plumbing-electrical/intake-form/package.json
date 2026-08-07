@@ -1,0 +1,10 @@
+{
+  "name": "mainstream-intake-form",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Jacob / Mainstream Plumbing and Electrical website intake — hosted on Vercel, draft persistence via Vercel KV, submission via n8n webhook.",
+  "type": "module",
+  "dependencies": {
+    "@vercel/kv": "^3.0.0"
+  }
+}
