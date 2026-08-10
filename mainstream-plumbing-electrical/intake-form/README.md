@@ -116,17 +116,34 @@ Credentials needed first: **Gmail OAuth2**, **Google Drive OAuth2**, **Slack OAu
 
 ---
 
-## Verification already done (2026-08-07, headless Chromium)
+## Verification
+
+**2026-08-07, headless Chromium**
 
 - All 15 sections render, correct headings and step indexes
 - Review screen: 15 rows in 4 groups, exactly 9 marked Required
 - `requiredComplete` is `false` on an empty form and `true` once all 9 required sections are filled
 - `requiredCount()` tallies: 1→7/7, 4→4/4, 5→3/3, 7→7/7, 9→1/1, 10→3/3, 13→8/8, 14→1/1, 15→6/6
 - `toMarkdown()` emits all 15 sections and round-trips real values
-- 0px horizontal overflow at 390px wide
 - 0 console errors
 
+**2026-08-10, re-verified before deploy — three clone bugs found and fixed**
+
+The 8/7 pass measured overflow on the welcome screen only, so it reported 0px and missed a real defect on every section screen. Full sweep of steps 0-17 this time.
+
+| # | Bug | Fix |
+|---|---|---|
+| 1 | Review banner read "Sections **1, 7, 9, 10, and 13** are required" — ECS's list, hardcoded. The submit gate actually checks nine sections, so Jacob would have filled five, seen the button stay locked, and had no idea why. | Banner now derives from `requiredSections`, so it can't drift again. |
+| 2 | "Back" on the review screen called `goTo(13)` — ECS's last section. Landed Jacob on SMS registration instead of Review engine. | Now `goTo(totalSections)`. |
+| 3 | `.nav-footer` overflowed the viewport at 390px on **every** section screen: 5px normally, 20px on §15 where the button reads "Review". Flex items at `min-width:auto` refused to shrink. Jacob is being sent this on his phone. | `flex-wrap: wrap` + `min-width: 0` on the footer and its right group. Buttons wrap instead of pushing the page sideways. |
+
+Re-verified after the fixes: **0px horizontal overflow across all 18 steps at 390px**, required gate flips correctly across all nine sections, submit button enables, `toMarkdown()` still emits 15 sections with real values.
+
 Not yet verified (needs the deploy): the KV draft round-trip and the two n8n webhooks.
+
+### Known cosmetic wart
+
+On §15 the primary button reads "Review" and sits next to the secondary "Review" jump-link, so the word appears twice. Pre-existing pattern inherited from ECS. Harmless; worth a rename if it ever bothers anyone.
 
 ---
 

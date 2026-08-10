@@ -1020,9 +1020,10 @@
     /* ============ NAV FOOTER ============ */
     .nav-footer {
       display: flex; align-items: center; justify-content: space-between; gap: 12px;
-      margin-top: 24px;
+      margin-top: 24px; flex-wrap: wrap;
     }
-    .nav-footer__right { display: flex; gap: 8px; align-items: center; }
+    .nav-footer__right { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; justify-content: flex-end; min-width: 0; }
+    .nav-footer .btn { min-width: 0; }
 
     /* ============ ANIMATIONS ============ */
     @keyframes fadeUp {
@@ -2778,12 +2779,12 @@
             </div>
             <div x-show="!requiredComplete">
               <strong style="font-family:'Bricolage Grotesque',sans-serif;font-weight:700;">Required sections still need info.</strong>
-              <span> Sections 1, 7, 9, 10, and 13 are required. The rest can come in later.</span>
+              <span x-text="' Sections ' + requiredSections.slice(0, -1).join(', ') + ', and ' + requiredSections[requiredSections.length - 1] + ' are required. The rest can come in later.'"></span>
             </div>
           </div>
 
           <div style="margin-top: 24px; display: flex; flex-direction: column; gap: 10px;" class="sm:flex-row sm:justify-end sm:items-center">
-            <button type="button" class="btn btn-secondary" @click="goTo(13)">
+            <button type="button" class="btn btn-secondary" @click="goTo(totalSections)">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
               Back
             </button>
