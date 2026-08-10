@@ -4,5 +4,5 @@
 window.MAINSTREAM_CONFIG = {
   // POST endpoint that receives the final intake submission and emails Shayne.
   // This is an n8n production webhook URL (Workflow A in n8n-workflow-A-final-submit.json).
-  WEBHOOK_SUBMIT: 'https://shayne.up.railway.app/webhook/mainstream-intake-submit'
+  WEBHOOK_SUBMIT: 'https://n8n-production-f1d5.up.railway.app/webhook/mainstream-intake-submit'
 };
