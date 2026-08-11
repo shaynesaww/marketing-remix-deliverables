@@ -17,6 +17,7 @@
     --marigold:#D98A18;--marigold-deep:#A7610F;--marigold-wash:#F7E6C9;
     --peacock:#136E6B;--peacock-deep:#0B4A48;--peacock-wash:#D8E8E4;
     --rose:#B23F66;--rose-deep:#8C2F50;--rose-wash:#F3DDE4;
+    --midnight:#1E3A5F;--midnight-deep:#0D1B3E;--midnight-wash:#DBE2EC;
     --shadow:0 1px 2px rgba(70,45,15,.04), 0 10px 34px -14px rgba(70,45,15,.18);
     --shadow-lg:0 2px 8px rgba(70,45,15,.06), 0 28px 64px -24px rgba(70,45,15,.30);
     --r:16px;--maxw:1080px;
@@ -43,17 +44,19 @@
   .hero .sub{font-size:21px;line-height:1.55;color:var(--ink-soft);max-width:54ch}
   .contents-label{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint);margin:64px 0 20px;display:flex;align-items:center;gap:14px}
   .contents-label::after{content:"";flex:1;height:1px;background:var(--line)}
-  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+  .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
   .card{position:relative;display:flex;flex-direction:column;gap:14px;text-decoration:none;color:var(--ink);background:var(--letter);border:1px solid var(--line);border-radius:var(--r);padding:30px 28px 26px;box-shadow:var(--shadow);overflow:hidden;transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease}
   .card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px}
   .card.c1::before{background:linear-gradient(180deg,var(--marigold),var(--marigold-deep))}
   .card.c2::before{background:linear-gradient(180deg,var(--peacock),var(--peacock-deep))}
   .card.c3::before{background:linear-gradient(180deg,var(--rose),var(--rose-deep))}
+  .card.c4::before{background:linear-gradient(180deg,var(--midnight),var(--midnight-deep))}
   .card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--line-soft)}
   .card .num{font-family:var(--mono);font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint)}
   .card.c1 .num{color:var(--marigold-deep)}
   .card.c2 .num{color:var(--peacock-deep)}
   .card.c3 .num{color:var(--rose-deep)}
+  .card.c4 .num{color:var(--midnight-deep)}
   .card h2{font-family:var(--display);font-weight:600;font-size:27px;line-height:1.05;letter-spacing:-.01em;margin:0;color:var(--ink)}
   .card p{margin:0;font-size:16.5px;line-height:1.5;color:var(--ink-soft);flex:1}
   .card .go{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);display:inline-flex;align-items:center;gap:8px;margin-top:4px}
@@ -82,7 +85,7 @@
   <section class="hero">
     <div class="eyebrow reveal">Prepared for you</div>
     <h1 class="reveal">Everything, <em>in one place.</em></h1>
-    <p class="sub reveal">Three pieces of the same picture &mdash; the vision we're building toward, the offer at the heart of it, and the plan to bring it to life. Start anywhere; they're meant to be read together.</p>
+    <p class="sub reveal">Four pieces of the same picture &mdash; the vision we're building toward, the offer at the heart of it, the plan to bring it to life, and the research underneath all of it. Start anywhere; they're meant to be read together.</p>
   </section>
 
   <div class="contents-label reveal">The Documents</div>
@@ -103,6 +106,12 @@
       <span class="num">03 &middot; The Build Plan</span>
       <h2>From Here to Launch</h2>
       <p>Everything it takes to build it, month by month &mdash; and exactly what the investment looks like.</p>
+      <span class="go">Open <span class="ar">&rarr;</span></span>
+    </a>
+    <a class="card c4 reveal" href="/megha-bhouraskar/market-research/">
+      <span class="num">04 &middot; The Research</span>
+      <h2>What Your Market Actually Says</h2>
+      <p>Their pain points, their objections, and the words they use when nobody is selling them anything.</p>
       <span class="go">Open <span class="ar">&rarr;</span></span>
     </a>
   </div>
