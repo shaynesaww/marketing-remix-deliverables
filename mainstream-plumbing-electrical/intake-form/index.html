@@ -2878,7 +2878,7 @@
         <div style="position: relative; display: flex; flex-direction: column; gap: 12px;" class="sm:flex-row sm:items-center">
           <div style="flex: 1;">
             <div class="backup-cta__title">Switching devices?</div>
-            <div class="backup-cta__dek">Email yourself a backup link so you can pick up on another phone or computer.</div>
+            <div class="backup-cta__dek">Your answers save as you go. To finish on another phone or computer, use the link below.</div>
           </div>
           <div style="display: flex; gap: 8px; width: 100%;" class="sm:w-auto">
             <input type="email" class="input-base" :class="emailErrors.backupEmail ? 'is-invalid' : ''" style="flex: 1;" x-model="email" @blur="validateEmail('backupEmail', email)" @input="emailErrors.backupEmail && validateEmail('backupEmail', email)" placeholder="your@email.com" />
@@ -2891,6 +2891,24 @@
             </button>
           </div>
         </div>
+        <!-- Resume link: appears as soon as the first cloud auto-save lands -->
+        <div x-show="resumeUrl" x-cloak style="margin-top: 16px; padding-top: 16px; border-top: 1px solid var(--line);">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--primary); flex-shrink: 0;"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg>
+            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; color: var(--ink); font-size: 14px;">Your personal link back into this form</span>
+          </div>
+          <div style="display: flex; gap: 8px; width: 100%; flex-wrap: wrap;">
+            <input id="resume-link-field" type="text" class="input-base" readonly :value="resumeUrl" @focus="$event.target.select()" style="flex: 1; min-width: 0; font-family: 'JetBrains Mono', monospace; font-size: 12.5px;" />
+            <button type="button" class="btn btn-secondary" @click="copyResumeLink()" style="flex-shrink: 0;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span x-text="copyLabel"></span>
+            </button>
+          </div>
+          <div style="margin-top: 8px; font-size: 12.5px; color: var(--ink-mute); line-height: 1.5;">
+            <strong style="color: var(--ink);">Text this link to yourself</strong> if you want to finish on another device. It opens the form right where you left off, and it keeps working for 90 days.
+          </div>
+        </div>
+
         <div x-show="backupMessage" style="margin-top: 10px; font-size: 13px;" :class="backupError ? 'text-danger' : 'text-success'" x-text="backupMessage"></div>
       </div>
 
@@ -2999,6 +3017,12 @@
       backupError: false,
       submitting: false,
       submitError: '',
+      // cloud draft (KV) — auto-saved, independent of the localStorage copy
+      resumeUrl: '',
+      cloudSaving: false,
+      cloudSavedAt: null,
+      cloudError: false,
+      copyLabel: 'Copy',
       state: {
         s1: { legalNameQuick: '', dbaQuick: '', plumbingLicense: '', electricalLicense: '', masterPlumber: '', masterElectrician: '', municipalLicenses: '', yearsInBusiness: '', yearFounded: '', bonded: '', bondAmount: '', insured: '', liabilityCoverage: '', workersComp: '', bbbAccredited: '', bbbRating: '', otherMemberships: '', awards: '' },
         s2: { waterHeaterBrands: [], panelBrands: [], fixtureBrands: [], evBrands: [], otherBrands: '', generatorBrand: '', generacStatus: '', financingPartners: [], otherFinancing: '', logosAvailable: '', logosNotes: '' },
@@ -3028,6 +3052,7 @@
                 this.state = Object.assign(this.state, data.state);
                 this.email = data.email || '';
                 this.draftId = resumeId;
+                this.resumeUrl = `${window.location.origin}/?resume=${encodeURIComponent(resumeId)}`;
                 this.currentStep = data.lastStep || 1;
                 this.saveLabel = 'Restored from backup';
               }
@@ -3047,6 +3072,7 @@
                 if (parsed.state) this.state = Object.assign(this.state, parsed.state);
                 if (parsed.email) this.email = parsed.email;
                 if (parsed.draftId) this.draftId = parsed.draftId;
+                if (parsed.resumeUrl) this.resumeUrl = parsed.resumeUrl;
                 if (parsed.currentStep != null) this.currentStep = parsed.currentStep;
                 this.savedAt = parsed.savedAt || Date.now();
                 this.updateSaveLabel();
@@ -3054,10 +3080,34 @@
             }
           } catch (e) { /* ignore */ }
         }
-        this.$watch('state', () => this.saveLocal(), { deep: true });
-        this.$watch('currentStep', () => this.saveLocal());
-        this.$watch('email', () => this.saveLocal());
+        // Snapshot AFTER hydration so pre-fills and resumed drafts aren't "dirty".
+        try { this._pristine = JSON.stringify(this.state); } catch (e) { this._pristine = ''; }
+
+        this.$watch('state', () => { this.saveLocal(); this.queueCloudSave(); }, { deep: true });
+        // Advancing a section is a natural checkpoint — push it up immediately
+        // rather than waiting out the idle timer.
+        this.$watch('currentStep', () => { this.saveLocal(); this.queueCloudSave(true); });
+        this.$watch('email', () => { this.saveLocal(); this.queueCloudSave(); });
         setInterval(() => this.updateSaveLabel(), 10000);
+
+        // Last-ditch flush if they close the tab mid-debounce. keepalive lets
+        // the request outlive the page; sendBeacon can't set a JSON content type.
+        window.addEventListener('pagehide', () => {
+          if (this.submitted || !this.isDirty() || !this.resumeUrl) return;
+          try {
+            fetch('/api/save-draft', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              keepalive: true,
+              body: JSON.stringify({
+                email: this.email || undefined,
+                draftId: this.draftId || undefined,
+                state: this.state,
+                lastStep: this.currentStep
+              })
+            });
+          } catch (e) { /* nothing useful to do as the page goes away */ }
+        });
       },
 
       goTo(step) {
@@ -3391,6 +3441,7 @@
             state: this.state,
             email: this.email,
             draftId: this.draftId,
+            resumeUrl: this.resumeUrl,
             currentStep: this.currentStep,
             savedAt: Date.now()
           };
@@ -3412,6 +3463,84 @@
         else this.saveLabel = `Saved ${Math.round(secs/3600)}h ago`;
       },
 
+      // ============ CLOUD DRAFT (auto) ============
+      // localStorage keeps the answers on this device. This keeps a copy in KV
+      // so a different phone or computer can pick the form up, and so a browser
+      // that clears its storage isn't the only copy that ever existed.
+      //
+      // The user is never asked to trigger it. `notify` is deliberately absent
+      // on every call here — the server only emails when the button asks it to.
+      _cloudTimer: null,
+      _cloudInFlight: false,
+      _cloudPending: false,
+      _pristine: '',
+
+      isDirty() {
+        // Compares against the state as it stood after init hydrated it, so the
+        // call pre-fills ($78, Home Service Club) don't count as user input and
+        // a resumed draft doesn't immediately re-save itself.
+        try { return JSON.stringify(this.state) !== this._pristine; }
+        catch (e) { return true; }
+      },
+
+      queueCloudSave(immediate) {
+        if (this.submitted || !this.isDirty()) return;
+        clearTimeout(this._cloudTimer);
+        this._cloudTimer = setTimeout(() => this.saveCloud(), immediate ? 0 : 3500);
+      },
+
+      async saveCloud() {
+        if (this.submitted || !this.isDirty()) return;
+        // One request at a time. Anything that lands mid-flight re-runs after.
+        if (this._cloudInFlight) { this._cloudPending = true; return; }
+        this._cloudInFlight = true;
+        this.cloudSaving = true;
+        try {
+          const res = await fetch('/api/save-draft', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              email: this.email || undefined,
+              draftId: this.draftId || undefined,
+              state: this.state,
+              lastStep: this.currentStep
+            })
+          });
+          if (!res.ok) throw new Error(`Server returned ${res.status}`);
+          const data = await res.json();
+          // Reusing the uuid means every later save overwrites the same record,
+          // so the link we show never goes stale or multiplies.
+          if (data.uuid) this.draftId = data.uuid;
+          if (data.resumeUrl) this.resumeUrl = data.resumeUrl;
+          this.cloudSavedAt = Date.now();
+          this.cloudError = false;
+          this.saveLocal();
+        } catch (e) {
+          // Quiet on purpose: the local copy is already safe, and an error
+          // banner on every keystroke would read as a broken form.
+          this.cloudError = true;
+        } finally {
+          this._cloudInFlight = false;
+          this.cloudSaving = false;
+          if (this._cloudPending) { this._cloudPending = false; this.queueCloudSave(true); }
+        }
+      },
+
+      async copyResumeLink() {
+        if (!this.resumeUrl) return;
+        try {
+          await navigator.clipboard.writeText(this.resumeUrl);
+          this.copyLabel = 'Copied';
+        } catch (e) {
+          // Clipboard API needs a secure context and a user gesture; if it's
+          // blocked, select the text so they can copy it by hand.
+          const el = document.getElementById('resume-link-field');
+          if (el) { el.focus(); el.select(); }
+          this.copyLabel = 'Press Ctrl+C';
+        }
+        setTimeout(() => { this.copyLabel = 'Copy'; }, 2500);
+      },
+
       async emailBackupLink() {
         if (!this.email) return;
         this.backupSending = true;
@@ -3425,16 +3554,27 @@
               email: this.email,
               draftId: this.draftId || undefined,
               state: this.state,
-              lastStep: this.currentStep
+              lastStep: this.currentStep,
+              notify: true
             })
           });
           if (!res.ok) throw new Error(`Server returned ${res.status}`);
           const data = await res.json();
           if (data.uuid) this.draftId = data.uuid;
-          this.backupMessage = `Sent. Check ${this.email} for your resume link.`;
+          if (data.resumeUrl) this.resumeUrl = data.resumeUrl;
+          this.cloudSavedAt = Date.now();
+          this.saveLocal();
+          // The draft is saved either way. Only claim the email went out if the
+          // server actually got a success back from the mail workflow.
+          if (data.emailed) {
+            this.backupMessage = `Sent. Check ${this.email} for your resume link.`;
+          } else {
+            this.backupError = true;
+            this.backupMessage = `Your progress is saved, but the email didn't go through. Copy the link above instead — it works the same way.`;
+          }
         } catch (e) {
           this.backupError = true;
-          this.backupMessage = `Couldn't send right now. Your progress is still saved in this browser. (${e.message})`;
+          this.backupMessage = `Couldn't send right now. Your progress is still saved. (${e.message})`;
         } finally {
           this.backupSending = false;
         }

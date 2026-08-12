@@ -151,10 +151,33 @@ On §15 the primary button reads "Review" and sits next to the secondary "Review
 
 | Event | Endpoint | Result |
 |---|---|---|
-| Auto-save | localStorage (`mainstream-intake-draft`) | Survives close/refresh/reboot on the same device |
-| Jacob clicks "Send link" | `POST /api/save-draft` → KV → n8n Workflow B | Jacob gets a resume-link email |
+| Any keystroke (500ms debounce) | localStorage (`mainstream-intake-draft`) | Survives close/refresh/reboot on the same device |
+| Any keystroke (3.5s idle) **and** every section advance | `POST /api/save-draft` (no `notify`) | Draft mirrored to KV, resume link shown on the page. **No email sent.** |
+| Tab closed mid-debounce | `POST /api/save-draft` with `keepalive` on `pagehide` | Last-ditch flush so the final edits aren't lost |
+| Jacob clicks "Send link" | `POST /api/save-draft` with `notify: true` → n8n Workflow B | Resume-link email, **only if the workflow actually returns 2xx** |
 | Jacob submits | `POST` to n8n Workflow A's webhook | Markdown to Drive + email to Shayne with the Drive link |
 | Submit fails | Fallback: downloads `.md` + opens pre-filled mailto | Jacob can still get the data across |
+
+## Draft persistence — the design
+
+Two independent copies, and **neither depends on Jacob remembering to press anything.**
+
+**Local (localStorage).** Written 500ms after any change to an answer, the current section, or the email field. No expiry. Powers the "Saved 3m ago" header indicator. Restores to the exact section on return.
+
+**Cloud (Upstash Redis).** Written 3.5s after the user stops typing, and immediately on every section advance. Keyed by a random UUID with a **90-day TTL**; every later save reuses the same `draftId`, so one draft is one record that gets overwritten rather than a pile of copies.
+
+Guards, all deliberate:
+
+- **`isDirty()`** compares state against a snapshot taken *after* init hydrates. Merely opening the form creates nothing, the call pre-fills ($78, Home Service Club) don't count as input, and a freshly resumed draft doesn't immediately re-save itself.
+- **Single in-flight request.** Anything that lands mid-request sets `_cloudPending` and re-runs after, so fast typing can't stack requests.
+- **Cloud failures are silent.** The local copy is already safe; an error banner on every keystroke would read as a broken form. Failure is tracked in `cloudError`, not shouted.
+- **`notify` is absent on every auto-save.** This is what stops a form that saves every few seconds from emailing someone every few seconds.
+
+**The resume link is shown on the page** as soon as the first cloud save lands, with a Copy button and a "text this to yourself" prompt. That path works even when email delivery is broken, which is why it exists.
+
+### Why `emailed` is in the response
+
+`fetch` does not reject on 4xx/5xx. The original code called the n8n webhook fire-and-forget and never checked `res.ok`, so an **inactive** n8n workflow returned 404, nothing threw, nothing logged, the endpoint returned 200, and the user was told *"Sent. Check your email."* while no email existed. `save-draft` now checks `hookRes.ok` and returns `{ emailed, emailError }`; the UI only claims success when the mail workflow actually confirmed it, and otherwise points at the on-page link.
 
 ## Editing questions later
 
