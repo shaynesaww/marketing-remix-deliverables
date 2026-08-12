@@ -1,0 +1,1078 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Own an American company without leaving home | Megha Bhouraskar</title>
+<meta name="description" content="A free course from a New York attorney of twenty-five years. Own a U.S. company without a visa, without relocating, without an American partner.">
+<link rel="stylesheet" href="system.css">
+<style>
+/* =============================================================================
+   THE FULL PAGE — Atmosphere thesis, all 14 sections.
+
+   First complete build. Depth comes from light: pooled inside each section,
+   falling away at the edges, with cream passages meeting midnight on a built
+   edge (gold hairline + inset shadow) rather than a gradient.
+
+   LIGHT AND DARK RUN IN PASSAGES, NOT ALTERNATION:
+     1  hero .............. midnight, mid
+     2  the gap ........... deepest ground on the page
+     3  nothing to defy ... CREAM — light breaks exactly where the copy releases
+     4  the myths ......... CREAM
+     5  what this is ...... CREAM
+     6  the modules ....... midnight — the road carries the sun
+     7  two countries ..... SPLIT — the diagram IS the ground
+     8  how this works .... CREAM
+     9  walk away with .... CREAM
+     10 why megha ......... deep midnight, cinematic
+     11 proof ............. midnight
+     12 the room .......... midnight, an inset panel with edges
+     13 questions ......... midnight, deliberately quiet
+     14 close ............. midnight, the light coming back up
+
+   NUMERALS MEAN SEQUENCE, AND ONLY SEQUENCE. They appear on the six-step road
+   (§6) and the three steps (§8), because those are real ordered chains — no EIN,
+   no bank account. They do NOT appear on the nine myths, which are an unordered
+   set, or on the eight outcomes.
+
+   THE SIGNATURE is her verbatim voice: gold rule, italic Georgia in gold,
+   attribution. It appears in §2, §4, §5, §10, §12 and §14 — by the third the
+   reader knows it means "she is speaking now" without being told.
+
+   GATES: every unverified block carries data-gate. Load _qa.html with &gates=1
+   to badge them. Nothing here ships before Megha's pass.
+   ============================================================================= */
+@layer variant {
+
+  /* ---- the continuous body of air --------------------------------------- */
+  body{background:var(--g-1)}
+  .sec{
+    isolation:auto;
+    background:radial-gradient(
+      var(--light-reach) at var(--light-x) var(--light-y),
+      var(--light-core) 0%,var(--light-mid) 38%,transparent 72%),
+      var(--ground,var(--g-1));
+  }
+  .sec::after{
+    content:"";position:absolute;inset:-12% 0 0 0;z-index:var(--z-ground);pointer-events:none;
+    background:radial-gradient(var(--haze-reach,90% 60%) at var(--haze-x,18%) var(--haze-y,86%),
+      var(--haze,rgba(26,47,94,.28)) 0%,transparent 68%)}
+  :root{--grain:url(assets/grain-fine.png);--grain-opacity:.045}
+
+  /* ---- cream passages: a built edge, never a gradient --------------------- */
+  .sec--paper{
+    background:radial-gradient(var(--light-reach) at var(--light-x) var(--light-y),
+      var(--light-core) 0%,var(--light-mid) 46%,var(--light-edge) 100%);
+    padding-block:var(--beat-wide);
+    --seam:rgba(184,146,74,.72);
+    border-top:1px solid var(--seam);border-bottom:1px solid var(--seam);
+    box-shadow:inset 0 26px 34px -22px rgba(4,7,18,.78),
+               inset 0 -18px 26px -18px rgba(4,7,18,.52)}
+  /* consecutive cream sections share one field: no seam between them */
+  .sec--paper + .sec--paper{border-top:0;box-shadow:inset 0 -18px 26px -18px rgba(4,7,18,.52)}
+  .sec--paper::after{inset:0;background:radial-gradient(
+    var(--haze-reach,110% 64%) at var(--haze-x,58%) var(--haze-y,42%),
+    var(--haze,rgba(255,240,214,.45)) 0%,transparent 70%)}
+
+  /* ---- nav ---------------------------------------------------------------- */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);
+    background:rgba(10,17,40,.9);border-bottom:1px solid var(--rule-soft)}
+  .nav-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+    height:76px;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5)}
+  .nav-logo{height:42px;width:auto}
+  .nav .btn{padding:12px 24px;font-size:13px}
+
+  /* ---- shared devices ----------------------------------------------------- */
+  .said,.pull{border-left:2px solid var(--rule-gold);padding-left:clamp(18px,2vw,28px);
+    font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-6);line-height:1.42;max-width:30ch}
+  .pull{position:relative;z-index:var(--z-lift);margin-block:var(--s-8)}
+  .pull p{font:inherit;color:inherit}
+  .pull cite,.said-by{display:block;margin-top:var(--s-3);font-family:var(--sans);
+    font-style:normal;font-size:var(--t-1);letter-spacing:var(--track-label);
+    text-transform:uppercase;color:var(--ink-mute)}
+  .measure{max-width:660px;margin-inline:auto}
+  .sec-head{margin-bottom:var(--s-8)}
+  .sec-head .label + h2{margin-top:var(--s-4)}
+  .sec-sub{margin-top:var(--s-5);color:var(--ink-mute);font-size:var(--t-4);max-width:56ch}
+
+  /* ================= §1 HERO ================= */
+  .hero{--ground:var(--g-2);
+    --light-core:rgba(38,66,124,.92);--light-mid:rgba(21,38,78,.55);
+    --light-x:74%;--light-y:38%;--light-reach:110% 92%;
+    --haze:rgba(212,170,106,.07);--haze-x:88%;--haze-y:30%;--haze-reach:60% 55%;
+    padding-block:0;overflow:hidden}
+  .hero-grid{position:relative;z-index:var(--z-content);max-width:var(--wrap);
+    margin-inline:auto;padding-inline:var(--gutter);
+    min-height:min(calc(100dvh - 76px),880px);display:flex;align-items:center}
+  .hero-copy{padding-block:clamp(64px,10vh,120px);max-width:min(720px,58%)}
+  .hero h1{margin-bottom:var(--s-6);font-size:clamp(32px,4.1vw,54px);max-width:none}
+  .hero h1 .l{display:block}
+  .hero .lede{margin-bottom:var(--s-7)}
+  .hero-proof{margin-top:var(--s-7);padding-top:var(--s-5);border-top:1px solid var(--rule-soft);
+    font-size:var(--t-3);color:var(--ink-mute);max-width:46ch;line-height:1.62}
+  .sun{position:absolute;z-index:var(--z-atmos);pointer-events:none;right:-2%;top:32%;
+    translate:0 -50%;width:min(820px,60vw);aspect-ratio:1;
+    background:radial-gradient(circle,rgba(233,201,150,.34) 0%,rgba(212,170,106,.19) 26%,
+      rgba(184,146,74,.08) 46%,transparent 68%)}
+  .sun-arc{position:absolute;z-index:var(--z-atmos);pointer-events:none;right:-2%;top:32%;
+    translate:0 -50%;width:min(820px,60vw);aspect-ratio:1;
+    border:1px solid rgba(212,170,106,.26);border-radius:50%}
+  .sun-arc::before,.sun-arc::after{content:"";position:absolute;top:50%;width:7px;height:7px;
+    margin-top:-3.5px;border-radius:50%;background:rgba(226,186,132,.8)}
+  .sun-arc::before{left:-3.5px} .sun-arc::after{right:-3.5px}
+  .hero-figure{position:absolute;z-index:var(--z-ornament);right:0;top:0;bottom:0;
+    width:min(48%,700px);overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.8) 46%,#000 64%,#000 88%,rgba(0,0,0,.32) 100%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.8) 46%,#000 64%,#000 88%,rgba(0,0,0,.32) 100%)}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;object-position:56% 10%;
+    filter:saturate(.88) brightness(.86) contrast(1.04)}
+  .hero-figure::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(252deg,rgba(233,201,150,.17) 0%,rgba(212,170,106,.05) 30%,transparent 54%),
+      linear-gradient(180deg,rgba(13,27,62,.30) 0%,rgba(10,17,40,.06) 44%,rgba(7,12,30,.60) 100%)}
+
+  /* ================= §2 THE GAP ================= */
+  .gap{--ground:var(--g-0);
+    --light-core:rgba(22,39,79,.42);--light-mid:rgba(13,27,62,.16);
+    --light-x:16%;--light-y:12%;--light-reach:86% 58%;
+    --grain-opacity:.058;padding-block:var(--beat-wide)}
+  .gap::after{inset:0;background:radial-gradient(104% 72% at 50% 46%,
+    transparent 18%,rgba(4,7,18,.40) 68%,rgba(4,7,18,.66) 100%);
+    -webkit-mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%);
+            mask-image:linear-gradient(180deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
+  .gap .wrap{max-width:var(--wrap-narrow)}
+  .gap-in{max-width:620px;margin-inline:auto}
+  .gap h2{margin-bottom:var(--s-7);max-width:19ch}
+  .gap .prose{max-width:none}
+  .gap .prose p{font-size:var(--t-5);line-height:1.68;color:var(--ink-soft)}
+  .gap .prose p + p{margin-top:var(--s-5)}
+  .gap .beat{font-family:var(--display);font-size:var(--t-5);color:var(--ink);
+    font-style:italic;margin-block:var(--s-6)}
+
+  /* ================= §3 NOTHING ASKS YOU TO DEFY ANYONE =================
+     A ledger. Three past-tense losses on the left in a receded treatment, the
+     release opposite them in reading colour. The structure IS the argument:
+     every version of this they have imagined had a column of costs, and this
+     one does not. */
+  .defy{--light-core:var(--p-3);--light-mid:var(--p-2);--light-edge:var(--p-1);
+    --light-x:22%;--light-y:8%;--light-reach:92% 56%}
+  .ledger{list-style:none;max-width:1000px;margin-top:var(--s-8)}
+  .ledger li{display:grid;grid-template-columns:minmax(0,1fr) 40px minmax(0,1fr);
+    gap:clamp(14px,2.4vw,36px);align-items:baseline;
+    padding-block:var(--s-6);border-top:1px solid var(--rule-paper)}
+  .ledger li:last-child{border-bottom:1px solid var(--rule-paper)}
+  .led-cost{color:var(--ink-mute);font-size:var(--t-4)}
+  .led-arrow{color:var(--gold);font-family:var(--display);text-align:center;
+    font-size:var(--t-5);line-height:1}
+  .led-free{color:var(--ink);font-size:var(--t-4)}
+  .defy-close{margin-top:var(--s-8);font-family:var(--display);font-style:italic;
+    font-size:var(--t-6);color:var(--gold);max-width:34ch}
+
+  /* ================= §4 THE MYTHS ================= */
+  .myths-sec{--light-x:64%;--light-y:6%;--light-reach:96% 58%;--mgap:clamp(22px,3vw,52px)}
+  .myths-headrow,.myth{display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    column-gap:var(--mgap);align-items:start}
+  .myths-headrow{margin-bottom:var(--s-8);align-items:end}
+  .mh{grid-column:1}
+  .myths-head{margin-top:var(--s-4);font-size:clamp(26px,3.1vw,40px)}
+  .myths-sub{grid-column:2;color:var(--ink-mute);font-size:var(--t-4)}
+  .myths{list-style:none}
+  .myth{padding-block:var(--s-6);border-top:1px solid var(--rule-paper)}
+  .myth:last-child{border-bottom:1px solid var(--rule-paper)}
+  .myth-belief{font-family:var(--display);font-style:italic;font-size:var(--t-6);
+    line-height:1.34;color:var(--ink-mute)}
+  .myth-truth{font-size:var(--t-4);color:var(--ink);line-height:1.75}
+  .myth--turn{border-top:2px solid rgba(184,146,74,.6)}
+  .myth--turn .myth-belief{color:var(--gold)}
+  .myths-close{margin-top:var(--s-9);max-width:var(--measure-prose)}
+  .myths-close .said{margin-bottom:var(--s-5)}
+
+  /* ================= §5 WHAT THIS ACTUALLY IS ================= */
+  .what{--light-core:var(--p-3);--light-mid:var(--p-2);--light-edge:var(--p-1);
+    --light-x:76%;--light-y:88%;--light-reach:88% 60%}
+  .what .measure p + p{margin-top:var(--s-5)}
+  /* the one typographic rest on the page */
+  .filed{margin-block:var(--s-9);text-align:center;font-family:var(--display);
+    font-style:italic;font-size:clamp(30px,4.6vw,58px);color:var(--gold-aa);line-height:1.1}
+
+  /* ================= §6 THE THREE MODULES ================= */
+  .mods{--ground:var(--g-1);
+    --light-core:rgba(26,47,94,.5);--light-mid:rgba(13,27,62,.2);
+    --light-x:78%;--light-y:6%;--light-reach:74% 44%;padding-block:var(--beat-wide)}
+  .mod{padding-block:var(--s-9);border-top:1px solid var(--rule-soft)}
+  .mod:first-of-type{border-top:0;padding-top:var(--s-7)}
+  .mod-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);
+    gap:clamp(24px,4vw,64px);align-items:start;margin-bottom:var(--s-8)}
+  .mod-n{font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--gold);display:block;margin-bottom:var(--s-3)}
+  .mod-head h3{font-size:clamp(24px,2.8vw,34px)}
+  .mod-count{margin-top:var(--s-3);font-size:var(--t-2);color:var(--ink-faint);
+    letter-spacing:.14em;text-transform:uppercase}
+  .mod-blurb{font-size:var(--t-4);color:var(--ink-soft)}
+  .mod-blurb p + p{margin-top:var(--s-4)}
+
+  /* M1 — the SHINE spine. The letter is the structure. */
+  .shine{list-style:none;max-width:840px}
+  .shine li{display:grid;grid-template-columns:64px minmax(0,.85fr) minmax(0,1.05fr);
+    gap:clamp(16px,2.4vw,36px);align-items:baseline;padding-block:var(--s-5);
+    border-top:1px solid var(--rule-soft)}
+  .shine li:last-child{border-bottom:1px solid var(--rule-soft)}
+  .shine-l{font-family:var(--display);font-size:clamp(28px,3.4vw,42px);
+    color:var(--gold);line-height:1}
+  .shine-l.none{color:var(--ink-faint);font-size:var(--t-4)}
+  .shine b{font-family:var(--display);font-weight:400;
+    font-size:var(--t-5);color:var(--ink);line-height:1.3}
+  .shine .shine-d{font-size:var(--t-3);color:var(--ink-mute);line-height:1.7}
+
+  /* M2 — THE ROAD. Numerals belong here: this is a real prerequisite chain.
+     A vertical spine with a visible hand-off after step four, where the work
+     stops being something you do and becomes something you keep with help. */
+  .road{list-style:none;position:relative;padding-left:clamp(44px,6vw,76px)}
+  /* Step name and detail sit in two columns, the same grammar the myths use.
+     A single narrow column stranded the whole diagram in the left third of the
+     page with a dead field beside it — the recurring complaint on this build. */
+  .road li{display:grid;grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr);
+    gap:clamp(20px,3vw,52px);align-items:baseline}
+  .road::before{content:"";position:absolute;left:clamp(15px,2.1vw,27px);top:12px;bottom:12px;
+    width:1px;background:linear-gradient(180deg,var(--rule-gold) 0%,var(--rule-gold) 62%,
+      var(--rule-soft) 62%,var(--rule-soft) 100%)}
+  .road li{position:relative;padding-block:var(--s-5);
+    border-top:1px solid var(--rule-soft)}
+  .road li:first-child{border-top:0}
+  .road-n{position:absolute;left:calc(-1 * clamp(44px,6vw,76px));top:calc(var(--s-5) + 2px);
+    width:clamp(32px,4.3vw,56px);text-align:center;
+    font-family:var(--display);font-size:var(--t-4);color:var(--gold);
+    background:var(--g-1);padding-block:2px;line-height:1.3}
+  .road h4{font-family:var(--display);font-weight:400;font-size:var(--t-5);
+    color:var(--ink);line-height:1.3}
+  .road p{margin-top:var(--s-2);font-size:var(--t-3);color:var(--ink-mute);max-width:52ch}
+  /* the hand-off: step five is the one that moves, so it is the one that is
+     visibly not like the others */
+  .road-hand{margin-block:var(--s-5);padding:var(--s-5) var(--s-6);
+    border:1px dashed var(--rule-gold);border-radius:var(--r-sm);
+    background:rgba(26,47,94,.34);border-top:1px dashed var(--rule-gold)}
+  .road-hand b{display:block;font-family:var(--display);font-weight:400;
+    font-size:var(--t-4);color:var(--gold);margin-bottom:var(--s-2)}
+  .road-hand p{margin:0;font-size:var(--t-3);color:var(--ink-soft);max-width:56ch}
+  .road-hand .road-n{color:var(--ink-faint)}
+  .road-split{margin-top:var(--s-7);font-family:var(--display);font-style:italic;
+    font-size:var(--t-5);color:var(--gold);max-width:38ch}
+
+  /* M3 — the IP triad. Her own teaching move: three things, side by side. */
+  .triad{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));
+    gap:1px;background:var(--rule-soft);border:1px solid var(--rule-soft);margin-bottom:var(--s-8)}
+  .triad > div{background:var(--g-1);padding:var(--s-6) var(--s-5)}
+  .triad h4{font-family:var(--display);font-weight:400;font-size:var(--t-5);color:var(--gold);
+    margin-bottom:var(--s-3)}
+  .triad p{font-size:var(--t-3);color:var(--ink-soft)}
+  .triad em{display:block;margin-top:var(--s-3);font-size:var(--t-2);color:var(--ink-mute);
+    font-style:normal;letter-spacing:.1em;text-transform:uppercase}
+  .lessons{list-style:none;columns:2;column-gap:clamp(28px,4vw,64px);max-width:900px}
+  .lessons li{break-inside:avoid;padding-block:var(--s-3);font-size:var(--t-3);
+    color:var(--ink-soft);border-top:1px solid var(--rule-soft)}
+  .mods-foot{margin-top:var(--s-9);font-family:var(--display);font-style:italic;
+    font-size:var(--t-5);color:var(--gold);max-width:44ch}
+
+  /* ================= §7 TWO COUNTRIES =================
+     The diagram IS the ground: one section, two grounds, a seam down the middle.
+     Deliberately does not name the statutes — blocked on Megha — and renders
+     correctly whether or not it ever does. */
+  .two{--ground:var(--g-0);padding-block:var(--beat-wide);position:relative;overflow:hidden}
+  .two::after{content:none}
+  .two-grid{display:grid;grid-template-columns:1fr 1fr;position:relative;
+    border:1px solid var(--rule-gold);border-radius:var(--r-sm);overflow:hidden;
+    margin-top:var(--s-8)}
+  .two-side{padding:clamp(28px,4vw,56px)}
+  .two-a{background:linear-gradient(160deg,rgba(26,47,94,.7) 0%,rgba(13,27,62,.5) 100%)}
+  .two-b{background:linear-gradient(200deg,rgba(7,12,30,.9) 0%,rgba(13,27,62,.55) 100%);
+    border-left:1px solid var(--rule-gold)}
+  .two-side h3{font-family:var(--display);font-weight:400;font-size:var(--t-6);
+    color:var(--ink);margin-bottom:var(--s-4)}
+  .two-side .label{margin-bottom:var(--s-3)}
+  .two-side p{font-size:var(--t-3);color:var(--ink-soft)}
+  .two-side p + p{margin-top:var(--s-4)}
+  .two-foot{margin-top:var(--s-8);font-family:var(--display);font-style:italic;
+    font-size:var(--t-5);color:var(--gold);max-width:40ch}
+
+  /* ================= §8 HOW THIS WORKS =================
+     Numerals again, because three ordered steps genuinely are a sequence.
+     Step one is oversized: it is the un-fail-able one, and that is the point. */
+  .how{--light-core:var(--p-3);--light-mid:var(--p-2);--light-edge:var(--p-1);
+    --light-x:18%;--light-y:90%;--light-reach:90% 58%}
+  .how .measure p + p{margin-top:var(--s-5)}
+  .steps{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:1px;margin-top:var(--s-9);
+    background:var(--rule-paper);border:1px solid var(--rule-paper)}
+  .step{background:var(--p-2);padding:clamp(24px,3vw,40px)}
+  .step:first-child{background:var(--p-3)}
+  .step-n{font-family:var(--display);font-size:clamp(30px,4vw,52px);color:var(--gold-aa);
+    line-height:1;display:block;margin-bottom:var(--s-4)}
+  .step h4{font-family:var(--display);font-weight:400;font-size:var(--t-5);
+    color:var(--ink);margin-bottom:var(--s-3)}
+  .step p{font-size:var(--t-3);color:var(--ink-mute)}
+  .step:first-child h4{font-size:var(--t-6)}
+
+  /* ================= §9 WHAT YOU WALK AWAY WITH =================
+     An inventory. Eight things you can point at, and the eighth breaks the
+     pattern on purpose, because it is the one you cannot point at. */
+  .out{--light-core:var(--p-3);--light-mid:var(--p-2);--light-edge:var(--p-1);
+    --light-x:80%;--light-y:12%;--light-reach:84% 58%}
+  .inv{list-style:none;columns:2;column-gap:clamp(32px,5vw,80px);max-width:1020px;
+    margin-top:var(--s-8)}
+  .inv li{break-inside:avoid;padding-block:var(--s-5);border-top:1px solid var(--rule-paper);
+    font-size:var(--t-4);color:var(--ink)}
+  .inv li::before{content:"";display:inline-block;width:14px;height:1px;
+    background:var(--gold-aa);vertical-align:middle;margin-right:12px}
+  .inv .inv-last{color:var(--gold-aa);font-family:var(--display);font-style:italic;
+    font-size:var(--t-5);line-height:1.4}
+  .inv .inv-last::before{display:none}
+
+  /* ================= §10 WHY MEGHA =================
+     Five passages, five layout families. Not a timeline — that is the cliché
+     here. The résumé buys attention; the steakhouse buys trust. */
+  .why{--ground:var(--g-0);
+    --light-core:rgba(22,39,79,.5);--light-mid:rgba(13,27,62,.2);
+    --light-x:78%;--light-y:10%;--light-reach:80% 50%;padding-block:var(--beat-wide)}
+  .why-arc{max-width:620px}
+  .why-arc p + p{margin-top:var(--s-5)}
+  .why-left{margin-top:var(--s-9);font-family:var(--display);font-style:italic;
+    color:var(--ink);font-size:var(--t-7);line-height:1.15}
+  .mirror{margin-block:var(--s-9);padding-block:var(--s-9);
+    border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft)}
+  .mirror .measure{max-width:640px;margin-inline:0}
+  .mirror p + p{margin-top:var(--s-5)}
+  .why-sub{font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--gold);margin-bottom:var(--s-5);display:block}
+  .books{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:clamp(18px,2.6vw,36px);max-width:620px;margin-top:var(--s-7)}
+  .book img{border-radius:2px;width:100%}
+  /* two of the three covers do not exist. Typographic placeholders, never a
+     fabricated jacket. */
+  .book-ph{aspect-ratio:705/1125;border:1px solid var(--rule-gold);border-radius:2px;
+    background:linear-gradient(170deg,rgba(26,47,94,.5),rgba(7,12,30,.6));
+    display:flex;align-items:center;padding:var(--s-5);
+    font-family:var(--display);font-style:italic;font-size:var(--t-3);
+    color:var(--ink-mute);line-height:1.4}
+  .book cite{display:block;margin-top:var(--s-3);font-style:normal;font-size:var(--t-2);
+    color:var(--ink-faint);line-height:1.4}
+  .lineage{margin-top:var(--s-9);max-width:600px}
+  .lineage p + p{margin-top:var(--s-5)}
+  .graded{margin-top:var(--s-6);font-family:var(--display);font-style:italic;
+    font-size:var(--t-6);color:var(--gold);max-width:24ch}
+  .clients{margin-top:var(--s-9);max-width:600px}
+  .clients ul{list-style:none;margin-block:var(--s-5)}
+  .clients li{padding-block:var(--s-3);border-top:1px solid var(--rule-soft);
+    font-family:var(--display);font-size:var(--t-5);color:var(--ink)}
+  .transform{margin-top:var(--s-10);padding-top:var(--s-8);border-top:1px solid var(--rule-gold)}
+  .transform .measure{max-width:620px;margin-inline:0}
+  .transform p + p{margin-top:var(--s-5)}
+
+  /* ================= §11 PROOF =================
+     One clean testimonial. Do not build a grid for one quote — build one
+     object. The video slot is designed now for the September soft launch. */
+  .proof{--ground:var(--g-1);
+    --light-core:rgba(26,47,94,.42);--light-mid:rgba(13,27,62,.16);
+    --light-x:50%;--light-y:0%;--light-reach:80% 48%;padding-block:var(--beat)}
+  .proof-q{max-width:820px;margin-inline:auto;text-align:center}
+  .proof-q blockquote{font-family:var(--display);font-style:italic;color:var(--ink);
+    font-size:clamp(22px,2.9vw,34px);line-height:1.4}
+  .proof-q cite{display:block;margin-top:var(--s-6);font-style:normal;font-size:var(--t-2);
+    letter-spacing:var(--track-label);text-transform:uppercase;color:var(--ink-mute)}
+  .proof-note{margin-top:var(--s-8);max-width:60ch;margin-inline:auto;text-align:center;
+    font-size:var(--t-3);color:var(--ink-mute)}
+  .vslot{margin-top:var(--s-9);border:1px dashed var(--rule-gold);border-radius:var(--r-sm);
+    padding:var(--s-8) var(--s-6);text-align:center;max-width:760px;margin-inline:auto;
+    background:rgba(26,47,94,.24)}
+  .vslot b{display:block;font-family:var(--display);font-weight:400;font-size:var(--t-5);
+    color:var(--gold);margin-bottom:var(--s-3)}
+  .vslot p{font-size:var(--t-3);color:var(--ink-mute);max-width:52ch;margin-inline:auto}
+
+  /* ================= §12 THE ROOM =================
+     An inset panel with real edges — literally a room on the page. The light
+     panel device belongs to the free course; this one gets walls instead. */
+  .room-sec{--ground:var(--g-0);padding-block:var(--beat-wide);
+    --light-core:rgba(22,39,79,.4);--light-mid:rgba(13,27,62,.14);
+    --light-x:50%;--light-y:50%;--light-reach:96% 70%}
+  .room{border:1px solid var(--rule-gold);border-radius:var(--r-panel);
+    background:linear-gradient(180deg,rgba(26,47,94,.5) 0%,rgba(13,27,62,.62) 100%);
+    box-shadow:inset 0 1px 0 rgba(241,238,231,.1);
+    padding:clamp(32px,5vw,80px);max-width:1080px;margin-inline:auto}
+  .room-grid{display:grid;grid-template-columns:1.25fr .8fr;gap:clamp(32px,5vw,72px);
+    align-items:start;margin-top:var(--s-8)}
+  .room-list{list-style:none}
+  .room-list li{padding-block:var(--s-5);border-top:1px solid var(--rule-soft);font-size:var(--t-3);
+    line-height:1.72;color:var(--ink-soft)}
+  .room-list li:last-child{border-bottom:1px solid var(--rule-soft)}
+  .room-list b{display:block;font-family:var(--display);font-weight:400;font-size:var(--t-5);
+    color:var(--ink);margin-bottom:var(--s-2)}
+  .price{border:1px solid var(--rule-gold);border-radius:var(--r-sm);padding:var(--s-7) var(--s-6);
+    background:rgba(7,12,30,.5)}
+  .price b{display:block;font-family:var(--display);font-weight:400;font-size:var(--t-5);
+    color:var(--gold);margin-bottom:var(--s-4);line-height:1.3}
+  .price p{font-size:var(--t-3);color:var(--ink-mute);margin-bottom:var(--s-6)}
+  .price .btn{width:100%;text-align:center}
+  .price .cta-note{display:block;margin-top:var(--s-4);text-align:center}
+
+  /* ================= §13 QUESTIONS ================= */
+  .faq{--ground:var(--g-1);
+    --light-core:var(--g-1);--light-mid:var(--g-1);--light-reach:0 0;
+    padding-block:var(--beat)}
+  .faq::after{content:none}
+  .faq-list{max-width:860px;margin-top:var(--s-8)}
+  .faq details{border-top:1px solid var(--rule-soft)}
+  .faq details:last-of-type{border-bottom:1px solid var(--rule-soft)}
+  .faq summary{cursor:pointer;list-style:none;padding:var(--s-6) 56px var(--s-6) 0;
+    position:relative;font-family:var(--display);color:var(--ink);
+    font-size:var(--t-5);line-height:1.35}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after,.faq summary::before{content:"";position:absolute;right:10px;top:50%;
+    width:14px;height:1px;background:var(--gold)}
+  .faq summary::before{transform:rotate(90deg);transition:transform .3s var(--ease),opacity .3s ease}
+  .faq details[open] summary::before{transform:rotate(0);opacity:0}
+  .faq details .a{padding-bottom:var(--s-6);max-width:64ch;font-size:var(--t-4);color:var(--ink-soft)}
+  .faq details .a p + p{margin-top:var(--s-4)}
+
+  /* ================= §14 CLOSE ================= */
+  .close{--ground:var(--g-2);
+    --light-core:rgba(42,72,132,.72);--light-mid:rgba(21,38,78,.34);
+    --light-x:50%;--light-y:96%;--light-reach:120% 78%;
+    --haze:rgba(212,170,106,.09);--haze-x:50%;--haze-y:104%;--haze-reach:86% 46%;
+    padding-block:var(--beat-wide);text-align:center;overflow:hidden}
+  .close-in{position:relative;z-index:var(--z-content);max-width:640px;margin-inline:auto}
+  .close h2{margin-inline:auto;margin-bottom:var(--s-7);max-width:none}
+  .close .prose{margin-inline:auto;text-align:left;max-width:540px}
+  .close p{margin-bottom:var(--s-5);font-size:var(--t-5)}
+  .close .shout{font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-7);line-height:1.24;margin-block:var(--s-7) var(--s-8)}
+  .close .cta-row{justify-content:center}
+  .close .cta-note{text-align:center;max-width:none;margin-top:var(--s-4)}
+  .close .sig{margin-top:var(--s-9);font-family:var(--display);font-style:italic;
+    font-size:var(--t-7);line-height:1.2;color:var(--ink);padding-bottom:.18em}
+  .close .sun{right:auto;left:50%;top:auto;bottom:-46%;translate:-50% 0;width:min(1100px,120vw)}
+  .close .sun-arc{right:auto;left:50%;top:auto;bottom:-46%;translate:-50% 0;
+    width:min(1100px,120vw);border-color:rgba(212,170,106,.16)}
+
+  /* ================= footer ================= */
+  .foot{position:relative;z-index:var(--z-content);background:var(--g-0);
+    border-top:1px solid var(--rule-soft);padding-block:var(--s-9) var(--s-8);
+    font-size:var(--t-2);color:var(--ink-mute)}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;
+    gap:var(--s-7);flex-wrap:wrap;padding-bottom:var(--s-6);border-bottom:1px solid var(--rule-soft)}
+  .foot-logo{height:70px;width:auto}
+  .foot-tag{font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--ink-mute);margin-top:var(--s-3)}
+  .legal{padding-top:var(--s-5);max-width:74ch;font-size:var(--t-2);line-height:1.75;
+    color:var(--ink-faint)}
+  .buildmark{margin-top:var(--s-6);padding-top:var(--s-4);border-top:1px solid var(--rule-soft);
+    font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ================= motion ================= */
+  @media (prefers-reduced-motion:no-preference){
+    .hero .sun,.hero .sun-arc{opacity:0;animation:aRise 2.4s var(--ease) .1s forwards}
+    .hero-figure{opacity:0;animation:aFade 1.8s ease .4s forwards}
+    .hero h1,.hero .lede,.hero .cta-row,.hero-proof{opacity:0;transform:translateY(14px);
+      animation:aUp 1.1s var(--ease) forwards}
+    .hero h1{animation-delay:.55s} .hero .lede{animation-delay:.72s}
+    .hero .cta-row{animation-delay:.88s} .hero-proof{animation-delay:1.04s}
+  }
+  @keyframes aRise{from{opacity:0;scale:.9}to{opacity:1;scale:1}}
+  @keyframes aFade{to{opacity:1}}
+  @keyframes aUp{to{opacity:1;transform:none}}
+
+  /* ================= collapse ================= */
+  @media (max-width:1000px){
+    .steps{grid-template-columns:1fr}
+    .room-grid{grid-template-columns:1fr;gap:var(--s-7)}
+    .two-grid{grid-template-columns:1fr}
+    .two-b{border-left:0;border-top:1px solid var(--rule-gold)}
+  }
+  @media (max-width:900px){
+    .hero{--light-x:66%;--light-y:20%;--light-reach:130% 60%}
+    .hero-grid{display:block;min-height:0}
+    .hero-copy{padding-block:var(--s-7) var(--s-6);max-width:none}
+    .hero-figure{position:static;width:100%;
+      -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.45) 0%,#000 16%,#000 66%,rgba(0,0,0,.1) 100%);
+              mask-image:linear-gradient(180deg,rgba(0,0,0,.45) 0%,#000 16%,#000 66%,rgba(0,0,0,.1) 100%)}
+    .hero-figure img{height:auto;aspect-ratio:1/1;object-position:56% 8%}
+    .sun,.sun-arc{right:-30%;top:22%;width:96vw}
+    .myths-headrow,.myth,.mod-head{grid-template-columns:1fr;row-gap:var(--s-4)}
+    .mh,.myths-sub{grid-column:1}
+    .said,.pull{max-width:none}
+    .ledger li{grid-template-columns:1fr;row-gap:var(--s-2)}
+    .led-arrow{text-align:left;rotate:90deg;width:1em}
+    .lessons,.inv{columns:1}
+    .books{grid-template-columns:1fr 1fr}
+    .foot-top{flex-direction:column}
+  }
+  @media (max-width:560px){
+    .close .sun,.close .sun-arc{width:180vw}
+    .nav .btn{width:auto;padding:11px 18px;font-size:12px}
+    .nav-in{height:64px} .nav-logo{height:34px}
+    .road{padding-left:40px}
+    .road-n{left:-40px;width:30px}
+    .books{grid-template-columns:1fr}
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <img class="nav-logo" src="assets/logo-wordmark-dark.png" width="622" height="270" alt="Megha Bhouraskar">
+    <a class="btn" href="#start">Start free</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════ §1 HERO ═══════════════ -->
+<section class="sec hero">
+  <span class="sun" aria-hidden="true"></span>
+  <span class="sun-arc" aria-hidden="true"></span>
+  <figure class="hero-figure">
+    <img src="assets/megha-headshot.jpg" width="1320" height="1643" fetchpriority="high"
+         alt="Megha Bhouraskar, attorney, New York">
+  </figure>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 class="display"><span class="l">Own an American company</span><span class="l"><em>without leaving home.</em></span></h1>
+      <p class="lede">A free course from a New York attorney of twenty-five years, walking you from where you are now to a U.S. company that is genuinely yours. No visa. No relocating. No minimum capital. No American partner.</p>
+      <div class="cta-row">
+        <a class="btn" href="#start">Start free</a>
+        <span class="cta-note">No card. All three modules open the moment you join, and they stay yours.</span>
+      </div>
+      <p class="hero-proof" data-gate="legal-substance">Twenty-five years in New York. Three books. Clients who handed her power of attorney and stayed more than a decade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §2 THE GAP ═══════════════ -->
+<section class="sec gap" data-wake>
+  <div class="wrap">
+    <div class="gap-in">
+      <h2 class="display" data-reveal>You cleared the hard part years ago. So why is the dream still on the shelf?</h2>
+      <div class="prose" data-reveal>
+        <p>There is a dream you take down off the shelf, look at, and put back.</p>
+        <p>It has a domain name you bought two years ago. A folder somewhere. Half an application. It lives after eleven at night when the house has gone quiet and nobody is watching, and most of the people who love you do not know it exists. When it comes close to being noticed, you make some excuse about work.</p>
+        <p class="beat">You have done this for years now.</p>
+        <p>Let me say the part your family will not say out loud.</p>
+        <p>You are not stuck because you lack the education. You settled that question long ago and it cost you something to settle it. You are not stuck for want of intelligence, or discipline, or an idea. You are excellent at the thing you are paid for and silent about the thing you actually care about, and both of those come from the same root.</p>
+        <p data-gate="cultural-claims — needs Megha's ratification">You were taught to be flawless in public, and taught not to be noticed. That was never a defect in you and it was never weakness in your parents. It kept people safe for a very long time, and it is still running.</p>
+        <p>And there is a third thing underneath, which took me most of my life to say plainly. It is not failing in front of people that frightens you most.</p>
+      </div>
+      <blockquote class="pull" data-reveal>
+        <p>The fear of exposure on our vulnerabilities is bad enough, but for me, the fear of exposing my brilliance is even harder—because I then feel people will think I'm showing off or that I'm an imposter.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+      <div class="prose" data-reveal>
+        <p>Being good at something, out loud, on purpose, is the exposure.</p>
+        <p>So you tolerate it. Another quarter. Another year. The salary is good, the work is fine, and there is genuinely too much to lose.</p>
+        <p>That word matters to me. Tolerating.</p>
+      </div>
+      <blockquote class="pull" data-reveal>
+        <p>We live through life tolerating what we tolerate, and we don't even realize what we're tolerating because we get so used to it, we kind of go numb.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+      <div class="prose" data-reveal>
+        <p class="beat">I know that feeling, my friend. I have lived the gap between your dream and where you are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §3 NOTHING ASKS YOU TO DEFY ANYONE ═══════════════ -->
+<section class="sec sec--paper defy" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">The version where nobody loses</p>
+      <h2 class="display">Every version of this you have imagined so far required somebody to lose. This is the one that doesn't.</h2>
+    </div>
+    <div class="measure" style="margin-inline:0" data-reveal>
+      <p>This is the version where nobody pays for it but you, and what you pay is some evenings.</p>
+    </div>
+
+    <ol class="ledger" data-reveal data-gate="cultural-claims — needs Megha's ratification">
+      <li>
+        <p class="led-cost">Leaving would mean your parents lose the child they spent a generation buying this outcome for.</p>
+        <span class="led-arrow" aria-hidden="true">&rarr;</span>
+        <p class="led-free">Your parents do not lose you, and what they get to say about you gets better.</p>
+      </li>
+      <li>
+        <p class="led-cost">Quitting would mean your family loses income that other people may be living on.</p>
+        <span class="led-arrow" aria-hidden="true">&rarr;</span>
+        <p class="led-free">You keep the job while you build. Same house, same country, same desk.</p>
+      </li>
+      <li>
+        <p class="led-cost">Moving to America would mean your country loses one more of the people it has been working hard to keep.</p>
+        <span class="led-arrow" aria-hidden="true">&rarr;</span>
+        <p class="led-free">India keeps the person and gains what your company brings home.</p>
+      </li>
+    </ol>
+
+    <div class="measure" style="margin-inline:0;margin-top:var(--s-8)" data-reveal>
+      <p>Those calculations were never cowardice. You ran them and they were correct. None of them apply here.</p>
+      <p style="margin-top:var(--s-5)">Nobody has to be defied, nobody has to be told, and nothing has to be announced until you decide it should be.</p>
+    </div>
+    <p class="defy-close" data-reveal>It is private. It is reversible. And it does not need anyone's blessing.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ §4 THE MYTHS ═══════════════ -->
+<section class="sec sec--paper myths-sec" id="myths" data-wake>
+  <div class="wrap">
+    <div class="myths-headrow" data-reveal>
+      <div class="mh">
+        <p class="label">What is actually true</p>
+        <h2 class="display myths-head">Almost everything you believe is stopping you was never true.</h2>
+      </div>
+      <p class="myths-sub">Nine assumptions keep founders in India out of the American market. Megha has spent twenty-five years watching them fall apart on contact with the actual process.</p>
+    </div>
+
+    <ol class="myths" data-reveal data-gate="legal-substance — all nine unverified">
+      <li class="myth"><p class="myth-belief">&ldquo;I need a visa, a green card, or citizenship.&rdquo;</p>
+        <p class="myth-truth">You do not. Your immigration status is not the gate. A founder who has never held an American passport can both form and fully own a U.S. company.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;I need an American partner to front it for me.&rdquo;</p>
+        <p class="myth-truth">No. You do not hand a stranger equity to get in the door. There is a separate and much smaller thing that trips people up: a U.S.-based person, usually your attorney or accountant, is typically needed as a bank signatory. That is an administrative role. They do not own a piece of what you build.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;I need capital sitting in a bank first.&rdquo;</p>
+        <p class="myth-truth">There is no minimum capital required to form a U.S. entity, no minimum balance to keep it alive, and no minimum revenue you have to earn. The wall you are picturing is a story.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;I would have to fly to America.&rdquo;</p>
+        <p class="myth-truth">The trip you have been dreading is not part of the process. The entity, the account, the address, all of it can be created and run from your home.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;Opening a U.S. bank account would take forever, and I would have to be standing there.&rdquo;</p>
+        <p class="myth-truth">You do not have to be standing there. The rest of this one deserves more honesty than it usually gets. Banks have tightened hard on foreign-owned companies, and founders are being rejected over address and documentation requirements nobody warned them about. That is a real wall and not a rumoured one. What gets through it is a U.S.-based signatory and a bank that already knows the person walking you in. Megha has been opening these accounts for clients for twenty-five years and has the relationships that come with that.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;There is a right time of year to do this, and I have missed it.&rdquo;</p>
+        <p class="myth-truth">No such window exists. No season, no filing period to wait for, no reason today is worse than March.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;I would owe American taxes personally, just for owning it.&rdquo;</p>
+        <p class="myth-truth">Owning a U.S. entity does not by itself make you personally liable for U.S. taxes. How the company is taxed depends on how it is structured, which is exactly the sort of thing you coordinate between your advisors at home and in the States rather than guess at.</p></li>
+      <li class="myth"><p class="myth-belief">&ldquo;If I form in one state I am stuck there.&rdquo;</p>
+        <p class="myth-truth">You pick a state to start in. If the business grows past it, you register for authority elsewhere. Forming somewhere is a starting point rather than a fence.</p></li>
+      <li class="myth myth--turn"><p class="myth-belief">And one that runs the other way. &ldquo;An American company will help me move to America.&rdquo;</p>
+        <p class="myth-truth">It will not, and anyone implying otherwise is selling you something. Owning a company and having the right to live or work in the United States are two separate systems that share no paperwork. If your real goal is to emigrate, this is not that path, and you should not spend a rupee as though it is. Everything here assumes you want to stay exactly where you are.</p></li>
+    </ol>
+
+    <div class="myths-close" data-reveal>
+      <blockquote class="said">It is in fact, very simple; much simpler than you can imagine.
+        <cite class="said-by">Megha, in her own words</cite></blockquote>
+      <p>And simple here does not mean somebody on the inside made it simple for you. It means the process is published, the forms are the same forms everybody files, and not one step of it turns on knowing the right person in the right department. That is the actual difference, and it is the part worth crossing an ocean for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §5 WHAT THIS ACTUALLY IS ═══════════════ -->
+<section class="sec sec--paper what" data-wake>
+  <div class="wrap">
+    <div class="sec-head measure" style="margin-inline:auto;text-align:center" data-reveal>
+      <p class="label">What this actually is</p>
+      <h2 class="display" style="max-width:none">The entire course is free. That is not a discount, and there is no version of it you have to buy.</h2>
+    </div>
+    <div class="measure" data-reveal>
+      <p>Three modules. Twenty-three lessons and an introduction. The complete path from <em>I have been thinking about this for years</em> to <em>I own a company in the United States.</em></p>
+      <p>Free, complete, and yours to keep whether you ever pay for anything or not.</p>
+      <p>The reason is simple enough to say out loud. Information stopped being the scarce thing a while ago. You could assemble most of Module 2 from a search bar and enough weekends, and here is the part nobody says to you: you already have. You have watched the videos. You have read the threads and saved the comparisons. You could probably explain the difference between an LLC and a C-Corp to a friend tomorrow.</p>
+    </div>
+
+    <p class="filed" data-reveal>And nothing is filed.</p>
+
+    <div class="measure" data-reveal>
+      <p>So the obstacle was never knowledge. What you cannot download is a sequence, a person who answers when step four goes sideways at eleven at night, and a room of people building the same thing in the same month you are.</p>
+      <blockquote class="said" style="margin-block:var(--s-7)">People pay to be in the room with you, not to unlock more videos.
+        <cite class="said-by">The thesis, signed off 3 July</cite></blockquote>
+      <p>The teaching is free. If the free thing feels like a teaser the whole idea collapses. So it is not a teaser.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §6 THE THREE MODULES ═══════════════ -->
+<section class="sec mods" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">The whole road</p>
+      <h2 class="display">The whole road, in three parts, so you can see where it ends before you take one step.</h2>
+    </div>
+
+    <!-- ── Module 1 · SHINE ── -->
+    <div class="mod" data-reveal>
+      <div class="mod-head">
+        <div>
+          <span class="mod-n">Module one</span>
+          <h3 class="display">Permission to Build in America</h3>
+          <span class="mod-count">Seven lessons</span>
+        </div>
+        <div class="mod-blurb">
+          <p>Before the paperwork, the belief. This module is about the voice that says <em>this is not for someone like me</em>, where it came from, and how to stop waiting for a turn nobody is going to hand you.</p>
+          <p>It runs on SHINE, the five-step framework Megha developed and teaches, aimed squarely at this one leap.</p>
+        </div>
+      </div>
+      <ol class="shine">
+        <li><span class="shine-l none">&mdash;</span><b>The dream you keep on the back shelf</b><span class="shine-d">Where the module starts, before any of the letters.</span></li>
+        <li><span class="shine-l">S</span><b>Whose dream is it, really</b><span class="shine-d">Soul-aligned. Your values, not the ones you inherited.</span></li>
+        <li><span class="shine-l">H</span><b>Your difference is your advantage in America</b><span class="shine-d">Honour your uniqueness. The part that felt like a handicap is the business.</span></li>
+        <li><span class="shine-l">I</span><b>Intuition and faith, used as an actual strategy</b><span class="shine-d">Not a feeling. A decision-making tool she uses on purpose.</span></li>
+        <li><span class="shine-l">N</span><b>You do not have to burn out to build something big</b><span class="shine-d">Nourish yourself as a priority, not as a reward.</span></li>
+        <li><span class="shine-l">E</span><b>Stop dimming your light and claim your place</b><span class="shine-d">Embody your brilliance. Nobody benefits if you hide it.</span></li>
+        <li><span class="shine-l none">&mdash;</span><b>Permission granted. Now the map.</b><span class="shine-d">And the map is Module two.</span></li>
+      </ol>
+      <p class="mods-foot" style="margin-top:var(--s-7);max-width:52ch;font-size:var(--t-4);font-style:normal;color:var(--ink-mute)">Why this module is first and not third: the paperwork was never what stopped you. Twenty-five years of clients told her the same thing in different words.</p>
+    </div>
+
+    <!-- ── Module 2 · THE ROAD ── -->
+    <div class="mod" data-reveal>
+      <div class="mod-head">
+        <div>
+          <span class="mod-n">Module two</span>
+          <h3 class="display">Your Business Presence in America</h3>
+          <span class="mod-count">Nine lessons</span>
+        </div>
+        <div class="mod-blurb">
+          <p>Six steps take you from nothing to a working American company. This module walks five of them end to end, in order, in plain English, with nothing assumed.</p>
+        </div>
+      </div>
+
+      <ol class="road" data-gate="legal-substance — step substance unverified; step five unauthored">
+        <li><span class="road-n">1</span><h4>Form your U.S. entity</h4>
+          <p>A corporation or an LLC, in a state chosen for your situation. Once it exists you are verifiable on a government register.</p></li>
+        <li><span class="road-n">2</span><h4>Get your U.S. tax ID</h4>
+          <p>The number the company files under. A founder who has never held an American passport can obtain one.</p></li>
+        <li><span class="road-n">3</span><h4>Open your U.S. bank account, from home</h4>
+          <p>Run it online, across the ocean. This is the step with a real wall in front of it, and the one where knowing the person who walks you in matters most.</p></li>
+        <li><span class="road-n">4</span><h4>Get your U.S. address, and become real in America</h4>
+          <p>It goes on your contracts, your website and your invoices. This is most of what makes an American customer treat you as a supplier rather than an offshore vendor.</p></li>
+        <li class="road-hand"><span class="road-n">5</span>
+          <b>Meet your company's ongoing obligations</b>
+          <p>This one moves. It changes year to year and it turns on your own situation, which makes it the worst possible candidate for a video that sits still. It runs live in The Room instead, with people who do this every day.</p></li>
+        <li><span class="road-n">6</span><h4>Structure the company and handle tax, with the right advisors beside you</h4>
+          <p>Coordinated between your advisors at home and in the States, rather than guessed at.</p></li>
+      </ol>
+      <p class="road-split">Steps one to four get you real. Five and six keep you real.</p>
+    </div>
+
+    <!-- ── Module 3 · IP ── -->
+    <div class="mod" data-reveal>
+      <div class="mod-head">
+        <div>
+          <span class="mod-n">Module three</span>
+          <h3 class="display">Protect What You Build</h3>
+          <span class="mod-count">Seven lessons</span>
+        </div>
+        <div class="mod-blurb">
+          <p>The moment you are worth copying, somebody copies you. This module is about owning your name, your work and your idea in America, and then turning what you own into money.</p>
+          <p>There is a harder question inside it, and most people building something after eleven at night have never thought to ask it. What you are making in those hours may not legally be yours. That was settled by an agreement you signed on your first day and have not opened since.</p>
+        </div>
+      </div>
+      <div class="triad" data-gate="legal-substance — definitions unverified">
+        <div><h4>Trademark</h4><p>Protects the name and the mark that tell a customer the work is yours.</p><em>Your brand</em></div>
+        <div><h4>Copyright</h4><p>Protects the thing you actually made, in the form you made it.</p><em>Your work</em></div>
+        <div><h4>Patent</h4><p>Protects the invention itself, which is a different and much narrower door.</p><em>Your idea</em></div>
+      </div>
+      <ul class="lessons">
+        <li>The moment you are valuable, they will copy you</li>
+        <li>Your brand is your front door: trademarks</li>
+        <li>Registering a trademark, in four steps</li>
+        <li>Your code and your content: copyright, and who actually owns it</li>
+        <li>Inventions, and a straight word about patents</li>
+        <li>Turning what you own into money that arrives while you sleep</li>
+        <li>You built it. Now it stays yours.</li>
+      </ul>
+    </div>
+
+    <p class="mods-foot" data-reveal>Twenty-three lessons and an introduction, all free, all yours. The lessons are short and made for a phone on a commute, because that is honestly how you are going to watch them.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ §7 TWO COUNTRIES ═══════════════ -->
+<section class="sec two" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">Both halves</p>
+      <h2 class="display">Everything you have watched covers the American half.</h2>
+      <p class="sec-sub">There is an Indian half. Owning a foreign company as an Indian resident is a regulated act, and most people meet that fact after they have already formed the company.</p>
+    </div>
+
+    <div class="two-grid" data-reveal data-gate="blocked on Megha — whether to name the statutes">
+      <div class="two-side two-a">
+        <p class="label">The American half</p>
+        <h3>What the company owes, there</h3>
+        <p>The myths above tell you what you will not owe personally. They say nothing about what the company itself has to file every year, on its own account, in America.</p>
+        <p>That is a separate set of obligations with its own calendar, and it does not go away because you are not standing in the country.</p>
+      </div>
+      <div class="two-side two-b">
+        <p class="label">The Indian half</p>
+        <h3>What you owe, here</h3>
+        <p>It has a name, it has filings, and it has penalties. Open any video about U.S. incorporation and read down the comments. Someone is always saying it, usually with some heat, often in Hindi.</p>
+        <p>Neither half is going to be pretended away here, and you are not getting half a map.</p>
+      </div>
+    </div>
+
+    <p class="two-foot" data-reveal>A course that walks you to the edge of this and stops is worse than one that never started.</p>
+  </div>
+</section>
+
+<!-- ═══════════════ §8 HOW THIS WORKS ═══════════════ -->
+<section class="sec sec--paper how" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">How this works</p>
+      <h2 class="display">Three steps, and the first one takes about forty seconds.</h2>
+    </div>
+    <div class="measure" style="margin-inline:0" data-reveal>
+      <p>You have been researching this a while. Maybe a long while.</p>
+      <p>There is a folder of bookmarks somewhere. A couple of videos you watched twice. A saved thread arguing about Delaware and Wyoming that you have gone back to more than once. None of it is filed.</p>
+      <p>That is not laziness, whatever you have been telling yourself, and it is not really fear either. You are waiting to feel certain, and certainty is not what is coming. It never arrives before the first step. It arrives somewhere around the fourth.</p>
+      <p><strong>So the first one is built to be impossible to get wrong.</strong></p>
+    </div>
+
+    <ol class="steps" data-reveal>
+      <li class="step"><span class="step-n">1</span><h4>Join</h4>
+        <p>Your email. No card, nothing to cancel, no call with anybody.</p></li>
+      <li class="step"><span class="step-n">2</span><h4>See the whole road</h4>
+        <p>All three modules open at once. Nothing drips, nothing unlocks later.</p></li>
+      <li class="step"><span class="step-n">3</span><h4>Take step one</h4>
+        <p>And then the next, at whatever speed your life actually allows.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ═══════════════ §9 WHAT YOU WALK AWAY WITH ═══════════════ -->
+<section class="sec sec--paper out" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">What you walk away with</p>
+      <h2 class="display">By the end you own something real, and you can point at it.</h2>
+    </div>
+    <ul class="inv" data-reveal data-gate="legal-substance — items 1–3">
+      <li>A U.S. company that is genuinely yours, formed in a state chosen for your situation rather than for somebody's convenience</li>
+      <li>A tax ID, and a business bank account you can open and operate from home</li>
+      <li>A U.S. address that goes on your contracts, your website and your invoices, which is most of what makes an American customer treat you as real</li>
+      <li>An invoice paid in dollars, into an account that belongs to your company</li>
+      <li>Your brand and your work registered before somebody else gets there first</li>
+      <li>A plain answer, every single time, when somebody tells you <em>you need a lawyer for that</em></li>
+      <li>A different reply to <em>what do you do</em>. You stop saying you work for an American company and start saying you own one, and the people who spent a generation getting you here will hear that difference before you finish the sentence</li>
+      <li class="inv-last">And the one that is hardest to buy anywhere: the settled, boring, permanent belief that you were always allowed to want this.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ═══════════════ §10 WHY MEGHA ═══════════════ -->
+<section class="sec why" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">Why her</p>
+      <h2 class="display">Twenty-five years on the other side of the gap you are standing at.</h2>
+    </div>
+
+    <div class="why-arc" data-reveal>
+      <p>Megha Bhouraskar was born in New York and grew up between New York and India. She went to Barnard and Columbia. She made partner in six years at an all-white-male Manhattan firm, which was rare then and is not common now.</p>
+    </div>
+    <p class="why-left" data-reveal>Then she left.</p>
+
+    <div class="mirror" data-reveal>
+      <blockquote class="said">My law career was chosen for me, not by me.
+        <cite class="said-by">Megha, in her own words</cite></blockquote>
+      <div class="measure" style="margin-top:var(--s-7)">
+        <p>She has a scene she tells about the night it caught up with her. The firm took her to a steakhouse to celebrate her making partner. Somewhere in the middle of dinner she went to wash her hands, looked up into the mirror, and felt ugly.</p>
+        <p>She had just achieved more than anyone expected of her. What she could not explain to herself was why it felt like nothing, and the answer turned out to be that what those men were celebrating had very little to do with what she actually valued.</p>
+        <p>She was thirty-something, at the top of her profession, and quietly certain she was in the wrong life.</p>
+      </div>
+    </div>
+
+    <div class="why-arc" data-reveal>
+      <span class="why-sub">What she did with her difference</span>
+      <p>She left the security of the firm, and then left a second partnership too, because her partner could not understand her clients.</p>
+      <p>What she had instead of a pedigree was that she belonged to both countries. She leaned on it. Indian film and music producers began hiring her for work she had not done before.</p>
+      <blockquote class="pull">
+        <p>They even trusted me to pay me to learn what I didn't know— such as, I knew nothing about copyright, trademark, distribution, entertainment... and I launched 'Bollywood' in America and rode their wave of success.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+      <p>They paid her to learn. Her difference was not a handicap she had to overcome before America would take her seriously. It was the entire business.</p>
+      <p>Twelve years ago she started her own practice, built to her own values, as a divorced single mother raising her son in downtown Manhattan.</p>
+    </div>
+
+    <div data-reveal data-gate="verification — confirm all three titles and dates">
+      <span class="why-sub" style="margin-top:var(--s-9)">The books</span>
+      <div class="books">
+        <figure class="book">
+          <img src="assets/book-cover.jpg" width="705" height="1125" loading="lazy"
+               alt="How To Have a Business Presence in the U.S.A.">
+          <cite>How To Have a Business Presence in the U.S.A. &mdash; the spine of Module 2</cite>
+        </figure>
+        <figure class="book">
+          <div class="book-ph">Protecting and monetising intellectual property in America</div>
+          <cite>Where Module 3 comes from &mdash; cover pending</cite>
+        </figure>
+        <figure class="book">
+          <div class="book-ph">American real estate for foreign buyers and investors</div>
+          <cite>The third in the series &mdash; cover pending</cite>
+        </figure>
+      </div>
+    </div>
+
+    <div class="lineage" data-reveal data-gate="consent — confirm she wants this public">
+      <span class="why-sub">The thing that separates her</span>
+      <p>She is formally trained at the coaching half of it, which is rarer than it should be. She certified through Evercoach by Mindvalley, was coached for years by Fabienne Fredrickson, and went through Tony Robbins' programs.</p>
+      <p>The certification was not a weekend and a PDF. It ran in rotating triads where you take turns being the coach, being coached, and sitting as the observer whose job is to critique the person teaching. She was critiqued live, repeatedly, while teaching.</p>
+      <p class="graded">Most people selling transformation online appointed themselves. She got graded.</p>
+    </div>
+
+    <div class="clients" data-reveal data-gate="consent — no client may be named">
+      <span class="why-sub">Her clients</span>
+      <p>For twenty-five years her clients have been people you would recognise.</p>
+      <ul>
+        <li>An internationally known fashion designer</li>
+        <li>A Bollywood studio's American arm</li>
+        <li>A Grammy-winning artist</li>
+        <li>A textile group listed in Mumbai</li>
+        <li>First-generation founders nobody has heard of who became, in her word, family</li>
+      </ul>
+      <p>Several handed her blanket power of attorney over their American affairs. Most have stayed more than ten years.</p>
+    </div>
+
+    <div class="transform" data-reveal data-gate="CONSENT GATE — she approves this in her own words or it comes out">
+      <span class="why-sub">And the part she would rather not have on this page</span>
+      <div class="measure">
+        <p>This July she spent four days in front of a camera recording this course. Four days of talking without interruption about what she actually believes, in a room where nobody was judging her.</p>
+        <p>When it ended she could not settle back into her ordinary life. What surfaced was not pride in the footage.</p>
+      </div>
+      <blockquote class="pull" style="margin-block:var(--s-7)">
+        <p>I've been doing all this for so many years that I don't really enjoy or doesn't light me up. How is that possible?</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+      <div class="measure">
+        <p>Twenty-five years in, at the top of a practice she built herself, four days in a safe room showed her exactly what she had been tolerating. That is the entire thesis of Module 1, and it happened to the woman teaching it, this summer, by accident, while she was making the thing you are about to watch.</p>
+        <p>If you want to know whether any of this works, that is the most honest answer available.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §11 PROOF ═══════════════ -->
+<section class="sec proof" data-wake>
+  <div class="wrap">
+    <div class="sec-head" style="text-align:center;max-width:38ch;margin-inline:auto" data-reveal>
+      <p class="label">Proof</p>
+      <h2 class="display" style="max-width:none">The word that keeps recurring in twenty-five years of testimonials is &ldquo;family.&rdquo;</h2>
+    </div>
+    <div class="proof-q" data-reveal>
+      <blockquote>&ldquo;As a small business, we can't have in house legal counsel or engage a large multi-disciplined firm on retainer. Megha has been invaluable. She has an excellent business acumen. Megha is quick to understand the issues and offer practical, sound, legal and business advice.&rdquo;</blockquote>
+      <cite data-gate="attribution held pending re-verification">Frank Pedicini</cite>
+    </div>
+    <p class="proof-note" data-reveal>Her clients do not tend to leave. Many have been with her more than a decade, several handed her power of attorney over their American affairs, and one has not lived in the United States in over fifteen years and runs everything through her.</p>
+    <div class="vslot" data-reveal data-gate="build note — not client-facing">
+      <b>Video testimonial slot</b>
+      <p>Three or four short phone videos from early members, captured during the September soft launch, saying what they were afraid of before they started. One video of a real person outweighs every word on this page.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §12 THE ROOM ═══════════════ -->
+<section class="sec room-sec" data-wake>
+  <div class="wrap">
+    <div class="room" data-reveal>
+      <p class="label">The next step</p>
+      <h2 class="display" style="margin-top:var(--s-4);max-width:20ch">A place where you can say it out loud.</h2>
+      <div class="measure" style="margin-inline:0;margin-top:var(--s-6)">
+        <p>Most of the people in your life still do not know about this. That is not going to change on a Tuesday, and nothing about the room asks it to.</p>
+        <p style="margin-top:var(--s-5)">Before it is a membership or a set of calls, that is what the room is. Nobody in it works with you. Nobody in it is going to bring it up at a family function. Everybody in it is building the same thing, at roughly the same time, and nobody needs the difficulty explained to them.</p>
+      </div>
+
+      <blockquote class="pull">
+        <p>I feel very safe with the two of you. I can say whatever is on my mind... but how many people have that? And so if we can provide that feeling for people...</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <p style="max-width:56ch">The course stays free and it stays complete. What a course cannot do is answer you.</p>
+
+      <div class="room-grid">
+        <ul class="room-list">
+          <li><b>Two live sessions with Megha every month</b>One leans business, one leans protecting what you own. Questions are collected ahead so nobody gets put on the spot, and there is an open window at the end. Days and times rotate, so one time zone is never a permanent lockout.</li>
+          <li><b>A toolkit for every module</b>Templates, checklists, walkthroughs. The parts that turn a lesson you understood into a document you actually filed.</li>
+          <li><b>Your cohort</b>People who started the week you did, working the same steps.</li>
+          <li><b>Guest experts</b>Including an outside attorney for the specific legal questions Megha is not able to answer for you directly.</li>
+          <li><b>The compliance work, both sides of it</b>Run live with people who do this every day. The American filings your company owes each year, and the Indian side of owning a foreign entity. This is step five, and it is here rather than in a video because it moves.</li>
+          <li><b>The mindset work in full</b>The free modules give you a taste. This is where it gets worked.</li>
+        </ul>
+        <div class="price" data-gate="D6 — no price number until Megha lands it">
+          <b>Founding member pricing, announced when the doors open in October.</b>
+          <p>Free members hear first.</p>
+          <a class="btn" href="#start">Join the founding list</a>
+          <span class="cta-note">No card, nothing to cancel. You stay in the free course either way.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §13 QUESTIONS ═══════════════ -->
+<section class="sec faq" data-wake>
+  <div class="wrap">
+    <div class="sec-head" data-reveal>
+      <p class="label">Questions</p>
+      <h2 class="display">The things people actually ask.</h2>
+    </div>
+    <div class="faq-list" data-reveal data-gate="legal-substance — first six answers">
+      <details><summary>I do not have a visa. Does that stop me?</summary><div class="a">
+        <p>No, and this is the single most common thing that keeps good founders out. Owning an American company and living in America are different things and almost everybody runs them together. You can form it, bank it, and run it from where you are sitting right now.</p></div></details>
+      <details><summary>Is it really my company if I am sitting in Pune?</summary><div class="a">
+        <p>Yes, and I know where the question comes from, because somebody has probably said the opposite to you in a comment section. Ownership is a legal fact and it does not carry a postcode. Your name is on the formation documents, you hold the equity, you control the bank account, and you decide what the company does.</p>
+        <p>The people who say <em>that's not a real company, that's just a job</em> are describing something else entirely, which is working as a contractor for an American business. That is a genuinely different thing, and Module 2 is about making sure you end up on the right side of it.</p></div></details>
+      <details><summary>How much money do I actually need?</summary><div class="a">
+        <p>Less than the number in your head. There is no minimum capital required to form a U.S. company and no minimum balance to keep it. There are real third-party costs to set things up, and Module 2 walks them so you are not guessing, but the wall you are imagining does not exist.</p></div></details>
+      <details><summary>Will American customers take me seriously if I am not there?</summary><div class="a">
+        <p>Some of them will not, and I am not going to tell you that is in your head. There is real bias in that market and you have most likely felt it already.</p>
+        <p>What I will tell you is where it attaches. It attaches to <em>offshore vendor</em>, and it stops attaching once you are an American company. Your entity is findable on a government register. Your address sits on the contract. Your invoices arrive from a U.S. bank. Those are not reassurances, they are the specific instruments that move you off somebody's outsourcing line and onto their supplier list.</p></div></details>
+      <details><summary>What about the India side of this?</summary><div class="a">
+        <p>It is real, most courses skip it, and we do not. Owning a company abroad while you live in India carries obligations here as well as there, and people find that out late and expensively. The course names what it is and who handles it, and the live work on it happens in the room with advisors who do it professionally.</p></div></details>
+      <details><summary>Should I form an LLC or a corporation?</summary><div class="a">
+        <p>It depends on your situation, and anyone answering that instantly is guessing. The two are taxed differently, and which fits depends on ownership, control and what you need on both sides of the ocean. Module 2 gives you the actual factors so you can have that conversation properly with your advisors instead of nodding through it.</p></div></details>
+      <details><summary>Is this legal advice?</summary><div class="a">
+        <p>It is not, and I want to be direct rather than bury that. This is education. It explains how the system works and what to weigh, so you can make good decisions and ask far better questions. It does not create an attorney and client relationship, and this platform is separate from my law practice. For your situation specifically, you talk to an attorney about your situation specifically.</p></div></details>
+      <details><summary>I have a full-time job.</summary><div class="a">
+        <p>I know. Probably a demanding one with people on the other side of the world in your calendar. The lessons are short and made for a phone. Nothing expires, nothing drips, and there is no cohort you can fall behind. Go at the speed your life allows.</p></div></details>
+      <details><summary>I do not have a credit card. Could I even pay for The Room later?</summary><div class="a">
+        <p>You would not need one to start, because the course costs nothing. When The Room opens we are building payment around how India actually pays rather than how America assumes everyone pays.</p></div></details>
+      <details><summary>Why is all of this free?</summary><div class="a">
+        <p>Because I would rather you have it. The teaching was never the scarce part. If you get all the way to your own American company off the free modules and I never hear from you again, that is a good outcome and I mean it.</p></div></details>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════ §14 CLOSE ═══════════════ -->
+<section class="sec close" id="start" data-wake>
+  <span class="sun" aria-hidden="true"></span>
+  <span class="sun-arc" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="close-in">
+      <h2 class="display" data-reveal>&ldquo;You have only two options.&rdquo;</h2>
+      <div class="prose" data-reveal>
+        <p>You can leave it on the shelf, where it has been sitting and where it is safe.</p>
+        <p>Or you can take it down and press play, and pressing play is the entire first step. Nothing else is being asked of you today.</p>
+        <p>Somewhere down this road there is a version of you who owns something rather than only earning from it. Your parents spent a long time making the first one possible. The second one is yours to make.</p>
+        <p>I will walk it with you. And you have not missed your window.</p>
+      </div>
+      <p class="shout" data-reveal>It's Never Too Late!</p>
+      <div class="cta-row" data-reveal><a class="btn" href="#start">Start free</a></div>
+      <p class="cta-note" data-reveal>No card. Twenty-three lessons. Yours to keep.</p>
+      <p class="sig" data-reveal>Look Forward.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="assets/logo-compact-dark.png" width="941" height="576" alt="Megha Bhouraskar">
+        <p class="foot-tag">Storyteller &middot; Strategist &middot; Guide</p>
+      </div>
+      <p style="max-width:30ch">&copy; 2026 <span data-gate="D3 — platform name not chosen">[PLATFORM NAME]</span></p>
+    </div>
+    <p class="legal">This platform is an education venture and is separate from MDB Law Offices. Everything here is general educational information and not legal advice. Laws and processes change and vary by situation and by jurisdiction. Consult a qualified attorney about your specific circumstances.</p>
+    <p class="buildmark">First full build &mdash; Atmosphere &middot; all 14 sections &middot; not for Megha until the gates clear</p>
+  </div>
+</footer>
+
+<script src="system.js"></script>
+</body>
+</html>

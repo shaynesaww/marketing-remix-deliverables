@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Own an American company without leaving home | Megha Bhouraskar — Strata</title>
+<meta name="description" content="A free course from a New York attorney of twenty-five years. Own a U.S. company without a visa, without relocating, without an American partner.">
+<link rel="stylesheet" href="system.css">
+<style>
+/* =============================================================================
+   STUDY 2 — STRATA.  Depth comes from LAYERS AND EDGES.
+
+   The thesis: heavy sheets of paper laid on top of each other, slightly offset,
+   so you can see every edge. You know it is deep because things are visibly IN
+   FRONT of other things.
+
+   Where Atmosphere made the whole page one continuous body of air and let light
+   pool inside it, Strata does the opposite on purpose: discrete opaque planes,
+   visible value steps between them, a lit hairline on every top edge, and
+   objects that CROSS the seams instead of respecting them. Same palette, same
+   type, same words — a completely different construction.
+
+   Occlusion is the argument. It is the single biggest depth mechanism available
+   and Atmosphere barely uses it. Here: the portrait hangs out of the hero and
+   into the section below it; the cream is an inset sheet with midnight showing
+   down both sides rather than a full-bleed band; her voice sits on raised planes
+   that break the measure.
+
+   Dials: DESIGN_VARIANCE 6 / MOTION_INTENSITY 4 / VISUAL_DENSITY 5
+   Risk being tested: cold. Editorial precision can tip into an annual report,
+   and this brand must not. Warmth is carried by the portrait, her voice device,
+   generous leading and the cream sheet — never by loosening the geometry.
+   ============================================================================= */
+@layer variant {
+
+  /* ---- planes, not air --------------------------------------------------
+     No isolation: an element must be able to paint across a section boundary,
+     which is the whole point. Sections are opaque, so grain still blends
+     against the plane it sits on.                                          */
+  .sec{
+    isolation:auto;
+    background:var(--ground,var(--g-1));
+    box-shadow:inset 0 1px 0 var(--edge-hi);   /* the lit top edge of a sheet */
+  }
+  .sec::after{content:none}                     /* no haze; this variant has weather-free air */
+
+  :root{
+    --grain:url(assets/grain-coarse.png);       /* paper tooth, not film grain */
+    --grain-opacity:.05;
+    --edge-hi:rgba(241,238,231,.085);
+  }
+
+  /* ---- nav -------------------------------------------------------------- */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);background:var(--g-0);
+    border-bottom:1px solid var(--rule-gold)}
+  .nav-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+    height:76px;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5)}
+  .nav-logo{height:42px;width:auto}
+  .nav .btn{padding:12px 24px;font-size:13px}
+
+  /* ---- §1 HERO ----------------------------------------------------------
+     A strict two-column measure with a visible column rule, and the portrait
+     built as a real plane — bounded, edged, and hanging past the bottom of the
+     hero into §2. That overhang is the thesis stated in the first screen.    */
+  .hero{--ground:var(--g-2);padding-block:0;overflow:visible;position:relative;
+    /* One shared top offset for BOTH columns, so the portrait and the headline
+       begin on the same line. That is what "equal with the text" means here. */
+    --fig-top:clamp(56px,9vh,104px);
+    --fig-hang:64px}
+  .hero-grid{position:relative;z-index:2;
+    max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+    /* Capped rather than a full 100dvh, so the composition never depends on
+       monitor height — but taller than the last pass. */
+    min-height:min(calc(100dvh - 76px),900px);
+    /* the portrait column takes the larger share now — the plane grows ~29% in
+       area, and the copy column stays wide enough to hold the headline on two */
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    column-gap:clamp(32px,5vw,88px);align-items:start}
+  /* Copy centred in the row. The portrait stays top-aligned because its height
+     is derived from the row and it has to reach the bottom to overhang; the two
+     no longer share a start line, and at this height they should not. */
+  .hero-copy{position:relative;align-self:center;padding-block:var(--s-7)}
+  /* 46px broke to three lines in the narrower copy column ("company" stranded on
+     its own line). Strata is the denser, more editorial variant, so a smaller
+     display is in character as well as necessary. */
+  .hero h1{margin-bottom:var(--s-6);font-size:clamp(30px,3.1vw,42px);max-width:none}
+  .hero h1 .l{display:block}
+  .hero .lede{margin-bottom:var(--s-7)}
+  /* The column rule: a hairline in the gutter that says the grid is real.
+     It hangs off .hero-copy rather than .hero-figure, because the figure is a
+     clipped box (overflow:hidden holds the portrait inside its edges) and a
+     negatively-positioned child of it would simply be cut off. */
+  .hero-copy::after{content:"";position:absolute;top:0;bottom:0;
+    right:calc(-1 * clamp(16px,2.5vw,44px));width:1px;background:var(--rule-soft);
+    transform-origin:top}
+  .hero-proof{margin-top:var(--s-7);padding-top:var(--s-5);
+    border-top:1px solid var(--rule-gold);
+    font-size:var(--t-3);color:var(--ink-mute);max-width:42ch;line-height:1.62}
+
+  /* THE OVERHANG. The portrait is a sheet with its own edges, dropped 96px past
+     the hero's bottom so it lands on §2. z-index beats the following section
+     because sections carry no z-index of their own. */
+  /* TOP-ALIGNED, not bottom-anchored. Anchoring to the bottom is what made her
+     sag: a plane shorter than the row had to leave its empty space somewhere,
+     and putting it above the image read as the portrait being shoved down the
+     page.
+
+     Height is derived rather than fixed by an aspect ratio, so the overhang is
+     an exact quantity instead of whatever falls out of the arithmetic between
+     row height and image proportion. She starts on the headline's line, runs to
+     the bottom of the hero, and passes it by --fig-hang. The overlap is now a
+     consequence of her being TALL, which is the layering thesis stated properly,
+     rather than of her being pushed down. */
+  .hero-figure{position:relative;z-index:6;align-self:start;
+    margin-block:var(--fig-top) 0;
+    height:calc(100% - var(--fig-top) + var(--fig-hang));
+    border:1px solid var(--rule-gold);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+    overflow:hidden;background:var(--g-3)}
+  /* Crop held high so the frame is her face and shoulders rather than a
+     half-figure cut off at the waist. */
+  .hero-figure img{width:100%;height:100%;object-fit:cover;object-position:56% 6%;
+    filter:saturate(.92) brightness(.92) contrast(1.03)}
+  /* a warm rim on the lit side, and a cool foot so it seats onto the plane below */
+  .hero-figure::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(250deg,rgba(233,201,150,.15) 0%,rgba(212,170,106,.04) 34%,transparent 58%),
+      linear-gradient(180deg,transparent 55%,rgba(7,12,30,.55) 100%)}
+  .hero-cap{position:absolute;left:0;right:0;bottom:0;z-index:2;
+    padding:var(--s-5) var(--s-5) var(--s-4);
+    font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+    color:rgba(255,255,255,.86)}
+
+  /* ---- §2 THE GAP -------------------------------------------------------
+     The deepest plane, and the one that has to absorb the overhang above it.
+     Prose sits in a measured column; her voice sits on RAISED planes that break
+     left out of that column, so the two are visibly on different levels.     */
+  .gap{--ground:var(--g-0);padding-block:calc(88px + var(--beat-wide)) var(--beat-wide)}
+  /* centred in the section rather than pushed off the left */
+  .gap-in{max-width:660px;margin-inline:auto}
+  .gap h2{margin-bottom:var(--s-7);max-width:19ch}
+  /* Paragraphs fill the column instead of stopping at the global 34em prose
+     measure. At 660px and 21px that is ~57 characters, which is a good line —
+     and it means the prose and the quote planes share ONE measure, so their
+     left AND right edges agree. Two different measures inside one column is
+     what made the callouts look misaligned even once the box was moved. */
+  .gap .prose{max-width:none}
+  .gap .prose p{font-size:var(--t-5);line-height:1.68;color:var(--ink-soft)}
+  .gap .prose p + p{margin-top:var(--s-5)}
+  .gap .beat{font-family:var(--display);font-size:var(--t-5);color:var(--ink);
+    font-style:italic;margin-block:var(--s-6)}
+
+  /* ---- THE SIGNATURE: her voice, verbatim -------------------------------
+     Identical in intent to the other studies and deliberately so — it is the
+     page's signature and must survive whichever thesis wins. What changes here
+     is only the construction: in Strata it is a raised PLANE with real edges,
+     not a rule against open ground. */
+  .said,.pull{
+    font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-6);line-height:1.42;max-width:30ch}
+  /* The TEXT inside the box lines up with the paragraphs around it. The plane
+     extends past the measure by exactly its own padding on both sides, so its
+     type sits on the same left and right edges as the prose while the box still
+     reads as a raised surface behind the column.
+
+     Simply zeroing the margin is not enough and was the earlier mistake: the box
+     edge would align but the text inside would still start 44px further in,
+     which is the misalignment you actually see. Breaking left out of the column
+     — the original move — was worse again: it read as a mistake before it read
+     as layering. */
+  .pull{position:relative;z-index:3;max-width:none;
+    margin-block:var(--s-8);
+    /* the extra 2px on the left is the thicker gold border, which otherwise
+       pushes the text 2px past the paragraph edge */
+    margin-inline-start:calc(-1 * var(--s-7) - 2px);
+    margin-inline-end:calc(-1 * var(--s-7));
+    padding:var(--s-6) var(--s-7);
+    background:var(--g-2);
+    border:1px solid var(--rule-gold);border-left-width:2px;
+    box-shadow:inset 0 1px 0 rgba(241,238,231,.10)}
+  .pull p{font:inherit;color:inherit;max-width:none}
+  .pull cite,.said-by{display:block;margin-top:var(--s-3);
+    font-family:var(--sans);font-style:normal;font-size:var(--t-1);
+    letter-spacing:var(--track-label);text-transform:uppercase;color:var(--ink-mute)}
+  .said{border-left:2px solid var(--rule-gold);padding-left:clamp(18px,2vw,28px)}
+
+  /* ---- §4 THE MYTHS -----------------------------------------------------
+     The cream is an INSET SHEET, not a full-bleed band: midnight runs down both
+     margins so you read it as a sheet laid ON the page rather than a stripe cut
+     into it. That is the clearest possible statement of the thesis, and it is
+     the one thing Atmosphere structurally cannot do.                        */
+  .myths-sec{
+    position:relative;z-index:2;
+    margin-inline:clamp(0px,4.5vw,84px);
+    padding-block:var(--beat-wide);
+    border:1px solid rgba(184,146,74,.5);
+    box-shadow:
+      inset 0 1px 0 rgba(255,255,255,.7),
+      0 -1px 0 rgba(7,12,30,.5);
+    --mgap:clamp(22px,3vw,52px)}
+  .myths-sec .wrap{max-width:calc(var(--wrap) - 40px)}
+
+  .myths-headrow,.myth{display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    column-gap:var(--mgap);align-items:start}
+  .myths-headrow{margin-bottom:var(--s-8);align-items:end}
+  .mh{grid-column:1}
+  .myths-head{margin-top:var(--s-4);font-size:clamp(26px,3.1vw,40px)}
+  .myths-sub{grid-column:2;color:var(--ink-mute);font-size:var(--t-4)}
+
+  /* No 01–09 counters. They asserted a sequence that does not exist; numerals
+     are reserved for the six-step road and §8, where order is real. */
+  .myths{list-style:none}
+  .myth{padding-block:var(--s-6);border-top:1px solid var(--rule-paper)}
+  .myth:last-child{border-bottom:1px solid var(--rule-paper)}
+  /* the column rule — in a layered variant the grid should be visible */
+  .myth-belief{position:relative;font-family:var(--display);font-style:italic;
+    font-size:var(--t-6);line-height:1.34;color:var(--ink-mute)}
+  .myth-belief::after{content:"";position:absolute;top:.2em;bottom:-.4em;
+    right:calc(var(--mgap) / -2);width:1px;background:var(--rule-paper)}
+  .myth-truth{font-size:var(--t-4);color:var(--ink);line-height:1.75}
+  .myth--turn{border-top:2px solid rgba(184,146,74,.6)}
+  .myth--turn .myth-belief{color:var(--gold)}
+  .myths-close{margin-top:var(--s-9);max-width:var(--measure-prose)}
+  .myths-close .said{margin-bottom:var(--s-5)}
+
+  /* ---- §14 THE CLOSE ----------------------------------------------------
+     The last plane. It steps back UP the ramp — the lightest ground after the
+     hero — and the CTA sits on a raised sheet of its own so the final action is
+     literally the top layer of the page. */
+  .close{--ground:var(--g-2);padding-block:var(--beat-wide);position:relative}
+  .close-in{position:relative;z-index:2;max-width:660px;margin-inline:auto;text-align:center}
+  .close h2{margin-inline:auto;margin-bottom:var(--s-7);max-width:none}
+  .close .prose{margin-inline:auto;text-align:left;max-width:540px}
+  .close p{margin-bottom:var(--s-5);font-size:var(--t-5)}
+  .close .shout{font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-7);line-height:1.24;margin-block:var(--s-7) var(--s-7)}
+  .close-act{margin-top:var(--s-7);padding:var(--s-7) var(--s-6);
+    background:var(--g-3);border:1px solid var(--rule-gold);
+    box-shadow:inset 0 1px 0 rgba(241,238,231,.12)}
+  .close-act .cta-row{justify-content:center}
+  .close-act .cta-note{text-align:center;max-width:none;margin-top:var(--s-4)}
+  /* .close .sig, not .sig — `.close p` (0,1,1) was beating a bare `.sig` (0,1,0),
+     forcing her sign-off to body size. It rendered at 17.5px, not the 30px
+     intended. Raised to --t-7: this is the last line of the page. */
+  .close .sig{margin-top:var(--s-8);font-family:var(--display);font-style:italic;
+    font-size:var(--t-7);line-height:1.2;color:var(--ink);padding-bottom:.18em}
+
+  /* ---- footer ----------------------------------------------------------- */
+  .foot{--ground:var(--g-0);position:relative;z-index:2;
+    background:var(--g-0);border-top:1px solid var(--rule-gold);
+    padding-block:var(--s-9) var(--s-8);font-size:var(--t-2);color:var(--ink-mute)}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;
+    gap:var(--s-7);flex-wrap:wrap;padding-bottom:var(--s-6);
+    border-bottom:1px solid var(--rule-soft)}
+  .foot-logo{height:70px;width:auto}
+  .foot-tag{font-size:var(--t-1);letter-spacing:var(--track-label);
+    text-transform:uppercase;color:var(--ink-mute);margin-top:var(--s-3)}
+  .legal{padding-top:var(--s-5);max-width:74ch;font-size:var(--t-2);
+    line-height:1.75;color:var(--ink-faint)}
+  .studymark{margin-top:var(--s-6);padding-top:var(--s-4);
+    border-top:1px solid var(--rule-soft);
+    font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---- motion: precise, not atmospheric ---------------------------------
+     Rules DRAW, planes SETTLE. Shorter durations and a tighter curve than
+     Atmosphere, because this variant's personality is exactness. Uses the
+     rule-draw and clip vocabulary in system.css that Atmosphere never touched. */
+  @media (prefers-reduced-motion:no-preference){
+    [data-reveal]{transition-duration:var(--dur);transform:translateY(14px)}
+    .hero-figure{opacity:0;animation:sSettle .8s var(--ease-inout) .25s forwards}
+    .hero h1,.hero .lede,.hero .cta-row,.hero-proof{opacity:0;transform:translateY(10px);
+      animation:sUp .62s var(--ease-inout) forwards}
+    .hero h1{animation-delay:.32s}
+    .hero .lede{animation-delay:.44s}
+    .hero .cta-row{animation-delay:.56s}
+    .hero-proof{animation-delay:.68s}
+    .hero-copy::after{transform:scaleY(0);
+      animation:sDraw .9s var(--ease-inout) .1s forwards}
+  }
+  @keyframes sSettle{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+  @keyframes sUp{to{opacity:1;transform:none}}
+  @keyframes sDraw{to{transform:scaleY(1)}}
+
+  /* ---- collapse ---------------------------------------------------------- */
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;min-height:0}
+    .hero-copy{padding-block:var(--s-7) var(--s-5)}
+    .hero-rule{display:none}
+    /* square, not 16/11: a landscape box at 390px left a 227px-tall slice, which
+       is a shallow crop for a face. */
+    .hero-figure{margin-block:0 -64px;height:auto;aspect-ratio:1/1}
+    .hero-figure img{object-position:56% 10%}
+    .gap{padding-block:calc(64px + var(--beat)) var(--beat)}
+    /* no negative bleed at 390px — it would push the plane off the viewport */
+    .pull{margin-inline:0}
+    .said,.pull{max-width:none}
+    .myths-sec{margin-inline:0;border-inline:0}
+    .myths-headrow,.myth{grid-template-columns:1fr;row-gap:var(--s-4)}
+    .mh,.myths-sub{grid-column:1}
+    .myth-belief::after{display:none}
+    .foot-top{flex-direction:column}
+  }
+  @media (max-width:560px){
+    .nav .btn{width:auto;padding:11px 18px;font-size:12px}
+    .nav-in{height:64px}
+    .nav-logo{height:34px}
+    .close-act{padding:var(--s-6) var(--s-4)}
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <img class="nav-logo" src="assets/logo-wordmark-dark.png" width="622" height="270" alt="Megha Bhouraskar">
+    <a class="btn" href="#start">Start free</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ §1 HERO ============================ -->
+<section class="sec hero">
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 class="display"><span class="l">Own an American company</span><span class="l"><em>without leaving home.</em></span></h1>
+      <p class="lede">A free course from a New York attorney of twenty-five years, walking you from where you are now to a U.S. company that is genuinely yours. No visa. No relocating. No minimum capital. No American partner.</p>
+      <div class="cta-row">
+        <a class="btn" href="#start">Start free</a>
+        <span class="cta-note">No card. All three modules open the moment you join, and they stay yours.</span>
+      </div>
+      <p class="hero-proof" data-gate="legal-substance">Twenty-five years in New York. Three books. Clients who handed her power of attorney and stayed more than a decade.</p>
+    </div>
+    <figure class="hero-figure">
+      <img src="assets/megha-headshot.jpg" width="1320" height="1643" fetchpriority="high"
+           alt="Megha Bhouraskar, attorney, New York">
+      <figcaption class="hero-cap">Megha Bhouraskar &middot; New York</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============================ §2 THE GAP ============================ -->
+<section class="sec gap">
+  <div class="wrap">
+    <div class="gap-in">
+      <h2 class="display" data-reveal>You cleared the hard part years ago. So why is the dream still on the shelf?</h2>
+
+      <div class="prose" data-reveal>
+        <p>There is a dream you take down off the shelf, look at, and put back.</p>
+        <p>It has a domain name you bought two years ago. A folder somewhere. Half an application. It lives after eleven at night when the house has gone quiet and nobody is watching, and most of the people who love you do not know it exists. When it comes close to being noticed, you make some excuse about work.</p>
+        <p class="beat">You have done this for years now.</p>
+        <p>Let me say the part your family will not say out loud.</p>
+        <p>You are not stuck because you lack the education. You settled that question long ago and it cost you something to settle it. You are not stuck for want of intelligence, or discipline, or an idea. You are excellent at the thing you are paid for and silent about the thing you actually care about, and both of those come from the same root.</p>
+        <p data-gate="cultural-claims — needs Megha's ratification">You were taught to be flawless in public, and taught not to be noticed. That was never a defect in you and it was never weakness in your parents. It kept people safe for a very long time, and it is still running.</p>
+        <p>And there is a third thing underneath, which took me most of my life to say plainly. It is not failing in front of people that frightens you most.</p>
+      </div>
+
+      <blockquote class="pull" data-reveal>
+        <p>The fear of exposure on our vulnerabilities is bad enough, but for me, the fear of exposing my brilliance is even harder—because I then feel people will think I'm showing off or that I'm an imposter.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="prose" data-reveal>
+        <p>Being good at something, out loud, on purpose, is the exposure.</p>
+        <p>So you tolerate it. Another quarter. Another year. The salary is good, the work is fine, and there is genuinely too much to lose.</p>
+        <p>That word matters to me. Tolerating.</p>
+      </div>
+
+      <blockquote class="pull" data-reveal>
+        <p>We live through life tolerating what we tolerate, and we don't even realize what we're tolerating because we get so used to it, we kind of go numb.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="prose" data-reveal>
+        <p class="beat">I know that feeling, my friend. I have lived the gap between your dream and where you are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ §4 THE MYTHS ============================ -->
+<section class="sec sec--paper myths-sec" id="myths" data-wake>
+  <div class="wrap">
+    <div class="myths-headrow" data-reveal>
+      <div class="mh">
+        <p class="label">What is actually true</p>
+        <h2 class="display myths-head">Almost everything you believe is stopping you was never true.</h2>
+      </div>
+      <p class="myths-sub">Nine assumptions keep founders in India out of the American market. Megha has spent twenty-five years watching them fall apart on contact with the actual process.</p>
+    </div>
+
+    <ol class="myths" data-reveal data-gate="legal-substance — all nine unverified">
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need a visa, a green card, or citizenship.&rdquo;</p>
+        <p class="myth-truth">You do not. Your immigration status is not the gate. A founder who has never held an American passport can both form and fully own a U.S. company.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need an American partner to front it for me.&rdquo;</p>
+        <p class="myth-truth">No. You do not hand a stranger equity to get in the door. There is a separate and much smaller thing that trips people up: a U.S.-based person, usually your attorney or accountant, is typically needed as a bank signatory. That is an administrative role. They do not own a piece of what you build.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need capital sitting in a bank first.&rdquo;</p>
+        <p class="myth-truth">There is no minimum capital required to form a U.S. entity, no minimum balance to keep it alive, and no minimum revenue you have to earn. The wall you are picturing is a story.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I would have to fly to America.&rdquo;</p>
+        <p class="myth-truth">The trip you have been dreading is not part of the process. The entity, the account, the address, all of it can be created and run from your home.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;Opening a U.S. bank account would take forever, and I would have to be standing there.&rdquo;</p>
+        <p class="myth-truth">You do not have to be standing there. The rest of this one deserves more honesty than it usually gets. Banks have tightened hard on foreign-owned companies, and founders are being rejected over address and documentation requirements nobody warned them about. That is a real wall and not a rumoured one. What gets through it is a U.S.-based signatory and a bank that already knows the person walking you in. Megha has been opening these accounts for clients for twenty-five years and has the relationships that come with that.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;There is a right time of year to do this, and I have missed it.&rdquo;</p>
+        <p class="myth-truth">No such window exists. No season, no filing period to wait for, no reason today is worse than March.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I would owe American taxes personally, just for owning it.&rdquo;</p>
+        <p class="myth-truth">Owning a U.S. entity does not by itself make you personally liable for U.S. taxes. How the company is taxed depends on how it is structured, which is exactly the sort of thing you coordinate between your advisors at home and in the States rather than guess at.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;If I form in one state I am stuck there.&rdquo;</p>
+        <p class="myth-truth">You pick a state to start in. If the business grows past it, you register for authority elsewhere. Forming somewhere is a starting point rather than a fence.</p>
+      </li>
+      <li class="myth myth--turn">
+        <p class="myth-belief">And one that runs the other way. &ldquo;An American company will help me move to America.&rdquo;</p>
+        <p class="myth-truth">It will not, and anyone implying otherwise is selling you something. Owning a company and having the right to live or work in the United States are two separate systems that share no paperwork. If your real goal is to emigrate, this is not that path, and you should not spend a rupee as though it is. Everything here assumes you want to stay exactly where you are.</p>
+      </li>
+    </ol>
+
+    <div class="myths-close" data-reveal>
+      <blockquote class="said">
+        It is in fact, very simple; much simpler than you can imagine.
+        <cite class="said-by">Megha, in her own words</cite>
+      </blockquote>
+      <p>And simple here does not mean somebody on the inside made it simple for you. It means the process is published, the forms are the same forms everybody files, and not one step of it turns on knowing the right person in the right department. That is the actual difference, and it is the part worth crossing an ocean for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ §14 THE CLOSE ============================ -->
+<section class="sec close" id="start">
+  <div class="wrap">
+    <div class="close-in">
+      <h2 class="display" data-reveal>&ldquo;You have only two options.&rdquo;</h2>
+      <div class="prose" data-reveal>
+        <p>You can leave it on the shelf, where it has been sitting and where it is safe.</p>
+        <p>Or you can take it down and press play, and pressing play is the entire first step. Nothing else is being asked of you today.</p>
+        <p>Somewhere down this road there is a version of you who owns something rather than only earning from it. Your parents spent a long time making the first one possible. The second one is yours to make.</p>
+        <p>I will walk it with you. And you have not missed your window.</p>
+      </div>
+      <p class="shout" data-reveal>It's Never Too Late!</p>
+      <div class="close-act" data-reveal>
+        <div class="cta-row">
+          <a class="btn" href="#start">Start free</a>
+        </div>
+        <p class="cta-note">No card. Twenty-three lessons. Yours to keep.</p>
+      </div>
+      <p class="sig" data-reveal>Look Forward.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="assets/logo-compact-dark.png" width="941" height="576" alt="Megha Bhouraskar">
+        <p class="foot-tag">Storyteller &middot; Strategist &middot; Guide</p>
+      </div>
+      <p style="max-width:30ch">&copy; 2026 <span data-gate="D3 — platform name not chosen">[PLATFORM NAME]</span></p>
+    </div>
+    <p class="legal">This platform is an education venture and is separate from MDB Law Offices. Everything here is general educational information and not legal advice. Laws and processes change and vary by situation and by jurisdiction. Consult a qualified attorney about your specific circumstances.</p>
+    <p class="studymark">Depth study 2 of 3 &mdash; Strata &middot; sections 1, 2, 4 and 14 only</p>
+  </div>
+</footer>
+
+<script src="system.js"></script>
+</body>
+</html>

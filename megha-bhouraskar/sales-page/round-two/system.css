@@ -1,0 +1,443 @@
+/* =============================================================================
+   SYSTEM.CSS — the depth kit for the Megha sales page
+   Shared by study-atmosphere / study-strata / study-horizon and by the final build.
+
+   WHY THIS FILE EXISTS
+   The first build was rejected as flat and sterile. The causes were mechanical,
+   not chromatic: no occlusion, no grain, no type scale, no space scale, one
+   motion idea repeated 25 times, and a wireframe standing in for a light source.
+   Palette was never the problem. This file fixes the systems gaps once so the
+   three studies can argue about the interesting question instead.
+
+   THE CENTRAL MOVE
+   A section declares its atmosphere as DATA, not as bespoke rules:
+
+     .sec--gap { --ground:var(--g-0); --grain-opacity:.055; --light-x:20%; }
+
+   There is exactly one background rule for every section on the page. A "flat"
+   section is simply one whose three light stops are the same colour. That is
+   what lets fourteen sections have fourteen different atmospheres without
+   fourteen hand-written blocks.
+
+   CASCADE
+   @layer replaces the build step we do not have. Variant styles live in a later
+   layer than these primitives, so they always win without specificity fights.
+
+   PALETTE OF RECORD
+   CJ Salvador's brief, June 2026. The seven brand hexes are kept literal and
+   labelled below; the ground ramp is ordered so --g-2 and --g-4 land exactly on
+   his Midnight Blue and Deep Blue.
+   ============================================================================= */
+
+@layer tokens, base, primitives, sections, motion, responsive;
+
+/* ============================================================ TOKENS ======= */
+@layer tokens {
+:root{
+  /* --- CJ's seven, literal and traceable ------------------------------- */
+  --brand-white:#FFFFFF;      /* Pure White   — primary BG (light contexts) */
+  --brand-black:#0A0A0A;      /* Rich Black   — text/type                   */
+  --brand-gold-soft:#B8924A;  /* Soft Gold    — accent / warmth             */
+  --brand-gold-light:#D4AA6A; /* Light Gold   — italic / highlight          */
+  --brand-midnight:#0D1B3E;   /* Midnight Blue— accent / depth              */
+  --brand-deep:#1A2F5E;       /* Deep Blue    — secondary BG                */
+  --brand-cream:#F2F0EC;      /* Warm Cream   — surface / cards             */
+
+  /* --- ground ramp: ordered, deepest to lightest ------------------------
+     The old names (night/midnight/deep/deeper) encoded no order, so nobody
+     could tell which way was up. These are a value curve you can draw.      */
+  --g-0:#070C1E;                      /* deepest — the shelf at night        */
+  --g-1:#0A1128;
+  --g-2:var(--brand-midnight);        /* #0D1B3E                             */
+  --g-3:#16274F;
+  --g-4:var(--brand-deep);            /* #1A2F5E — lightest midnight         */
+
+  /* --- paper ramp: the same idea running the other way ------------------
+     Cream is a named surface in CJ's palette and an all-midnight page ignores
+     half the brand. A light section needs its own ordered ramp or it lands as
+     one flat white slab, which is the sterility problem in reverse.        */
+  --p-0:#E2DDD1;                      /* deepest cream — the shadow side     */
+  --p-1:#EDE9E0;
+  --p-2:var(--brand-cream);           /* #F2F0EC                             */
+  --p-3:#FCFBF9;                      /* near white — the lit core           */
+
+  /* Ink for light grounds. Warm near-black, never pure #000 — the brief bans
+     flat black and it reads harsh against cream.                           */
+  --ink-paper:#23211C;
+  --ink-paper-soft:#46433B;
+  --ink-paper-mute:#635F55;
+
+  /* --- ink -------------------------------------------------------------- */
+  /* Alphas are set by measurement, not by eye. Worst case for light text is the
+     LIGHTEST ground it can land on — here rgba(38,66,122), the hero and close
+     light cores — where AA needs .65. Both were below it before measuring. */
+  --ink:#F1EEE7;
+  --ink-soft:rgba(241,238,231,.78);   /* 6.1:1 on the lightest ground          */
+  --ink-mute:rgba(241,238,231,.68);   /* 4.9:1 on the lightest ground          */
+  /* CONSTRAINT: --ink-faint clears AA on --g-0 and --g-1 only (5.7:1). It is
+     for footers, captions and legal text on deep ground. Never put it on a lit
+     section — use --ink-mute there. */
+  --ink-faint:rgba(241,238,231,.56);
+  --gold:var(--brand-gold-light);
+  --gold-deep:var(--brand-gold-soft);
+  --gold-aa:#7F6024;   /* brand gold fails AA as small text on light grounds
+                          (2.90:1 on white, 3.82:1 on cream). This carries it. */
+  --ink-on-paper:#413F3A;
+  --ink-on-paper-soft:#5B5851;
+
+  /* --- edges: how elevation reads when drop shadows are banned ---------- */
+  --edge-hi:rgba(241,238,231,.09);    /* a lit top edge, not a shadow        */
+  --edge-lo:rgba(7,12,30,.55);
+  --rule-gold:rgba(212,170,106,.26);
+  --rule-soft:rgba(241,238,231,.13);
+  --rule-paper:#D8D3C8;
+
+  /* --- type ------------------------------------------------------------- */
+  --display:Georgia,'Times New Roman',Times,serif;   /* Megha's Option 1     */
+  --sans:'Helvetica Neue',Helvetica,Arial,'Segoe UI',sans-serif;
+
+  /* Eight steps. The old build had fourteen ad-hoc literals between 12.5 and
+     17px and a display-to-body ratio of 3.1, which reads timid. This runs to
+     4.0 so the page has somewhere to shout.                                 */
+  --t-1:12px;                                   /* micro label              */
+  --t-2:13.5px;                                 /* caption, legal           */
+  --t-3:clamp(14.5px,.25vw + 13.6px,16px);      /* small body               */
+  --t-4:clamp(16px,.45vw + 14.6px,17.5px);      /* body                     */
+  --t-5:clamp(18px,.9vw + 15.2px,21px);         /* lede                     */
+  --t-6:clamp(21px,1.9vw + 15px,30px);          /* h3 / list display        */
+  --t-7:clamp(27px,3.3vw + 15px,46px);          /* h2                       */
+  --t-8:clamp(34px,5.2vw + 15px,68px);          /* h1                       */
+
+  --lh-tight:1.08;
+  --lh-display:1.16;
+  --lh-base:1.72;
+  --lh-loose:1.8;
+  --track-label:.22em;
+  --track-display:-.014em;
+
+  /* Measure is a pacing tool. Varying it is most of what stops a long page
+     reading as one undifferentiated document.                              */
+  --measure-display:20ch;
+  --measure-prose:34em;
+  --measure-list:52ch;
+  --measure-wide:64ch;
+
+  /* --- space ------------------------------------------------------------ */
+  --s-1:4px;   --s-2:8px;   --s-3:12px;  --s-4:16px;
+  --s-5:24px;  --s-6:32px;  --s-7:44px;  --s-8:60px;
+  --s-9:80px;  --s-10:108px; --s-11:140px; --s-12:180px;
+
+  /* Section rhythm, assigned by content type rather than repeated blindly.
+     The old build used one identical clamp on nearly every section.        */
+  --beat-tight:clamp(52px,7vh,86px);
+  --beat:clamp(78px,11vh,132px);
+  --beat-wide:clamp(104px,16vh,190px);
+
+  /* --- shell ------------------------------------------------------------ */
+  --wrap:1280px;
+  --wrap-narrow:960px;
+  --gutter:clamp(20px,5vw,64px);
+  --r-0:0;
+  --r-sm:3px;
+  --r-panel:4px;
+
+  /* --- texture ----------------------------------------------------------
+     Referenced by URL, not inlined: only one tile is ever used per page, and
+     the flatten step inlines just that one at ship time. A repeating PNG tile
+     costs nothing at paint; a full-viewport feTurbulence costs 100–300ms of
+     rasterisation on a mid-range Android, which is the stated audience.
+     soft-light because 128-grey is its no-op — that is what makes it grain
+     rather than mud. multiply muddies; never use it here.                   */
+  --grain:url(assets/grain-fine.png);
+  --grain-size:128px;
+  --grain-opacity:.04;
+  --grain-blend:soft-light;
+
+  /* --- light ------------------------------------------------------------
+     Sources sit off-canvas so you read the falloff, not the source. All three
+     stops in ONE background shorthand = one paint. Set them to the same value
+     for a flat section.                                                     */
+  --light-x:78%;
+  --light-y:42%;
+  --light-reach:120% 90%;
+  --light-core:var(--g-3);
+  --light-mid:var(--g-2);
+  --light-edge:var(--g-1);
+
+  /* --- layers ----------------------------------------------------------- */
+  --z-ground:0;
+  --z-atmos:1;
+  --z-ornament:2;
+  --z-content:3;
+  --z-lift:4;
+  --z-nav:50;
+
+  /* --- motion ----------------------------------------------------------- */
+  --ease:cubic-bezier(.16,1,.3,1);
+  --ease-inout:cubic-bezier(.65,0,.35,1);
+  --dur-fast:.3s;
+  --dur:.62s;
+  --dur-slow:.95s;
+  --stagger:70ms;
+}
+}
+
+/* ============================================================== BASE ====== */
+@layer base {
+*{box-sizing:border-box;margin:0;padding:0}
+
+html{
+  -webkit-text-size-adjust:100%;
+  color-scheme:dark;
+  /* NOT scroll-behavior:smooth. With anchor CTAs on an ~18,000px page, smooth
+     scroll drags the viewport through every IntersectionObserver on the way
+     and fires every reveal at once. system.js handles long jumps instead.   */
+}
+
+body{
+  background:var(--g-2);
+  color:var(--ink-soft);
+  font-family:var(--sans);
+  font-size:var(--t-4);
+  line-height:var(--lh-base);
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  /* clip, not hidden: hidden on body propagates to the viewport today and is
+     fine, but it is one `overflow` declaration on <html> away from silently
+     killing every position:sticky ground layer in the layering system.      */
+  overflow-x:clip;
+}
+
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+::selection{background:var(--gold);color:#14100A}
+
+a:focus-visible,summary:focus-visible,button:focus-visible{
+  outline:2px solid var(--gold);
+  outline-offset:3px;
+  border-radius:1px;
+}
+}
+
+/* ======================================================== PRIMITIVES ====== */
+@layer primitives {
+
+/* ---- shell ---------------------------------------------------------- */
+.wrap{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.wrap--narrow{max-width:var(--wrap-narrow)}
+
+/* ---- THE SECTION PRIMITIVE ------------------------------------------
+   One rule for every section on the page. Atmosphere arrives as tokens.
+   isolation:isolate keeps the grain's blend mode inside the section so it
+   never reaches across a seam.                                           */
+.sec{
+  position:relative;
+  isolation:isolate;
+  padding-block:var(--beat);
+  background:radial-gradient(
+    var(--light-reach) at var(--light-x) var(--light-y),
+    var(--light-core) 0%,
+    var(--light-mid) 46%,
+    var(--light-edge) 100%
+  );
+}
+
+/* Grain sits UNDER content, never over it. An overlay above text lowers
+   effective contrast on every glyph on the page and turns a WCAG-passing
+   build into a failing one. Under content the question disappears.        */
+.sec::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:var(--z-atmos);
+  pointer-events:none;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-opacity);
+  mix-blend-mode:var(--grain-blend);
+}
+/* Without this the tile halves in CSS px on a DPR-3 Indian phone and either
+   vanishes or moirés. Scale it back up.                                   */
+@media (min-resolution:2dppx){
+  .sec::before{background-size:calc(var(--grain-size) * 1.5) calc(var(--grain-size) * 1.5)}
+}
+
+.sec > *{position:relative;z-index:var(--z-content)}
+.sec--tight{padding-block:var(--beat-tight)}
+.sec--wide{padding-block:var(--beat-wide)}
+
+/* A flat section: collapse the three light stops onto one ground. */
+.sec--flat{--light-core:var(--ground);--light-mid:var(--ground);--light-edge:var(--ground)}
+
+/* Light ground. Everything a section needs flips at once — ramp, ink, rules,
+   edges and the grain blend — so a page can alternate midnight and cream
+   passages without a single bespoke override at the call site.
+
+   The grain blend is the one interesting flip: soft-light does nothing useful
+   on cream, and multiply is exactly right there — it reads as paper tooth. So
+   multiply, banned on dark ground where it turns everything to mud, is the
+   correct choice here. Same token, opposite value, one rule. */
+.sec--paper{
+  --ground:var(--p-2);
+  --light-core:var(--p-3);--light-mid:var(--p-2);--light-edge:var(--p-1);
+  --ink:var(--ink-paper);
+  --ink-soft:var(--ink-paper-soft);
+  --ink-mute:var(--ink-paper-mute);
+  --ink-faint:#6E6A5F;
+  --gold:var(--gold-aa);              /* brand gold fails AA as text here    */
+  --rule-soft:var(--rule-paper);
+  --rule-gold:rgba(184,146,74,.5);
+  --edge-hi:rgba(255,255,255,.75);    /* a lit edge on paper is white, not cream */
+  --edge-lo:rgba(60,54,40,.14);
+  --grain-blend:multiply;
+  --grain-opacity:.055;
+  color:var(--ink-paper-soft);
+}
+
+/* ---- occlusion: the single biggest fix, and it costs nothing ---------
+   Something must sit in front of something else or the page cannot read as
+   deep, no matter what colour it is.                                      */
+.overlap{margin-block-start:calc(var(--s-9) * -1);position:relative;z-index:var(--z-lift)}
+.overlap-sm{margin-block-start:calc(var(--s-6) * -1);position:relative;z-index:var(--z-lift)}
+.bleed-r{margin-inline-end:calc(var(--gutter) * -1)}
+.bleed-l{margin-inline-start:calc(var(--gutter) * -1)}
+.bleed{width:100vw;margin-inline-start:50%;transform:translateX(-50%)}
+
+/* ---- elevation without drop shadows ---------------------------------
+   The brief bans them. So: one ground step lighter, a hairline lit edge on
+   top, and slightly LESS grain than the ground behind it — which is what
+   layered print actually does.                                            */
+.lift{
+  position:relative;
+  background:var(--lift-ground,var(--g-3));
+  border:1px solid var(--rule-soft);
+  border-radius:var(--r-panel);
+  box-shadow:inset 0 1px 0 var(--edge-hi);
+  isolation:isolate;
+}
+.lift::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;border-radius:inherit;
+  background-image:var(--grain);background-size:var(--grain-size) var(--grain-size);
+  opacity:calc(var(--grain-opacity) * .55);mix-blend-mode:var(--grain-blend);
+}
+.lift > *{position:relative;z-index:1}
+
+/* ---- type ------------------------------------------------------------ */
+.display{
+  font-family:var(--display);color:var(--ink);font-weight:400;
+  line-height:var(--lh-display);letter-spacing:var(--track-display);
+}
+h1.display{font-size:var(--t-8);line-height:var(--lh-tight);max-width:var(--measure-display)}
+h2.display{font-size:var(--t-7);max-width:22ch}
+h3.display{font-size:var(--t-6);line-height:1.24}
+.display em{font-style:italic;color:var(--gold);display:inline-block;padding-bottom:.06em}
+
+.lede{font-size:var(--t-5);line-height:1.66;color:var(--ink-soft);max-width:var(--measure-prose)}
+.prose{max-width:var(--measure-prose)}
+.prose > p + p{margin-top:var(--s-5)}
+.prose-wide{max-width:var(--measure-wide)}
+
+.label{
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:var(--gold);font-weight:500;line-height:1;
+}
+
+/* Her verbatim lines. She keeps her em dashes (D24) — the near-zero rule is
+   for our copy, not her register.                                          */
+.said{
+  font-family:var(--display);font-style:italic;color:var(--gold);
+  font-size:var(--t-6);line-height:1.42;max-width:26ch;
+}
+
+/* ---- rules ----------------------------------------------------------- */
+.rule{height:1px;background:var(--rule-gold);border:0;transform-origin:left center}
+.rule-soft{height:1px;background:var(--rule-soft);border:0;transform-origin:left center}
+
+/* ---- CTA ------------------------------------------------------------- */
+.btn{
+  display:inline-block;background:var(--gold-deep);color:#100C05;
+  font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:17px 34px;text-decoration:none;
+  border:1px solid var(--gold-deep);border-radius:var(--r-sm);white-space:nowrap;
+  transition:background var(--dur-fast) var(--ease),transform var(--dur-fast) var(--ease);
+}
+.btn:hover{background:var(--gold);border-color:var(--gold)}
+.btn:active{transform:translateY(1px)}
+.btn--quiet{background:transparent;color:var(--ink);border-color:var(--rule-gold)}
+.btn--quiet:hover{background:rgba(212,170,106,.09);border-color:var(--gold)}
+.cta-row{display:flex;align-items:center;gap:var(--s-5);flex-wrap:wrap}
+.cta-note{font-size:var(--t-3);color:var(--ink-mute);max-width:34ch}
+
+/* ---- gated content --------------------------------------------------
+   89 of 127 source atoms are `verified_by: null`. Nothing unverified should
+   be able to ship by accident on a Friday review cycle. _qa.html turns the
+   badge on; the shipped page never does.                                  */
+[data-gate]{position:relative}
+.qa-gates [data-gate]{outline:1px dashed rgba(255,120,120,.55);outline-offset:6px}
+.qa-gates [data-gate]::after{
+  content:"GATE: " attr(data-gate);
+  position:absolute;top:-9px;left:0;z-index:99;
+  font:600 9px/1 var(--sans);letter-spacing:.14em;
+  color:#FFB4B4;background:#3A1414;padding:3px 6px;border-radius:2px;
+}
+}
+
+/* ============================================================= MOTION ===== */
+@layer motion {
+/* Four ideas for the whole page, one per section, transform and opacity only.
+   The reduced-motion page must still be LAYERED — texture, light, occlusion
+   and elevation are not motion and none of them live in here.              */
+@media (prefers-reduced-motion:no-preference){
+
+  /* 1. block rise — the workhorse, applied to blocks not items */
+  [data-reveal]{
+    opacity:0;transform:translateY(22px);
+    transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease);
+    transition-delay:var(--d,0ms);
+  }
+  [data-reveal].in{opacity:1;transform:none}
+
+  /* 2. rule draw — hairlines arrive by being drawn, left to right */
+  [data-reveal="rule"]{opacity:1;transform:scaleX(0);
+    transition:transform var(--dur-slow) var(--ease);transition-delay:var(--d,0ms)}
+  [data-reveal="rule"].in{transform:scaleX(1)}
+
+  /* 3. clip reveal — display headings only, never body copy */
+  [data-reveal="clip"]{
+    opacity:1;transform:none;clip-path:inset(0 0 108% 0);
+    transition:clip-path var(--dur-slow) var(--ease);transition-delay:var(--d,0ms);
+  }
+  [data-reveal="clip"].in{clip-path:inset(0 0 -10% 0)}
+
+  /* 4. ground wake — the section turns ON rather than sliding in.
+        Animating an already-composited layer's opacity, so it is free.     */
+  [data-wake]::before{opacity:0;transition:opacity 1.4s var(--ease-inout)}
+  [data-wake].in::before{opacity:var(--grain-opacity)}
+}
+
+/* Suppress reveals while a programmatic scroll is in flight, so a CTA jump
+   from the top does not detonate every observer between here and the anchor. */
+html.is-jumping [data-reveal]{transition:none !important}
+}
+
+/* ========================================================= RESPONSIVE ===== */
+@layer responsive {
+/* Four breakpoints, not two. 900/560 is too coarse once diagrams arrive.
+   Most sections should need none of these — prefer intrinsic layouts.      */
+@media (max-width:1200px){ :root{--wrap:1080px} }
+@media (max-width:900px){
+  :root{--beat-wide:clamp(80px,12vh,120px);--beat:clamp(64px,9vh,96px)}
+  .overlap{margin-block-start:calc(var(--s-6) * -1)}
+  h2.display{max-width:none}
+}
+@media (max-width:700px){
+  :root{--measure-display:none}
+  h1.display{max-width:none}
+}
+@media (max-width:560px){
+  :root{--gutter:20px}
+  .btn{width:100%;text-align:center}
+  .cta-row{gap:var(--s-3)}
+  .bleed{width:auto;margin-inline-start:0;transform:none}
+}
+}

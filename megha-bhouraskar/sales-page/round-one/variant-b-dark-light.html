@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Own an American company, without leaving home | Megha Bhouraskar</title>
+<meta name="description" content="Three free modules from a New York attorney of 25 years. Build a real business presence in America without relocating, without minimum capital, without an American partner.">
+<style>
+/* ============================================================
+   VARIANT B - "Dark Light"
+   Ground: midnight. The brief calls midnight blue "a dark light that welcomes
+   people carrying their own darkness." This variant executes that literally:
+   the whole page is dark, and the free course is the one panel where light
+   breaks in. Continuous with the YouTube thumbnail system CJ specified, so the
+   page and the channel read as one thing.
+   Dials: DESIGN_VARIANCE 6 / MOTION_INTENSITY 7 / VISUAL_DENSITY 4
+   Type: Georgia display + Helvetica Neue body (Megha's Option 1 pick)
+   Accent: light gold, one accent, whole page
+   Signature: the sun arc from the logo, rising behind her, and the one
+   cream panel at the module road
+   ============================================================ */
+
+:root{
+  --night:#0A1128;
+  --midnight:#0D1B3E;
+  --deep:#16274F;
+  --deeper:#101F44;
+  --cream:#F2F0EC;
+  --paper:#FBFAF8;
+  --gold:#D4AA6A;
+  --gold-deep:#B8924A;
+  --gold-text:#7F6024;      /* gold that clears WCAG AA as small text on the cream panel */
+  --type:#F1EEE7;
+  --type-soft:rgba(241,238,231,.74);
+  --type-mute:rgba(241,238,231,.6);
+  --rule:rgba(212,170,106,.24);
+  --rule-soft:rgba(241,238,231,.13);
+
+  --display:Georgia,'Times New Roman',Times,serif;
+  --sans:'Helvetica Neue',Helvetica,Arial,'Segoe UI',sans-serif;
+
+  --wrap:1280px;
+  --gutter:clamp(20px,5vw,64px);
+  --r:3px;
+}
+
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;color-scheme:dark}
+body{
+  background:var(--midnight);
+  color:var(--type-soft);
+  font-family:var(--sans);
+  font-size:17px;line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter)}
+
+/* ---------- type ---------- */
+.display{font-family:var(--display);color:var(--type);font-weight:400;line-height:1.1;letter-spacing:-.012em}
+h1.display{font-size:clamp(2.1rem,4.4vw,3.3rem)}
+h2.display{font-size:clamp(1.7rem,3.3vw,2.6rem);line-height:1.16}
+h3.display{font-size:clamp(1.25rem,1.9vw,1.55rem);line-height:1.22}
+.lede{font-size:clamp(1.04rem,1.5vw,1.2rem);line-height:1.7;color:var(--type-soft);max-width:34em}
+.label{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);font-weight:500;line-height:1}
+
+/* ---------- CTA (one radius system: 3px on every interactive surface) ---------- */
+.btn{
+  display:inline-block;background:var(--gold);color:#14100A;
+  font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;
+  padding:17px 34px;text-decoration:none;border:1px solid var(--gold);border-radius:var(--r);
+  white-space:nowrap;
+  transition:background .3s cubic-bezier(.16,1,.3,1),transform .3s cubic-bezier(.16,1,.3,1),box-shadow .3s ease
+}
+.btn:hover{background:#E4BE84;border-color:#E4BE84;box-shadow:0 10px 30px rgba(212,170,106,.22)}
+.btn:active{transform:translateY(1px)}
+.btn.invert{background:var(--midnight);border-color:var(--midnight);color:var(--type)}
+.btn.invert:hover{background:var(--deep);border-color:var(--deep);box-shadow:0 10px 30px rgba(13,27,62,.28)}
+.cta-row{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.cta-note{font-size:14px;color:var(--type-mute)}
+a:focus-visible,summary:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+
+/* ---------- nav ---------- */
+.nav{position:sticky;top:0;z-index:50;background:var(--midnight);border-bottom:1px solid var(--rule-soft)}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter);height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.nav-logo{height:44px;width:auto}
+.nav .btn{padding:12px 24px;font-size:13px}
+
+/* ---------- hero: cinematic, the sun rising behind her ---------- */
+.hero{position:relative;overflow:hidden;background:radial-gradient(120% 90% at 78% 42%,var(--deep) 0%,var(--midnight) 46%,var(--night) 100%)}
+.hero-grid{
+  position:relative;z-index:3;max-width:var(--wrap);margin:0 auto;padding-inline:var(--gutter);
+  min-height:calc(100dvh - 78px);display:flex;align-items:center
+}
+.hero-copy{padding:clamp(56px,9vh,112px) 0;max-width:min(660px,60%)}
+.hero h1{margin-bottom:26px}
+.hero h1 .l{display:block}
+.hero h1 em{font-style:italic;color:var(--gold);padding-bottom:.06em;display:inline-block}
+.hero .lede{margin-bottom:36px}
+
+/* the logo's sun arc, rebuilt as a circle so it scales cleanly */
+.sun{
+  position:absolute;z-index:1;pointer-events:none;
+  right:-10%;top:44%;transform:translateY(-50%);
+  width:min(720px,52vw);aspect-ratio:1;border:1px solid rgba(212,170,106,.4);border-radius:50%
+}
+.sun::before,.sun::after{content:"";position:absolute;top:50%;margin-top:-4px;width:8px;height:8px;background:rgba(212,170,106,.75);border-radius:50%}
+.sun::before{left:-4px}
+.sun::after{right:-4px}
+
+/* The photograph is masked rather than overlaid, so it dissolves into the
+   gradient instead of butting against it. Same read as CJ's thumbnails. */
+.hero-figure{
+  position:absolute;z-index:2;right:0;top:0;bottom:0;width:min(46%,660px);overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 20%,rgba(0,0,0,.85) 48%,#000 66%,#000 88%,rgba(0,0,0,.35) 100%);
+          mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.22) 20%,rgba(0,0,0,.85) 48%,#000 66%,#000 88%,rgba(0,0,0,.35) 100%);
+}
+.hero-figure img{width:100%;height:100%;object-fit:cover;object-position:56% 14%;filter:saturate(.82) brightness(.8) contrast(1.06)}
+/* a cool wash so her bright studio background sits inside the night */
+.hero-figure::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(180deg,rgba(13,27,62,.42) 0%,rgba(10,17,40,.2) 45%,rgba(10,17,40,.55) 100%);
+  mix-blend-mode:multiply
+}
+
+.cloud{position:absolute;pointer-events:none;user-select:none}
+.cloud-heroL{left:0;bottom:2%;width:172px;opacity:.42;z-index:1}
+
+/* ---------- trust strip ---------- */
+.trust{border-top:1px solid var(--rule-soft);border-bottom:1px solid var(--rule-soft);background:var(--deeper)}
+.trust-in{display:grid;grid-template-columns:repeat(5,1fr);padding:32px 0}
+.trust-item{padding:6px 22px;border-left:1px solid var(--rule-soft);font-size:13.5px;line-height:1.5;color:var(--type-mute)}
+.trust-item:first-child{border-left:0;padding-left:0}
+.trust-item b{display:block;font-family:var(--display);font-size:16px;color:var(--type);font-weight:400;margin-bottom:3px}
+
+/* ---------- the gap ---------- */
+.gap-sec{position:relative;overflow:hidden;padding:clamp(84px,13vh,150px) 0;background:var(--night)}
+.cloud-gapR{right:-16px;top:14%;width:136px;opacity:.3}
+.gap-in{position:relative;max-width:780px}
+.gap-sec h2{margin-bottom:34px}
+.gap-sec p{margin-bottom:20px;font-size:clamp(1.02rem,1.35vw,1.14rem)}
+.gap-sec p:last-child{margin-bottom:0}
+.gap-sec strong{color:var(--gold);font-weight:400;font-family:var(--display);font-style:italic;font-size:1.1em}
+
+/* ---------- the turn ---------- */
+.turn{padding:clamp(84px,13vh,150px) 0;background:var(--midnight)}
+.turn h2{margin-bottom:52px;max-width:24ch}
+.turn ul{list-style:none}
+.turn li{
+  position:relative;font-family:var(--display);color:var(--type);
+  font-size:clamp(1.2rem,2.2vw,1.75rem);line-height:1.35;
+  padding:24px 0 24px 46px;border-top:1px solid var(--rule-soft)
+}
+.turn li::before{content:"";position:absolute;left:0;top:calc(24px + .68em);width:26px;height:1px;background:var(--gold)}
+.turn li:last-child{border-bottom:1px solid var(--rule-soft)}
+.turn li span{display:block;font-family:var(--sans);font-size:15px;line-height:1.7;color:var(--type-soft);margin-top:12px;max-width:52ch}
+.turn-close{margin-top:46px;font-family:var(--display);font-style:italic;color:var(--gold);font-size:clamp(1.15rem,1.9vw,1.45rem);line-height:1.5;max-width:26ch}
+
+/* ---------- THE ROAD: the one panel where light breaks in ---------- */
+.road{background:var(--cream);color:#4C4A45;padding:clamp(84px,13vh,150px) 0;position:relative;overflow:hidden}
+.road .label{color:var(--gold-text)}
+.road h2.display{color:var(--midnight);margin:18px 0 18px}
+.road-intro{max-width:46ch;margin-bottom:58px;font-size:1.05rem;color:#5B5851}
+.mod{display:grid;grid-template-columns:88px 1fr 1.35fr;gap:clamp(16px,3vw,44px);padding:36px 0;border-top:1px solid #D8D3C8;align-items:start}
+.mod:last-of-type{border-bottom:1px solid #D8D3C8}
+.mod-n{font-family:var(--display);font-size:2.1rem;color:var(--gold-deep);line-height:1}
+.mod h3.display{color:var(--midnight)}
+.mod-count{display:block;font-family:var(--sans);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#67645C;margin-top:10px}
+.mod p{font-size:15.5px;line-height:1.72;color:#5B5851}
+.road-foot{margin-top:46px;font-family:var(--display);font-style:italic;font-size:1.2rem;color:var(--gold-text);max-width:34ch;line-height:1.5}
+.cloud-roadR{right:-20px;bottom:4%;width:136px;opacity:.4}
+
+/* ---------- why her ---------- */
+.why{padding:clamp(84px,13vh,150px) 0;background:var(--midnight)}
+.why-grid{display:grid;grid-template-columns:auto 1fr;gap:clamp(32px,6vw,88px);align-items:start}
+.why-fig{width:min(300px,32vw)}
+.why-fig img{border-radius:var(--r);box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.why-cap{margin-top:16px;font-size:13px;color:var(--type-mute);line-height:1.5}
+.why h2{margin-bottom:28px}
+.why p{margin-bottom:20px}
+.why p:last-child{margin-bottom:0}
+
+/* ---------- testimonials ---------- */
+.quotes{background:var(--night);padding:clamp(70px,10vh,116px) 0;border-top:1px solid var(--rule-soft)}
+.q-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,3vw,40px)}
+.q{border:1px solid var(--rule-soft);border-radius:var(--r);padding:clamp(28px,3.2vw,42px);background:rgba(22,39,79,.4)}
+.q:first-child{grid-column:1/-1;border-color:var(--rule)}
+.q blockquote{font-family:var(--display);color:var(--type);font-size:clamp(1.1rem,1.7vw,1.35rem);line-height:1.48;margin-bottom:18px}
+.q:first-child blockquote{font-size:clamp(1.22rem,2vw,1.6rem);max-width:52ch;color:var(--gold)}
+.q cite{font-style:normal;font-size:13px;color:var(--type-mute);line-height:1.5;display:block}
+.q cite b{display:block;color:var(--type);font-weight:500;font-size:14px}
+
+/* ---------- the room ---------- */
+.room{background:linear-gradient(180deg,var(--midnight) 0%,var(--deep) 100%);padding:clamp(84px,13vh,150px) 0;position:relative;overflow:hidden}
+.room h2{margin:18px 0 24px;max-width:20ch}
+.room-lede{max-width:52ch;font-size:1.06rem;margin-bottom:54px}
+.room-grid{display:grid;grid-template-columns:1.25fr .75fr;gap:clamp(32px,6vw,80px);align-items:start}
+.room-list{list-style:none}
+.room-list li{padding:20px 0;border-top:1px solid var(--rule);font-size:15.5px;line-height:1.7}
+.room-list li:last-child{border-bottom:1px solid var(--rule)}
+.room-list b{display:block;font-family:var(--display);font-weight:400;font-size:1.15rem;color:var(--type);margin-bottom:5px}
+.price{border:1px solid var(--rule);border-radius:var(--r);padding:34px 30px;background:rgba(10,17,40,.45)}
+.price .k{font-family:var(--display);font-size:1.7rem;color:var(--gold);line-height:1.2;margin-bottom:12px}
+.price p{font-size:14.5px;line-height:1.65;margin-bottom:26px}
+
+/* ---------- outcomes ---------- */
+.out{padding:clamp(84px,13vh,150px) 0;background:var(--night)}
+.out h2{margin-bottom:50px;max-width:18ch}
+.out ol{list-style:none;counter-reset:o;columns:2;column-gap:clamp(32px,6vw,72px)}
+.out li{counter-increment:o;break-inside:avoid;padding:18px 0 18px 46px;position:relative;border-top:1px solid var(--rule-soft);font-size:15.5px;line-height:1.68}
+.out li::before{content:counter(o,decimal-leading-zero);position:absolute;left:0;top:19px;font-family:var(--display);font-size:13px;color:var(--gold)}
+
+/* ---------- faq ---------- */
+.faq{padding:clamp(84px,13vh,150px) 0;background:var(--midnight)}
+.faq h2{margin-bottom:42px}
+.faq details{border-top:1px solid var(--rule-soft)}
+.faq details:last-of-type{border-bottom:1px solid var(--rule-soft)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 46px 24px 0;position:relative;font-family:var(--display);color:var(--type);font-size:clamp(1.05rem,1.6vw,1.28rem);line-height:1.4}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:50%;width:13px;height:1px;background:var(--gold)}
+.faq summary::before{content:"";position:absolute;right:8px;top:50%;width:13px;height:1px;background:var(--gold);transform:rotate(90deg);transition:transform .3s ease,opacity .3s ease}
+.faq details[open] summary::before{transform:rotate(0);opacity:0}
+.faq details p{padding:0 0 28px;max-width:62ch;font-size:15.5px}
+
+/* ---------- close ---------- */
+.close{padding:clamp(96px,15vh,172px) 0;text-align:center;position:relative;overflow:hidden;background:radial-gradient(100% 70% at 50% 30%,var(--deep) 0%,var(--midnight) 55%,var(--night) 100%)}
+.close-in{position:relative;z-index:2;max-width:640px;margin:0 auto}
+.close h2{margin-bottom:26px}
+.close p{margin-bottom:20px;font-size:1.08rem}
+.close .shout{font-family:var(--display);font-style:italic;color:var(--gold);font-size:clamp(1.4rem,2.6vw,2rem);line-height:1.3;margin:34px 0 40px}
+.close .cta-row{justify-content:center}
+.sig{margin-top:58px;font-family:var(--display);font-style:italic;font-size:1.35rem;color:var(--type);line-height:1.3;padding-bottom:.18em}
+.close .sun{right:auto;left:50%;top:28%;transform:translate(-50%,-50%);width:min(620px,80vw);opacity:.4}
+.cloud-closeL{left:-30px;bottom:6%;width:172px;opacity:.32}
+.cloud-closeR{right:-20px;top:12%;width:136px;opacity:.32}
+
+/* ---------- footer ---------- */
+.foot{background:var(--night);padding:66px 0 58px;font-size:13.5px;line-height:1.7;color:var(--type-mute);border-top:1px solid var(--rule-soft)}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;gap:40px;flex-wrap:wrap;padding-bottom:36px;border-bottom:1px solid var(--rule-soft)}
+.foot-logo{height:74px;width:auto}
+.legal{padding-top:30px;max-width:74ch;font-size:12.5px;line-height:1.75;color:rgba(241,238,231,.56)}
+.legal b{color:var(--type-mute);font-weight:400}
+
+/* ---------- motion (MOTION_INTENSITY 7) ---------- */
+@media (prefers-reduced-motion: no-preference){
+  [data-reveal]{opacity:0;transform:translateY(26px);transition:opacity .85s cubic-bezier(.16,1,.3,1),transform .85s cubic-bezier(.16,1,.3,1)}
+  [data-reveal].in{opacity:1;transform:none}
+  /* hero load-in: the sun rises, then she arrives, then the words.
+     Sequence matches the story the page tells, so it earns its keep. */
+  .hero .sun{opacity:0;transform:translateY(-50%) scale(.86);animation:rise 1.5s cubic-bezier(.16,1,.3,1) .1s forwards}
+  .hero-figure{opacity:0;animation:fade 1.2s ease .35s forwards}
+  .hero h1,.hero .lede,.hero .cta-row{opacity:0;transform:translateY(16px);animation:up .9s cubic-bezier(.16,1,.3,1) forwards}
+  .hero h1{animation-delay:.5s}
+  .hero .lede{animation-delay:.66s}
+  .hero .cta-row{animation-delay:.8s}
+}
+@keyframes rise{to{opacity:1;transform:translateY(-50%) scale(1)}}
+@keyframes fade{to{opacity:1}}
+@keyframes up{to{opacity:1;transform:none}}
+
+/* ---------- mobile collapse ---------- */
+@media (max-width:900px){
+  .hero{background:radial-gradient(120% 60% at 70% 22%,var(--deep) 0%,var(--midnight) 50%,var(--night) 100%)}
+  .hero-grid{display:block;min-height:0}
+  .hero-copy{padding:44px 0 34px;max-width:none}
+  .hero-figure{
+    position:static;width:100%;height:auto;
+    -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,#000 16%,#000 64%,rgba(0,0,0,.12) 100%);
+            mask-image:linear-gradient(180deg,rgba(0,0,0,.5) 0%,#000 16%,#000 64%,rgba(0,0,0,.12) 100%);
+  }
+  .hero-figure img{height:auto;aspect-ratio:16/11;object-position:56% 12%}
+  .sun{right:-18%;top:20%;width:86vw}
+  .cloud-heroL{display:none}
+  .trust-in{grid-template-columns:1fr 1fr;padding:0 0 8px}
+  .trust-item{border-left:0;padding:14px 0;border-top:1px solid var(--rule-soft)}
+  .trust-item:nth-child(odd){padding-right:18px}
+  .mod{grid-template-columns:56px 1fr;gap:14px}
+  .mod-body,.mod p{grid-column:2}
+  .why-grid{grid-template-columns:1fr;gap:36px}
+  .why-fig{width:min(280px,62vw)}
+  .q-grid{grid-template-columns:1fr}
+  .q:first-child{grid-column:auto}
+  .room-grid{grid-template-columns:1fr;gap:40px}
+  .out ol{columns:1}
+  .foot-top{flex-direction:column}
+}
+@media (max-width:560px){
+  body{font-size:16px}
+  .nav-in{height:66px}
+  .nav-logo{height:34px}
+  .nav .btn{padding:11px 18px;font-size:12px}
+  .cloud{display:none}
+  .btn{width:100%;text-align:center}
+  .cta-row{gap:12px}
+  .close .sun{display:none}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <a href="#top" aria-label="Megha Bhouraskar, home">
+      <img class="nav-logo" src="assets/logo-wordmark-dark.png" alt="Megha Bhouraskar" width="622" height="270">
+    </a>
+    <a class="btn" href="#start">Start free</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 1. HERO - cinematic full bleed -->
+  <section class="hero">
+    <span class="sun" aria-hidden="true"></span>
+    <img class="cloud cloud-heroL" src="assets/cloud-left-dark.png" alt="" aria-hidden="true">
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <h1 class="display">
+          <span class="l">Own an American company.</span>
+          <span class="l"><em>Without leaving home.</em></span>
+        </h1>
+        <p class="lede">Three free modules from a New York attorney of 25 years. No relocating, no minimum capital, no American partner.</p>
+        <div class="cta-row">
+          <a class="btn" href="#start">Start free</a>
+          <span class="cta-note">No card. All three modules, the moment you join.</span>
+        </div>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <img src="assets/megha-headshot.jpg" alt="Megha Bhouraskar" fetchpriority="high" width="1320" height="1643">
+    </figure>
+  </section>
+
+  <!-- 2. TRUST STRIP -->
+  <section class="trust">
+    <div class="wrap">
+      <div class="trust-in">
+        <div class="trust-item"><b>25 years</b>Cross border practice, New York</div>
+        <div class="trust-item"><b>Columbia</b>Columbia University, Barnard College</div>
+        <div class="trust-item"><b>Author</b>How To Have a Business Presence in the U.S.A.</div>
+        <div class="trust-item"><b>She Warriors</b>Host of the New York podcast</div>
+        <div class="trust-item"><b>Sakhi</b>Founder, and board member at Bharatiya Vidya Bhavan</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. THE GAP -->
+  <section class="gap-sec">
+    <img class="cloud cloud-gapR" src="assets/cloud-right-dark.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <div class="gap-in" data-reveal>
+        <h2 class="display">You cleared the hard part years ago. So why is the dream still on the shelf?</h2>
+        <p>There is a dream you keep taking down off the shelf. You look at it. You put it back.</p>
+        <p>You are not stuck because you lack the education, or the money, or the ability. You settled all of that a long time ago. You are stuck because of two quiet fears nobody in your family will say out loud: the fear of failing, and the fear of being seen trying.</p>
+        <p>So you tolerate it. Another quarter. Another year. The salary is good, the work is fine, and there is too much to lose.</p>
+        <p>I know that feeling, my friend. I have lived <strong>the gap between your dream and where you are.</strong></p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. THE TURN -->
+  <section class="turn">
+    <div class="wrap">
+      <h2 class="display" data-reveal>It is closer than you think, and much simpler than you imagine.</h2>
+      <ul>
+        <li data-reveal>You do not need a visa to own an American company.</li>
+        <li data-reveal>You do not need to move.</li>
+        <li data-reveal>You do not need a pile of capital sitting in a bank first.</li>
+        <li data-reveal>And you do not need an American partner to vouch for you.
+          <span>That last one has kept more good founders out than all the others combined.</span>
+        </li>
+      </ul>
+      <p class="turn-close" data-reveal>Your business presence in America is within your reach, and closer to you than you realize.</p>
+    </div>
+  </section>
+
+  <!-- 5. THE ROAD - the one light panel on a dark page -->
+  <section class="road" id="start">
+    <img class="cloud cloud-roadR" src="assets/cloud-right.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <span class="label">The free course</span>
+      <h2 class="display">The whole road, in three parts. All of it free.</h2>
+      <p class="road-intro">Not a preview. The complete course, start to finish, because you should be able to see the whole path before you take one step.</p>
+
+      <div class="mod" data-reveal>
+        <div class="mod-n">01</div>
+        <div class="mod-body">
+          <h3 class="display">Permission</h3>
+          <span class="mod-count">Seven lessons</span>
+        </div>
+        <p>Before the paperwork, the belief. This is the module about the part of you that says <em>this is not for someone like me</em>. Where that voice came from, why your difference is an advantage in America, and how to stop waiting for someone to hand you a turn.</p>
+      </div>
+
+      <div class="mod" data-reveal>
+        <div class="mod-n">02</div>
+        <div class="mod-body">
+          <h3 class="display">The Map</h3>
+          <span class="mod-count">Nine lessons</span>
+        </div>
+        <p>The six steps, in order, in plain English. Your U.S. entity. Your tax ID. Your bank account, opened from home. Your U.S. address. Your structure and your advisors. No legalese and no assumed knowledge.</p>
+      </div>
+
+      <div class="mod" data-reveal>
+        <div class="mod-n">03</div>
+        <div class="mod-body">
+          <h3 class="display">Protect What You Build</h3>
+          <span class="mod-count">Seven lessons</span>
+        </div>
+        <p>The moment you are worth copying, somebody copies you. Your brand, your code, your content, your idea, and how to turn what you own into income that arrives while you sleep.</p>
+      </div>
+
+      <p class="road-foot" data-reveal>Twenty three lessons and an introduction. You keep all of it, whether you ever pay me a rupee or not.</p>
+    </div>
+  </section>
+
+  <!-- 6. WHY HER -->
+  <section class="why">
+    <div class="wrap">
+      <div class="why-grid">
+        <figure class="why-fig" data-reveal>
+          <img src="assets/book-cover.jpg" alt="Cover of the book How To Have a Business Presence in the U.S.A. by Megha Bhouraskar" width="705" height="1125">
+          <figcaption class="why-cap">The book this course grew out of, published 2018.</figcaption>
+        </figure>
+        <div data-reveal>
+          <h2 class="display">Twenty five years on the other side of that gap.</h2>
+          <p>Megha was born in New York and grew up between New York and India. She was made partner in six years at an all white male Manhattan firm, then left the security of it to build a practice that looked like her clients instead of like the firm.</p>
+          <p>She brought Indian fashion, film and technology into the American market. She formed the companies, bought the buildings, and sat in the rooms where those deals actually happen.</p>
+          <p>She is not teaching this from research. She is teaching it from twenty five years of doing it for people who were oceans away and frightened.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 7. TESTIMONIALS -->
+  <section class="quotes">
+    <div class="wrap">
+      <div class="q-grid">
+        <div class="q" data-reveal>
+          <blockquote>&ldquo;I have not lived in the USA for more than 15 years, and Megha has a blanket power of attorney to act on my behalf. Imagine 10 years of complete trust!&rdquo;</blockquote>
+          <cite><b>Geetanjali Misra</b>Executive Director, CREA</cite>
+        </div>
+        <div class="q" data-reveal>
+          <blockquote>&ldquo;As a small business, we can&rsquo;t have in house legal counsel or engage a large multi-disciplined firm on retainer. Megha has been invaluable.&rdquo;</blockquote>
+          <cite><b>Frank Pedicini</b>Chief Financial Officer, Tetrus Corp.</cite>
+        </div>
+        <div class="q" data-reveal>
+          <blockquote>&ldquo;She always went a step more to make me and my family comfortable.&rdquo;</blockquote>
+          <cite><b>Amit Patel</b>Group Managing Director, Sintex Industries Ltd.</cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8. THE ROOM -->
+  <section class="room">
+    <div class="wrap">
+      <span class="label">The next step</span>
+      <h2 class="display">When you are ready to stop watching and start building, there is a room.</h2>
+      <p class="room-lede">The course is yours for nothing and it always will be. What you cannot download is a person who answers when you get stuck at step four, and a group of people building the same thing in the same month you are.</p>
+
+      <div class="room-grid">
+        <ul class="room-list">
+          <li data-reveal><b>Two live sessions a month, with me</b>One leans business, one leans protecting what you own. Questions are collected ahead so nobody gets put on the spot, and there is an open window at the end for whatever came up that week.</li>
+          <li data-reveal><b>A toolkit for every module</b>The templates, the checklists, the walkthroughs. The parts that turn a lesson into a filed document.</li>
+          <li data-reveal><b>Your cohort</b>People who started the week you did, checking off the same steps, in a room where nobody has to explain why this is hard.</li>
+          <li data-reveal><b>Guest experts</b>Including an outside attorney for the specific legal questions I am not able to answer for you directly, and tax people for the compliance deep dive.</li>
+          <li data-reveal><b>The mindset work, in full</b>The free modules give you a taste of it. This is where it actually gets worked, and it is the part nobody can copy.</li>
+        </ul>
+        <aside class="price" data-reveal>
+          <div class="k">Founding member pricing</div>
+          <p>Announced when the doors open in October. Free members hear first.</p>
+          <a class="btn" href="#start">Join the founding list</a>
+          <p style="margin:20px 0 0"><span class="cta-note">No card, nothing to cancel.</span></p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <!-- 9. OUTCOMES -->
+  <section class="out">
+    <div class="wrap">
+      <h2 class="display" data-reveal>By the end, you own something real.</h2>
+      <ol>
+        <li data-reveal>A U.S. company that is genuinely yours, formed in the state that fits your situation</li>
+        <li data-reveal>A tax ID, a bank account and a U.S. address, which is what makes an American customer treat you as real</li>
+        <li data-reveal>Your name and your work registered before somebody else gets there</li>
+        <li data-reveal>A plain answer every time somebody tells you &ldquo;you need a lawyer for that&rdquo;</li>
+        <li data-reveal>And the part that is hardest to buy anywhere: the settled belief that you are allowed to want this</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 10. FAQ -->
+  <section class="faq">
+    <div class="wrap">
+      <h2 class="display">Questions</h2>
+      <details>
+        <summary>I do not have a visa. Does that stop me?</summary>
+        <p>No. Owning an American company and living in America are two separate things, and people conflate them constantly. You can form it, bank it and run it from where you are sitting right now.</p>
+      </details>
+      <details>
+        <summary>How much money do I actually need to start?</summary>
+        <p>Less than the number in your head. There is no minimum capital requirement to form a U.S. company. Module 2 walks the real costs, line by line, so you are not guessing.</p>
+      </details>
+      <details>
+        <summary>Will an American customer take me seriously if I am not there?</summary>
+        <p>They already do, when the presence is set up properly. That is most of what Module 2 is for. A client of mine has not lived in the States for fifteen years and runs her U.S. affairs through me on a power of attorney.</p>
+      </details>
+      <details>
+        <summary>Is this legal advice?</summary>
+        <p>It is not, and I want to be direct about that. This is education. It explains how the system works and what to weigh, so you can make good decisions and ask better questions. It does not create an attorney and client relationship, and it is separate from my law practice. For your specific situation, you talk to an attorney about your specific situation.</p>
+      </details>
+      <details>
+        <summary>I have a full time job. How much time does this take?</summary>
+        <p>The lessons are short and they are built for a phone on a commute. The course does not expire and neither do you. Go at whatever speed your life allows.</p>
+      </details>
+      <details>
+        <summary>I do not have a credit card. How would I pay for the paid room?</summary>
+        <p>You would not need one to start, because the course is free. When the room opens we are building payment around how India actually pays, not how America assumes everyone does.</p>
+      </details>
+    </div>
+  </section>
+
+  <!-- 11. CLOSE -->
+  <section class="close">
+    <span class="sun" aria-hidden="true"></span>
+    <img class="cloud cloud-closeL" src="assets/cloud-left-dark.png" alt="" aria-hidden="true">
+    <img class="cloud cloud-closeR" src="assets/cloud-right-dark.png" alt="" aria-hidden="true">
+    <div class="wrap">
+      <div class="close-in">
+        <h2 class="display">You have only two options.</h2>
+        <p>You can leave the dream on the shelf where it has been sitting. Or you can take it down and press play, and press play is genuinely all the first step is.</p>
+        <p>I will walk it with you. And you have not missed your window.</p>
+        <p class="shout">It&rsquo;s Never Too Late!</p>
+        <div class="cta-row">
+          <a class="btn" href="#start">Start free</a>
+        </div>
+        <p class="sig">Look Forward.</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div><img class="foot-logo" src="assets/logo-compact-dark.png" alt="Megha Bhouraskar" width="941" height="576"></div>
+      <div style="max-width:30ch">New York City. Teaching founders to build in America from wherever they already are.</div>
+    </div>
+    <p class="legal"><b>This platform is an education venture and is separate from MDB Law Offices.</b> Everything here is general educational information, not legal advice. Laws and processes change and vary by situation and jurisdiction. Consult a qualified attorney about your specific circumstances.</p>
+    <p class="legal" style="padding-top:14px">&copy; 2026 Megha Bhouraskar</p>
+  </div>
+</footer>
+
+<script>
+/* Scroll reveals. IntersectionObserver only, never a scroll listener.
+   Justification: the module road and the room list are sequences, so they
+   arrive in sequence. Everything else is a single fade so the dark page does
+   not feel static on the way down. */
+(function(){
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var els = document.querySelectorAll('[data-reveal]');
+  if (!('IntersectionObserver' in window)) {
+    els.forEach(function(el){ el.classList.add('in'); });
+    return;
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting) return;
+      var el = e.target, group = el.parentElement;
+      var sibs = group ? Array.prototype.filter.call(group.children, function(c){ return c.hasAttribute('data-reveal'); }) : [];
+      var idx = sibs.indexOf(el);
+      el.style.transitionDelay = (idx > 0 ? Math.min(idx, 5) * 80 : 0) + 'ms';
+      el.classList.add('in');
+      io.unobserve(el);
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+  els.forEach(function(el){ io.observe(el); });
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,642 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Own an American company without leaving home | Megha Bhouraskar — Atmosphere</title>
+<meta name="description" content="A free course from a New York attorney of twenty-five years. Own a U.S. company without a visa, without relocating, without an American partner.">
+<link rel="stylesheet" href="system.css">
+<style>
+/* =============================================================================
+   STUDY 1 — ATMOSPHERE.  Depth comes from LIGHT.
+
+   The thesis: a dark room with a lamp just off the edge of the frame. You never
+   see the source, you read the falloff. Sections do not butt against each other
+   — the whole page is one continuous body of air and each section only adds a
+   pool of light to it.
+
+   The construction that makes that literal: the page ground is a single vertical
+   value curve on <body> spanning the entire document, and every section is
+   TRANSPARENT, contributing only a radial pool whose edge is transparent rather
+   than a colour. There is therefore no seam to see anywhere on the page. That is
+   the whole argument, and it is the opposite of how Strata will be built.
+
+   Dials: DESIGN_VARIANCE 7 / MOTION_INTENSITY 5 / VISUAL_DENSITY 3
+   Risk being tested: does it turn to mush, and does §2's text wall stay legible.
+   ============================================================================= */
+@layer variant {
+
+  /* ---- the continuous body of air --------------------------------------
+     One gradient, whole document, no background-attachment:fixed (banned).
+     This is the value curve from the plan: hero at the light end of midnight,
+     §2 dropping to the deepest ground on the page, climbing back for the close. */
+  body{
+    background:linear-gradient(180deg,
+      var(--g-2)  0%,     /* hero — the lightest midnight            */
+      var(--g-1)  14%,
+      var(--g-0)  30%,    /* the gap — the shelf at night            */
+      var(--g-0)  40%,
+      var(--g-1)  58%,    /* the myths — mid air                     */
+      var(--g-1)  82%,
+      var(--g-2) 100%     /* the close — the horizon comes back up   */
+    );
+  }
+
+  /* Sections carry light, not ground. Transparent edges mean no seams exist.
+     isolation is off so the grain can soft-light against the page beneath it. */
+  .sec{
+    isolation:auto;
+    background:radial-gradient(
+      var(--light-reach) at var(--light-x) var(--light-y),
+      var(--light-core) 0%,
+      var(--light-mid) 38%,
+      transparent 72%
+    );
+  }
+
+  /* A second, larger, dimmer pool. Two overlapping falloffs at different
+     scales is most of what separates "lit" from "gradient".
+
+     It deliberately bleeds 14% ABOVE and BELOW its own section so light crosses
+     the seams — that is the no-seams thesis. Which makes one rule absolute:
+
+     THIS LAYER MAY ONLY EVER CARRY LIGHT. Its gradient must end in transparent.
+     A dark stop here paints a hard-edged dark rectangle over the PREVIOUS
+     section. That is exactly what happened: §2's vignette ended at
+     rgba(4,7,18,.6) and projected a 336px dark band up into the hero, landing
+     right under the proof line and reading as a sloppy bar. */
+  .sec::after{
+    content:"";position:absolute;inset:-14% 0;z-index:var(--z-ground);pointer-events:none;
+    background:radial-gradient(
+      var(--haze-reach,90% 60%) at var(--haze-x,18%) var(--haze-y,86%),
+      var(--haze,rgba(26,47,94,.30)) 0%, transparent 68%);
+  }
+
+  :root{--grain:url(assets/grain-fine.png);--grain-opacity:.045}
+
+  /* ---- DAYBREAK: how a cream section joins a midnight one ---------------
+     An all-midnight page is relentless, and cream is a named surface in the
+     brief that the build was ignoring. But under this thesis a light section
+     cannot simply start — a hard edge between midnight and cream is a seam,
+     and seams are the one thing this variant does not have.
+
+     So the cream section carries the night at its own top and bottom edges and
+     resolves to cream in between. Read in sequence it is a sunrise and a dusk,
+     which is the brand's own idea: midnight is "a dark light", the sign-off is
+     "Look Forward", and the mark is a sun on a horizon. The page becomes a day.
+
+     --dawn-top / --dawn-bot are the grounds of the neighbours above and below,
+     so the joins are exact. Set them when you place the section, not here.   */
+  /* THE EDGE. A gradient join was tried first and it was wrong: 210px of blur at
+     each end is a smear rather than a transition, it passes through a dead
+     desaturated grey, and it costs ~420px of page per cream passage. It read as
+     unresolved.
+
+     So the cream meets the midnight on a hard edge — but an unarticulated hard
+     edge is just two slabs touching. Three things make it a built seam:
+
+     1. A gold hairline sitting exactly on the boundary. Gold is a precision
+        tool, and this is precisely the moment worth marking.
+     2. A short inset shadow at the top and bottom edges, so the midnight reads
+        as OVERHANGING and the cream as an opening cut into it. Inset, not a drop
+        shadow — the brief bans those, and it means the depth is built from the
+        same lit/shadowed-edge system as .lift rather than a second mechanism.
+     3. The interior atmosphere is unchanged. Light still pools inside the
+        section; it just no longer has to dissolve at the boundary to prove it.
+
+     The thesis survives this. Atmosphere lives INSIDE a section — pooled light,
+     falloff, grain. It never actually required invisible seams; that was my
+     addition, and it was the part that looked abrasive. */
+  .sec--paper{
+    /* opaque ground. The variant's .sec rule ends its pool on `transparent` so
+       light can cross seams; a cream section must not, or the page's dark
+       gradient shows through underneath it. */
+    background:radial-gradient(var(--light-reach) at var(--light-x) var(--light-y),
+      var(--light-core) 0%,var(--light-mid) 46%,var(--light-edge) 100%);
+    padding-block:var(--beat-wide);
+    --seam:rgba(184,146,74,.72);
+    border-top:1px solid var(--seam);
+    border-bottom:1px solid var(--seam);
+    /* The shadow falls from the seam INTO the cream, so the midnight reads as
+       the plane in front and the cream as an opening behind it. Top edge is
+       deeper than the bottom because light comes from above; making them equal
+       reads as a symmetrical band rather than an overhang. */
+    box-shadow:
+      inset 0 26px 34px -22px rgba(4,7,18,.78),
+      inset 0 -18px 26px -18px rgba(4,7,18,.52);
+  }
+  /* interior warm haze, clipped to its own box so it cannot fog the new edge */
+  .sec--paper::after{inset:0;background:radial-gradient(
+    var(--haze-reach,110% 64%) at var(--haze-x,58%) var(--haze-y,42%),
+    var(--haze,rgba(255,240,214,.5)) 0%,transparent 70%)}
+  /* NOTE: a paper section has no separate haze layer. ::after is its GROUND
+     (above), and the warm amber already rides inside that gradient. An earlier
+     pass left a second ::after rule here for the haze; because it came later in
+     the file it silently overrode inset and background and deleted the cream
+     ground altogether — the section went dark and, worse, the seam it was
+     supposed to prove looked perfect precisely because there was no longer a
+     cream section to join. One element, one job. */
+
+  /* ---- nav -------------------------------------------------------------- */
+  .nav{position:sticky;top:0;z-index:var(--z-nav);
+    background:rgba(10,17,40,.86);backdrop-filter:none;
+    border-bottom:1px solid var(--rule-soft)}
+  .nav-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+    height:76px;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5)}
+  .nav-logo{height:42px;width:auto}
+  .nav .btn{padding:12px 24px;font-size:13px}
+
+  /* ---- §1 HERO ---------------------------------------------------------- */
+  .hero{
+    --light-core:rgba(38,66,124,.92);--light-mid:rgba(21,38,78,.55);
+    --light-x:74%;--light-y:38%;--light-reach:110% 92%;
+    --haze:rgba(212,170,106,.07);--haze-x:88%;--haze-y:30%;--haze-reach:60% 55%;
+    padding-block:0;overflow:hidden;
+  }
+  .hero-grid{position:relative;z-index:var(--z-content);
+    max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+    min-height:calc(100dvh - 76px);display:flex;align-items:center}
+  .hero-copy{padding-block:clamp(56px,9vh,110px);max-width:min(720px,58%)}
+  /* The global --t-8 (68px) is right for section headings but overshoots here:
+     "Own an American company" needs ~800px at that size and the copy column is
+     720px, so it broke to four lines instead of the two the line breaks intend. */
+  .hero h1{margin-bottom:var(--s-6);font-size:clamp(32px,4.1vw,54px);max-width:none}
+  .hero h1 .l{display:block}
+  .hero .lede{margin-bottom:var(--s-7)}
+  .hero-proof{margin-top:var(--s-7);padding-top:var(--s-5);
+    border-top:1px solid var(--rule-soft);
+    font-size:var(--t-3);color:var(--ink-mute);max-width:44ch;line-height:1.62}
+
+  /* THE LIGHT ITSELF. The old build drew a 1px circle with two dots and called
+     it a sun — a wireframe of a light rather than a light. This is a real
+     source: a warm core falling off into the air, with the mark's two gold dots
+     riding its horizon and a single hairline arc to give it an edge.
+     No filter:blur() anywhere — blur cost scales with area and this is huge. */
+  .sun{position:absolute;z-index:var(--z-atmos);pointer-events:none;
+    right:-2%;top:32%;translate:0 -50%;width:min(820px,60vw);aspect-ratio:1;
+    background:radial-gradient(circle at 50% 50%,
+      rgba(233,201,150,.34) 0%,
+      rgba(212,170,106,.19) 26%,
+      rgba(184,146,74,.08) 46%,
+      transparent 68%)}
+  .sun-arc{position:absolute;z-index:var(--z-atmos);pointer-events:none;
+    right:-2%;top:32%;translate:0 -50%;width:min(820px,60vw);aspect-ratio:1;
+    border:1px solid rgba(212,170,106,.26);border-radius:50%}
+  .sun-arc::before,.sun-arc::after{content:"";position:absolute;top:50%;
+    width:7px;height:7px;margin-top:-3.5px;border-radius:50%;
+    background:rgba(226,186,132,.8)}
+  .sun-arc::before{left:-3.5px} .sun-arc::after{right:-3.5px}
+
+  /* The portrait. Two fixes on the old build, both load-bearing:
+     1. mix-blend-mode:multiply is GONE. Against near-black it was crushing her
+        face into the ground — the opposite of "editorial portrait, Forbes not
+        stock", and the biggest single reason the hero read lifeless.
+     2. A warm gold rim on the lit side. One gradient stop, and it is the whole
+        difference between a photo dropped on navy and a portrait lit for the
+        frame it is sitting in.                                              */
+  .hero-figure{position:absolute;z-index:var(--z-ornament);right:0;top:0;bottom:0;
+    width:min(48%,700px);overflow:hidden;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.8) 46%,#000 64%,#000 88%,rgba(0,0,0,.32) 100%);
+            mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.18) 18%,rgba(0,0,0,.8) 46%,#000 64%,#000 88%,rgba(0,0,0,.32) 100%)}
+  .hero-figure img{width:100%;height:100%;object-fit:cover;object-position:56% 14%;
+    filter:saturate(.88) brightness(.86) contrast(1.04)}
+  .hero-figure::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:
+      linear-gradient(252deg,rgba(233,201,150,.17) 0%,rgba(212,170,106,.05) 30%,transparent 54%),
+      linear-gradient(180deg,rgba(13,27,62,.30) 0%,rgba(10,17,40,.06) 44%,rgba(7,12,30,.60) 100%)}
+
+  /* ---- §2 THE GAP ------------------------------------------------------
+     Deliberately not diagrammatic. The deepest ground on the page, the
+     tightest measure, no ornament, and the heaviest grain — the page closes
+     in around the reader. This is the emotional centre and the section that
+     must not be shortened for design reasons.                              */
+  .gap{
+    --light-core:rgba(22,39,79,.42);--light-mid:rgba(13,27,62,.16);
+    --light-x:16%;--light-y:12%;--light-reach:86% 58%;
+    --haze:rgba(212,170,106,.035);--haze-x:82%;--haze-y:78%;
+    --grain-opacity:.058;
+    padding-block:var(--beat-wide);
+  }
+  /* The column was hugging the left edge of a 1440 field with nothing on the
+     right — a narrow strip of text orphaned in a void, which is the exact
+     sterility being fixed. Centred inside a narrower measure it reads as
+     deliberate, and it is what "the page closes in around you" actually is. */
+  .gap .wrap{max-width:var(--wrap-narrow)}
+  .gap-in{max-width:620px;margin-inline:auto}
+  /* This is the emotional centre of the page and it was set at body size, which
+     made it read as small and lost in a large dark field. One step up the scale,
+     with the measure tightened to hold ~58 characters, and it reads as the thing
+     the page is actually about. */
+  .gap .prose p{font-size:var(--t-5);line-height:1.68}
+  /* Vignette: the only section on the page that gets DARKER at its margins.
+     Because it is dark it cannot use the bleeding haze box (see the rule on
+     .sec::after). It is pinned inside its own section and masked so it fades in
+     and out vertically — so there is no horizontal edge anywhere, at the seam
+     or above it. */
+  .gap::after{inset:0;
+    background:radial-gradient(104% 72% at 50% 46%,
+      transparent 18%,rgba(4,7,18,.40) 68%,rgba(4,7,18,.66) 100%);
+    -webkit-mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 86%,transparent 100%);
+            mask-image:linear-gradient(180deg,transparent 0%,#000 14%,#000 86%,transparent 100%)}
+  .gap h2{margin-bottom:var(--s-7);max-width:19ch}
+  /* colour only. The size lives in the one rule above — a second declaration
+     here was silently overriding it and holding §2 at 17.5px, so the increase
+     to the emotional centre of the page never actually landed. */
+  .gap .prose p{color:var(--ink-soft)}
+  .gap .prose p + p{margin-top:var(--s-5)}
+  .gap .beat{font-family:var(--display);font-size:var(--t-5);color:var(--ink);
+    font-style:italic;margin-block:var(--s-6)}
+
+  /* ---- THE SIGNATURE: her voice, verbatim -------------------------------
+     The one device this page should be remembered by, and the only one no
+     competitor can copy, because it is not a graphic — it is her actual words.
+
+     The families are locked (Georgia + Helvetica Neue is Megha's own pick), so
+     the type cannot be the distinctive thing. The TREATMENT can. Every line she
+     says in her own voice gets the same object: a gold rule on the left, italic
+     Georgia in gold, and an attribution. It appears in §2, in §4 and in §14, so
+     by the third time the reader recognises it as "she is speaking now" without
+     being told. Structure encoding something true, which is the whole test.
+
+     Her em dashes stay (D24). The near-zero em-dash rule is for our copy, not
+     her register.
+
+     Previously these were two unrelated treatments — a gradient-filled box in
+     §2 and plain italic text in §4 — so the same act read as two different
+     things. The gradient box is also the accessory removed on the way out: the
+     rule and the italic already do the work. */
+  .said,.pull{
+    border-left:2px solid var(--rule-gold);
+    padding-left:clamp(18px,2vw,28px);
+    font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-6);line-height:1.42;max-width:30ch}
+  .pull{position:relative;z-index:var(--z-lift);
+    margin-block:var(--s-8);margin-inline-start:calc(var(--s-6) * -1)}
+  .pull p{font:inherit;color:inherit}
+  /* --ink-mute, not --ink-faint: faint is documented as deep-grounds-only and
+     lands at 4.46:1 on cream. This device appears on BOTH grounds, so it has to
+     use a token that clears AA on both. */
+  .pull cite,.said-by{display:block;margin-top:var(--s-3);
+    font-family:var(--sans);font-style:normal;font-size:var(--t-1);
+    letter-spacing:var(--track-label);text-transform:uppercase;
+    color:var(--ink-mute)}
+
+  /* ---- §4 THE MYTHS ----------------------------------------------------
+     An alternating-offset ladder, not nine cards (a wall) and not hover-flip
+     (the copy's own hard rule 4 bans hover dependence for a phone audience).
+     Two reading speeds: beliefs at display size scan in about fifteen seconds,
+     truths at reading size take three minutes. Nothing is hidden to get there. */
+  /* §4 is the page's daylight. It is where the reader is being corrected — nine
+     things they believed, dissolving — so being brought into the light is the
+     literal content of the section. It is also the densest reading on the page,
+     and dense reading is easier on paper than on midnight. */
+  .myths-sec{--light-x:64%;--light-y:6%;--light-reach:96% 58%}
+  /* ONE grid, shared by the head and by all nine rows, so nothing on this
+     section is ever off-axis. An earlier version indented alternate rows to
+     manufacture "rhythm"; nine rows that do not share a left edge read as
+     broken alignment, not rhythm. Rhythm comes from the size contrast between
+     belief and answer.
+
+     TWO columns, not three. The third was a gutter holding 01–09 counters, and
+     those are now gone — see the note on .myth below. */
+  .myths-sec{--mgap:clamp(22px,3vw,52px)}
+  .myths-headrow,.myth{
+    display:grid;
+    grid-template-columns:minmax(0,1fr) minmax(0,1.08fr);
+    column-gap:var(--mgap);align-items:start}
+
+  /* The head sits on the same grid: the heading spans the two content columns,
+     and the standfirst drops into the right one — so it lines up with the
+     answers below it instead of floating in the left third with dead field
+     beside it. */
+  /* Heading and standfirst on ONE row, in the two content columns. Spanning the
+     heading across both and dropping the standfirst beneath it left an empty
+     quadrant — survivable on midnight, glaring on cream, where empty space has
+     nowhere to hide. */
+  .myths-headrow{margin-bottom:var(--s-8);align-items:end}
+  .mh{grid-column:1}
+  .myths-head{margin-top:var(--s-4);font-size:clamp(26px,3.1vw,40px)}
+  .myths-sub{grid-column:2;color:var(--ink-mute);font-size:var(--t-4)}
+
+  .myths{list-style:none}
+  .myth{padding-block:var(--s-6);border-top:1px solid var(--rule-soft)}
+  .myth:last-child{border-bottom:1px solid var(--rule-soft)}
+
+  /* NO 01–09 COUNTERS. They were the most template-shaped thing on the page.
+     A numbered marker earns its place only when order carries information the
+     reader needs — a real process, a prerequisite chain, a timeline. These nine
+     are an unordered SET: myth 3 does not follow myth 2, and nothing about "I
+     need capital" being third means anything. Numbering them asserted a
+     sequence that does not exist, in decimal-leading-zero, which is the exact
+     house style of every generated "our process" section.
+
+     It was also actively expensive, because this page HAS real sequences
+     coming. Module 2's six steps are a strict prerequisite chain — no EIN, no
+     bank account; the source atoms encode prerequisite-of edges. §8 is three
+     ordered steps. Numerals should mean "there is an order here" and appear
+     ONLY there. Spending the idiom on a non-sequence devalues it exactly where
+     it is true.
+
+     Nothing replaces them. The belief-versus-answer opposition across the two
+     columns is already the structure, and unlike the numbers it is true. The
+     count the reader might want is in the standfirst: "Nine assumptions." */
+
+  /* Nine items, ONE observer. The old build put an observer on every element,
+     which at fourteen sections becomes ~60 and turns the page into a slot
+     machine. The list is observed; the children stagger in CSS, capped at five,
+     because nobody is watching item nine arrive from four thousand pixels up. */
+  @media (prefers-reduced-motion:no-preference){
+    .myths .myth{opacity:0;transform:translateY(16px);
+      transition:opacity var(--dur-slow) var(--ease),transform var(--dur-slow) var(--ease)}
+    .myths.in .myth{opacity:1;transform:none}
+    .myths .myth:nth-child(2){transition-delay:70ms}
+    .myths .myth:nth-child(3){transition-delay:140ms}
+    .myths .myth:nth-child(4){transition-delay:210ms}
+    .myths .myth:nth-child(n+5){transition-delay:280ms}
+  }
+  /* The belief is the SCAN layer, so it cannot be the dimmest text on the page —
+     which is what --ink-faint made it. Recession comes from the quotation marks,
+     the italic and the serif, not from being hard to read. The answer then gets
+     full ink, because it is the thing that is actually true. */
+  /* No max-width on either: the COLUMN sets the measure. A max-width narrower
+     than its column is what made every row end at a different place and read
+     as a ragged right edge. */
+  .myth-belief{font-family:var(--display);font-style:italic;
+    font-size:var(--t-6);line-height:1.34;color:var(--ink-mute)}
+  .myth-truth{font-size:var(--t-4);color:var(--ink);line-height:1.75}
+
+  /* Myth 9 runs the other way, so it is the one earned asymmetry on the page:
+     the belief is the bright thing and the correction is the warning.       */
+  .myth--turn{margin-top:var(--s-6);border-top:1px solid var(--rule-gold)}
+  .myth--turn .myth-belief{color:var(--gold);font-style:italic}
+  .myth--turn .myth-truth{color:var(--ink)}
+  .myths-close{margin-top:var(--s-9);max-width:var(--measure-prose)}
+  .myths-close .said{margin-bottom:var(--s-5)}
+
+  /* ---- §14 THE CLOSE ---------------------------------------------------
+     The horizon rises. Lightest ground after the hero, the light source now
+     low and centred and coming up rather than raking across.               */
+  .close{
+    --light-core:rgba(42,72,132,.72);--light-mid:rgba(21,38,78,.34);
+    --light-x:50%;--light-y:96%;--light-reach:120% 78%;
+    --haze:rgba(212,170,106,.09);--haze-x:50%;--haze-y:104%;--haze-reach:86% 46%;
+    padding-block:var(--beat-wide);text-align:center;overflow:hidden;
+  }
+  .close-in{position:relative;z-index:var(--z-content);max-width:640px;margin-inline:auto}
+  /* no measure cap: the quote fits one line at 640px and a single line is a
+     stronger close than "You have only two / options." */
+  .close h2{margin-inline:auto;margin-bottom:var(--s-7);max-width:none}
+  .close p{margin-bottom:var(--s-5);font-size:var(--t-5)}
+  /* Centre the BLOCK, left-align the TEXT. Centred three-line paragraphs are
+     ragged on both edges at once, which is most of what makes a close read as
+     sloppy rather than considered. Only the display lines stay centred. */
+  .close .prose{margin-inline:auto;text-align:left;max-width:540px}
+  .close .cta-note{max-width:none}
+  .close .shout{font-family:var(--display);font-style:italic;color:var(--gold);
+    font-size:var(--t-7);line-height:1.24;margin-block:var(--s-7) var(--s-8)}
+  .close .cta-row{justify-content:center}
+  .close .cta-note{text-align:center}
+  /* .close .sig, not .sig — `.close p` (0,1,1) was beating a bare `.sig` (0,1,0),
+     forcing her sign-off to body size. It rendered at 17.5px, not the 30px
+     intended. Raised to --t-7: this is the last line of the page. */
+  .close .sig{margin-top:var(--s-9);font-family:var(--display);font-style:italic;
+    font-size:var(--t-7);line-height:1.2;color:var(--ink);padding-bottom:.18em}
+  /* the sun returns, low, as a horizon rather than a disc */
+  .close .sun{right:auto;left:50%;top:auto;bottom:-46%;translate:-50% 0;
+    width:min(1100px,120vw)}
+  .close .sun-arc{right:auto;left:50%;top:auto;bottom:-46%;translate:-50% 0;
+    width:min(1100px,120vw);border-color:rgba(212,170,106,.16)}
+
+  /* ---- footer ----------------------------------------------------------- */
+  .foot{position:relative;z-index:var(--z-content);
+    background:var(--g-0);border-top:1px solid var(--rule-soft);
+    padding-block:var(--s-9) var(--s-8);font-size:var(--t-2);color:var(--ink-mute)}
+  .foot-top{display:flex;justify-content:space-between;align-items:flex-start;
+    gap:var(--s-7);flex-wrap:wrap;padding-bottom:var(--s-6);
+    border-bottom:1px solid var(--rule-soft)}
+  .foot-logo{height:70px;width:auto}
+  .foot-tag{font-size:var(--t-1);letter-spacing:var(--track-label);
+    text-transform:uppercase;color:var(--ink-faint);margin-top:var(--s-3)}
+  .legal{padding-top:var(--s-5);max-width:74ch;font-size:var(--t-2);
+    line-height:1.75;color:var(--ink-faint)}
+  .studymark{margin-top:var(--s-6);padding-top:var(--s-4);
+    border-top:1px solid var(--rule-soft);
+    font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+  /* ---- motion: slow and continuous, matching the thesis ----------------- */
+  @media (prefers-reduced-motion:no-preference){
+    .hero .sun,.hero .sun-arc{opacity:0;animation:aRise 2.4s var(--ease) .1s forwards}
+    .hero-figure{opacity:0;animation:aFade 1.8s ease .4s forwards}
+    .hero h1,.hero .lede,.hero .cta-row,.hero-proof{opacity:0;transform:translateY(14px);
+      animation:aUp 1.1s var(--ease) forwards}
+    .hero h1{animation-delay:.55s}
+    .hero .lede{animation-delay:.72s}
+    .hero .cta-row{animation-delay:.88s}
+    .hero-proof{animation-delay:1.04s}
+  }
+  @keyframes aRise{from{opacity:0;scale:.9}to{opacity:1;scale:1}}
+  @keyframes aFade{to{opacity:1}}
+  @keyframes aUp{to{opacity:1;transform:none}}
+
+  /* ---- collapse --------------------------------------------------------- */
+  @media (max-width:900px){
+    .hero{--light-x:66%;--light-y:20%;--light-reach:130% 60%}
+    .hero-grid{display:block;min-height:0}
+    .hero-copy{padding-block:var(--s-7) var(--s-6);max-width:none}
+    .hero-figure{position:static;width:100%;
+      -webkit-mask-image:linear-gradient(180deg,rgba(0,0,0,.45) 0%,#000 16%,#000 66%,rgba(0,0,0,.1) 100%);
+              mask-image:linear-gradient(180deg,rgba(0,0,0,.45) 0%,#000 16%,#000 66%,rgba(0,0,0,.1) 100%)}
+    .hero-figure img{height:auto;aspect-ratio:16/11;object-position:56% 12%}
+    .sun,.sun-arc{right:-30%;top:22%;width:96vw}
+    .pull{margin-inline-start:0}
+    .said,.pull{max-width:none}
+    .myths-headrow,.myth{grid-template-columns:1fr;row-gap:var(--s-4)}
+    .mh,.myths-sub{grid-column:1}
+    .myths-sub{margin-top:0}
+    .foot-top{flex-direction:column}
+  }
+  @media (max-width:560px){
+    .close .sun,.close .sun-arc{width:180vw}
+    .myth-belief{max-width:none}
+    /* the full-bleed button rule is for in-page CTAs, not the nav */
+    .nav .btn{width:auto;padding:11px 18px;font-size:12px}
+    .nav-in{height:64px}
+    .nav-logo{height:34px}
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav" data-nav>
+  <div class="nav-in">
+    <img class="nav-logo" src="assets/logo-wordmark-dark.png" width="622" height="270" alt="Megha Bhouraskar">
+    <a class="btn" href="#start">Start free</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ============================ §1 HERO ============================ -->
+<section class="sec hero">
+  <span class="sun" aria-hidden="true"></span>
+  <span class="sun-arc" aria-hidden="true"></span>
+  <figure class="hero-figure">
+    <img src="assets/megha-headshot.jpg" width="1320" height="1643" fetchpriority="high"
+         alt="Megha Bhouraskar, attorney, New York">
+  </figure>
+  <div class="hero-grid">
+    <div class="hero-copy">
+      <h1 class="display"><span class="l">Own an American company</span><span class="l"><em>without leaving home.</em></span></h1>
+      <p class="lede">A free course from a New York attorney of twenty-five years, walking you from where you are now to a U.S. company that is genuinely yours. No visa. No relocating. No minimum capital. No American partner.</p>
+      <div class="cta-row">
+        <a class="btn" href="#start">Start free</a>
+        <span class="cta-note">No card. All three modules open the moment you join, and they stay yours.</span>
+      </div>
+      <p class="hero-proof" data-gate="legal-substance">Twenty-five years in New York. Three books. Clients who handed her power of attorney and stayed more than a decade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ §2 THE GAP ============================ -->
+<section class="sec gap" data-wake>
+  <div class="wrap">
+    <div class="gap-in">
+      <h2 class="display" data-reveal>You cleared the hard part years ago. So why is the dream still on the shelf?</h2>
+
+      <div class="prose" data-reveal>
+        <p>There is a dream you take down off the shelf, look at, and put back.</p>
+        <p>It has a domain name you bought two years ago. A folder somewhere. Half an application. It lives after eleven at night when the house has gone quiet and nobody is watching, and most of the people who love you do not know it exists. When it comes close to being noticed, you make some excuse about work.</p>
+        <p class="beat">You have done this for years now.</p>
+        <p>Let me say the part your family will not say out loud.</p>
+        <p>You are not stuck because you lack the education. You settled that question long ago and it cost you something to settle it. You are not stuck for want of intelligence, or discipline, or an idea. You are excellent at the thing you are paid for and silent about the thing you actually care about, and both of those come from the same root.</p>
+        <p data-gate="cultural-claims — needs Megha's ratification">You were taught to be flawless in public, and taught not to be noticed. That was never a defect in you and it was never weakness in your parents. It kept people safe for a very long time, and it is still running.</p>
+        <p>And there is a third thing underneath, which took me most of my life to say plainly. It is not failing in front of people that frightens you most.</p>
+      </div>
+
+      <blockquote class="pull" data-reveal>
+        <p>The fear of exposure on our vulnerabilities is bad enough, but for me, the fear of exposing my brilliance is even harder—because I then feel people will think I'm showing off or that I'm an imposter.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="prose" data-reveal>
+        <p>Being good at something, out loud, on purpose, is the exposure.</p>
+        <p>So you tolerate it. Another quarter. Another year. The salary is good, the work is fine, and there is genuinely too much to lose.</p>
+        <p>That word matters to me. Tolerating.</p>
+      </div>
+
+      <blockquote class="pull" data-reveal>
+        <p>We live through life tolerating what we tolerate, and we don't even realize what we're tolerating because we get so used to it, we kind of go numb.</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="prose" data-reveal>
+        <p class="beat">I know that feeling, my friend. I have lived the gap between your dream and where you are.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ §4 THE MYTHS ============================ -->
+<section class="sec sec--paper myths-sec" id="myths" data-wake>
+  <div class="wrap">
+    <div class="myths-headrow" data-reveal>
+      <div class="mh">
+        <p class="label">What is actually true</p>
+        <h2 class="display myths-head">Almost everything you believe is stopping you was never true.</h2>
+      </div>
+      <p class="myths-sub">Nine assumptions keep founders in India out of the American market. Megha has spent twenty-five years watching them fall apart on contact with the actual process.</p>
+    </div>
+
+    <ol class="myths" data-reveal data-gate="legal-substance — all nine unverified">
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need a visa, a green card, or citizenship.&rdquo;</p>
+        <p class="myth-truth">You do not. Your immigration status is not the gate. A founder who has never held an American passport can both form and fully own a U.S. company.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need an American partner to front it for me.&rdquo;</p>
+        <p class="myth-truth">No. You do not hand a stranger equity to get in the door. There is a separate and much smaller thing that trips people up: a U.S.-based person, usually your attorney or accountant, is typically needed as a bank signatory. That is an administrative role. They do not own a piece of what you build.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I need capital sitting in a bank first.&rdquo;</p>
+        <p class="myth-truth">There is no minimum capital required to form a U.S. entity, no minimum balance to keep it alive, and no minimum revenue you have to earn. The wall you are picturing is a story.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I would have to fly to America.&rdquo;</p>
+        <p class="myth-truth">The trip you have been dreading is not part of the process. The entity, the account, the address, all of it can be created and run from your home.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;Opening a U.S. bank account would take forever, and I would have to be standing there.&rdquo;</p>
+        <p class="myth-truth">You do not have to be standing there. The rest of this one deserves more honesty than it usually gets. Banks have tightened hard on foreign-owned companies, and founders are being rejected over address and documentation requirements nobody warned them about. That is a real wall and not a rumoured one. What gets through it is a U.S.-based signatory and a bank that already knows the person walking you in. Megha has been opening these accounts for clients for twenty-five years and has the relationships that come with that.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;There is a right time of year to do this, and I have missed it.&rdquo;</p>
+        <p class="myth-truth">No such window exists. No season, no filing period to wait for, no reason today is worse than March.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;I would owe American taxes personally, just for owning it.&rdquo;</p>
+        <p class="myth-truth">Owning a U.S. entity does not by itself make you personally liable for U.S. taxes. How the company is taxed depends on how it is structured, which is exactly the sort of thing you coordinate between your advisors at home and in the States rather than guess at.</p>
+      </li>
+      <li class="myth">
+        <p class="myth-belief">&ldquo;If I form in one state I am stuck there.&rdquo;</p>
+        <p class="myth-truth">You pick a state to start in. If the business grows past it, you register for authority elsewhere. Forming somewhere is a starting point rather than a fence.</p>
+      </li>
+      <li class="myth myth--turn">
+        <p class="myth-belief">And one that runs the other way. &ldquo;An American company will help me move to America.&rdquo;</p>
+        <p class="myth-truth">It will not, and anyone implying otherwise is selling you something. Owning a company and having the right to live or work in the United States are two separate systems that share no paperwork. If your real goal is to emigrate, this is not that path, and you should not spend a rupee as though it is. Everything here assumes you want to stay exactly where you are.</p>
+      </li>
+    </ol>
+
+    <div class="myths-close" data-reveal>
+      <blockquote class="said">
+        It is in fact, very simple; much simpler than you can imagine.
+        <cite class="said-by">Megha, in her own words</cite>
+      </blockquote>
+      <p>And simple here does not mean somebody on the inside made it simple for you. It means the process is published, the forms are the same forms everybody files, and not one step of it turns on knowing the right person in the right department. That is the actual difference, and it is the part worth crossing an ocean for.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ §14 THE CLOSE ============================ -->
+<section class="sec close" id="start" data-wake>
+  <span class="sun" aria-hidden="true"></span>
+  <span class="sun-arc" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="close-in">
+      <h2 class="display" data-reveal>&ldquo;You have only two options.&rdquo;</h2>
+      <div class="prose" data-reveal>
+        <p>You can leave it on the shelf, where it has been sitting and where it is safe.</p>
+        <p>Or you can take it down and press play, and pressing play is the entire first step. Nothing else is being asked of you today.</p>
+        <p>Somewhere down this road there is a version of you who owns something rather than only earning from it. Your parents spent a long time making the first one possible. The second one is yours to make.</p>
+        <p>I will walk it with you. And you have not missed your window.</p>
+      </div>
+      <p class="shout" data-reveal>It's Never Too Late!</p>
+      <div class="cta-row" data-reveal>
+        <a class="btn" href="#start">Start free</a>
+      </div>
+      <p class="cta-note" data-reveal style="margin-top:var(--s-4)">No card. Twenty-three lessons. Yours to keep.</p>
+      <p class="sig" data-reveal>Look Forward.</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="assets/logo-compact-dark.png" width="941" height="576" alt="Megha Bhouraskar">
+        <p class="foot-tag">Storyteller &middot; Strategist &middot; Guide</p>
+      </div>
+      <p style="max-width:30ch">&copy; 2026 <span data-gate="D3 — platform name not chosen">[PLATFORM NAME]</span></p>
+    </div>
+    <p class="legal">This platform is an education venture and is separate from MDB Law Offices. Everything here is general educational information and not legal advice. Laws and processes change and vary by situation and by jurisdiction. Consult a qualified attorney about your specific circumstances.</p>
+    <p class="studymark">Depth study 1 of 3 &mdash; Atmosphere &middot; sections 1, 2, 4 and 14 only</p>
+  </div>
+</footer>
+
+<script src="system.js"></script>
+</body>
+</html>

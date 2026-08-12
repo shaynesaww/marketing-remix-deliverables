@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The sales page, so far | Megha Bhouraskar</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+/* Deliberately plain. This page is a chooser, not a design. Nothing here should
+   compete with the pages it links to. */
+:root{
+  --paper:#12182C; --ink:#F1EEE7; --body:rgba(241,238,231,.78);
+  --mute:rgba(241,238,231,.56); --gold:#D4AA6A; --rule:rgba(241,238,231,.15);
+  --display:Georgia,'Times New Roman',Times,serif;
+  --sans:'Helvetica Neue',Helvetica,Arial,'Segoe UI',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--paper);color:var(--body);font-family:var(--sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
+.wrap{max-width:940px;margin:0 auto;padding:clamp(48px,8vh,88px) clamp(20px,5vw,48px)}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+
+.mark{height:70px;width:auto;margin-bottom:34px}
+h1{font-family:var(--display);font-weight:400;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.15;color:var(--ink);letter-spacing:-.01em;margin-bottom:16px}
+.intro{max-width:62ch;margin-bottom:12px}
+.meta{font-size:13.5px;color:var(--mute);margin-top:22px;padding-top:18px;border-top:1px solid var(--rule);max-width:62ch}
+
+.list{margin-top:52px;border-top:1px solid var(--rule)}
+.item{display:grid;grid-template-columns:64px 1fr auto;gap:clamp(16px,3vw,34px);align-items:start;padding:30px 0;border-bottom:1px solid var(--rule);text-decoration:none}
+.item:hover h2{text-decoration:underline;text-underline-offset:4px}
+.k{font-family:var(--display);font-size:1.5rem;color:var(--gold);line-height:1.1}
+.item h2{font-family:var(--display);font-weight:400;font-size:1.35rem;color:var(--ink);line-height:1.2;margin-bottom:6px}
+.tag{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);margin-bottom:12px}
+.item p{font-size:15px;line-height:1.65;max-width:56ch}
+.go{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border:1px solid var(--rule);padding:11px 18px;white-space:nowrap;background:rgba(241,238,231,.05)}
+.item:hover .go{border-color:var(--gold);color:var(--gold)}
+
+.note{margin-top:44px;font-size:14px;line-height:1.7;color:var(--body);max-width:66ch}
+.note h3{font-family:var(--sans);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute);font-weight:600;margin-bottom:12px}
+.note ul{margin:0 0 0 1.1em}
+.note li{margin-bottom:7px}
+
+@media (max-width:640px){
+  .item{grid-template-columns:1fr;gap:10px}
+  .k{font-size:1.2rem}
+  .go{justify-self:start;margin-top:8px}
+  .mark{height:56px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <img class="mark" src="assets/logo-wordmark-dark.png" alt="Megha Bhouraskar" width="622" height="270">
+
+  <h1>The sales page, so far.</h1>
+  <p class="intro">Three things to look at, in the order we made them. The first set is the three worlds we started from, and it is the set you saw on our call. The second set takes the one you picked and tries three different ways of giving it weight and depth. The last one is the whole page, top to bottom.</p>
+
+  <p class="meta">Take your time with these. Open them, scroll all the way down, and tell me what you react to. There are no wrong answers here, and the thing I most want to know is which one feels like you.</p>
+
+  <div class="list">
+
+    <a class="item" href="round-one/">
+      <div class="k">1</div>
+      <div>
+        <h2>The first three directions</h2>
+        <span class="tag">Where we started</span>
+        <p>Same page, same words, three completely different rooms to put them in. Cream, midnight, and white. This is the set you looked at on our call, and it is where you told me the deep blue was the one.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+
+    <a class="item" href="round-two/">
+      <div class="k">2</div>
+      <div>
+        <h2>Three ways to build the deep blue</h2>
+        <span class="tag">Where we went next</span>
+        <p>The midnight world you picked, constructed three different ways. Same palette, same type, same words. What changes is how solid it feels: where sections separate, how hard the edges are, and how much the page pushes back at you.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+
+    <a class="item" href="full-page/page.html">
+      <div class="k">3</div>
+      <div>
+        <h2>The whole page, top to bottom</h2>
+        <span class="tag">Everything, in one direction</span>
+        <p>The other two sets are pieces. This is the full page, every section from the headline to the last question, built in one of the three directions above. It is the closest thing yet to what someone would actually scroll through.</p>
+      </div>
+      <span class="go">Open</span>
+    </a>
+
+  </div>
+
+  <div class="note">
+    <h3>Three things to know before you look</h3>
+    <ul>
+      <li>The price is deliberately not on the page yet. The paid room reads as founding member pricing, announced when the doors open in October.</li>
+      <li>Anything that touches the law needs your read before it goes live. That includes the visa, capital and partner lines near the top, and the first three answers in the questions section.</li>
+      <li>The platform still has no name, so you will see a placeholder wherever a name belongs.</li>
+    </ul>
+  </div>
+
+</div>
+</body>
+</html>
