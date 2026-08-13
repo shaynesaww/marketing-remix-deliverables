@@ -29,7 +29,8 @@ header.top p+p{margin-top:12px}
 .palette{display:flex;flex-wrap:wrap;gap:10px;margin-top:32px}
 .chip{display:flex;align-items:center;gap:9px;background:var(--chrome-2);border:1px solid var(--rule);
       border-radius:7px;padding:8px 13px 8px 9px;font-size:12.5px;color:var(--ink-dim)}
-.chip i{width:19px;height:19px;border-radius:4px;display:block;flex:none}
+.chip i{width:19px;height:19px;border-radius:4px;display:block;flex:none;
+        box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
 .chip b{color:var(--ink);font-weight:600;font-variant-numeric:tabular-nums}
 
 nav.jump{display:flex;flex-wrap:wrap;gap:8px;margin-top:30px}
@@ -50,7 +51,8 @@ nav.jump a:hover{color:var(--ink);border-color:#3C4657;background:var(--chrome-2
 .meta dd{margin-bottom:14px;color:var(--ink);line-height:1.45}
 .meta dd:last-child{margin-bottom:0}
 .swatches{display:flex;gap:5px;margin-bottom:3px}
-.swatches span{width:26px;height:26px;border-radius:5px;display:block}
+.swatches span{width:26px;height:26px;border-radius:5px;display:block;
+               box-shadow:inset 0 0 0 1px rgba(255,255,255,.28)}
 .rate{display:inline-block;font-weight:600;padding:2px 9px;border-radius:5px;font-size:11.5px;letter-spacing:.03em}
 .rate.easy{background:#16351F;color:#7EE39B}
 .rate.med{background:#3A2F14;color:#F0C55C}
@@ -133,9 +135,9 @@ footer.end strong{color:var(--ink)}
       <div style="display:grid;grid-template-columns:1.05fr .95fr;align-items:center">
         <div class="pad">
           <div style="font-family:'Big Shoulders Display',sans-serif;font-weight:800;font-size:52px;
-                      line-height:.94;letter-spacing:.005em;color:#fff;text-transform:uppercase">
-            <span style="border-bottom:7px solid #1F5FA9;padding-bottom:3px">Plumber</span> and
-            <span style="border-bottom:7px solid #4E9C31;padding-bottom:3px">electrician</span><br>in Greenville
+                      line-height:1;letter-spacing:.005em;color:#fff;text-transform:uppercase">
+            <span style="display:inline-block;line-height:.9;border-bottom:7px solid #1F5FA9;padding-bottom:5px">Plumber</span> and
+            <span style="display:inline-block;line-height:.9;border-bottom:7px solid #4E9C31;padding-bottom:5px">electrician</span><br>in Greenville
           </div>
           <div style="font-family:Barlow,sans-serif;color:#fff;font-size:31px;font-weight:600;margin-top:26px;letter-spacing:-.01em">
             $78 to come out. 2am costs the same as 2pm.
