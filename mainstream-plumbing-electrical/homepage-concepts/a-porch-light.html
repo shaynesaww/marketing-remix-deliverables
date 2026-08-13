@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mainstream Plumbing &amp; Electrical — Concept A, Porch Light</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0F1E33; --navy-2:#16283F; --navy-3:#1D3350;
+  --cream:#F2EDE3; --cream-dim:#AFC0D4; --cream-soft:#CFDAE8;
+  --royal:#3B84D8; --green:#4E9C31; --green-lift:#6DBE4A; --lime:#8CC63E;
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--navy);color:var(--cream);font-family:Figtree,system-ui,sans-serif;
+     line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1200px;margin:0 auto;padding:0 30px}
+a{color:inherit}
+h1,h2,h3{font-family:Fraunces,Georgia,serif;font-weight:600;letter-spacing:-.015em;line-height:1.1}
+.eyeless{font-size:15px;color:var(--cream-dim)}
+
+/* ---------- nav ---------- */
+nav.bar{position:sticky;top:0;z-index:40;background:rgba(15,30,51,.93);
+        backdrop-filter:blur(9px);border-bottom:1px solid rgba(207,218,232,.13)}
+.bar-in{display:flex;align-items:center;gap:34px;height:78px}
+.brand{display:flex;align-items:center;gap:11px;text-decoration:none;flex:none}
+.brand img{height:42px;width:auto;display:block}
+.brand .wm{font-family:Figtree;font-weight:800;font-size:19px;letter-spacing:-.02em;line-height:1}
+.brand .wm span{color:var(--green-lift)}
+.brand .wm small{display:block;font-weight:500;font-size:9.5px;letter-spacing:.17em;
+                 color:var(--cream-dim);margin-top:3px}
+.links{display:flex;gap:26px;margin-left:auto;font-size:15px;font-weight:500}
+.links a{text-decoration:none;color:var(--cream-soft);padding:6px 0;border-bottom:2px solid transparent;transition:.15s}
+.links a:hover{color:var(--cream);border-bottom-color:var(--green-lift)}
+.bar-cta{display:flex;align-items:center;gap:14px;flex:none}
+.bar-phone{font-weight:700;font-size:17px;text-decoration:none;white-space:nowrap}
+.btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:9px;
+     padding:14px 24px;font-size:15.5px;transition:.15s;border:2px solid transparent}
+.btn-go{background:var(--green);color:#fff}
+.btn-go:hover{background:var(--green-lift)}
+.btn-line{border-color:rgba(207,218,232,.4);color:var(--cream)}
+.btn-line:hover{border-color:var(--cream)}
+.btn-sm{padding:11px 19px;font-size:14.5px}
+
+/* ---------- hero ---------- */
+header.hero{position:relative;overflow:hidden;background:#0B1728}
+header.hero .shot{position:absolute;inset:0;
+  background:url('assets/photo-truck-side-1600.jpg') center 62%/cover}
+header.hero .veil{position:absolute;inset:0;
+  background:linear-gradient(101deg,rgba(11,23,40,.96) 0 40%,rgba(11,23,40,.78) 62%,rgba(11,23,40,.42) 100%)}
+.hero-in{position:relative;padding:104px 0 108px;max-width:730px}
+.hero-in h1{font-size:clamp(38px,5vw,60px);font-weight:600}
+.hero-in h1 em{font-style:normal;color:var(--green-lift)}
+.hero-in .lede{font-size:19.5px;color:var(--cream-soft);margin-top:24px;max-width:56ch}
+.hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:36px}
+.hero-note{margin-top:22px;font-size:15px;color:var(--cream-dim)}
+
+/* ---------- numbers ---------- */
+.facts{background:var(--navy-2);border-top:1px solid rgba(207,218,232,.1);
+       border-bottom:1px solid rgba(207,218,232,.1)}
+.facts-in{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.fact{padding:34px 26px;border-right:1px solid rgba(207,218,232,.1)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:Fraunces,serif;font-size:34px;font-weight:600;color:var(--cream);line-height:1}
+.fact span{display:block;margin-top:9px;font-size:14.5px;color:var(--cream-dim);line-height:1.45}
+
+/* ---------- generic section ---------- */
+section{padding:96px 0}
+.sec-head{max-width:60ch;margin-bottom:48px}
+.sec-head h2{font-size:clamp(29px,3.4vw,40px)}
+.sec-head p{margin-top:16px;font-size:18px;color:var(--cream-soft)}
+
+/* ---------- services ---------- */
+.trades{display:grid;grid-template-columns:1fr 1fr;gap:56px}
+.trade-tag{display:flex;align-items:center;gap:11px;font-size:13px;font-weight:700;
+           letter-spacing:.15em;text-transform:uppercase;color:var(--cream-dim);margin-bottom:22px}
+.trade-tag i{width:26px;height:3px;border-radius:2px;display:block}
+.svc{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid rgba(207,218,232,.11)}
+.svc:last-child{border-bottom:0}
+.svc svg{flex:none;margin-top:3px}
+.svc h3{font-family:Figtree;font-weight:700;font-size:17.5px;letter-spacing:0}
+.svc p{font-size:15.5px;color:var(--cream-dim);margin-top:5px;line-height:1.55}
+
+/* ---------- Jacob ---------- */
+.person{background:var(--navy-2)}
+.person-in{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;align-items:center}
+.person img{width:100%;border-radius:var(--r);display:block}
+.quote{font-family:Fraunces,serif;font-weight:500;font-size:clamp(24px,2.9vw,33px);
+       line-height:1.32;color:var(--cream)}
+.quote-after{margin-top:22px;font-size:17px;color:var(--cream-soft);max-width:52ch}
+.sig{margin-top:26px;font-size:14.5px;color:var(--cream-dim);letter-spacing:.04em}
+
+/* ---------- proof ---------- */
+.stories{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.story{background:var(--navy-2);border:1px solid rgba(207,218,232,.12);border-radius:var(--r);padding:32px 30px}
+.story p{font-size:17px;line-height:1.6;color:var(--cream-soft)}
+.story p+p{margin-top:14px}
+.story .said{margin-top:20px;font-family:Fraunces,serif;font-size:19px;color:var(--green-lift)}
+
+/* ---------- close ---------- */
+.close{background:linear-gradient(180deg,var(--navy) 0%,#0B1728 100%);text-align:center}
+.close h2{font-size:clamp(30px,3.6vw,42px)}
+.close p{margin:18px auto 0;font-size:18.5px;color:var(--cream-soft);max-width:52ch}
+.close .hero-cta{justify-content:center}
+.close .urgent{margin-top:26px;font-size:15.5px;color:var(--cream-dim)}
+
+footer{border-top:1px solid rgba(207,218,232,.12);padding:44px 0;font-size:14.5px;color:var(--cream-dim)}
+.foot-in{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap}
+.flag{background:rgba(140,198,62,.13);border:1px solid rgba(140,198,62,.4);color:#C6E79A;
+      border-radius:6px;padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+
+@media (max-width:980px){
+  .links{display:none}
+  .facts-in{grid-template-columns:1fr 1fr}
+  .fact{border-bottom:1px solid rgba(207,218,232,.1)}
+  .fact:nth-child(2n){border-right:0}
+  .trades,.person-in,.stories{grid-template-columns:1fr;gap:44px}
+  .hero-in{padding:76px 0}
+  section{padding:70px 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="bar"><div class="wrap bar-in">
+  <a class="brand" href="#">
+    <img src="assets/logo-mark-reversed.png" alt="Mainstream Plumbing and Electrical">
+    <span class="wm">MAIN<span>STREAM</span><small>PLUMBING &amp; ELECTRICAL</small></span>
+  </a>
+  <div class="links">
+    <a href="#services">Plumbing</a><a href="#services">Electrical</a>
+    <a href="#jacob">About</a><a href="#areas">Service Areas</a>
+  </div>
+  <div class="bar-cta">
+    <a class="bar-phone" href="tel:+18642636989">(864) 263-6989</a>
+    <a class="btn btn-go btn-sm" href="#book">Request service</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="shot"></div><div class="veil"></div>
+  <div class="wrap"><div class="hero-in">
+    <h1>Plumbing and electrical in Greenville, from the man who <em>answers the phone</em>.</h1>
+    <p class="lede">$78 to come out, and it does not change after hours. Faith answers during the day.
+       After hours you get Jacob, the owner, so the person who picks up is the person who shows up.</p>
+    <div class="hero-cta">
+      <a class="btn btn-go" href="tel:+18642636989">Call (864) 263-6989</a>
+      <a class="btn btn-line" href="#book">Request service</a>
+    </div>
+    <p class="hero-note">Usually on site within 90 minutes. No after-hours upcharge, no weekend upcharge.</p>
+  </div></div>
+</header>
+
+<div class="facts"><div class="wrap facts-in">
+  <div class="fact"><b>$78</b><span>To come out. Same at 2am as 2pm.</span></div>
+  <div class="fact"><b>90 min</b><span>Usually on site within an hour and a half.</span></div>
+  <div class="fact"><b>Hourly</b><span>Nobody works on commission, including Jacob.</span></div>
+  <div class="fact"><b>2022</b><span>Serving Greenville since November.</span></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <h2>Both trades. One truck. One visit.</h2>
+    <p>A water heater needs electrical, which is the whole reason Mainstream does both. At the big shops
+       that is a plumber today and an electrician Thursday. Here it is one person, once.</p>
+  </div>
+  <div class="trades">
+    <div>
+      <div class="trade-tag"><i style="background:var(--royal)"></i>Plumbing</div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3B84D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3s5.5 6.2 5.5 10a5.5 5.5 0 0 1-11 0C6.5 9.2 12 3 12 3Z"/></svg>
+        <div><h3>Emergency plumbing, 24 hours</h3>
+        <p>Backed up, flooding, or no water at all. The price does not move at two in the morning.</p></div>
+      </div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3B84D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M9 7h6M12 12v5"/></svg>
+        <div><h3>Water heaters</h3>
+        <p>Repair, replacement, tankless. The job Jacob takes most, and the one where his number sits
+           furthest below the big shops.</p></div>
+      </div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3B84D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M8 6v6a4 4 0 0 0 8 0V6M12 16v4"/></svg>
+        <div><h3>Drains and sewer lines</h3>
+        <p>The call that comes in more than any other. A camera inspection is $289 and it tells you whether
+           you have roots, a belly, or something a snake was never going to fix.</p></div>
+      </div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#3B84D8" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m15.5 15.5 4 4"/></svg>
+        <div><h3>Leak detection and repiping</h3>
+        <p>A listening device narrows a hidden leak to about a two foot radius. Then we dig once instead
+           of five times.</p></div>
+      </div>
+    </div>
+
+    <div>
+      <div class="trade-tag"><i style="background:var(--green-lift)"></i>Electrical</div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6DBE4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7l1-8Z"/></svg>
+        <div><h3>Electrical repair and troubleshooting</h3>
+        <p>Dead outlets, a breaker that will not hold, lights doing something they should not be doing.</p></div>
+      </div>
+
+      <div class="svc">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6DBE4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h3M8 12h3M8 16h3M15 8h1M15 12h1M15 16h1"/></svg>
+        <div><h3>Panels, rewiring and generators</h3>
+        <p>Panel upgrades, whole home rewiring, surge protection, standby generators and EV chargers.
+           <span class="flag">confirm generators + EV</span></p></div>
+      </div>
+
+      <div class="svc" style="border-bottom:0">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#6DBE4A" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3v5M15 3v5M7 8h10v5a5 5 0 0 1-10 0V8ZM12 18v3"/></svg>
+        <div><h3>Outlets, fixtures and ceiling fans</h3>
+        <p>The small jobs the big shops would rather not send a truck for.</p></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<section class="person" id="jacob"><div class="wrap person-in">
+  <img src="assets/photo-owner-dig-700.jpg" alt="Jacob locating a line by hand in the Upstate clay">
+  <div>
+    <p class="quote">&ldquo;Someone that will sit at the table with you. And listen to not only your
+       problems with your plumbing, but listen to your life problems.&rdquo;</p>
+    <p class="quote-after">Jacob was born and raised in Greenville. He started in plumbing at a family
+       business straight out of high school, learned the trade and then the sales side, and went out on
+       his own. He is still the only person in the field.</p>
+    <p class="sig">Jacob, owner</p>
+  </div>
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><h2>He was writing two million a year in sales. Then he quit.</h2>
+    <p>Nobody here works on commission. Everyone is hourly, including him. The person standing in your
+       kitchen telling you what is wrong earns exactly the same either way.</p></div>
+  <div class="stories">
+    <div class="story">
+      <p>One of the big plumbing companies in town told a homeowner she needed a new water heater.</p>
+      <p>The gas was off. Jacob turned it on, lit the pilot, and left.</p>
+    </div>
+    <div class="story">
+      <p>The day before we sat down with him, Jacob spent two hours on the phone with a customer's home
+         warranty company trying to get a water heater approved. He never billed for it. He had to call
+         them back again the next morning.</p>
+      <p class="said">&ldquo;And I didn't make any money off of it. Nothing.&rdquo;</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="close" id="book"><div class="wrap">
+  <h2>Call and tell him what is happening</h2>
+  <p>Faith picks up during the day. Jacob picks up at night. Either way you get a person, and by the time
+     the truck pulls in he usually already knows what he is fixing.</p>
+  <div class="hero-cta">
+    <a class="btn btn-go" href="tel:+18642636989">Call (864) 263-6989</a>
+    <a class="btn btn-line" href="#">Request service</a>
+  </div>
+  <p class="urgent">Water on the floor right now? Call. Do not fill out a form.</p>
+</div></section>
+
+<footer id="areas"><div class="wrap foot-in">
+  <div>Greenville · Simpsonville · Greer · Easley · Mauldin · Taylors
+      <span class="flag">service area pending confirmation</span></div>
+  <div>Licensed plumbing and electrical contractor, South Carolina
+      <span class="flag">license numbers pending</span></div>
+  <div>(864) 263-6989 · mainstreamoffice@yahoo.com</div>
+</div></footer>
+
+</body>
+</html>

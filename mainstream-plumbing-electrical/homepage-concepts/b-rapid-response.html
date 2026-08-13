@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Mainstream Plumbing &amp; Electrical — Concept B, Rapid Response</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&family=Saira+Condensed:ital,wght@0,600;0,700;1,700;1,800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0A1421; --ink-2:#101F32; --ink-3:#17293F;
+  --pale:#FFFFFF; --pale-2:#C3D2E4; --pale-3:#8CA1BC;
+  --water:#2E7ED4; --power:#5FB43C; --lime:#8CC63E; --hair:rgba(195,210,228,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--pale);font-family:Barlow,system-ui,sans-serif;
+     line-height:1.6;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1220px;margin:0 auto;padding:0 30px}
+a{color:inherit}
+.disp{font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:800;
+      text-transform:uppercase;line-height:.95;letter-spacing:.004em}
+
+/* ---------- nav ---------- */
+nav.bar{position:sticky;top:0;z-index:40;background:rgba(10,20,33,.95);border-bottom:1px solid var(--hair)}
+.bar-in{display:flex;align-items:center;gap:32px;height:74px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;flex:none}
+.brand img{height:40px;width:auto;display:block}
+.brand .wm{font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:800;
+           font-size:22px;text-transform:uppercase;line-height:1}
+.brand .wm span{color:var(--power)}
+.links{display:flex;gap:0;margin-left:auto;font-family:'Saira Condensed',sans-serif;
+       font-weight:600;font-size:15.5px;text-transform:uppercase;letter-spacing:.07em}
+.links a{text-decoration:none;color:var(--pale-2);padding:9px 15px;border-bottom:3px solid transparent;transition:.15s}
+.links a:hover{color:#fff}
+.links a.w:hover{border-bottom-color:var(--water)}
+.links a.p:hover{border-bottom-color:var(--power)}
+.bar-cta{display:flex;align-items:center;gap:13px;flex:none}
+.bar-phone{font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:20px;
+           text-decoration:none;white-space:nowrap;letter-spacing:.01em}
+.btn{display:inline-block;text-decoration:none;font-family:'Saira Condensed',sans-serif;
+     font-weight:700;text-transform:uppercase;letter-spacing:.05em;border-radius:3px;
+     padding:14px 26px;font-size:17px;transition:.15s;border:2px solid transparent}
+.btn-go{background:var(--lime);color:#0A1421}
+.btn-go:hover{background:#A0DA4E}
+.btn-line{border-color:rgba(195,210,228,.42);color:#fff}
+.btn-line:hover{border-color:#fff}
+.btn-sm{padding:10px 18px;font-size:15px}
+
+/* ---------- hero ---------- */
+header.hero{position:relative;overflow:hidden;background:#081120;border-bottom:5px solid transparent;
+  border-image:linear-gradient(90deg,var(--water) 0 50%,var(--power) 50% 100%) 1}
+header.hero .shot{position:absolute;inset:0;background:url('assets/photo-truck-side-1600.jpg') 62% 60%/cover}
+header.hero .veil{position:absolute;inset:0;
+  background:linear-gradient(100deg,rgba(8,17,32,.97) 0 41%,rgba(8,17,32,.8) 60%,rgba(8,17,32,.35) 100%)}
+.hero-in{position:relative;padding:96px 0 100px;max-width:700px}
+.hero-in h1{font-size:clamp(46px,6.6vw,82px)}
+.strap{display:inline-block;background:var(--lime);color:#0A1421;padding:9px 18px;margin-top:22px;
+       font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:800;font-size:clamp(21px,2.6vw,30px);
+       text-transform:uppercase;letter-spacing:.01em;line-height:1}
+.hero-in .lede{font-size:19px;color:var(--pale-2);margin-top:26px;max-width:54ch}
+.hero-cta{display:flex;gap:13px;flex-wrap:wrap;margin-top:32px}
+.hero-note{margin-top:20px;font-size:15px;color:var(--pale-3);letter-spacing:.02em}
+
+/* ---------- numbers ---------- */
+.facts{background:var(--ink-2);border-bottom:1px solid var(--hair)}
+.facts-in{display:grid;grid-template-columns:repeat(4,1fr)}
+.fact{padding:30px 24px;border-right:1px solid var(--hair)}
+.fact:last-child{border-right:0}
+.fact b{display:block;font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:800;
+        font-size:40px;line-height:1;color:#fff}
+.fact span{display:block;margin-top:7px;font-size:14.5px;color:var(--pale-3);line-height:1.45}
+
+section{padding:92px 0}
+.sec-head{max-width:58ch;margin-bottom:44px}
+.sec-head h2{font-size:clamp(34px,4.4vw,54px)}
+.sec-head p{margin-top:16px;font-size:18px;color:var(--pale-2)}
+
+/* ---------- services, colour-coded by trade ---------- */
+.trades{display:grid;grid-template-columns:1fr 1fr;gap:44px}
+.col{border-top:5px solid}
+.col.w{border-color:var(--water)}
+.col.p{border-color:var(--power)}
+.col-tag{font-family:'Saira Condensed',sans-serif;font-weight:700;font-size:16px;text-transform:uppercase;
+         letter-spacing:.16em;padding:16px 0 8px;color:var(--pale-3)}
+.svc{padding:19px 0;border-bottom:1px solid var(--hair)}
+.svc h3{font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:700;font-size:23px;
+        text-transform:uppercase;letter-spacing:.01em;line-height:1.1}
+.svc p{font-size:15.5px;color:var(--pale-3);margin-top:6px;line-height:1.55}
+
+/* ---------- Jacob ---------- */
+.person{background:var(--ink-2);border-top:1px solid var(--hair);border-bottom:1px solid var(--hair)}
+.person-in{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:center}
+.person img{width:100%;display:block;border-radius:3px}
+.quote{font-family:'Saira Condensed',sans-serif;font-style:italic;font-weight:700;
+       font-size:clamp(27px,3.5vw,42px);line-height:1.14;text-transform:uppercase;color:#fff}
+.quote-after{margin-top:22px;font-size:17px;color:var(--pale-2);max-width:50ch}
+.sig{margin-top:20px;font-family:'Saira Condensed',sans-serif;font-weight:600;font-size:15px;
+     letter-spacing:.16em;text-transform:uppercase;color:var(--pale-3)}
+
+/* ---------- proof ---------- */
+.stories{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.story{border-left:4px solid var(--water);padding:4px 0 4px 24px}
+.story:last-child{border-left-color:var(--power)}
+.story p{font-size:17.5px;line-height:1.6;color:var(--pale-2)}
+.story p+p{margin-top:13px}
+.story .said{margin-top:18px;font-family:'Saira Condensed',sans-serif;font-style:italic;
+             font-weight:700;font-size:23px;text-transform:uppercase;color:var(--lime)}
+
+/* ---------- close ---------- */
+.close{background:#081120;text-align:center;border-top:5px solid transparent;
+  border-image:linear-gradient(90deg,var(--water) 0 50%,var(--power) 50% 100%) 1}
+.close h2{font-size:clamp(36px,5vw,58px)}
+.close p{margin:18px auto 0;font-size:18.5px;color:var(--pale-2);max-width:52ch}
+.close .hero-cta{justify-content:center}
+.close .urgent{margin-top:24px;font-size:15.5px;color:var(--pale-3)}
+
+footer{padding:42px 0;font-size:14.5px;color:var(--pale-3)}
+.foot-in{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap}
+.flag{background:rgba(140,198,62,.14);border:1px solid rgba(140,198,62,.42);color:#C6E79A;
+      border-radius:3px;padding:2px 8px;font-size:12px;font-weight:600;white-space:nowrap}
+
+@media (max-width:980px){
+  .links{display:none}
+  .facts-in{grid-template-columns:1fr 1fr}
+  .fact{border-bottom:1px solid var(--hair)}
+  .fact:nth-child(2n){border-right:0}
+  .trades,.person-in,.stories{grid-template-columns:1fr;gap:40px}
+  .hero-in{padding:70px 0}
+  section{padding:66px 0}
+}
+</style>
+</head>
+<body>
+
+<nav class="bar"><div class="wrap bar-in">
+  <a class="brand" href="#">
+    <img src="assets/logo-mark-reversed.png" alt="Mainstream Plumbing and Electrical">
+    <span class="wm">MAIN<span>STREAM</span></span>
+  </a>
+  <div class="links">
+    <a class="w" href="#services">Plumbing</a><a class="p" href="#services">Electrical</a>
+    <a class="w" href="#jacob">About</a><a class="p" href="#areas">Service Areas</a>
+  </div>
+  <div class="bar-cta">
+    <a class="bar-phone" href="tel:+18642636989">(864) 263-6989</a>
+    <a class="btn btn-go btn-sm" href="#book">Request service</a>
+  </div>
+</div></nav>
+
+<header class="hero">
+  <div class="shot"></div><div class="veil"></div>
+  <div class="wrap"><div class="hero-in">
+    <h1 class="disp">Plumber and electrician in Greenville</h1>
+    <div class="strap">$78 to come out. Same at 2am.</div>
+    <p class="lede">Faith answers during the day. After hours you get Jacob, the owner, so the person who
+       picks up is the person who shows up.</p>
+    <div class="hero-cta">
+      <a class="btn btn-go" href="tel:+18642636989">Call (864) 263-6989</a>
+      <a class="btn btn-line" href="#book">Request service</a>
+    </div>
+    <p class="hero-note">Usually on site within 90 minutes. No after-hours, weekend or holiday upcharge.</p>
+  </div></div>
+</header>
+
+<div class="facts"><div class="wrap facts-in">
+  <div class="fact"><b>$78</b><span>To come out. Same at 2am as 2pm.</span></div>
+  <div class="fact"><b>90 min</b><span>Usually on site within an hour and a half.</span></div>
+  <div class="fact"><b>0%</b><span>Commission. Everyone is hourly, including Jacob.</span></div>
+  <div class="fact"><b>2022</b><span>Serving Greenville since November.</span></div>
+</div></div>
+
+<section id="services"><div class="wrap">
+  <div class="sec-head">
+    <h2 class="disp">Both trades. One truck. One visit.</h2>
+    <p>A water heater needs electrical, which is the whole reason Mainstream does both. At the big shops
+       that is a plumber today and an electrician Thursday. Here it is one person, once.</p>
+  </div>
+  <div class="trades">
+    <div class="col w">
+      <div class="col-tag">Plumbing</div>
+      <div class="svc"><h3>Emergency plumbing, 24 hours</h3>
+        <p>Backed up, flooding, or no water at all. The price does not move at two in the morning.</p></div>
+      <div class="svc"><h3>Water heaters</h3>
+        <p>Repair, replacement, tankless. The job Jacob takes most, and the one where his number sits
+           furthest below the big shops.</p></div>
+      <div class="svc"><h3>Drains and sewer lines</h3>
+        <p>The call that comes in more than any other. A camera inspection is $289 and it tells you whether
+           you have roots, a belly, or something a snake was never going to fix.</p></div>
+      <div class="svc" style="border-bottom:0"><h3>Leak detection and repiping</h3>
+        <p>A listening device narrows a hidden leak to about a two foot radius. Then we dig once instead of
+           five times.</p></div>
+    </div>
+    <div class="col p">
+      <div class="col-tag">Electrical</div>
+      <div class="svc"><h3>Repair and troubleshooting</h3>
+        <p>Dead outlets, a breaker that will not hold, lights doing something they should not be doing.</p></div>
+      <div class="svc"><h3>Panels, rewiring and generators</h3>
+        <p>Panel upgrades, whole home rewiring, surge protection, standby generators and EV chargers.
+           <span class="flag">confirm generators + EV</span></p></div>
+      <div class="svc"><h3>Outlets, fixtures and fans</h3>
+        <p>The small jobs the big shops would rather not send a truck for.</p></div>
+      <div class="svc" style="border-bottom:0"><h3>No heating and air</h3>
+        <p>Jacob is not licensed for it, and he would rather tell you that than take the job.</p></div>
+    </div>
+  </div>
+</div></section>
+
+<section class="person" id="jacob"><div class="wrap person-in">
+  <div>
+    <p class="quote">&ldquo;Someone that will sit at the table with you.&rdquo;</p>
+    <p class="quote-after">The whole sentence was longer. He said someone who will sit at the table with
+       you and listen to not only your problems with your plumbing, but your life problems. Jacob was born
+       and raised in Greenville, started in plumbing at a family business straight out of high school, and
+       went out on his own. He is still the only person in the field.</p>
+    <p class="sig">Jacob, owner</p>
+  </div>
+  <img src="assets/photo-owner-waterheater-600.jpg" alt="Jacob working on a gas water heater">
+</div></section>
+
+<section><div class="wrap">
+  <div class="sec-head"><h2 class="disp">He was writing two million a year in sales. Then he quit.</h2>
+    <p>Nobody here works on commission. Everyone is hourly, including him. The person standing in your
+       kitchen telling you what is wrong earns exactly the same either way.</p></div>
+  <div class="stories">
+    <div class="story">
+      <p>One of the big plumbing companies in town told a homeowner she needed a new water heater.</p>
+      <p>The gas was off. Jacob turned it on, lit the pilot, and left.</p>
+    </div>
+    <div class="story">
+      <p>The day before we sat down with him, Jacob spent two hours on the phone with a customer's home
+         warranty company trying to get a water heater approved. He never billed for it. He had to call
+         them back again the next morning.</p>
+      <p class="said">&ldquo;And I didn't make any money off of it. Nothing.&rdquo;</p>
+    </div>
+  </div>
+</div></section>
+
+<section class="close" id="book"><div class="wrap">
+  <h2 class="disp">Call and tell him what is happening</h2>
+  <p>Faith picks up during the day. Jacob picks up at night. Either way you get a person, and by the time
+     the truck pulls in he usually already knows what he is fixing.</p>
+  <div class="hero-cta">
+    <a class="btn btn-go" href="tel:+18642636989">Call (864) 263-6989</a>
+    <a class="btn btn-line" href="#">Request service</a>
+  </div>
+  <p class="urgent">Water on the floor right now? Call. Do not fill out a form.</p>
+</div></section>
+
+<footer id="areas"><div class="wrap foot-in">
+  <div>Greenville · Simpsonville · Greer · Easley · Mauldin · Taylors
+      <span class="flag">service area pending confirmation</span></div>
+  <div>Licensed plumbing and electrical contractor, South Carolina
+      <span class="flag">license numbers pending</span></div>
+  <div>(864) 263-6989 · mainstreamoffice@yahoo.com</div>
+</div></footer>
+
+</body>
+</html>
