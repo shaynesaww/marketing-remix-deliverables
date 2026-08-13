@@ -15,6 +15,9 @@
   --navy:#12294A; --green:#4E9C31; --green-d:#3D7D25; --royal:#1F5FA9; --lime:#8CC63E;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+/* the hero image bleeds right using 50vw, and 50vw counts the scrollbar.
+   clip rather than hidden, so the sticky nav keeps working. */
+html,body{overflow-x:clip}
 html{scroll-behavior:smooth}
 body{background:var(--paper);color:var(--ink);font-family:Archivo,system-ui,sans-serif;
      line-height:1.63;-webkit-font-smoothing:antialiased}
