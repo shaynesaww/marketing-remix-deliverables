@@ -87,7 +87,9 @@ export default function Constant() {
   return (
     <div className="min-h-screen bg-a-paper font-abody text-a-ink antialiased dark:bg-a-dpaper dark:text-a-dink">
       {/* ===== SECTION: header ===== */}
-      <header className="sticky top-0 z-50 border-b border-a-line/70 bg-a-paper/92 backdrop-blur dark:border-a-dline dark:bg-a-dpaper/92">
+      {/* Opaque, not translucent. backdrop-blur does not take effect here and a
+          92% ground let sharp text ghost through the nav while scrolling. */}
+      <header className="sticky top-0 z-50 border-b border-a-line/70 bg-a-paper dark:border-a-dline dark:bg-a-dpaper">
         <div className="mx-auto flex max-w-[1180px] items-center gap-6 px-5 py-3.5 lg:px-10">
           <a href="#top" className="flex shrink-0 items-center gap-2.5" aria-label="Mainstream Plumbing and Electrical, home">
             <span aria-hidden="true" className="block h-7 w-[3px] rounded-full bg-gradient-to-b from-brand-royal to-brand-green" />
@@ -101,7 +103,7 @@ export default function Constant() {
           </nav>
           <a
             href={PHONE_HREF}
-            className="ml-auto shrink-0 font-amono text-[14px] font-medium tracking-tight text-a-action md:ml-0 dark:text-[#7ED457]"
+            className="ml-auto shrink-0 py-2.5 font-amono text-[14px] font-medium tracking-tight text-a-action md:ml-0 dark:text-[#7ED457]"
           >
             {PHONE}
           </a>

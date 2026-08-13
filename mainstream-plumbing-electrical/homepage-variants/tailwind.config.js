@@ -50,7 +50,12 @@ export default {
           line: "#E4E2DC",
           water: "#1B6FB0",
           watersoft: "#DCEBF6",
-          power: "#4E9C31",
+          power: "#4E9C31", // marking colour: seams, rules, spines. Not text.
+          // Text-safe power green. #4E9C31 at label size on the near-white
+          // ground measures 3.29:1 against a 4.5:1 requirement, so small type
+          // uses this instead. The mark keeps the brand green; the word does
+          // not, which is the right way round.
+          powerink: "#37711F",
           powersoft: "#E4F1DC",
           dground: "#0A1626",
           dpanel: "#101F33",

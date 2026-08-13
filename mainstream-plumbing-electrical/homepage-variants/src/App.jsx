@@ -63,7 +63,7 @@ function Switcher({ current, isDark, onGo, name }) {
       role="group"
       aria-label="Prototype controls. Not part of the website."
     >
-      <div className="flex items-center gap-1 rounded-full border border-white/15 bg-[#0d1117]/92 px-1.5 py-1.5 shadow-2xl backdrop-blur">
+      <div className="flex items-center gap-1 rounded-full border border-white/15 bg-[rgba(13,17,23,0.94)] px-1.5 py-1.5 shadow-2xl backdrop-blur">
         <span className="hidden pl-2.5 pr-1 text-[11px] font-medium uppercase tracking-[0.14em] text-white/45 md:inline">
           {name}
         </span>
