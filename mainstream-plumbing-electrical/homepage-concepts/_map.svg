@@ -1,0 +1,55 @@
+<!-- Greenville service-area map. Hand-drawn SVG, no API key, no tiles, no cost.
+     Colours are driven by currentColor + CSS vars so each concept can retheme it:
+       --map-land, --map-line, --map-ring, --map-road, --map-pin, --map-home, --map-label -->
+<svg viewBox="0 0 640 500" role="img" aria-labelledby="mapttl" class="area-map">
+  <title id="mapttl">Mainstream service area across Greenville and the Upstate</title>
+
+  <!-- land mass -->
+  <path d="M60 150 L150 96 L268 72 L392 62 L500 88 L572 140 L596 216 L580 306 L520 388 L432 442
+           L316 462 L208 440 L120 384 L70 300 Z"
+        fill="var(--map-land)" stroke="var(--map-line)" stroke-width="1.5"/>
+
+  <!-- radius rings from Greenville -->
+  <circle cx="320" cy="236" r="72"  fill="none" stroke="var(--map-ring)" stroke-width="1.2" stroke-dasharray="4 6"/>
+  <circle cx="320" cy="236" r="146" fill="none" stroke="var(--map-ring)" stroke-width="1.2" stroke-dasharray="4 6"/>
+  <text x="320" y="100" class="ring-lbl" text-anchor="middle">ABOUT 20 MILES</text>
+
+  <!-- interstates -->
+  <g fill="none" stroke="var(--map-road)" stroke-width="3" stroke-linecap="round" opacity=".85">
+    <path d="M96 372 L214 300 L320 240 L430 176 L560 118"/>   <!-- I-85 -->
+    <path d="M320 240 L372 306 L404 372 L438 448"/>            <!-- I-385 -->
+  </g>
+  <g fill="none" stroke="var(--map-road)" stroke-width="1.4" opacity=".5">
+    <path d="M300 74 L312 170 L326 300 L338 452"/>             <!-- US-25 -->
+    <path d="M150 232 L320 236 L520 214"/>                     <!-- US-29 -->
+  </g>
+  <text x="150" y="330" class="road-lbl" transform="rotate(-30 150 330)">I-85</text>
+  <text x="418" y="410" class="road-lbl">I-385</text>
+
+  <!-- named cities: the five that get their own page -->
+  <g class="pins">
+    <g class="pin"><circle cx="420" cy="178" r="7"/><text x="432" y="182">Greer</text></g>
+    <g class="pin"><circle cx="368" cy="196" r="7"/><text x="380" y="200">Taylors</text></g>
+    <g class="pin"><circle cx="206" cy="238" r="7"/><text x="150" y="242" text-anchor="end">Easley</text></g>
+    <g class="pin"><circle cx="346" cy="304" r="7"/><text x="358" y="308">Mauldin</text></g>
+    <g class="pin"><circle cx="378" cy="350" r="7"/><text x="390" y="354">Simpsonville</text></g>
+  </g>
+
+  <!-- hub towns, smaller -->
+  <g class="pins minor">
+    <g class="pin"><circle cx="286" cy="154" r="4.5"/><text x="296" y="158">Travelers Rest</text></g>
+    <g class="pin"><circle cx="272" cy="208" r="4.5"/><text x="230" y="200" text-anchor="end">Berea</text></g>
+    <g class="pin"><circle cx="186" cy="288" r="4.5"/><text x="176" y="292" text-anchor="end">Powdersville</text></g>
+    <g class="pin"><circle cx="250" cy="322" r="4.5"/><text x="240" y="326" text-anchor="end">Piedmont</text></g>
+    <g class="pin"><circle cx="412" cy="300" r="4.5"/><text x="422" y="304">Five Forks</text></g>
+    <g class="pin"><circle cx="404" cy="398" r="4.5"/><text x="414" y="402">Fountain Inn</text></g>
+    <g class="pin"><circle cx="252" cy="382" r="4.5"/><text x="242" y="386" text-anchor="end">Golden Grove</text></g>
+  </g>
+
+  <!-- Greenville, the home marker -->
+  <g class="home">
+    <circle cx="320" cy="236" r="15" class="halo"/>
+    <circle cx="320" cy="236" r="8.5"/>
+    <text x="320" y="216" text-anchor="middle">GREENVILLE</text>
+  </g>
+</svg>
