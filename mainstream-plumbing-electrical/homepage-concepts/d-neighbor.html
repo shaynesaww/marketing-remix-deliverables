@@ -360,6 +360,87 @@ footer{background:var(--cream);border-top:1px solid var(--cream-edge);color:var(
 .band-soft .visit.ours .tally{color:var(--green-deep)}
 .band-soft .visit .step svg{stroke:#5A6B82}
 .band-soft .visit.ours .step svg{stroke:#3E7F26}
+
+/* ============ PHONE: measured at 390px, not guessed ============
+   The nav ran 142-175px off-screen because the brand and the CTA cluster were
+   both flex:none, so neither could yield. The $78 callout ran 28-66px over
+   because .compare's flex children had no min-width:0 and forced the grid
+   track wider than the viewport. Map labels scaled to ~7px. */
+@media (max-width:760px){
+  .wrap{padding:0 20px}
+
+  /* nav */
+  .bar-in{height:62px;gap:10px}
+  .brand{flex:1 1 auto;min-width:0}
+  .brand img{height:32px}
+  .brand .wm{font-size:16px}
+  .brand .wm small{display:none}
+  .bar-cta{gap:8px;min-width:0}
+  .bar-phone{display:none}          /* the sticky call bar already carries it */
+  .btn-sm{padding:10px 14px;font-size:13.5px;white-space:nowrap}
+
+  /* utility bar stacks instead of wrapping mid-phrase */
+  .util-in{flex-direction:column;gap:3px;padding:8px 0;font-size:11.5px}
+  .util span{display:none}
+
+  /* hero */
+  .hero-in{padding:54px 0 58px}
+  .hero-in h1{font-size:clamp(30px,8vw,40px)}
+  .hero-in .lede{font-size:17px;margin-top:18px}
+  .hero-cta{margin-top:26px;gap:10px}
+  .hero-cta .btn{flex:1 1 100%;text-align:center}
+
+  /* trust band: one column beats two cramped ones */
+  .facts-in{grid-template-columns:1fr}
+  .fact{border-right:0!important;padding:22px 18px}
+  .fact+.fact{border-top:1px solid rgba(127,127,127,.24)}
+
+  /* section rhythm */
+  section{padding:54px 0}
+  .head-split,.head-mid{margin-bottom:32px}
+  .head-split h2,.head-mid h2{font-size:clamp(25px,6.6vw,32px)}
+
+  /* the callout, the actual overflow culprit */
+  .callout .num{padding:30px 18px}
+  .callout .say{padding:26px 18px}
+  .callout .num b{font-size:64px}
+  .compare{flex-direction:column;margin-top:18px}
+  .compare div{min-width:0}
+  .compare div+div{border-left:0;border-top:1px solid var(--cream-edge)}
+
+  /* cards and copy */
+  .visit{padding:24px 20px}
+  .story{padding:24px 20px}
+  .card{padding:22px 20px}
+  .qband blockquote{max-width:none}
+  .qband .after{font-size:16px}
+  .person-in{gap:28px}
+
+  /* club */
+  .club-price{font-size:46px}
+  .perks div{padding:14px 16px;text-align:left}
+
+  /* accordions and form */
+  details.qa summary{padding:17px 44px 17px 18px;font-size:16.5px}
+  details.qa summary::after{right:18px}
+  details.qa .a{padding:0 18px 18px;font-size:15.5px}
+  form{padding:24px 18px}
+
+  /* map: drop the minor pins and scale the labels back up to legible */
+  .area-map .minor{display:none}
+  .area-map .pins text{font-size:19px}
+  .area-map .pin-taylors text{text-anchor:end;transform:translate(-26px,16px)}
+  .area-map .home text{font-size:21px}
+  .area-map .ring-lbl{font-size:17px}
+  .area-map .road-lbl{font-size:18px}
+  .chips span{font-size:13px;padding:6px 12px}
+
+  /* footer + call bar */
+  .foot-grid{grid-template-columns:1fr;gap:24px}
+  .foot-bar{gap:10px}
+  .callbar{padding:9px 12px;gap:8px}
+  .callbar a{font-size:14.5px;padding:13px 6px}
+}
 </style>
 </head>
 <body>
@@ -582,7 +663,7 @@ footer{background:var(--cream);border-top:1px solid var(--cream-edge);color:var(
     <text x="416" y="412" class="road-lbl">I-385</text>
     <g class="pins">
       <g class="pin"><circle cx="420" cy="178" r="7"/><text x="432" y="182">Greer</text></g>
-      <g class="pin"><circle cx="368" cy="196" r="7"/><text x="380" y="200">Taylors</text></g>
+      <g class="pin pin-taylors"><circle cx="368" cy="196" r="7"/><text x="380" y="200">Taylors</text></g>
       <g class="pin"><circle cx="206" cy="238" r="7"/><text x="194" y="242" text-anchor="end">Easley</text></g>
       <g class="pin"><circle cx="346" cy="304" r="7"/><text x="358" y="308">Mauldin</text></g>
       <g class="pin"><circle cx="378" cy="350" r="7"/><text x="390" y="354">Simpsonville</text></g>
