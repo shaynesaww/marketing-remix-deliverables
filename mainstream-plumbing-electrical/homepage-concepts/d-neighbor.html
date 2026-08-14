@@ -343,6 +343,23 @@ footer{background:var(--cream);border-top:1px solid var(--cream-edge);color:var(
   .hero-pic{border-radius:18px;margin-right:0;min-height:300px}
   .close{margin:0 0 70px}
 }
+
+/* The visit cards sit inside a dark band but are light cards. Scope every one
+   of their colours under .band-soft so the band-level heading and paragraph
+   rules cannot win on equal specificity and repaint them. */
+.band-soft .visit{background:var(--cream-2);color:var(--onLight);border-color:var(--cream-edge)}
+.band-soft .visit.ours{background:#EFF7EA;border-color:rgba(78,156,49,.55)}
+.band-soft .visit h3{color:var(--onLight-2)}
+.band-soft .visit.ours h3{color:var(--green-deep)}
+.band-soft .visit .step{border-bottom-color:var(--cream-edge)}
+.band-soft .visit .step .dot{background:rgba(21,42,69,.08)}
+.band-soft .visit.ours .step .dot{background:rgba(78,156,49,.16)}
+.band-soft .visit .step .t{color:var(--onLight-2)}
+.band-soft .visit .step .t b{color:var(--onLight)}
+.band-soft .visit .tally{border-top-color:var(--cream-edge);color:var(--onLight-2)}
+.band-soft .visit.ours .tally{color:var(--green-deep)}
+.band-soft .visit .step svg{stroke:#5A6B82}
+.band-soft .visit.ours .step svg{stroke:#3E7F26}
 </style>
 </head>
 <body>
