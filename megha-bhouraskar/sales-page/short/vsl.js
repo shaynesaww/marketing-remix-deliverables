@@ -42,6 +42,15 @@
     var frame = doc.createElement('iframe');
     frame.src = 'https://www.youtube-nocookie.com/embed/' + id +
                 '?autoplay=1&rel=0&modestbranding=1&playsinline=1';
+    /* The deploy sends Referrer-Policy: no-referrer site-wide (vercel.json).
+       YouTube's player verifies the embedding domain from the Referer header,
+       so with no referrer it refuses to start and throws error 153, "video
+       player configuration error." An element-level referrerPolicy overrides
+       the document default for this request only: YouTube gets the origin it
+       needs, no path is leaked, and every other request on the site keeps
+       sending nothing. Do not "fix" this by loosening the header globally. */
+    frame.referrerPolicy = 'origin';
+
     frame.title = 'Megha Bhouraskar introduces the course';
     frame.allow = 'accelerometer; autoplay; encrypted-media; picture-in-picture';
     frame.setAttribute('allowfullscreen', '');
