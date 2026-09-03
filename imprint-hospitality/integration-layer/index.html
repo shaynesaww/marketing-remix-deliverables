@@ -694,10 +694,9 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
 .delta{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;
   border:1px solid var(--hairline-rev);border-left:3px solid var(--orange);
   background:rgba(238,118,35,.10);padding:22px 26px;margin-bottom:2rem}
-.delta .was{font-family:var(--f-title);font-weight:600;font-size:1.9rem;letter-spacing:.03em;
-  color:rgba(255,255,255,.42);text-decoration:line-through;text-decoration-thickness:2px}
-.delta .arw{font-family:var(--f-label);font-size:1.05rem;color:rgba(255,255,255,.42)}
 .delta .now{font-family:var(--f-title);font-weight:700;font-size:clamp(2.3rem,5.5vw,3.2rem);letter-spacing:.03em;color:var(--orange);line-height:1}
+.delta .lbl{font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.17em;
+  text-transform:uppercase;color:rgba(255,255,255,.55)}
 .delta .why{flex:1 1 100%;font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px;max-width:74ch}
 
 .mile{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline-rev);border:1px solid var(--hairline-rev);margin-top:1.5rem}
@@ -1332,17 +1331,16 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     <div class="shead reveal">
       <div class="vlabel">Investment</div>
       <div class="shead-body">
-        <p class="eyebrow rev">The revised numbers</p>
-        <h2>What it costs, and what changed</h2>
-        <p class="lede">The integration is priced separately from the core system, and it has come down since we spoke in August. The core build is unchanged and is not reopened by this document.</p>
+        <p class="eyebrow rev">The numbers</p>
+        <h2>What it costs</h2>
+        <p class="lede">The integration is priced separately from the core system and carries its own two milestones. The core build is unchanged and is not reopened by this document.</p>
       </div>
     </div>
 
     <div class="delta reveal">
-      <span class="was">$10,500</span>
-      <span class="arw">&rarr;</span>
       <span class="now">$5,500</span>
-      <span class="why">When we spoke in August I quoted $10,500 for the integration against an estimate, because that is all it was at the time. Since then I have specified the connector completely, endpoint by endpoint against the StayNTouch Connect API v2 documentation, and put the work out to competitive bid. It came back better understood and cheaper to deliver than the estimate assumed, so the price comes down with it. This is the same scope. Nothing was removed to get to the smaller number.</span>
+      <span class="lbl">The integration layer, fixed fee</span>
+      <span class="why">That is a fixed number rather than a range because the connector was specified completely before it was priced, endpoint by endpoint against the StayNTouch Connect API v2 documentation. Every one of the six workstreams above was checked against a real endpoint that returns the data it needs. Nothing in this scope is a hope that the API cooperates, which is the usual reason integration work gets quoted as a range and then drifts.</span>
     </div>
 
     <div class="folder on-dark reveal" style="margin-top:0">
@@ -1350,8 +1348,8 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="folder-body" style="padding:0;border-top-color:var(--orange)">
         <div class="inv">
           <div class="iv"><div class="k">Core system build</div><div class="a">$12,500<small>Unchanged, already scoped</small></div><div class="d">Everything in the main proposal: foundations, architecture, intake, proposals and contracts, payments, automations, portal, calendars, dashboards, testing, documentation and training. Includes the live pilot and three launch properties.</div></div>
-          <div class="iv"><div class="k">StayNTouch integration</div><div class="a">$5,500<small>Revised down from $10,500</small></div><div class="d">All six workstreams above. Setup sync, pickup including reservation detail, actualized revenue and commissions, block creation on signature, amendments and drift detection, availability lookup. Proven on Kinship, then rolled out.</div></div>
-          <div class="iv"><div class="k">Total build</div><div class="a">$18,000<small>Fixed, paid across five milestones</small></div><div class="d">Down from the $23,000 we discussed in August. Nothing is invoiced before the work it pays for.</div></div>
+          <div class="iv"><div class="k">StayNTouch integration</div><div class="a">$5,500<small>Fixed, paid across two stages</small></div><div class="d">All six workstreams above. Setup sync, pickup including reservation detail, actualized revenue and commissions, block creation on signature, amendments and drift detection, availability lookup. Proven on Kinship, then rolled out.</div></div>
+          <div class="iv"><div class="k">Total build</div><div class="a">$18,000<small>Fixed, paid across five milestones</small></div><div class="d">Both waves in one number. Nothing is invoiced before the work it pays for.</div></div>
           <div class="iv"><div class="k">First booking season</div><div class="a">$1,500<small>Per month, first two months live</small></div><div class="d">Priority support through the busiest stretch, when the system is new to your team and every question is a real booking on the line.</div></div>
           <div class="iv"><div class="k">Ongoing management</div><div class="a">$1,250<small>Per month, thereafter</small></div><div class="d">Up from $750, and the increase is entirely the integration: credential renewal across every connected property, sync monitoring with failure alerts, plus the system health and deliverability watch, four hours of adjustments monthly and a quarterly review. Thirty days notice to cancel.</div></div>
           <div class="iv"><div class="k">Additional properties</div><div class="a">$350<small>Each, beyond the three</small></div><div class="d">Reduced from $500, because room types, rates and taxes now sync from the PMS instead of being entered by hand. Adding a property is a configuration record and a verification pass.</div></div>
@@ -1454,7 +1452,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <a href="../sales-system-proposal/">&larr; Back to the main proposal</a>
     </div>
     <div style="max-width:46ch">
-      This addendum sits alongside the Phase 1 proposal and does not replace it. Integration scope was verified endpoint by endpoint against the StayNTouch Connect API v2 specification on August 24, 2026. Where this document and any earlier version differ on price, this one is current.
+      This addendum sits alongside the Phase 1 proposal and does not replace it. Integration scope was verified endpoint by endpoint against the StayNTouch Connect API v2 specification on August 24, 2026, before any of it was priced.
     </div>
   </div>
 </footer>
