@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+<title>Imprint Hospitality — Addendum A: The Integration Layer</title>
+<meta name="description" content="Addendum A to the Imprint Hospitality proposal: the StayNTouch integration layer. Architecture, the six workstreams, how the commission number gets proved, and what it costs. Prepared for Lauren Ripko.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300..900;1,400..700&family=Jost:wght@400;500;600;700&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cg fill='none' stroke='%23ee7623' stroke-width='2.4' stroke-linecap='round'%3E%3Cpath d='M16 5a11 11 0 0 1 0 22'/%3E%3Cpath d='M16 9.5a6.5 6.5 0 0 1 0 13'/%3E%3Cpath d='M16 14a2 2 0 0 1 0 4'/%3E%3Cpath d='M11 6.6a11 11 0 0 0 0 18.8'/%3E%3C/g%3E%3C/svg%3E">
+
+<style>
+/* ============================================================
+   TOKENS
+   Palette derived from imprinthospitality.com's own CSS variables
+   (--orange #ee7623, --darkgrey #4d4d4f, --lightgrey #f1f1f1),
+   given the tint/shade ramp and the mid-level heading their
+   type scale is missing.
+   ============================================================ */
+:root{
+  --orange:#ee7623;
+  --orange-deep:#d86211;
+  --orange-press:#a8480c;
+  --orange-wash:#fdf1e8;
+  --orange-line:#f3c9a4;
+
+  --ink:#1a1a1c;
+  --ink-soft:#55555a;
+  --ink-faint:#8e8e94;
+
+  --paper:#fbfaf9;
+  --paper-2:#efece7;   /* alternating band — deep enough to actually read */
+  --paper-3:#e4e1dc;
+
+  --slate:#4d4d4f;
+  --slate-deep:#2b2b2d;
+  --slate-line:#3c3c3f;
+
+  --hairline:rgba(26,26,28,.10);
+  --hairline-strong:rgba(26,26,28,.18);
+  --hairline-rev:rgba(255,255,255,.16);
+
+  --f-body:'Mulish',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+  --f-label:'Jost',-apple-system,'Segoe UI',sans-serif;
+  --f-title:'Barlow Condensed','Arial Narrow',sans-serif;
+
+  --gut:clamp(1.25rem,5vw,6rem);
+  --wrap:1240px;
+  --prose:68ch;
+
+  --ease:cubic-bezier(.2,.8,.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth;scroll-padding-top:84px}
+body{
+  margin:0;background:var(--paper);color:var(--ink);
+  font-family:var(--f-body);font-size:17px;font-weight:400;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,p,ul,ol,figure{margin:0}
+ul,ol{padding:0;list-style:none}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
+:focus-visible{outline:2.5px solid var(--orange);outline-offset:3px;border-radius:2px}
+
+/* ---------- type roles ---------- */
+.eyebrow{
+  font-family:var(--f-label);font-weight:600;font-size:11px;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--orange-deep);
+}
+.eyebrow.rev{color:var(--orange)}
+h1,.display{
+  font-family:var(--f-body);font-weight:800;
+  font-size:clamp(2.5rem,5.6vw,4.4rem);line-height:1.02;letter-spacing:-.022em;
+}
+h2,.stitle{
+  font-family:var(--f-title);font-weight:600;
+  font-size:clamp(1.75rem,3.4vw,2.35rem);line-height:1.1;
+  letter-spacing:.085em;text-transform:uppercase;
+}
+h3,.subhead{
+  font-family:var(--f-body);font-weight:700;
+  font-size:1.3rem;line-height:1.35;letter-spacing:-.012em;
+}
+h4{
+  font-family:var(--f-label);font-weight:600;font-size:12px;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);
+}
+.lede{font-size:1.28rem;line-height:1.5;color:var(--ink-soft);font-weight:400;max-width:var(--prose)}
+.prose{max-width:var(--prose)}
+.prose p+p{margin-top:1.1em}
+.mono-num{font-family:var(--f-label);font-weight:500;font-variant-numeric:tabular-nums}
+strong{font-weight:700;color:var(--ink)}
+em{font-style:italic}
+
+/* ============================================================
+   LAYOUT
+   ============================================================ */
+.wrap{max-width:var(--wrap);margin:0 auto;padding-inline:var(--gut)}
+section{position:relative;padding-block:clamp(4.5rem,9vw,7.5rem)}
+.band{background:var(--slate-deep);color:#fff}
+.band .lede{color:rgba(255,255,255,.72)}
+.band h4{color:rgba(255,255,255,.55)}
+.band-soft{background:var(--paper-2)}
+
+/* section head: revives Imprint's rotated vertical label —
+   the one genuinely distinctive device on their site */
+.shead{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,3rem);align-items:start;margin-bottom:clamp(2.5rem,4vw,3.5rem)}
+.vlabel{
+  font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.24em;
+  text-transform:uppercase;color:var(--ink-faint);
+  writing-mode:vertical-rl;transform:rotate(180deg);
+  border-left:4px solid var(--orange);padding:0 0 0 12px;
+  margin-left:2px;white-space:nowrap;align-self:stretch;
+  display:flex;align-items:center;   /* centre the label in the rail so it
+                                        sits consistently regardless of how
+                                        many lines the lede runs to */
+}
+.band .vlabel{color:rgba(255,255,255,.5)}
+.shead-body>*+*{margin-top:.85rem}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:rgba(251,250,249,.88);backdrop-filter:blur(14px) saturate(1.4);
+  border-bottom:1px solid var(--hairline);
+}
+.nav-in{max-width:var(--wrap);margin:0 auto;padding:0 var(--gut);height:64px;display:flex;align-items:center;gap:2rem}
+.nav-brand{display:flex;align-items:center;gap:11px;font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;white-space:nowrap}
+.nav-brand svg{width:22px;height:22px;flex:none}
+.nav-brand span{color:var(--ink-faint)}
+.nav-links{display:flex;gap:clamp(.7rem,1.35vw,1.35rem);margin-left:auto;overflow-x:auto;scrollbar-width:none;-webkit-mask-image:linear-gradient(90deg,#000 0 94%,transparent)}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links a{
+  font-family:var(--f-label);font-weight:500;font-size:10.5px;letter-spacing:.11em;
+  text-transform:uppercase;text-decoration:none;color:var(--ink-faint);
+  padding:4px 0;border-bottom:2px solid transparent;white-space:nowrap;
+  transition:color .2s var(--ease),border-color .2s var(--ease);
+}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a.on{color:var(--ink);border-bottom-color:var(--orange)}
+
+/* right rail — Imprint built an index-nav and disabled it; this turns it back on */
+.rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:11px}
+.rail a{width:7px;height:7px;border-radius:50%;background:var(--hairline-strong);transition:all .3s var(--ease);position:relative}
+.rail a::after{
+  content:attr(data-t);position:absolute;right:16px;top:50%;transform:translateY(-50%);
+  font-family:var(--f-label);font-size:9.5px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--ink);background:var(--paper);border:1px solid var(--hairline);
+  padding:4px 8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s
+}
+.rail a:hover::after{opacity:1}
+.rail a.on{background:var(--orange);transform:scale(1.5)}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;background:var(--slate-deep);color:#fff;padding-block:clamp(4rem,10vw,7.5rem) clamp(4rem,8vw,6rem);overflow:hidden}
+.hero-mark{position:absolute;right:-14%;top:50%;transform:translateY(-50%);width:min(760px,86vw);opacity:.055;pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.hero h1{max-width:19ch;margin-top:1.4rem}
+.hero h1 .hl{color:var(--orange)}
+.hero-sub{font-size:clamp(1.1rem,1.9vw,1.35rem);line-height:1.55;color:rgba(255,255,255,.74);max-width:56ch;margin-top:1.6rem}
+.hero-meta{display:flex;flex-wrap:wrap;gap:0 2.5rem;margin-top:3rem;padding-top:1.6rem;border-top:1px solid var(--hairline-rev)}
+.hero-meta div{padding:.7rem 0}
+.hero-meta dt{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.45)}
+.hero-meta dd{margin:5px 0 0;font-weight:600;font-size:1.02rem}
+.hero-meta dd.accent{color:var(--orange)}
+
+/* ============================================================
+   THE FOLDER — the signature container.
+   "It's a booking, and inside the booking live all of the
+   events and rooms." A booking is a folder. So it gets a tab.
+   ============================================================ */
+.folder{position:relative;margin-top:2rem}
+.folder-tab{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--slate-deep);color:#fff;
+  font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase;
+  padding:11px 34px 11px 20px;
+  clip-path:polygon(0 0,calc(100% - 18px) 0,100% 100%,0 100%);
+}
+.folder-tab .cnt{color:var(--orange);font-weight:500;letter-spacing:.1em}
+.folder-body{
+  background:var(--paper-2);border:1px solid var(--hairline-strong);border-top-width:2px;
+  border-top-color:var(--slate-deep);padding:clamp(1.25rem,3vw,2rem);
+}
+.folder.on-dark .folder-tab{background:var(--orange);color:#fff}
+.folder.on-dark .folder-tab .cnt{color:rgba(255,255,255,.72)}
+.folder.on-dark .folder-body{background:rgba(255,255,255,.045);border-color:var(--hairline-rev);border-top-color:var(--orange)}
+.folder.ghost .folder-tab{background:transparent;color:var(--ink-faint);border:1px dashed var(--hairline-strong);border-bottom:0;clip-path:none;padding:9px 18px}
+.folder.ghost .folder-body{background:transparent;border:1px dashed var(--hairline-strong);border-top-width:1px;border-top-color:var(--hairline-strong)}
+
+/* ============================================================
+   §02 — BOOKING CONTAINER DIAGRAM
+   ============================================================ */
+.model{display:grid;grid-template-columns:minmax(170px,210px) 56px 1fr;align-items:center;gap:0;margin-top:1rem}
+.model-in{display:flex;flex-direction:column;gap:14px}
+.feeder{
+  border:1px solid var(--hairline-rev);background:rgba(255,255,255,.05);
+  padding:13px 15px;
+}
+.feeder .k{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange)}
+.feeder .v{font-size:13.5px;line-height:1.4;color:rgba(255,255,255,.62);margin-top:4px}
+.model-link{position:relative;height:100%;min-height:120px}
+.model-link::before{
+  content:'';position:absolute;left:0;right:9px;top:50%;height:1px;
+  background:repeating-linear-gradient(90deg,var(--orange) 0 5px,transparent 5px 10px);
+}
+.model-link::after{
+  content:'';position:absolute;right:0;top:50%;transform:translateY(-50%);
+  border:5px solid transparent;border-left-color:var(--orange);
+}
+
+/* Split 4 + 3 rather than 7 across four columns. The spine records carry
+   cardinality and fields; the three below attach to everything. */
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;align-items:start}
+.chips.three{grid-template-columns:repeat(3,1fr)}
+.chips-split{display:flex;align-items:center;gap:14px;margin:22px 0 13px;
+  font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;
+  text-transform:uppercase;color:rgba(255,255,255,.45)}
+.chips-split::after{content:'';flex:1;height:1px;background:var(--hairline-rev)}
+.chip{
+  display:block;text-align:left;width:100%;
+  border:1px solid var(--hairline-rev);background:rgba(255,255,255,.05);
+  padding:14px 15px 32px;transition:all .25s var(--ease);position:relative;
+}
+.chip[aria-expanded="true"]{padding-bottom:15px}
+.chip:hover{background:rgba(238,118,35,.12);border-color:var(--orange)}
+.chip[aria-expanded="true"]{background:rgba(238,118,35,.14);border-color:var(--orange)}
+.chip-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+.chip-name{font-family:var(--f-label);font-weight:600;font-size:11.5px;letter-spacing:.15em;text-transform:uppercase;color:#fff}
+.chip-card{font-family:var(--f-label);font-size:10px;font-weight:500;letter-spacing:.08em;color:var(--orange);white-space:nowrap}
+.chip-note{font-size:13px;line-height:1.4;color:rgba(255,255,255,.58);margin-top:6px}
+.chip-fields{display:none;margin-top:11px;padding-top:11px;border-top:1px solid var(--hairline-rev)}
+.chip[aria-expanded="true"] .chip-fields{display:block}
+.chip-fields li{font-size:12.5px;line-height:1.55;color:rgba(255,255,255,.72);padding-left:13px;position:relative}
+.chip-fields li::before{content:'';position:absolute;left:0;top:.62em;width:5px;height:1px;background:var(--orange)}
+.chip-fields li b{color:#fff;font-weight:600}
+.chip-fields li.nest{padding-left:0}
+.chip-fields li.nest::before{display:none}
+.chip-nest{margin-top:9px;padding:9px 11px;background:rgba(0,0,0,.22);border-left:2px solid var(--orange)}
+.chip-nest .n{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--orange)}
+.chip-nest .d{font-size:12.5px;color:rgba(255,255,255,.62);margin-top:3px;line-height:1.45}
+.chip-more{
+  position:absolute;right:13px;bottom:12px;font-family:var(--f-label);font-size:9.5px;font-weight:500;
+  letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.35);
+}
+.chip[aria-expanded="true"] .chip-more{display:none}
+
+.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(255px,100%),1fr));gap:1px;background:var(--hairline-rev);margin-top:2.5rem;border:1px solid var(--hairline-rev)}
+.note{background:var(--slate-deep);padding:18px 20px}
+.note h4{color:var(--orange);margin-bottom:7px}
+.note p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.68)}
+
+/* ============================================================
+   §01 — QUOTES
+   ============================================================ */
+/* 2-up: four quotes divide evenly, and they get room to be read */
+.quotes{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(420px,100%),1fr));gap:1.75rem 2.5rem;margin-top:.5rem}
+.quote{border-left:3px solid var(--orange);padding:2px 0 2px 20px}
+.quote p{font-size:1.16rem;line-height:1.45;font-weight:500;letter-spacing:-.01em}
+.quote cite{display:block;margin-top:11px;font-family:var(--f-label);font-size:10.5px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);font-style:normal}
+.costwall{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:3rem}
+.cw{background:var(--paper);padding:22px 24px}
+.cw .n{font-family:var(--f-label);font-weight:600;font-size:clamp(1.9rem,3.6vw,2.5rem);line-height:1;letter-spacing:-.02em}
+.cw .n.hot{color:var(--orange-deep)}
+.cw .l{font-size:14px;line-height:1.45;color:var(--ink-soft);margin-top:9px}
+
+/* ============================================================
+   §03 — PIPELINE
+   ============================================================ */
+.pipe{display:grid;grid-template-columns:repeat(7,1fr);gap:9px;margin-top:1.5rem}
+.stage{
+  display:block;text-align:left;position:relative;padding:15px 13px 34px;
+  background:var(--paper);border:1px solid var(--hairline-strong);
+  transition:all .25s var(--ease);
+}
+.stage::after{
+  content:'';position:absolute;right:-9px;top:34px;width:9px;height:1px;background:var(--hairline-strong);z-index:2
+}
+.stage:last-child::after{display:none}
+.stage:hover{border-color:var(--orange);transform:translateY(-2px)}
+.stage[aria-expanded="true"]{background:var(--orange-wash);border-color:var(--orange);border-width:1.5px}
+.stage .sn{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.12em;color:var(--ink-faint)}
+.stage .st{font-family:var(--f-label);font-weight:600;font-size:12.5px;letter-spacing:.11em;text-transform:uppercase;margin-top:9px;line-height:1.25}
+.stage .sd{font-size:12.5px;line-height:1.4;color:var(--ink-soft);margin-top:7px}
+.stage.done{background:var(--slate-deep);border-color:var(--slate-deep)}
+.stage.done .st{color:#fff}
+.stage.done .sn,.stage.done .sd{color:rgba(255,255,255,.6)}
+.stage.done[aria-expanded="true"]{background:var(--slate-deep)}
+.stage .exp{position:absolute;left:13px;bottom:11px;font-family:var(--f-label);font-size:9px;font-weight:500;letter-spacing:.11em;text-transform:uppercase;color:var(--orange-deep)}
+.stage.done .exp{color:var(--orange)}
+.stage[aria-expanded="true"] .exp{color:var(--ink-faint)}
+
+.spec{display:none;border:1.5px solid var(--orange);border-top:0;background:var(--orange-wash);padding:22px clamp(1rem,2.5vw,1.75rem)}
+.spec.open{display:block}
+.spec-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:1.4rem}
+.spec-grid h4{color:var(--orange-press);margin-bottom:6px}
+.spec-grid p{font-size:14px;line-height:1.5;color:var(--ink-soft)}
+.spec-grid p b{color:var(--ink);font-weight:700}
+.spec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:1.2rem;padding-bottom:.9rem;border-bottom:1px solid var(--orange-line)}
+.spec-head .t{font-family:var(--f-title);font-weight:600;font-size:1.5rem;letter-spacing:.07em;text-transform:uppercase}
+.spec-head .s{font-family:var(--f-label);font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+
+.branch{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(250px,100%),1fr));gap:1.25rem;margin-top:1.75rem}
+.bx{border:1px dashed var(--hairline-strong);padding:16px 18px;background:var(--paper)}
+.bx.dead{border-color:#d9a2a2;background:#fdf4f4}
+.bx h4{margin-bottom:6px}
+.bx.dead h4{color:#b04141}
+.bx p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+.p2lane{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:9px;margin-top:1rem}
+.p2step{border:1px dashed var(--hairline-strong);padding:11px 13px;background:rgba(0,0,0,.015)}
+.p2step .n{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft)}
+.p2step .d{font-size:12.5px;line-height:1.4;color:var(--ink-faint);margin-top:5px}
+
+/* ============================================================
+   §04 — SWIMLANE
+   ============================================================ */
+.lane-key{display:flex;flex-wrap:wrap;gap:.6rem 1.4rem;margin-bottom:1.5rem}
+.lk{display:flex;align-items:center;gap:8px;font-family:var(--f-label);font-size:10.5px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+.lk i{width:11px;height:11px;flex:none;border:1.5px solid}
+.lk.cu i{border-color:var(--slate);background:var(--paper-3)}
+.lk.sy i{border-color:var(--ink);background:#e6e4e1}
+.lk.la i{border-color:var(--orange);background:transparent}
+.lk.judge i{border-color:var(--orange);background:var(--orange)}
+.lk.st i{border-color:var(--ink-faint);background:transparent;border-style:dashed}
+.lk.judge{color:var(--orange-press)}
+
+/* No overflow:hidden here. It would make .swim the scroll container for the
+   sticky header, which never scrolls — so the header would ride out of the
+   box and clip instead of pinning under the nav. */
+.swim{border:1px solid var(--hairline);border-bottom:0}
+.swim-head{display:grid;grid-template-columns:44px repeat(4,1fr);position:sticky;top:64px;z-index:20;
+  background:var(--paper-3);border-bottom:1px solid var(--hairline-strong);
+  box-shadow:0 6px 14px -10px rgba(26,26,28,.35)}
+.swim-head div{padding:11px 12px;font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);border-left:1px solid var(--hairline)}
+.swim-head div:first-child{border-left:0}
+.swim-row{display:grid;grid-template-columns:44px repeat(4,1fr);border-bottom:1px solid var(--hairline);min-height:46px}
+.swim-row:nth-child(even){background:rgba(0,0,0,.015)}
+.swim-n{padding:12px 8px;font-family:var(--f-label);font-size:10.5px;font-weight:500;color:var(--ink-faint);border-right:1px solid var(--hairline);text-align:center}
+.swim-cell{padding:8px;border-left:1px solid var(--hairline);display:flex;align-items:center}
+.swim-cell:first-of-type{border-left:0}
+/* Only ONE treatment is filled orange: the three moments that need
+   Lauren's judgment. Her routine actions carry an orange rule but no
+   fill, so the three genuinely pop instead of competing with six others. */
+.act{font-size:13px;line-height:1.35;padding:7px 11px;width:100%;border-left:3px solid var(--slate);background:var(--paper-3)}
+.act.sy{border-left-color:var(--ink);background:#e6e4e1}
+.act.la{border-left-color:var(--orange);background:transparent;box-shadow:inset 0 0 0 1px var(--hairline)}
+.act.st{border-left:3px solid var(--ink-faint);background:transparent;box-shadow:inset 0 0 0 1px var(--hairline);border-top:1px dashed var(--hairline-strong);border-right:1px dashed var(--hairline-strong);border-bottom:1px dashed var(--hairline-strong)}
+.act.judge{background:var(--orange);color:#fff;border-left-color:var(--orange-press);font-weight:600;box-shadow:none}
+.swim-arrow{align-self:center;color:var(--ink-soft);font-weight:600;font-size:11.5px;padding:0 2px;flex:none;white-space:nowrap}
+.act.judge .swim-arrow{color:rgba(255,255,255,.85)}
+.swim-m{display:none}
+
+.judgebox{margin-top:2.5rem;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(275px,100%),1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.jb{background:var(--paper);padding:20px 22px}
+.jb.hot{background:var(--orange-wash);border-left:3px solid var(--orange)}
+.jb h4{margin-bottom:8px}
+.jb.hot h4{color:var(--orange-press)}
+.jb li{font-size:14px;line-height:1.6;padding-left:16px;position:relative;color:var(--ink-soft)}
+.jb li::before{content:'';position:absolute;left:0;top:.68em;width:7px;height:1px;background:var(--ink-faint)}
+.jb.hot li::before{background:var(--orange)}
+
+/* ============================================================
+   §05 — REPORTS
+   ============================================================ */
+/* 330px min -> 3 cols at full width. Six cards divide evenly by 3, 2 and 1,
+   so no orphan cells show the container background at any breakpoint. */
+.reports{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(330px,100%),1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:.5rem}
+.rep{background:var(--paper);padding:22px 24px 24px;transition:background .25s var(--ease)}
+.rep:hover{background:var(--orange-wash)}
+.rep .cad{font-family:var(--f-label);font-weight:600;font-size:9.5px;letter-spacing:.18em;text-transform:uppercase;color:var(--orange-deep)}
+.rep h3{margin-top:9px;font-size:1.12rem}
+.rep p{font-size:14px;line-height:1.5;color:var(--ink-soft);margin-top:8px}
+.rep .src{font-family:var(--f-label);font-size:11px;font-weight:500;letter-spacing:.05em;color:var(--ink-faint);margin-top:12px;padding-top:10px;border-top:1px solid var(--hairline)}
+.rep .fmt{display:inline-block;font-family:var(--f-label);font-weight:600;font-size:9px;letter-spacing:.15em;text-transform:uppercase;padding:4px 9px;border:1px solid var(--hairline-strong);color:var(--ink-soft);margin-bottom:12px}
+.rep .fmt.chart{background:var(--orange-wash);border-color:var(--orange-line);color:var(--orange-press)}
+.rep .fmt.list{background:var(--paper-2)}
+.rep .need-you{font-size:12.5px;line-height:1.45;color:var(--orange-press);margin-top:10px;padding-top:9px;border-top:1px dashed var(--orange-line)}
+
+/* ============================================================
+   §06 — PLATFORM
+   ============================================================ */
+.verdict{display:grid;grid-template-columns:auto 1fr;gap:clamp(1.5rem,3vw,2.75rem);align-items:center;border:1px solid var(--hairline-strong);border-left:4px solid var(--orange);padding:clamp(1.4rem,3vw,2rem);background:var(--paper);margin-bottom:2.5rem}
+.verdict .big{font-family:var(--f-title);font-weight:700;font-size:clamp(2rem,4.5vw,2.9rem);letter-spacing:.05em;text-transform:uppercase;line-height:1;white-space:nowrap}
+.verdict p{font-size:15px;line-height:1.55;color:var(--ink-soft)}
+.score{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline)}
+.sc{background:var(--paper);padding:18px 20px}
+.sc .n{font-family:var(--f-label);font-weight:600;font-size:2.1rem;line-height:1;letter-spacing:-.02em}
+.sc.ok .n{color:#3f7d4e}.sc.warn .n{color:var(--orange-deep)}.sc.gap .n{color:var(--slate)}
+.sc .l{font-size:13.5px;line-height:1.45;color:var(--ink-soft);margin-top:8px}
+.sc .l b{display:block;font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);margin-bottom:4px}
+
+.tradeoffs{margin-top:2.5rem}
+.to{border:1px solid var(--hairline);border-left:3px solid var(--orange);background:var(--orange-wash);padding:20px 24px;margin-bottom:12px}
+.to h3{font-size:1.08rem}
+.to p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:7px}
+.to.plain{border-left-color:var(--hairline-strong);background:var(--paper)}
+
+.alts{width:100%;border-collapse:collapse;margin-top:1.25rem;font-size:14.5px}
+.alts th{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-faint);text-align:left;padding:0 14px 10px 0;border-bottom:1px solid var(--hairline-strong)}
+.alts td{padding:14px 14px 14px 0;border-bottom:1px solid var(--hairline);vertical-align:top;line-height:1.5;color:var(--ink-soft)}
+.alts td:first-child{font-family:var(--f-label);font-weight:600;font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink);white-space:nowrap}
+.alts td:nth-child(2){font-family:var(--f-label);font-size:11px;font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--ink-faint);white-space:nowrap}
+.alts tr.pick td{background:var(--orange-wash)}
+.alts tr.pick td:nth-child(2){color:var(--orange-press)}
+
+/* ============================================================
+   §07 — PHASES
+   ============================================================ */
+.phases{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.25rem;margin-top:.5rem;align-items:start}
+.ph{border:1px solid var(--hairline-strong);background:var(--paper);padding:0}
+.ph-h{padding:18px 22px;border-bottom:1px solid var(--hairline)}
+.ph-h .p{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-faint)}
+.ph-h h3{margin-top:7px}
+.ph-h .when{font-family:var(--f-label);font-size:11.5px;font-weight:500;letter-spacing:.06em;color:var(--ink-soft);margin-top:5px}
+.ph-b{padding:18px 22px 22px}
+.ph-b li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:15px;position:relative;margin-bottom:8px}
+.ph-b li::before{content:'';position:absolute;left:0;top:.65em;width:7px;height:1px;background:var(--ink-faint)}
+.ph-why{font-size:13px;line-height:1.5;color:var(--ink-faint);margin-top:16px;padding-top:14px;border-top:1px solid var(--hairline);font-style:italic}
+.ph.now{border-color:var(--orange);border-width:1.5px;transform:translateY(-10px)}
+.ph.now .ph-h{background:var(--orange);border-bottom-color:var(--orange)}
+.ph.now .ph-h .p{color:rgba(255,255,255,.72)}
+.ph.now .ph-h h3,.ph.now .ph-h .when{color:#fff}
+.ph.now .ph-b li::before{background:var(--orange)}
+
+/* ============================================================
+   DELIVERY — build / prove / roll out.
+   The pilot sits INSIDE the engagement, not after it, and each
+   payment attaches to something the client can watch happen.
+   ============================================================ */
+.stages{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:1.5rem;margin-top:.5rem;align-items:stretch}
+.stg{display:flex;flex-direction:column;border:1px solid var(--hairline-strong);background:var(--paper);position:relative}
+.stg::before{content:'';position:absolute;inset:0 0 auto 0;height:3px;background:var(--hairline-strong)}
+.stg.on::before{background:var(--orange)}
+.stg-h{padding:24px 26px 18px;border-bottom:1px solid var(--hairline)}
+.stg-n{display:flex;align-items:baseline;gap:12px}
+.stg-n .num{font-family:var(--f-title);font-weight:700;font-size:2.6rem;line-height:.85;letter-spacing:.02em;color:var(--orange)}
+.stg-n .wk{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-faint)}
+.stg-h h3{font-family:var(--f-title);font-weight:600;font-size:1.75rem;letter-spacing:.07em;text-transform:uppercase;margin-top:11px;line-height:1}
+.stg-h .say{font-size:14.5px;line-height:1.5;color:var(--ink-soft);margin-top:10px}
+.stg-b{padding:20px 26px;flex:1}
+.stg-b li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:16px;position:relative;margin-bottom:9px}
+.stg-b li::before{content:'';position:absolute;left:0;top:.65em;width:8px;height:1px;background:var(--orange)}
+.stg-out{margin:0 26px 20px;padding:15px 17px;background:var(--paper-2);border-left:3px solid var(--slate)}
+.stg-out .k{font-family:var(--f-label);font-weight:600;font-size:9.5px;letter-spacing:.17em;text-transform:uppercase;color:var(--ink-faint)}
+.stg-out .v{font-size:14px;line-height:1.5;margin-top:6px;font-weight:600}
+.stg-pay{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;
+  padding:18px 26px;min-height:74px;background:var(--slate-deep);color:#fff;margin-top:auto}
+.stg-pay .amt{font-family:var(--f-title);font-weight:700;font-size:1.8rem;letter-spacing:.03em;color:var(--orange);line-height:1}
+.stg-pay .when{font-family:var(--f-label);font-weight:500;font-size:11px;letter-spacing:.09em;text-transform:uppercase;color:rgba(255,255,255,.7);text-align:right;line-height:1.4}
+.why-staged{margin-top:2.25rem;border:1px solid var(--hairline-strong);border-left:3px solid var(--orange);background:var(--orange-wash);padding:22px 26px}
+.why-staged h3{font-size:1.1rem}
+.why-staged p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:9px;max-width:78ch}
+.accept{margin-top:1.25rem;border:1px solid var(--hairline);padding:22px 26px;background:var(--paper)}
+.accept h4{margin-bottom:11px}
+.accept li{font-size:14px;line-height:1.5;color:var(--ink-soft);padding-left:22px;position:relative;margin-bottom:7px}
+.accept li::before{content:'✓';position:absolute;left:0;top:0;font-size:12px;color:var(--orange);font-weight:700}
+.accept .note{font-size:13.5px;line-height:1.55;color:var(--ink-faint);margin-top:14px;padding-top:12px;border-top:1px solid var(--hairline)}
+
+/* ============================================================
+   §08 — WORKSTREAMS
+   ============================================================ */
+.ws-list{border-top:1px solid var(--hairline-strong);margin-top:.5rem}
+.ws{border-bottom:1px solid var(--hairline)}
+.ws-btn{display:grid;grid-template-columns:1fr 120px 76px 26px;align-items:center;gap:1rem;width:100%;text-align:left;padding:17px 4px;transition:background .2s var(--ease)}
+.ws-btn:hover{background:var(--orange-wash)}
+.ws-name{font-family:var(--f-body);font-weight:700;font-size:1.04rem;letter-spacing:-.01em}
+.ws-bar{height:5px;background:var(--paper-3);position:relative;overflow:hidden}
+.ws-bar i{position:absolute;inset:0 auto 0 0;width:0;background:var(--orange);transition:width 1s var(--ease)}
+.ws-hrs{font-family:var(--f-label);font-weight:500;font-size:12.5px;letter-spacing:.05em;color:var(--ink-soft);text-align:right;white-space:nowrap}
+.ws-tog{font-family:var(--f-label);font-size:18px;font-weight:500;color:var(--orange);text-align:center;line-height:1;transition:transform .25s var(--ease)}
+.ws[data-open="1"] .ws-tog{color:var(--orange);transform:rotate(45deg)}
+.ws-body{display:none;padding:0 4px 22px}
+.ws[data-open="1"] .ws-body{display:block}
+.ws-body table{width:100%;border-collapse:collapse;font-size:14px}
+.ws-body td{padding:9px 14px 9px 0;border-bottom:1px solid var(--hairline);line-height:1.5;color:var(--ink-soft);vertical-align:top}
+.ws-body td:last-child{text-align:right;white-space:nowrap;font-family:var(--f-label);font-weight:500;font-size:12.5px;color:var(--ink-faint);padding-right:0;width:62px}
+.ws-body tr:last-child td{border-bottom:0}
+.ws-total{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;gap:1rem;padding:22px 4px 0;border-top:2px solid var(--ink)}
+.ws-total .l{font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.2em;text-transform:uppercase}
+.ws-total .v{font-family:var(--f-title);font-weight:600;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:.05em;text-transform:uppercase}
+.after{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.25rem;margin-top:2.5rem}
+.af{border:1px solid var(--hairline);padding:20px 22px;background:var(--paper-2)}
+.af .h{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--orange-deep)}
+.af h3{margin-top:8px;font-size:1.06rem}
+.af p{font-size:14px;line-height:1.55;color:var(--ink-soft);margin-top:8px}
+
+/* ============================================================
+   §09 — TIMELINE
+   ============================================================ */
+.tl{position:relative;margin-top:.5rem;padding-left:26px}
+/* connector stops at the final dot rather than dangling past it */
+.tl::before{content:'';position:absolute;left:5px;top:22px;bottom:0;width:1px;background:var(--hairline-strong)}
+.ms.live{position:relative}
+.ms.live::after{content:'';position:absolute;left:-21px;top:34px;bottom:-40px;width:1px;background:var(--paper)}
+.ms{position:relative;display:grid;grid-template-columns:150px 1fr;gap:1.5rem;padding:15px 0;border-bottom:1px solid var(--hairline)}
+.ms::before{content:'';position:absolute;left:-24px;top:22px;width:9px;height:9px;background:var(--paper);border:1.5px solid var(--ink-faint);border-radius:50%}
+.ms .w{font-family:var(--f-label);font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);padding-top:2px}
+.ms .m{font-size:15px;line-height:1.5;color:var(--ink-soft)}
+.ms.key::before{background:var(--orange);border-color:var(--orange);width:13px;height:13px;left:-26px;top:20px}
+.ms.key .w,.ms.key .m{color:var(--ink);font-weight:600}
+.ms.live{border-bottom:0;padding-top:22px}
+.ms.live::before{background:var(--orange);border-color:var(--orange);width:17px;height:17px;left:-28px;top:34px}
+.ms.live .w{font-family:var(--f-title);font-size:1.35rem;letter-spacing:.06em;color:var(--orange-deep);font-weight:700}
+.ms.live .m{font-family:var(--f-title);font-size:clamp(1.35rem,3vw,1.85rem);letter-spacing:.06em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+
+/* ============================================================
+   §10 — INVESTMENT
+   ============================================================ */
+.inv{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline-rev);border:1px solid var(--hairline-rev)}
+.iv{display:grid;grid-template-columns:230px 190px 1fr;gap:1.5rem;align-items:baseline;background:var(--slate-deep);padding:22px 24px}
+.iv .k{font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.iv .a{font-family:var(--f-title);font-weight:700;font-size:clamp(1.6rem,3.2vw,2.1rem);letter-spacing:.03em;color:var(--orange);line-height:1;white-space:nowrap}
+.iv .a small{display:block;font-family:var(--f-label);font-size:11px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);margin-top:6px;white-space:normal}
+.iv .d{font-size:14px;line-height:1.55;color:rgba(255,255,255,.7)}
+.terms{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:1.75rem;margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--hairline-rev)}
+.tm h4{color:var(--orange)!important;margin-bottom:8px}
+.tm p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.7)}
+
+/* ============================================================
+   §11 — WHAT I NEED
+   ============================================================ */
+.need{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(285px,100%),1fr));gap:1.25rem;margin-top:.5rem}
+/* seven items never divide evenly; the last one runs full width so the
+   final row reads as deliberate rather than orphaned */
+.nd:last-child{grid-column:1/-1}
+.nd{border:1px solid var(--hairline-strong);padding:18px 20px;background:var(--paper)}
+.nd .t{font-weight:700;font-size:15.5px;line-height:1.35}
+.nd .s{font-size:13.5px;line-height:1.5;color:var(--ink-soft);margin-top:7px}
+.nd.gate{border-left:3px solid var(--orange);background:var(--orange-wash)}
+.qs{counter-reset:q;margin-top:1.25rem;column-gap:2.5rem}
+.qs li{counter-increment:q;position:relative;padding-left:34px;margin-bottom:14px;font-size:15px;line-height:1.5;break-inside:avoid}
+.qs li::before{content:counter(q,decimal-leading-zero);position:absolute;left:0;top:.1em;font-family:var(--f-label);font-weight:600;font-size:11px;letter-spacing:.08em;color:var(--orange-deep)}
+
+/* ============================================================
+   §12 — NEXT + FOOTER
+   ============================================================ */
+.next-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--hairline);border:1px solid var(--hairline);margin-top:2rem}
+.ng{background:var(--paper);padding:22px 24px}
+.ng .s{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--orange-deep)}
+.ng p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);margin-top:9px}
+/* ---------- the close ---------- */
+.close{background:var(--slate-deep);color:#fff;position:relative;overflow:hidden}
+.close-mark{position:absolute;left:-9%;top:50%;transform:translateY(-50%);width:min(560px,70vw);opacity:.05;pointer-events:none}
+.close .wrap{position:relative;z-index:1}
+.close-in{max-width:60ch;margin-left:auto}
+.close h2{color:#fff;margin-bottom:1.5rem}
+.close p{font-size:1.18rem;line-height:1.55;color:rgba(255,255,255,.78)}
+.close p+p{margin-top:1.1rem}
+.close p strong{color:#fff}
+.close .sig{margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid var(--hairline-rev)}
+.close .sig .n{font-family:var(--f-body);font-weight:700;font-size:1.05rem;color:#fff}
+.close .sig .e{font-family:var(--f-label);font-size:12.5px;letter-spacing:.06em;margin-top:5px}
+.close .sig .e a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.45)}
+footer{background:var(--slate-deep);color:rgba(255,255,255,.55);padding-block:3rem;font-size:13.5px;line-height:1.7;border-top:1px solid var(--hairline-rev)}
+footer .wrap{display:flex;flex-wrap:wrap;gap:1.5rem 3rem;justify-content:space-between;align-items:flex-start}
+footer strong{color:#fff;font-weight:600}
+footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.4)}
+
+/* ============================================================
+   UTILITIES
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(22px)}
+.reveal.in{opacity:1;transform:none;transition:opacity .8s var(--ease),transform .8s var(--ease)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal,.reveal.in{opacity:1;transform:none;transition:none}
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:1180px){ .rail{display:none} }
+@media (max-width:1024px){
+  .pipe{grid-template-columns:repeat(4,1fr)}
+  .stage::after{display:none}
+  .chips,.chips.three{grid-template-columns:repeat(2,1fr)}
+  .close-in{max-width:none;margin-left:0}
+  .model{grid-template-columns:1fr}
+  .model-in{flex-direction:row;flex-wrap:wrap}
+  .model-in .feeder{flex:1 1 200px}
+  .model-link{min-height:0;height:34px;margin:6px 0}
+  .model-link::before{left:50%;right:auto;top:0;bottom:9px;width:1px;height:auto;background:repeating-linear-gradient(180deg,var(--orange) 0 5px,transparent 5px 10px)}
+  .model-link::after{left:50%;right:auto;top:auto;bottom:0;transform:translateX(-50%);border-left-color:transparent;border-top-color:var(--orange)}
+}
+@media (max-width:860px){
+  body{font-size:16px}
+  .swim-head{display:none}
+  .swim-row{grid-template-columns:34px 1fr;min-height:0}
+  .swim-cell{border-left:0;padding:7px 8px}
+  .swim-cell:empty{display:none}
+  .swim-m{display:inline-block;font-family:var(--f-label);font-size:9px;font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-faint);margin-bottom:3px}
+  .act{width:100%}
+  .nav-brand span{display:none}
+}
+@media (min-width:820px){ .qs{column-count:2} }
+@media (max-width:860px){
+  .verdict{grid-template-columns:1fr;gap:1rem}
+  .verdict .big{white-space:normal}
+  .iv{grid-template-columns:1fr;gap:.5rem;padding:20px}
+  .iv .a{margin:4px 0 6px}
+  .iv .a small{display:inline;margin:0 0 0 10px}
+  .ws-btn{grid-template-columns:1fr 68px 22px;gap:.75rem}
+  .ws-bar{display:none}
+  .ph.now{transform:none}
+}
+@media (max-width:640px){
+  .pipe{grid-template-columns:repeat(2,1fr)}
+  .hero-meta{gap:0 1.5rem}
+  .shead{grid-template-columns:1fr}
+  .vlabel{writing-mode:horizontal-tb;transform:none;border-left:0;border-top:3px solid var(--orange);padding:9px 0 0;align-self:auto}
+  .ms{grid-template-columns:1fr;gap:.35rem}
+  .tl{padding-left:22px}
+  .chips,.chips.three{grid-template-columns:1fr}
+  .nd:last-child{grid-column:auto}
+  .alts,.alts tbody,.alts tr,.alts td{display:block;width:100%}
+  .alts thead{display:none}
+  .alts tr{padding:14px 0;border-bottom:1px solid var(--hairline)}
+  .alts td{border:0;padding:2px 0}
+  .alts td:nth-child(2){margin-bottom:6px}
+}
+
+
+/* ============================================================
+   ADDENDUM A — §02 ARCHITECTURE DIAGRAM
+   Same construction as the booking-container diagram: nodes in a
+   grid, connectors as pseudo-element gradients, arrowheads as CSS
+   border triangles. Nothing here is an image, so it stays sharp
+   in print and legible with styles stripped.
+   ============================================================ */
+.arch{display:grid;grid-template-columns:1fr 136px minmax(210px,1.05fr) 136px 1fr;align-items:stretch;margin-top:1rem}
+.arch-node{border:1px solid var(--hairline-rev);background:rgba(255,255,255,.05);padding:16px 17px 18px}
+.arch-node.core{border-color:var(--orange);background:rgba(238,118,35,.11)}
+.arch-cap{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+.arch-node.core .arch-cap{color:var(--orange)}
+.arch-node h3{font-size:1.06rem;color:#fff;margin-top:6px}
+.arch-items{margin-top:13px;padding-top:12px;border-top:1px solid var(--hairline-rev)}
+.arch-items li{font-size:13px;line-height:1.5;color:rgba(255,255,255,.66);padding-left:13px;position:relative}
+.arch-items li::before{content:'';position:absolute;left:0;top:.68em;width:5px;height:1px;background:var(--orange)}
+.arch-node.core .arch-items li{color:rgba(255,255,255,.82)}
+
+/* the connector column: two lanes, one per direction, so the
+   direction of truth is visible without reading a word */
+/* the label sits in its own band above the line — they collide otherwise,
+   and a dashed rule struck through 9px type is unreadable */
+.arch-flow{display:flex;flex-direction:column;justify-content:center;gap:34px;padding:0 6px}
+.lane{position:relative;height:58px}
+.lane::before{content:'';position:absolute;left:8px;right:8px;top:44px;height:1px}
+.lane::after{content:'';position:absolute;top:44px;transform:translateY(-50%);border:5px solid transparent}
+.lane.ltr::after{right:0;border-left-color:var(--orange)}
+.lane.rtl::after{left:0;border-right-color:var(--orange)}
+.lane.read::before{background:repeating-linear-gradient(90deg,var(--orange) 0 5px,transparent 5px 10px)}
+.lane.write::before{background:rgba(255,255,255,.5)}
+.lane.write.ltr::after{border-left-color:rgba(255,255,255,.72)}
+.lane.write.rtl::after{border-right-color:rgba(255,255,255,.72)}
+.lane .l{position:absolute;left:0;right:0;top:0;text-align:center;font-family:var(--f-label);font-weight:600;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.5);line-height:1.35}
+.lane.read .l{color:var(--orange)}
+
+/* the database hangs off the centre column on its own hairline */
+.arch-db{display:grid;grid-template-columns:1fr minmax(210px,1.05fr) 1fr}
+.arch-db-in{grid-column:2;position:relative;padding-top:34px}
+.arch-db-in::before{content:'';position:absolute;left:50%;top:0;height:34px;width:1px;background:var(--hairline-rev)}
+.arch-db-box{border:1px dashed var(--hairline-rev);background:rgba(255,255,255,.03);padding:12px 15px;text-align:center}
+.arch-db-box .k{font-family:var(--f-label);font-weight:600;font-size:10px;letter-spacing:.17em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.arch-db-box .d{font-size:12.5px;line-height:1.45;color:rgba(255,255,255,.6);margin-top:5px}
+
+/* ============================================================
+   ADDENDUM A — §03 THE SIX WORKSTREAMS
+   Reuses .stage / .spec wholesale. Only the grid and the
+   read/write tag are new.
+   ============================================================ */
+.flows{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:1.5rem}
+.flows .stage{padding-bottom:34px}
+.flows .stage::after{display:none}
+/* in normal flow, not absolute — a two-line .sd collides with it otherwise */
+.wtag{display:inline-block;margin-top:11px;font-family:var(--f-label);font-weight:600;font-size:8.5px;
+  letter-spacing:.14em;text-transform:uppercase;padding:3px 7px;border:1px solid var(--hairline-strong);color:var(--ink-faint)}
+.wtag.w{border-color:var(--orange-line);background:var(--orange-wash);color:var(--orange-press)}
+.flows .stage .exp{bottom:10px}
+
+/* ============================================================
+   ADDENDUM A — §09 THE NUMBERS
+   ============================================================ */
+.delta{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 20px;
+  border:1px solid var(--hairline-rev);border-left:3px solid var(--orange);
+  background:rgba(238,118,35,.10);padding:22px 26px;margin-bottom:2rem}
+.delta .was{font-family:var(--f-title);font-weight:600;font-size:1.9rem;letter-spacing:.03em;
+  color:rgba(255,255,255,.42);text-decoration:line-through;text-decoration-thickness:2px}
+.delta .arw{font-family:var(--f-label);font-size:1.05rem;color:rgba(255,255,255,.42)}
+.delta .now{font-family:var(--f-title);font-weight:700;font-size:clamp(2.3rem,5.5vw,3.2rem);letter-spacing:.03em;color:var(--orange);line-height:1}
+.delta .why{flex:1 1 100%;font-size:14.5px;line-height:1.55;color:rgba(255,255,255,.72);margin-top:4px;max-width:74ch}
+
+.mile{display:grid;grid-template-columns:1fr;gap:1px;background:var(--hairline-rev);border:1px solid var(--hairline-rev);margin-top:1.5rem}
+.mi{display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:baseline;background:var(--slate-deep);padding:15px 22px}
+.mi .k{font-family:var(--f-label);font-weight:600;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+.mi .w{font-size:14.5px;line-height:1.5;color:rgba(255,255,255,.74);margin-top:4px}
+.mi .a{font-family:var(--f-label);font-weight:600;font-size:1.2rem;color:#fff;font-variant-numeric:tabular-nums;white-space:nowrap}
+.mi.tot{background:rgba(238,118,35,.13)}
+.mi.tot .k{color:var(--orange)}
+.mi.tot .a{font-family:var(--f-title);font-weight:700;font-size:1.75rem;letter-spacing:.03em;color:var(--orange)}
+
+/* ============================================================
+   ADDENDUM A — RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  /* the whole diagram rotates 90 degrees, exactly as .model does */
+  .arch{grid-template-columns:1fr}
+  .arch-flow{flex-direction:row;gap:20px;padding:20px 0}
+  .lane{flex:1;height:78px}
+  /* the .ltr/.rtl selectors below have to be restated at full specificity:
+     the desktop .lane.ltr::after outranks a bare .lane::after and the
+     arrowheads stay pinned to the left and right edges otherwise */
+  .lane.read::before,.lane.write::before{left:50%;right:auto;top:32px;bottom:0;width:1px;height:auto}
+  .lane.read::before{background:repeating-linear-gradient(180deg,var(--orange) 0 5px,transparent 5px 10px)}
+  .lane.ltr::after,.lane.rtl::after{left:50%;right:auto;transform:translateX(-50%);
+    border-left-color:transparent;border-right-color:transparent}
+  .lane.ltr::after{top:auto;bottom:0;border-top-color:var(--orange)}
+  .lane.rtl::after{top:32px;bottom:auto;border-bottom-color:var(--orange)}
+  .lane.write.ltr::after{border-top-color:rgba(255,255,255,.72)}
+  .lane.write.rtl::after{border-bottom-color:rgba(255,255,255,.72)}
+  .lane .l{top:0;font-size:8.5px}
+  .arch-db{grid-template-columns:1fr}
+  .arch-db-in{grid-column:1}
+  .flows{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:640px){
+  .flows{grid-template-columns:1fr}
+  .mi{grid-template-columns:1fr;gap:.4rem}
+  .delta{padding:20px}
+}
+
+/* ============================================================
+   ADDENDUM A — PRINT
+   Same problem as the main document: Chrome trips breakpoints off
+   window size, so every desktop grid gets re-forced.
+   ============================================================ */
+@media print{
+  .arch{grid-template-columns:1fr 136px minmax(210px,1.05fr) 136px 1fr!important}
+  .arch-flow{flex-direction:column!important;padding:0 6px!important;gap:34px!important}
+  .lane{height:58px!important;flex:none!important}
+  .lane::before{left:8px!important;right:8px!important;top:44px!important;bottom:auto!important;width:auto!important;height:1px!important}
+  .lane.read::before{background:repeating-linear-gradient(90deg,var(--orange) 0 5px,transparent 5px 10px)!important}
+  .lane::after{top:44px!important;bottom:auto!important;transform:translateY(-50%)!important;border-top-color:transparent!important;border-bottom-color:transparent!important}
+  .lane.ltr::after{right:0!important;left:auto!important;border-left-color:var(--orange)!important}
+  .lane.rtl::after{left:0!important;right:auto!important;border-right-color:var(--orange)!important}
+  .lane.write.ltr::after{border-left-color:rgba(255,255,255,.72)!important}
+  .lane.write.rtl::after{border-right-color:rgba(255,255,255,.72)!important}
+  .lane .l{top:0!important;font-size:9px!important}
+  .arch-db{grid-template-columns:1fr minmax(210px,1.05fr) 1fr!important}
+  .arch-db-in{grid-column:2!important}
+  .flows{grid-template-columns:repeat(3,1fr)!important}
+  .mi{grid-template-columns:1fr auto!important}
+  .arch-node,.arch-db-box,.mi,.delta,.stg{break-inside:avoid}
+}
+.nav-links a.back{color:var(--orange-deep);padding-right:14px;margin-right:4px;border-right:1px solid var(--hairline);letter-spacing:.09em}
+.nav-links a.back:hover{color:var(--orange-press)}
+@media (max-width:640px){ .nav-links a.back span{display:none} }
+/* ============================================================
+   PRINT — this proposal will be printed to PDF and forwarded.
+   Everything hidden behind a click must be open on paper.
+   ============================================================ */
+@media print{
+  @page{size:13in 18in;margin:.5in}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important;
+    animation-duration:0s!important;transition-duration:0s!important}
+  html{scroll-behavior:auto}
+  body{font-size:12pt;background:#fff}
+  .nav,.rail,.chip-more,.stage .exp,.ws-tog{display:none!important}
+  .reveal,.reveal.in{opacity:1!important;transform:none!important}
+  section{padding-block:2.5rem;break-inside:auto}
+  .shead,.folder,.verdict,.quote,.rep,.to,.ph,.af,.jb,.iv,.nd,.ng,.note,.sc,.cw,.ms{break-inside:avoid}
+  h2,h3{break-after:avoid}
+
+  /* force every progressive-disclosure panel open */
+  .chip-fields{display:block!important}
+  .chip[aria-expanded]{background:rgba(238,118,35,.10)!important}
+  .spec{display:block!important;margin-bottom:10px;break-inside:avoid}
+  .ws-body{display:block!important}
+  .ws-bar i{width:var(--pw,0)!important}
+
+  /* Chrome's print engine trips responsive breakpoints off window size,
+     not page size — every desktop grid has to be re-forced here */
+  .model{grid-template-columns:minmax(170px,210px) 56px 1fr!important}
+  .pipe{grid-template-columns:repeat(7,1fr)!important}
+  .chips{grid-template-columns:repeat(4,1fr)!important}
+  .chips.three{grid-template-columns:repeat(3,1fr)!important}
+  .quotes{grid-template-columns:repeat(2,1fr)!important}
+  .nd:last-child{grid-column:1/-1!important}
+  .close,.close *{color:#fff!important}
+  .close .sig .e a{color:var(--orange)!important}
+  .swim-head,.swim-row{grid-template-columns:44px repeat(4,1fr)!important}
+  .swim-head{display:grid!important;position:static!important}
+  .swim-m{display:none!important}
+  .swim-cell{border-left:1px solid var(--hairline)!important;padding:8px!important}
+  .swim-cell:empty{display:block!important}
+  .qs{column-count:2!important}
+  .ws-btn{grid-template-columns:1fr 120px 76px 26px!important}
+  .ws-bar{display:block!important}
+  .ms{grid-template-columns:150px 1fr!important}
+  .iv{grid-template-columns:230px 190px 1fr!important}
+  .verdict{grid-template-columns:auto 1fr!important}
+  .alts,.alts tbody,.alts tr{display:table!important;width:100%}
+  .alts tr{display:table-row!important}
+  .alts td{display:table-cell!important;border-bottom:1px solid var(--hairline)!important;padding:12px 12px 12px 0!important}
+  .alts thead{display:table-header-group!important}
+  .hero,.band,footer{background:var(--slate-deep)!important;color:#fff!important}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ NAV ============ -->
+<nav class="nav">
+  <div class="nav-in">
+    <div class="nav-brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><g fill="none" stroke="#ee7623" stroke-width="2.4" stroke-linecap="round"><path d="M16 5a11 11 0 0 1 0 22"/><path d="M16 9.5a6.5 6.5 0 0 1 0 13"/><path d="M16 14a2 2 0 0 1 0 4"/><path d="M11 6.6a11 11 0 0 0 0 18.8"/></g></svg>
+      <span>Imprint &nbsp;·&nbsp; Addendum A</span>
+    </div>
+    <div class="nav-links">
+      <a href="../sales-system-proposal/" class="back">&larr;<span>&nbsp; Main proposal</span></a>
+      <a href="#why">The gap</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#flows">What it does</a>
+      <a href="#onboarding">Onboarding</a>
+      <a href="#trust">The money</a>
+      <a href="#reliability">Reliability</a>
+      <a href="#boundary">Scope</a>
+      <a href="#plan">Plan</a>
+      <a href="#investment">Investment</a>
+      <a href="#next">Next</a>
+    </div>
+  </div>
+</nav>
+
+<div class="rail" aria-hidden="true">
+  <a href="#top" data-t="Top"></a>
+  <a href="#why" data-t="The gap"></a>
+  <a href="#architecture" data-t="Architecture"></a>
+  <a href="#flows" data-t="What it does"></a>
+  <a href="#onboarding" data-t="Onboarding"></a>
+  <a href="#trust" data-t="The money"></a>
+  <a href="#reliability" data-t="Reliability"></a>
+  <a href="#boundary" data-t="Scope"></a>
+  <a href="#plan" data-t="Plan"></a>
+  <a href="#investment" data-t="Investment"></a>
+  <a href="#next" data-t="Next"></a>
+</div>
+
+<!-- ============ 00 HERO ============ -->
+<header class="hero" id="top">
+  <svg class="hero-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="#ee7623" stroke-width="7" stroke-linecap="round">
+      <circle cx="200" cy="200" r="188"/><circle cx="200" cy="200" r="152"/>
+      <circle cx="200" cy="200" r="116"/><circle cx="200" cy="200" r="80"/>
+      <circle cx="200" cy="200" r="44"/><circle cx="200" cy="200" r="14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <p class="eyebrow rev">Imprint Hospitality &nbsp;·&nbsp; Addendum A &nbsp;·&nbsp; September 2026</p>
+    <h1>The layer that keeps your sales system and your property system telling the <span class="hl">same story</span>.</h1>
+    <p class="hero-sub">Room blocks created without anyone retyping them. Pickup you can watch without opening another tab. Commissions calculated from the revenue StayNTouch already reports, at the rate you set for each property. This document is what that is, how it gets built, and what it costs.</p>
+    <dl class="hero-meta">
+      <div><dt>Prepared for</dt><dd>Lauren Ripko</dd></div>
+      <div><dt>Prepared by</dt><dd>Shayne Champlin</dd></div>
+      <div><dt>Scope</dt><dd>Wave two — the StayNTouch integration</dd></div>
+      <div><dt>Integration</dt><dd class="accent">$5,500</dd></div>
+    </dl>
+  </div>
+</header>
+
+<!-- ============ 01 THE GAP ============ -->
+<section id="why">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The gap today</div>
+      <div class="shead-body">
+        <p class="eyebrow">Where the time goes</p>
+        <h2>The same room block, typed three times</h2>
+        <p class="lede">The system in the main proposal handles the selling. Leads, proposals, contracts, signatures, payments, the portal, the dashboards. What it cannot do on its own is stay in agreement with the system your properties actually run on.</p>
+      </div>
+    </div>
+
+    <div class="prose reveal">
+      <p>Right now a person fills that gap, and that person is usually you. The same room block gets typed into the CRM, then into the contract, then into StayNTouch. Pickup gets checked by opening StayNTouch and looking. Commissions get rebuilt every month in a spreadsheet, from a report pulled property by property, at a different rate for each one.</p>
+      <p>None of that is broken, exactly. It just costs a person several hours a month per property and it produces a number nobody can independently check.</p>
+    </div>
+
+    <div class="costwall reveal">
+      <div class="cw"><div class="n hot">3&times;</div><div class="l">The number of times one room block gets typed today. CRM, then contract, then StayNTouch</div></div>
+      <div class="cw"><div class="n">10</div><div class="l">Properties whose pickup is checked by opening a second system and reading it off the screen</div></div>
+      <div class="cw"><div class="n">1</div><div class="l">Spreadsheet rebuilt every month to produce the commission figure, at a different rate per property</div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to">
+        <h3>What this layer is, in one sentence</h3>
+        <p>It pulls each property's data out of StayNTouch, does the calculations in one place, and writes the results into HighLevel. Blocks, pickup, room revenue and commissions all come off that one path. Sitting on top of it is a write path running the other way, so a signed contract creates its block in StayNTouch without anyone retyping it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 02 ARCHITECTURE ============ -->
+<section id="architecture" class="band">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The shape of it</div>
+      <div class="shead-body">
+        <p class="eyebrow rev">Diagram four</p>
+        <h2>One layer, two systems</h2>
+        <p class="lede">A standalone service that sits between HighLevel and StayNTouch. It is the only thing that talks to both, and it is the only thing that has to be trusted with the numbers.</p>
+      </div>
+    </div>
+
+    <div class="reveal">
+      <div class="arch">
+        <div class="arch-node">
+          <div class="arch-cap">Where you work</div>
+          <h3>HighLevel</h3>
+          <ul class="arch-items">
+            <li>Pipeline and bookings</li>
+            <li>Proposals and contracts</li>
+            <li>Room block record</li>
+            <li>Property record</li>
+            <li>Dashboards and reporting</li>
+          </ul>
+        </div>
+
+        <div class="arch-flow">
+          <div class="lane read rtl"><span class="l">Calculated results in</span></div>
+          <div class="lane write ltr"><span class="l">Signed contract out</span></div>
+        </div>
+
+        <div class="arch-node core">
+          <div class="arch-cap">Built and run by me</div>
+          <h3>The integration layer</h3>
+          <ul class="arch-items">
+            <li>Property registry</li>
+            <li>Sync engine</li>
+            <li>Duplicate guard</li>
+            <li>Calculation engine</li>
+            <li>Audit log and alerting</li>
+          </ul>
+        </div>
+
+        <div class="arch-flow">
+          <div class="lane read rtl"><span class="l">Blocks &middot; pickup &middot; revenue</span></div>
+          <div class="lane write ltr"><span class="l">The new block</span></div>
+        </div>
+
+        <div class="arch-node">
+          <div class="arch-cap">Source of truth</div>
+          <h3>StayNTouch</h3>
+          <ul class="arch-items">
+            <li>Property setup and rates</li>
+            <li>Group blocks</li>
+            <li>Reservations and pickup</li>
+            <li>Revenue by charge type</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="arch-db">
+        <div class="arch-db-in">
+          <div class="arch-db-box">
+            <div class="k">One database, daily backups</div>
+            <div class="d">Every property's configuration, sync state, calculated figures and audit trail. Adding a property adds rows, not infrastructure.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:3rem;max-width:74ch">
+      <div class="quote">
+        <p>HighLevel is where the work gets done and displayed. StayNTouch stays the source of truth for rooms and revenue. One layer talks to both, and nothing else has to.</p>
+        <cite>The design principle this whole thing follows</cite>
+      </div>
+    </div>
+
+    <div class="notes reveal">
+      <div class="note">
+        <h4>Runtime</h4>
+        <p>A service on managed infrastructure that scales with load. Nightly runs and month-end reconciliation hit every property at once and then it sits idle, which is exactly the shape this should be. No servers for anyone to patch.</p>
+      </div>
+      <div class="note">
+        <h4>Database</h4>
+        <p>One managed Postgres holding configuration, sync state, calculated figures and the audit trail, with automated daily backups and a restore procedure tested during the build rather than assumed.</p>
+      </div>
+      <div class="note">
+        <h4>Why a service, not a workflow tool</h4>
+        <p>Two things here carry real consequences: creating live inventory holds, and producing a number that gets billed. A service lets the commission logic sit under an automated test that runs a known month and asserts the answer to the cent. That is the difference between saying the math is right and showing it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 03 THE SIX FLOWS ============ -->
+<section id="flows">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">What it does</div>
+      <div class="shead-body">
+        <p class="eyebrow">Diagram five</p>
+        <h2>Six jobs, and any one of them can wait</h2>
+        <p class="lede">Each is built as its own piece, so it can be sequenced, deferred or dropped without disturbing the others. The first three only read. The two marked as writing are the ones that reach into a live hotel, and they are built accordingly. Click any of them.</p>
+      </div>
+    </div>
+
+    <div class="flows reveal">
+      <button class="stage" data-spec="sA" aria-expanded="false">
+        <div class="sn">01</div>
+        <div class="st">Property setup sync</div>
+        <div class="sd">Room types, rates, taxes and policies, pulled out of StayNTouch</div>
+        <span class="wtag">Reads only</span>
+        <span class="exp">Detail +</span>
+      </button>
+      <button class="stage" data-spec="sD" aria-expanded="false">
+        <div class="sn">02</div>
+        <div class="st">Pickup</div>
+        <div class="sd">Contracted, picked up and remaining, per room type per night</div>
+        <span class="wtag">Reads only</span>
+        <span class="exp">Detail +</span>
+      </button>
+      <button class="stage" data-spec="sE" aria-expanded="false">
+        <div class="sn">03</div>
+        <div class="st">Revenue &amp; commissions</div>
+        <div class="sd">Room revenue separated from tax and F&amp;B, then your rate applied</div>
+        <span class="wtag">Reads and calculates</span>
+        <span class="exp">Detail +</span>
+      </button>
+      <button class="stage" data-spec="sC" aria-expanded="false">
+        <div class="sn">04</div>
+        <div class="st">Block creation</div>
+        <div class="sd">A fully signed contract creates the block in StayNTouch</div>
+        <span class="wtag w">Writes to StayNTouch</span>
+        <span class="exp">Detail +</span>
+      </button>
+      <button class="stage" data-spec="sF" aria-expanded="false">
+        <div class="sn">05</div>
+        <div class="st">Amendments &amp; drift</div>
+        <div class="sd">Changes push through, and direct edits get caught rather than lost</div>
+        <span class="wtag w">Writes to StayNTouch</span>
+        <span class="exp">Detail +</span>
+      </button>
+      <button class="stage" data-spec="sB" aria-expanded="false">
+        <div class="sn">06</div>
+        <div class="st">Availability lookup</div>
+        <div class="sd">Check the rooms are actually there before the quote goes out</div>
+        <span class="wtag">Reads only</span>
+        <span class="exp">Detail +</span>
+      </button>
+    </div>
+
+    <div class="spec" id="sA">
+      <div class="spec-head"><span class="t">Property setup sync</span><span class="s">Reads only &nbsp;·&nbsp; re-runnable any time</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>Onboarding a property, and then any time that property changes its setup. You can re-run it on demand, so a rate change at the property never means a rebuild here.</p></div>
+        <div><h4>What moves, and which way</h4><p>Room types, rate structures including seasonal and day-of-week variation, tax rules, deposit and cancellation policies, and hold statuses. <b>StayNTouch into HighLevel, one direction only.</b></p></div>
+        <div><h4>What you see in HighLevel</h4><p>Every room type and rate sitting on the property record as a ready-to-use value, so a proposal builds from real numbers and nobody types a room type by hand again.</p></div>
+        <div><h4>Done when</h4><p>A property is onboarded without anyone typing a room type, and what shows in HighLevel matches StayNTouch exactly.</p></div>
+      </div>
+    </div>
+
+    <div class="spec" id="sD">
+      <div class="spec-head"><span class="t">Pickup</span><span class="s">Reads only &nbsp;·&nbsp; on-demand button plus a nightly run</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>A button on the room block record when you want it now, and a scheduled run every night so the number is never more than a day old.</p></div>
+        <div><h4>What moves, and which way</h4><p>StayNTouch reports contracted, picked up and remaining directly, per room type per night. This reads that and brings back the <b>reservation-level detail too</b>: who booked, which room type, which dates, what status.</p></div>
+        <div><h4>What you see in HighLevel</h4><p>Picked up per room type, the total, what is remaining, the percentage, and when it last refreshed. This is the piece TripleSeat cannot match, because it only ever receives a room count back and you get the reservations behind it.</p></div>
+        <div><h4>Done when</h4><p>Pickup in HighLevel matches StayNTouch for a block with real reservations against it.</p></div>
+      </div>
+    </div>
+
+    <div class="spec" id="sE">
+      <div class="spec-head"><span class="t">Actualized revenue &amp; commissions</span><span class="s">Reads and calculates &nbsp;·&nbsp; monthly, plus on demand</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>A monthly run at close, plus on demand whenever you want to look early. This is the flow that replaces the spreadsheet.</p></div>
+        <div><h4>What moves, and which way</h4><p>StayNTouch reports revenue broken out by charge type, so room revenue separates cleanly from tax, food and beverage, and fees. Commission is owed on room revenue only, which is what makes that separation the entire point.</p></div>
+        <div><h4>What you see in HighLevel</h4><p>Room revenue summed per block, rolled up per property per month, with that property's rate applied. <b>Rates are stored as editable values with effective dates</b>, because they differ per property and they change.</p></div>
+        <div><h4>Done when</h4><p>The agreed method, applied to a month you have already billed, matches your figure to the cent.</p></div>
+      </div>
+    </div>
+
+    <div class="spec" id="sC">
+      <div class="spec-head"><span class="t">Block creation on signature</span><span class="s">Writes to StayNTouch &nbsp;·&nbsp; the redundancy that costs the most time</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>A contract reaching fully signed in HighLevel. Nothing before that point touches your inventory.</p></div>
+        <div><h4>What moves, and which way</h4><p>The client account, the block, room types and counts per night, rates, cutoff date, deposit and cancellation terms, hold status, and the booking code your guests use. <b>HighLevel into StayNTouch.</b></p></div>
+        <div><h4>What you see in HighLevel</h4><p>The StayNTouch identifiers come straight back onto the record, so the contract and the block are linked from the moment the block exists rather than matched up later.</p></div>
+        <div><h4>Done when</h4><p>A signed contract produces the right block in StayNTouch, checked by eye against the interface, and a retry after a failure does not create a second one.</p></div>
+      </div>
+    </div>
+
+    <div class="spec" id="sF">
+      <div class="spec-head"><span class="t">Amendments, cancellations &amp; drift</span><span class="s">Writes to StayNTouch &nbsp;·&nbsp; compares both directions nightly</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>A change to a signed contract, a cancellation, or the nightly comparison run that comes as standard.</p></div>
+        <div><h4>What moves, and which way</h4><p>Revised counts, revised rates, or a cancellation that releases the rooms, each with a note recorded against the block so the history is on the record rather than in somebody's inbox.</p></div>
+        <div><h4>What you see in HighLevel</h4><p>Your property staff will edit blocks directly in StayNTouch, and that is fine. Every night this compares what StayNTouch holds against what the contract says and flags any difference, <b>showing both values</b>. Nothing is silently overwritten in either direction. A person decides which one is right.</p></div>
+        <div><h4>Done when</h4><p>An amended block updates, a cancelled booking releases the rooms, and a direct edit at the property is surfaced rather than lost.</p></div>
+      </div>
+    </div>
+
+    <div class="spec" id="sB">
+      <div class="spec-head"><span class="t">Availability lookup</span><span class="s">Reads only &nbsp;·&nbsp; on demand, before the quote</span></div>
+      <div class="spec-grid">
+        <div><h4>What starts it</h4><p>A button on the booking record, pressed before a proposal goes out.</p></div>
+        <div><h4>What moves, and which way</h4><p>A live check against StayNTouch for the dates and room types being asked about. Read-only, and it holds nothing.</p></div>
+        <div><h4>What you see in HighLevel</h4><p>Whether the rooms exist for those dates, before you quote them rather than after you have already promised them.</p></div>
+        <div><h4>Done when</h4><p>The lookup returns real availability for a real date range and matches what StayNTouch shows on screen.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 04 ONBOARDING ============ -->
+<section id="onboarding" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Property eleven</div>
+      <div class="shead-body">
+        <p class="eyebrow">Multi-property</p>
+        <h2>Adding a property is a record, not a rebuild</h2>
+        <p class="lede">Onboarding the eleventh property should not look anything like building the first. That is a design decision made at the start, and it is the reason this is a single service rather than ten connected accounts.</p>
+      </div>
+    </div>
+
+    <div class="prose reveal">
+      <p>Every property lives in the same database as a configuration record: its StayNTouch identifier, its credentials, its commission rate with an effective date, its sync schedule, and who gets the alerts. The engine reads that record and contains no property-specific logic anywhere in it.</p>
+    </div>
+
+    <div class="p2lane reveal" style="margin-top:1.75rem">
+      <div class="p2step"><div class="n">One</div><div class="d">Create the configuration record for the property</div></div>
+      <div class="p2step"><div class="n">Two</div><div class="d">Run the setup sync and pull its room types and rates</div></div>
+      <div class="p2step"><div class="n">Three</div><div class="d">Verify what landed against StayNTouch</div></div>
+      <div class="p2step"><div class="n">Four</div><div class="d">Switch it live</div></div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to plain">
+        <h3>On credentials and separation</h3>
+        <p>Credentials are held encrypted, and each property's data is isolated at the query level, so no property can see another one's figures. That matters more here than in most builds, because your properties are separately owned and their commission rates are not each other's business.</p>
+      </div>
+      <div class="to">
+        <h3>Your question about StayNTouch going away, answered structurally</h3>
+        <p>You asked what happens if a property moves off StayNTouch. This is the design answer. The database, the duplicate guard, the calculation engine and the alerting are all shared and none of them know what a PMS is. Only the piece that speaks StayNTouch is StayNTouch-specific, so adding a second property system later means rebuilding that one piece against new endpoints. Everything above it stays untouched. The same is true for your two Cloudbeds properties whenever you want them brought in.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 05 THE MONEY ============ -->
+<section id="trust">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The money</div>
+      <div class="shead-body">
+        <p class="eyebrow">How the number gets proved</p>
+        <h2>Matching a month you have already billed</h2>
+        <p class="lede">This is the flow that justifies the project on its own, and it is also the one where trust me is not a good enough answer. So it does not rely on trust.</p>
+      </div>
+    </div>
+
+    <div class="prose reveal">
+      <p>Replacing a spreadsheet with an automated figure is only an improvement if the figure is right, and the honest problem with automated money math is that it is confidently wrong in ways a person reading a report will not catch. A commission that is off by half a percent looks exactly like a commission that is correct.</p>
+      <p>So the number gets proved before it ever gets used, in four steps:</p>
+    </div>
+
+    <ol class="qs reveal">
+      <li>I write a commission-method specification before any code exists. Which revenue counts, how rounding works, how tax is treated, and the rate and effective date for each property.</li>
+      <li>You and your CEO sign it off. It is short, it is in plain language, and it is the one document in this project worth reading twice.</li>
+      <li>That specification is then encoded as an automated test, run against a month you have already billed and closed.</li>
+      <li>The test runs again on every change to the system afterwards, so the math cannot quietly drift six months from now.</li>
+    </ol>
+
+    <div class="reveal" style="margin-top:2.25rem">
+      <div class="to">
+        <h3>The acceptance standard, stated plainly</h3>
+        <p>The agreed method, applied to a previously-billed month, matches your figure to the cent. If it does not match because the original had a manual error in it, I flag that and show you where. I do not reproduce a mistake in order to pass my own test.</p>
+      </div>
+      <div class="to plain">
+        <h3>Rates are configuration, never code</h3>
+        <p>Commission rates differ per property and they change over time, so they are stored as editable values carrying effective dates. That means a rate change is something you can see, change, and date, rather than a support request to me. It also means last year's figures still recalculate at last year's rate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 06 RELIABILITY ============ -->
+<section id="reliability" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">When it breaks</div>
+      <div class="shead-body">
+        <p class="eyebrow">Failure handling</p>
+        <h2>It holds live rooms, so it assumes it will fail</h2>
+        <p class="lede">This layer creates real inventory holds at your properties and calculates money you bill to your owners. Everything below is part of the build rather than an upgrade on top of it.</p>
+      </div>
+    </div>
+
+    <div class="reports reveal">
+      <div class="rep">
+        <h3>No duplicate blocks, structurally</h3>
+        <p>Every block creation carries a unique fingerprint enforced by the database itself, not by a check in code that two simultaneous runs can race past. A retry after a failed or half-finished attempt recognises the block already exists and refuses to make a second one.</p>
+      </div>
+      <div class="rep">
+        <h3>A full audit trail</h3>
+        <p>Every attempt, payload, response and calculated figure is stored with a timestamp. When a block and a contract disagree eight weeks from now, the record of what was sent and when already exists and nobody has to reconstruct it.</p>
+      </div>
+      <div class="rep">
+        <h3>Alerts a person actually sees</h3>
+        <p>Anything on the write path or the money path notifies immediately, to whoever you name for that property. Everything else waits for the daily summary.</p>
+      </div>
+      <div class="rep">
+        <h3>A manual path for everything</h3>
+        <p>Documented, so a failure is workable the same day by a person rather than a blocked booking waiting on me.</p>
+      </div>
+      <div class="rep">
+        <h3>Conservative pacing</h3>
+        <p>All StayNTouch traffic is deliberately throttled. This integration is never going to be the reason a property tells you their system is slow.</p>
+      </div>
+      <div class="rep">
+        <h3>Runs that report themselves</h3>
+        <p>A nightly run reports its own outcome, which means a run that never happened raises an alert too. Silence is not treated as success.</p>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to">
+        <h3>One decision I need from you on this</h3>
+        <p>If a block gets created in StayNTouch but the rates come back rejected, there are two reasonable ways to handle it. Roll the whole thing back, or keep the block, mark it incomplete, and alert immediately. I recommend the second, because a block with the wrong rates is fixable in minutes, while a rolled-back block in the middle of a signature flow means rooms that were never actually held. If you would rather have it the other way, say so and I will build it that way.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 07 SCOPE BOUNDARY ============ -->
+<section id="boundary">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Not included</div>
+      <div class="shead-body">
+        <p class="eyebrow">Scope boundary</p>
+        <h2>What this layer deliberately does not do</h2>
+        <p class="lede">Same principle as the main proposal. Everything left out is left out on purpose, and each one has a reason worth being able to check.</p>
+      </div>
+    </div>
+
+    <table class="alts reveal">
+      <thead><tr><th>Not included</th><th>Category</th><th>Why</th></tr></thead>
+      <tbody>
+        <tr><td>Guest marketing sync</td><td>Not requested</td><td>Review requests and win-back campaigns are a different job, and they do not belong inside a connector that holds inventory</td></tr>
+        <tr><td>Historical backfill</td><td>Clean start</td><td>This starts with new group bookings. Reaching back through old ones adds risk for data you already have in a report</td></tr>
+        <tr><td>Individual reservations</td><td>Out of scope</td><td>Only group-attached data is ever read. Transient bookings are never touched</td></tr>
+        <tr><td>Writing rates back to the PMS</td><td>Read-only, deliberately</td><td>Setup data flows one way. StayNTouch stays the system that owns room types and rates, and this never argues with it</td></tr>
+        <tr><td>Real-time two-way sync</td><td>Not worth it</td><td>On-demand plus nightly does the job you described. Real-time multiplies the number of ways this can break for a benefit nobody asked for</td></tr>
+        <tr><td>F&amp;B, catering, event orders</td><td>Different phase</td><td>Different systems entirely, and TripleSeat is still doing that work for the properties that need it</td></tr>
+        <tr><td>The two Cloudbeds properties</td><td>Designed for, not built</td><td>The architecture already accounts for a second property system. Building it is a contained piece of work, quoted when you want it</td></tr>
+      </tbody>
+    </table>
+
+    <div class="reveal" style="margin-top:2.25rem">
+      <div class="to plain">
+        <h3>Quoted separately, when you want them</h3>
+        <p>Push-based updates in place of the nightly run, the two Cloudbeds properties, and the Phase 2 planner operations already described in the main proposal. None of them are needed for this to work, and I would rather price them when you actually want them than pad this number now.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 08 DELIVERY PLAN ============ -->
+<section id="plan" class="band-soft">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">The calendar</div>
+      <div class="shead-body">
+        <p class="eyebrow">Four weeks of build, inside the wave-two window</p>
+        <h2>Foundation, read, write, prove</h2>
+        <p class="lede">The dates in the main proposal do not change. Core system live November 1, integration proven on Kinship around mid-December, remaining properties in January. This is what happens inside that window.</p>
+      </div>
+    </div>
+
+    <div class="tl reveal">
+      <div class="ms">
+        <div class="w">Week 1</div>
+        <div class="m"><strong>Foundation and access.</strong> Service, database and deployment stood up, and the property configuration model built. The field contract at the seam gets agreed and locked before the HighLevel schema freezes, because several of those decisions are hard to reverse once records exist. The StayNTouch certification and credential request goes in on day one, so that waiting runs alongside the build instead of in front of it.</div>
+      </div>
+      <div class="ms">
+        <div class="w">Week 2</div>
+        <div class="m"><strong>Read and calculate.</strong> Setup sync and pickup running against the test environment. Both are read-only, so they can proceed while live credentials are still being issued. The commission-method specification gets drafted and put in front of you.</div>
+      </div>
+      <div class="ms">
+        <div class="w">Week 3</div>
+        <div class="m"><strong>Write path and money.</strong> Block creation with the duplicate guard. Amendments, cancellations and drift detection. The commission engine built to the signed specification, with the historical-month test passing. Alerting and audit trail live.</div>
+      </div>
+      <div class="ms key">
+        <div class="w">Week 4</div>
+        <div class="m"><strong>Pilot on Kinship, with real contracts.</strong> Every flow verified against StayNTouch by eye. A month you have already billed, reconciled against what this produces. Failures deliberately forced, to confirm the alerts actually fire rather than assuming they will.</div>
+      </div>
+      <div class="ms live">
+        <div class="w">Mid-Dec</div>
+        <div class="m">Live on Kinship</div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <div class="to plain">
+        <h3>Then, in January</h3>
+        <p>Remaining properties get added as configuration records, each one verified before it goes live. That rollout is paced by how fast credentials are issued, not by how fast anything gets built, which is why it sits after the pilot rather than alongside it.</p>
+      </div>
+      <div class="to">
+        <h3>The one dependency I do not control</h3>
+        <p>StayNTouch has to issue credentials and certify the integration. They charge nothing for it and they advertise it as fast, but it is their calendar and not mine. That is exactly why the read paths get built first and against test data: if access runs late, weeks one through three are unaffected and only the pilot moves. It is the same reasoning that made the integration wave two rather than wave one. That risk sits next to your November date, never underneath it.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 09 INVESTMENT ============ -->
+<section id="investment" class="band">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Investment</div>
+      <div class="shead-body">
+        <p class="eyebrow rev">The revised numbers</p>
+        <h2>What it costs, and what changed</h2>
+        <p class="lede">The integration is priced separately from the core system, and it has come down since we spoke in August. The core build is unchanged and is not reopened by this document.</p>
+      </div>
+    </div>
+
+    <div class="delta reveal">
+      <span class="was">$10,500</span>
+      <span class="arw">&rarr;</span>
+      <span class="now">$5,500</span>
+      <span class="why">When we spoke in August I quoted $10,500 for the integration against an estimate, because that is all it was at the time. Since then I have specified the connector completely, endpoint by endpoint against the StayNTouch Connect API v2 documentation, and put the work out to competitive bid. It came back better understood and cheaper to deliver than the estimate assumed, so the price comes down with it. This is the same scope. Nothing was removed to get to the smaller number.</span>
+    </div>
+
+    <div class="folder on-dark reveal" style="margin-top:0">
+      <div class="folder-tab">The build <span class="cnt">fixed fee</span></div>
+      <div class="folder-body" style="padding:0;border-top-color:var(--orange)">
+        <div class="inv">
+          <div class="iv"><div class="k">Core system build</div><div class="a">$12,500<small>Unchanged, already scoped</small></div><div class="d">Everything in the main proposal: foundations, architecture, intake, proposals and contracts, payments, automations, portal, calendars, dashboards, testing, documentation and training. Includes the live pilot and three launch properties.</div></div>
+          <div class="iv"><div class="k">StayNTouch integration</div><div class="a">$5,500<small>Revised down from $10,500</small></div><div class="d">All six workstreams above. Setup sync, pickup including reservation detail, actualized revenue and commissions, block creation on signature, amendments and drift detection, availability lookup. Proven on Kinship, then rolled out.</div></div>
+          <div class="iv"><div class="k">Total build</div><div class="a">$18,000<small>Fixed, paid across five milestones</small></div><div class="d">Down from the $23,000 we discussed in August. Nothing is invoiced before the work it pays for.</div></div>
+          <div class="iv"><div class="k">First booking season</div><div class="a">$1,500<small>Per month, first two months live</small></div><div class="d">Priority support through the busiest stretch, when the system is new to your team and every question is a real booking on the line.</div></div>
+          <div class="iv"><div class="k">Ongoing management</div><div class="a">$1,250<small>Per month, thereafter</small></div><div class="d">Up from $750, and the increase is entirely the integration: credential renewal across every connected property, sync monitoring with failure alerts, plus the system health and deliverability watch, four hours of adjustments monthly and a quarterly review. Thirty days notice to cancel.</div></div>
+          <div class="iv"><div class="k">Additional properties</div><div class="a">$350<small>Each, beyond the three</small></div><div class="d">Reduced from $500, because room types, rates and taxes now sync from the PMS instead of being entered by hand. Adding a property is a configuration record and a verification pass.</div></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reveal" style="margin-top:2.5rem">
+      <h4 style="color:var(--orange)!important;margin-bottom:2px">How the build is paid</h4>
+      <div class="mile">
+        <div class="mi"><div><div class="k">Core, stage 1</div><div class="w">On signature, to begin</div></div><div class="a">$5,000</div></div>
+        <div class="mi"><div><div class="k">Core, stage 2</div><div class="w">Build complete, pilot property taking real leads</div></div><div class="a">$3,750</div></div>
+        <div class="mi"><div><div class="k">Core, stage 3</div><div class="w">You sign off on the pilot</div></div><div class="a">$3,750</div></div>
+        <div class="mi"><div><div class="k">Integration, stage 1</div><div class="w">API access confirmed and the integration build begins</div></div><div class="a">$2,750</div></div>
+        <div class="mi"><div><div class="k">Integration, stage 2</div><div class="w">Integration live and reconciled on Kinship</div></div><div class="a">$2,750</div></div>
+        <div class="mi tot"><div><div class="k">Total build</div><div class="w">Fixed. The monthly begins only once the core system is live across your launch properties</div></div><div class="a">$18,000</div></div>
+      </div>
+    </div>
+
+    <div class="terms reveal">
+      <div class="tm"><h4>What this replaces</h4><p>Event Temple at $330 per property per month across ten StayNTouch properties is $39,600 a year, and the StayNTouch connection you called the only piece you actually wanted is another $2,000 on top of that. Against $41,600 recurring, an $18,000 one-time build pays for itself inside six months and then stops costing you anything but the monthly.</p></div>
+      <div class="tm"><h4>Platform costs, paid by Imprint directly</h4><p>HighLevel at roughly $297 a month covering every property and user, usage-based email and text, and standard processing on payments. There is no additional platform cost for the integration itself. StayNTouch charges nothing for API access or certification, which is worth saying out loud given Event Temple wanted $2,000 a year to provide the same connection.</p></div>
+      <div class="tm"><h4>Quoted separately when you're ready</h4><p>Push-based updates in place of the nightly run. The two Cloudbeds properties. Phase 2 planner operations and Phase 3 intelligence. New flows or a change to the agreed commission methodology after sign-off are quoted as they come up rather than absorbed quietly.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10 WHAT I NEED ============ -->
+<section id="next">
+  <div class="wrap">
+    <div class="shead reveal">
+      <div class="vlabel">Your side</div>
+      <div class="shead-body">
+        <p class="eyebrow">What I need</p>
+        <h2>Four things, and one of them is the long pole</h2>
+        <p class="lede">The first one gates everything else in this document, and it is the only item here I cannot start myself. It is worth sending today even if the rest of this needs another read.</p>
+      </div>
+    </div>
+
+    <div class="need reveal">
+      <div class="nd gate">
+        <div class="t">The authorization email to StayNTouch</div>
+        <div class="s">Sent, plus confirmation of who holds the administrative role. This is the longest lead time in the whole project. I will draft the email for you so it is a forward rather than a writing job.</div>
+      </div>
+      <div class="nd gate">
+        <div class="t">One past commission report, with the spreadsheet behind it</div>
+        <div class="s">The single most useful artifact in this project, because it is what the acceptance test gets written against. Any month will do, and the messier the better.</div>
+      </div>
+      <div class="nd">
+        <div class="t">How many chains your properties sit across</div>
+        <div class="s">This determines how many credential sets are needed, and whether the StayNTouch conversation is one conversation or ten. It also affects how quickly January's rollout can move.</div>
+      </div>
+      <div class="nd">
+        <div class="t">Sign-off on the commission method</div>
+        <div class="s">I draft it in week two. It is short, and it needs you and your CEO to agree it before anything gets built against it.</div>
+      </div>
+      <div class="nd">
+        <div class="t">Three answers I need in week one</div>
+        <div class="s">Whether no-show and checked-out reservations should count toward pickup. What you want to happen if a block is created but its rates are rejected, where my recommendation is above. And roughly how often your property staff edit blocks directly in StayNTouch, which tells me how loudly to report drift.</div>
+      </div>
+    </div>
+
+    <div class="next-grid reveal">
+      <div class="ng"><div class="s">Step one</div><p>Read this alongside the main proposal. The two together are the whole engagement.</p></div>
+      <div class="ng"><div class="s">Step two</div><p>Send the StayNTouch authorization email. That clock starts independently of everything else.</p></div>
+      <div class="ng"><div class="s">Step three</div><p>Send me one past commission report and the spreadsheet behind it.</p></div>
+      <div class="ng"><div class="s">Then</div><p>Wave one starts on the calendar in the main proposal, and this is built alongside its pilot.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="close">
+  <svg class="close-mark" viewBox="0 0 400 400" aria-hidden="true">
+    <g fill="none" stroke="#ee7623" stroke-width="7" stroke-linecap="round">
+      <circle cx="200" cy="200" r="188"/><circle cx="200" cy="200" r="152"/>
+      <circle cx="200" cy="200" r="116"/><circle cx="200" cy="200" r="80"/>
+      <circle cx="200" cy="200" r="44"/><circle cx="200" cy="200" r="14"/>
+    </g>
+  </svg>
+  <div class="wrap">
+    <div class="close-in reveal">
+      <p class="eyebrow rev">The short version</p>
+      <h2>A number you can check to the cent</h2>
+      <p>The room block gets typed once, by the system, at the moment the contract is signed. Pickup sits on the record without anyone opening a second tab to find it. And on the first of the month the commission figure is already calculated, from the revenue StayNTouch itself reported, at the rate you set for that property.</p>
+      <p>The last one is what I would judge this on. Moving data between two systems is not hard and plenty of people will tell you they can do it. <strong>The real test is whether the number that comes out matches the one you already billed</strong>, and that is the thing I am willing to put into the acceptance criteria rather than into a sales conversation.</p>
+      <p>Which is why the specification gets signed before the code gets written, and why the test runs against a month you have already closed. If it does not match, it is not done.</p>
+      <div class="sig">
+        <div class="n">Shayne Champlin</div>
+        <div class="e"><a href="mailto:shayne@shaynechamplin.com">shayne@shaynechamplin.com</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <strong>Imprint Hospitality — Addendum A: The Integration Layer</strong><br>
+      Wave two · Prepared for Lauren Ripko · September 2026<br>
+      <a href="../sales-system-proposal/">&larr; Back to the main proposal</a>
+    </div>
+    <div style="max-width:46ch">
+      This addendum sits alongside the Phase 1 proposal and does not replace it. Integration scope was verified endpoint by endpoint against the StayNTouch Connect API v2 specification on August 24, 2026. Where this document and any earlier version differ on price, this one is current.
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  'use strict';
+  var $  = function(s,c){ return (c||document).querySelector(s); };
+  var $$ = function(s,c){ return Array.prototype.slice.call((c||document).querySelectorAll(s)); };
+  var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---- scroll reveal ---------------------------------------------- */
+  var revealed = new WeakSet();
+  var revObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(!e.isIntersecting || revealed.has(e.target)) return;
+      revealed.add(e.target);
+      e.target.classList.add('in');
+      revObs.unobserve(e.target);
+      if(e.target.id === 'wslist') growBars();
+    });
+  },{ rootMargin:'0px 0px -8% 0px', threshold:.06 });
+
+  $$('.reveal').forEach(function(el){
+    if(reduced){ el.classList.add('in'); if(el.id==='wslist') growBars(); return; }
+    revObs.observe(el);
+  });
+
+  /* ---- workstream weight bars ------------------------------------- */
+  var barsGrown = false;
+  function growBars(){
+    if(barsGrown) return; barsGrown = true;
+    $$('.ws-bar i').forEach(function(bar,i){
+      var w = bar.getAttribute('data-w') + '%';
+      bar.style.setProperty('--pw', w);          /* print fallback */
+      if(reduced){ bar.style.width = w; return; }
+      setTimeout(function(){ bar.style.width = w; }, 90 * i);
+    });
+  }
+
+  /* ---- scrollspy: top nav + right rail ---------------------------- */
+  var sections = $$('section[id], header[id]');
+  var navFor   = {};
+  $$('.nav-links a, .rail a').forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    (navFor[id] = navFor[id] || []).push(a);
+  });
+
+  var spyObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      var links = navFor[e.target.id];
+      if(!links) return;
+      links.forEach(function(l){ l.classList.toggle('on', e.isIntersecting); });
+    });
+  },{ rootMargin:'-45% 0px -50% 0px' });
+  sections.forEach(function(s){ spyObs.observe(s); });
+
+  /* ---- §02 booking-container chips -------------------------------- */
+  $$('.chip').forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var open = chip.getAttribute('aria-expanded') === 'true';
+      chip.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  /* ---- §03 pipeline stages -> spec panels ------------------------- */
+  var stages = $$('.stage');
+  stages.forEach(function(st){
+    var panel = document.getElementById(st.getAttribute('data-spec'));
+    if(!panel) return;
+    st.setAttribute('aria-controls', panel.id);
+    st.addEventListener('click', function(){
+      var wasOpen = st.getAttribute('aria-expanded') === 'true';
+      stages.forEach(function(o){
+        o.setAttribute('aria-expanded','false');
+        var p = document.getElementById(o.getAttribute('data-spec'));
+        if(p) p.classList.remove('open');
+      });
+      if(!wasOpen){
+        st.setAttribute('aria-expanded','true');
+        panel.classList.add('open');
+      }
+    });
+  });
+
+  /* ---- §08 workstream accordions ---------------------------------- */
+  $$('.ws').forEach(function(ws){
+    var btn  = $('.ws-btn', ws);
+    var body = $('.ws-body', ws);
+    var id   = 'wsb-' + Math.abs(($('.ws-name',ws).textContent).split('').reduce(function(a,c){ return ((a<<5)-a+c.charCodeAt(0))|0; },0));
+    body.id = id;
+    btn.setAttribute('aria-controls', id);
+    btn.addEventListener('click', function(){
+      var open = ws.getAttribute('data-open') === '1';
+      ws.setAttribute('data-open', open ? '0' : '1');
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+    });
+  });
+
+  /* ---- open everything before the browser prints ------------------ */
+  window.addEventListener('beforeprint', function(){
+    $$('.chip').forEach(function(c){ c.setAttribute('aria-expanded','true'); });
+    $$('.ws').forEach(function(w){ w.setAttribute('data-open','1'); });
+    $$('.spec').forEach(function(p){ p.classList.add('open'); });
+    $$('.reveal').forEach(function(r){ r.classList.add('in'); });
+    growBars();
+  });
+})();
+</script>
+
+</body>
+</html>

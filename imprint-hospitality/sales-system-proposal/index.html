@@ -145,6 +145,9 @@ section{position:relative;padding-block:clamp(4.5rem,9vw,7.5rem)}
 }
 .nav-links a:hover{color:var(--ink)}
 .nav-links a.on{color:var(--ink);border-bottom-color:var(--orange)}
+/* the addendum is a separate document, so its link is marked as leaving */
+.nav-links a.fwd{color:var(--orange-deep);padding-left:14px;margin-left:4px;border-left:1px solid var(--hairline)}
+.nav-links a.fwd:hover{color:var(--orange-press)}
 
 /* right rail — Imprint built an index-nav and disabled it; this turns it back on */
 .rail{position:fixed;right:22px;top:50%;transform:translateY(-50%);z-index:50;display:flex;flex-direction:column;gap:11px}
@@ -703,6 +706,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <a href="#timeline">Timeline</a>
       <a href="#investment">Investment</a>
       <a href="#next">Next</a>
+      <a href="../integration-layer/" class="fwd">Addendum A<span>&nbsp; &rarr;</span></a>
     </div>
   </div>
 </nav>
@@ -733,13 +737,14 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     </g>
   </svg>
   <div class="wrap">
-    <p class="eyebrow rev">Imprint Hospitality &nbsp;·&nbsp; Proposal &nbsp;·&nbsp; August 2026</p>
+    <p class="eyebrow rev">Imprint Hospitality &nbsp;·&nbsp; Proposal &nbsp;·&nbsp; Revised September 2026</p>
     <h1>One system that carries every property from <span class="hl">first inquiry</span> to booked deposit.</h1>
     <p class="hero-sub">Lead capture, qualification, proposals, contracts, signatures, deposits, and the reports your owners get every week. Built on one platform you own, live before booking season opens.</p>
     <dl class="hero-meta">
       <div><dt>Prepared for</dt><dd>Lauren Ripko</dd></div>
       <div><dt>Prepared by</dt><dd>Shayne Champlin</dd></div>
       <div><dt>Scope</dt><dd>Phase 1 — lead to booked</dd></div>
+      <div><dt>Wave two</dt><dd><a href="../integration-layer/" style="color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.45)">The integration &rarr;</a></dd></div>
       <div><dt>Live</dt><dd class="accent">November 1, 2026</dd></div>
     </dl>
   </div>
@@ -1365,6 +1370,21 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       </ul>
       <p class="note">Once I present the finished stage, you have five business days to raise anything specific in writing. That protects you from accepting something half-built, and it protects me from a finish line that keeps moving. Anything outside the list above is a change request, quoted separately, so neither of us has to argue about what was included.</p>
     </div>
+
+    <!-- Wave two rides the ghost folder — the same dashed treatment the
+         deferred Phase 2 lane uses, because it is real work on a real
+         schedule that simply is not part of the November date. -->
+    <div class="folder ghost reveal" style="margin-top:2.5rem">
+      <div class="folder-tab">Wave two &nbsp;·&nbsp; the integration layer</div>
+      <div class="folder-body">
+        <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:78ch">The StayNTouch integration is built alongside the pilot above rather than after it, and it carries its own two milestones. It goes live on Kinship first and rolls out to the rest once it has been proven against real bookings on one property. The architecture, the six workstreams and the commission-proving method are all in <a href="../integration-layer/" style="color:var(--orange-deep);border-bottom:1px solid var(--orange-line);text-decoration:none"><strong>Addendum A</strong></a>.</p>
+        <div class="p2lane" style="margin-top:1.5rem">
+          <div class="p2step"><div class="n">Stage 1 &nbsp;·&nbsp; $2,750</div><div class="d">API access confirmed and the integration build begins</div></div>
+          <div class="p2step"><div class="n">Stage 2 &nbsp;·&nbsp; $2,750</div><div class="d">Integration live and reconciled on Kinship</div></div>
+        </div>
+        <p style="font-size:13.5px;line-height:1.55;color:var(--ink-faint);margin-top:1.25rem">Neither of these is invoiced until the core system above has been signed off, and the second one is not invoiced until a month you have already billed reconciles against what the integration produces.</p>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -1418,9 +1438,9 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     <div class="shead reveal">
       <div class="vlabel">The calendar</div>
       <div class="shead-body">
-        <p class="eyebrow">Twelve weeks</p>
+        <p class="eyebrow">Twelve weeks, then the integration</p>
         <h2>Signature to booking season</h2>
-        <p class="lede">Week one starts the day you say yes, so this calendar does not go stale while the proposal sits on a desk. November 1 is the one date I cannot move, because booking season does not care when we started.</p>
+        <p class="lede">Week one starts the day you say yes, so this calendar does not go stale while the proposal sits on a desk. November 1 is the one date I cannot move, because booking season does not care when we started. The integration lands behind it, on the schedule at the bottom.</p>
       </div>
     </div>
 
@@ -1437,10 +1457,25 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="ms live"><div class="w">Nov 1</div><div class="m">Live for booking season</div></div>
     </div>
 
+    <div class="reveal" style="margin-top:3.5rem">
+      <h4 style="margin-bottom:1.25rem">Wave two &nbsp;·&nbsp; the StayNTouch integration</h4>
+      <div class="tl">
+        <div class="ms"><div class="w">Week 1</div><div class="m">The certification and credential request goes in to StayNTouch on day one, so that waiting runs alongside the build rather than in front of it. This is the longest lead time in the project and it is the only one I do not control.</div></div>
+        <div class="ms"><div class="w">Weeks 7–10</div><div class="m">Built alongside the core pilot. Room type, rate and tax sync, availability lookup and pickup, all read-only, so they proceed while live credentials are still being issued.</div></div>
+        <div class="ms"><div class="w">Nov–Dec</div><div class="m">Block creation with the duplicate guard, amendments and drift detection, and the commission engine built to a specification you have signed. Reconciled against a month you have already billed.</div></div>
+        <div class="ms live"><div class="w">Mid-Dec</div><div class="m">Live on Kinship</div></div>
+      </div>
+    </div>
+
     <div class="reveal" style="margin-top:2.5rem">
+      <div class="to plain">
+        <h3>Then, in January</h3>
+        <p>The remaining StayNTouch properties are added as configuration records, each verified against the PMS before it goes live. That rollout is paced by how fast credentials get issued, not by how fast anything gets built, which is why it sits after Kinship rather than alongside it.</p>
+      </div>
       <div class="to">
         <h3>The one thing worth saying plainly about dates</h3>
-        <p>Twelve weeks from a mid-August start lands you live in early November, which is exactly where you need to be. Every week the decision waits comes out of the pilot or out of the rollout, and those are the two stretches you least want compressed, because they are the ones that catch problems before your clients do. If we start later than the end of August, I would rather shorten the property rollout and keep the pilot intact than the other way round, and I will tell you that at the time rather than quietly absorb it.</p>
+        <p>This calendar is twelve weeks from signature, not twelve weeks from today, and that arithmetic now matters. <strong>Holding November 1 means starting within about a week of you reading this.</strong> Past that point something has to give, and I would rather tell you which one in advance than absorb it quietly: I will shorten the property rollout and keep the pilot intact, because the pilot is the stretch that catches problems before your clients do. Every week the decision waits comes out of one of those two.</p>
+        <p>The integration date can move without touching the core date. That is the entire reason it is wave two, and it is why the November commitment is the one I am protecting.</p>
       </div>
     </div>
   </div>
@@ -1454,26 +1489,28 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="shead-body">
         <p class="eyebrow rev">The numbers</p>
         <h2>What it costs</h2>
-        <p class="lede">Structured so the heaviest months are the ones where the most work happens, and it steps down in January right as your properties begin paying into the program.</p>
+        <p class="lede">Structured so the heaviest months are the ones where the most work happens, and it steps down in January right as your properties begin paying into the program. The integration is priced separately and is detailed in full in <a href="../integration-layer/" style="color:var(--orange);border-bottom:1px solid rgba(238,118,35,.45);text-decoration:none">Addendum A</a>.</p>
       </div>
     </div>
 
     <div class="folder on-dark reveal" style="margin-top:0">
-      <div class="folder-tab">Phase 1 <span class="cnt">fixed fee</span></div>
+      <div class="folder-tab">The build <span class="cnt">fixed fee</span></div>
       <div class="folder-body" style="padding:0;border-top-color:var(--orange)">
         <div class="inv">
-          <div class="iv"><div class="k">Build, prove &amp; roll out</div><div class="a">$12,500<small>Fixed, paid across the three stages</small></div><div class="d">Everything itemized above, the live pilot on a real customer, and every launch property configured and tested. $5,000 to begin, $3,750 when the pilot starts, $3,750 when you sign off on it.</div></div>
+          <div class="iv"><div class="k">Core system build</div><div class="a">$12,500<small>Fixed, paid across the three stages</small></div><div class="d">Everything itemized above, the live pilot on a real customer, and every launch property configured and tested. $5,000 to begin, $3,750 when the pilot starts, $3,750 when you sign off on it.</div></div>
+          <div class="iv"><div class="k">StayNTouch integration</div><div class="a">$5,500<small>Revised down from $10,500</small></div><div class="d">Wave two. Room type, rate and tax sync, availability lookups, automatic block creation on contract signature, pickup tracking with reservation-level detail, actualized revenue, automated commission calculation, amendments and drift detection. Detailed in full in <a href="../integration-layer/" style="color:var(--orange);border-bottom:1px solid rgba(238,118,35,.45);text-decoration:none">Addendum A</a>.</div></div>
+          <div class="iv"><div class="k">Total build</div><div class="a">$18,000<small>Fixed, paid across five milestones</small></div><div class="d">One number for both waves. Nothing is invoiced before the work it pays for, and the schedule is below.</div></div>
           <div class="iv"><div class="k">First booking season</div><div class="a">$1,500<small>Per month, first two months live</small></div><div class="d">Priority support through the busiest stretch, when the system is new to your team and every question is a real booking on the line. Billed monthly in advance, starting the month after go-live.</div></div>
-          <div class="iv"><div class="k">Ongoing management</div><div class="a">$750<small>Per month, thereafter</small></div><div class="d">System health monitoring, deliverability watch, up to four hours of adjustments monthly, and a quarterly review. Thirty days' notice to cancel, any time.</div></div>
-          <div class="iv"><div class="k">Additional properties</div><div class="a">$500<small>Each, beyond the three</small></div><div class="d">You kick it off with a one-page intake form the moment a new property signs. I configure it, test the documents against its own rates and taxes, and turn it live.</div></div>
+          <div class="iv"><div class="k">Ongoing management</div><div class="a">$1,250<small>Per month, thereafter</small></div><div class="d">Up from $750, and the increase is entirely the integration: credential renewal across every connected property and sync monitoring with failure alerts, on top of system health, deliverability watch, up to four hours of adjustments monthly, and a quarterly review. Thirty days' notice to cancel, any time.</div></div>
+          <div class="iv"><div class="k">Additional properties</div><div class="a">$350<small>Each, beyond the three</small></div><div class="d">Reduced from $500, because room types, rates and taxes now sync from the PMS instead of being entered by hand. You kick it off with a one-page intake form the moment a new property signs. I configure it, verify it against StayNTouch, and turn it live.</div></div>
         </div>
       </div>
     </div>
 
     <div class="terms reveal">
-      <div class="tm"><h4>Payment terms</h4><p>Nothing is invoiced before the work it pays for. $5,000 begins the build, $3,750 falls due when the build is finished and your pilot property starts taking real leads, and the final $3,750 when you have signed off on that pilot. The monthly starts only once the system is live across your properties.</p></div>
-      <div class="tm"><h4>Platform costs, paid by Imprint directly</h4><p>HighLevel at roughly $297 a month, owned by you, covering every property and every user. Small usage-based email and text costs. Standard processing fees on payments. One reporting feature is documented inconsistently and may sit on a higher tier; I confirm that in week one, before you commit to a plan.</p></div>
-      <div class="tm"><h4>Quoted separately when you're ready</h4><p>Phase 2 planner operations and Phase 3 intelligence. Contract legal language and tax rates are supplied by Imprint; I configure them into the system.</p></div>
+      <div class="tm"><h4>Payment terms</h4><p>Nothing is invoiced before the work it pays for. <b>$5,000</b> begins the build, <b>$3,750</b> falls due when the build is finished and your pilot property starts taking real leads, and <b>$3,750</b> when you have signed off on that pilot. The integration then runs on its own two: <b>$2,750</b> when API access is confirmed and the build begins, and <b>$2,750</b> when it is live and reconciled on Kinship. The monthly starts only once the core system is live across your properties.</p></div>
+      <div class="tm"><h4>Platform costs, paid by Imprint directly</h4><p>HighLevel at roughly $297 a month, owned by you, covering every property and every user. Small usage-based email and text costs. Standard processing fees on payments. No additional platform cost for the integration itself, and StayNTouch charges nothing for API access or certification, which is worth saying out loud given Event Temple wanted $2,000 a year for the same connection.</p></div>
+      <div class="tm"><h4>Quoted separately when you're ready</h4><p>Push-based updates in place of the nightly run. The two Cloudbeds properties. Phase 2 planner operations and Phase 3 intelligence. Contract legal language and tax rates are supplied by Imprint; I configure them into the system.</p></div>
     </div>
   </div>
 </section>
@@ -1523,7 +1560,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="ng"><div class="s">Step one</div><p>Tell me yes, and send whatever documents you have handy. Partial is fine.</p></div>
       <div class="ng"><div class="s">Step two</div><p>Imprint opens the platform account. It stays in your name, not mine.</p></div>
       <div class="ng"><div class="s">Step three</div><p>I run the validation pass in week one and confirm every capability before building on top of it.</p></div>
-      <div class="ng"><div class="s">Then</div><p>We are on the calendar above, and your pilot property is taking real leads by mid-September.</p></div>
+      <div class="ng"><div class="s">Then</div><p>We are on the calendar above, and your pilot property is taking real leads seven weeks later.</p></div>
     </div>
   </div>
 </section>
@@ -1555,10 +1592,11 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
   <div class="wrap">
     <div>
       <strong>Imprint Hospitality — Sales &amp; Booking System</strong><br>
-      Phase 1 proposal · Prepared for Lauren Ripko · August 2026
+      Phase 1 proposal · Prepared for Lauren Ripko · Revised September 2026<br>
+      <a href="../integration-layer/">Addendum A: the integration layer &rarr;</a>
     </div>
     <div style="max-width:46ch">
-      Everything in this document traces to the July 24 and July 27 conversations. Platform capabilities were verified against published documentation on August 3, 2026, and the reporting scope was re-checked and narrowed on August 4.
+      Everything in this document traces to the July 24, July 27 and August 21 conversations. Platform capabilities were verified against published documentation on August 3, 2026, the reporting scope was re-checked and narrowed on August 4, and the StayNTouch integration was verified against the Connect API v2 specification on August 24. Pricing on this page was revised in September 2026 and supersedes any earlier version.
     </div>
   </div>
 </footer>
