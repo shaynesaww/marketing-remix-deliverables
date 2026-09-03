@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Own an American company without leaving home | Megha Bhouraskar</title>
+<meta name="description" content="Three modules and six steps to a U.S. company that is genuinely yours, plus a community of Indian founders and a board of experts. Free, from a New York attorney of twenty-five years.">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="strata.css">
+<style>
+/* =============================================================================
+   THE SHORT PAGE — Strata.
+
+   BUILD 3 (2026-09-03) — THE LANGUAGE PASS. Build 2 is untouched and lives on
+   at sales-page-short.html for side-by-side comparison, which is what Megha
+   asked for on the 9-3 call.
+
+   WHAT CHANGED, AND WHY IT IS ONLY COPY
+   She ran Build 2 past her own ChatGPT and sent back a critique that reads like
+   a rebrand: "less copy, more space, bigger typography, fewer boxes, more
+   movement," "expensive, intelligent, global, certain." On the 9-3 call she
+   withdrew all of it. "It liked all the colors, so that doesn't change." "I love
+   the colors. I don't want to change colors." "Just send me the text." "I just
+   want to be clear on the language. That's my biggest right now."
+
+   So: no palette change, no type change, no layout change, no new photographs
+   (her instruction — CJ's stills are on a separate track). The design is frozen
+   and this is a copy pass. Her stated order was text, then how the colours are
+   used against the text, then photographs last.
+
+   THE GOVERNING TEST — see Brand/megha-voice-profile.md §1
+     Cut every word that describes. Keep every word that proves.
+   Her two instructions look opposed and are not. She wants it fast ("don't waste
+   my time") and she wants the buyer reassured ("that's the only support they
+   have"). Those only conflict if reassurance comes from warmth of language. For
+   a 99th-percentile engineer it comes from specificity, so a short page dense
+   with proof is both, and a long page full of empathy is neither.
+
+   THE STRUCTURE IS HERS — the tasting, 9-3:
+     "I'm giving you a tasting of what's in the restaurant, but you need to sit
+     down and actually order. This is what you get. This is who you get it from
+     and that's it."
+   Which is D48 made visible. The page samples and points. The meal is the
+   paid access.
+
+   THE CUTS
+     §3 RECOGNITION IS GONE. Five bullets of the page telling the reader his own
+       life back. This is the purest instance of what she calls "garbage
+       language" — "don't try and tell them what they already know" — and it was
+       the largest word count on the page. It is the one cut most likely to come
+       back; Build 2 holds it if she wants it.
+     §4 THE TURN loses the permission framing ("you are not stuck because you are
+       not smart enough") and keeps only the facts, because the debunking is the
+       part she says pulls them in: "when they know that they can do this without
+       having to travel, minimum capital, that's what pulls them in."
+     §5 loses all 24 lesson descriptions, the delivery triad and the accumulating
+       -file paragraph. The steps stay, the homework goes — the same
+       reconciliation that governs the course (8-31 I2). Module Two's six steps
+       remain in full because a credentialed buyer validates the path before he
+       pays (H11).
+
+   TWO FALSE CLAIMS FIXED, both live in Build 2
+     "Twenty-four lessons" appeared 5x. D22 cut M2 L8, so written scope is 23 plus
+       the intro. The count is now simply omitted — she is still slashing Modules
+       2 and 3, so any number moves again, and dropping it is also less language.
+     "A workbook for every lesson" appeared in 4 CTAs. D49 removed the exercises
+       from Modules 2 and 3; worksheets are Module 1 only. The promise is gone.
+     Also dropped: "Because I don't just want you to learn, I want you to do,"
+       which now contradicts D49.
+
+   STILL HELD FOR THE OFFER (D52, owed ~Sept 7)
+     Tier 2 specifics, the tier NAMES (D5 signed Doorway / Room / Inner Circle
+     and "room" is dead as page language under D38), and any CTA that names what
+     you get at a paid level. No price anywhere (D6).
+
+   THE PASSAGE CURVE — unchanged from Build 2, one section lighter
+     1  hero .......... midnight --g-2, the stronger blue. Her word.
+     2  outcomes ...... darkest ground, gold rules. What you get.
+     3  the band ...... --g-3, one rung up
+     4  the facts ..... CREAM, full bleed. Light breaks where the copy releases.
+     5  what you get .. CREAM, same field, no seam between them
+     6  the join ...... midnight --g-2
+     7  why megha ..... --g-1, deep and quiet. Who you get it from.
+     8  questions ..... --g-1, collapsed
+     9  close ......... --g-2, the light coming back up
+
+   GATES: every unverified block carries data-gate. Load _qa.html with &gates=1
+   to badge them.
+   ============================================================================= */
+@layer variant {
+  /* Section-level grounds. Everything else is in strata.css, shared with the
+     long page and with Build 2; only the curve is per-page. */
+  .join{--ground:var(--g-2)}
+  .why,.faq{--ground:var(--g-1)}
+  .close{--ground:var(--g-2)}
+
+  /* The modules no longer expand, because there is nothing left to expand into:
+     the lesson lists are cut. So .mod is a div rather than a details, and the
+     padding that used to sit on > summary moves to the head. Scoped here rather
+     than in strata.css so Build 2 cannot be affected. */
+  .mod > .mod-head{padding:var(--s-6)}
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <img class="nav-logo" src="assets/logo-wordmark-dark-sm.png" width="400" height="174" alt="Megha Bhouraskar">
+    <a class="btn" href="#start">Start Free Course</a>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════════════ §1 HERO · C1 · STRATA ═══
+     Chosen by Megha 2026-08-13: "this is very complete, it's very clear."
+     Do not restructure. Only the sub-line changed, to carry proof instead of a
+     restatement of the headline: three modules, six steps, and who she is. -->
+<section class="hero">
+  <div class="hero-in">
+
+    <div class="hero-copy">
+      <p class="hx-tension">You cleared the hard part years ago.</p>
+      <h1 class="display">
+        <span class="l">Own an American company</span>
+        <span class="l"><em>without leaving home.</em></span>
+      </h1>
+      <p class="hx-sub">Three modules and six steps to a U.S. company that is genuinely yours. Free, from a New York attorney of twenty-five years.</p>
+      <div class="cta-row">
+        <a class="btn" href="#start">Start the Free Course</a>
+        <p class="cta-note">No card. Everything opens the moment you join.</p>
+      </div>
+    </div>
+
+    <figure class="vsl" data-video="wgf4sDvRwYE">
+      <button class="vsl-btn" type="button" aria-label="Play the introduction from Megha Bhouraskar">
+        <img src="assets/megha-headshot-sm.jpg" width="1120" height="1394" fetchpriority="high"
+             alt="Megha Bhouraskar, attorney, New York">
+        <span class="vsl-play" aria-hidden="true"></span>
+      </button>
+      <span class="vsl-dur">6 min</span>
+      <figcaption class="vsl-cap">Megha Bhouraskar &middot; New York attorney, 25 years</figcaption>
+      <div class="vsl-pending"><b>The introduction</b> Video is being wired up.</div>
+    </figure>
+
+  </div>
+
+</section>
+
+<!-- ═════════════════════════════════════════════ THE OUTCOMES BAR ═════════
+     "What you get," the first of her three moves. Every span cut to one line —
+     D42, "it can just be three lines." The fourth runs longer than the other
+     three on purpose; it is the one that points at the paid door. -->
+<section class="sec outcomes" data-wake>
+  <div class="outcomes-in">
+    <p class="outcomes-lede">What you have at the end of it</p>
+    <ul class="outcomes-list">
+      <li>
+        <b>An American company that is yours</b>
+        <span>Formed in the state that fits, with your own name on the paperwork.</span>
+      </li>
+      <li>
+        <b>A tax ID and a bank account that works</b>
+        <span>Both opened from your desk, so an invoice can be paid in dollars.</span>
+      </li>
+      <li>
+        <b>Your brand and your work, protected</b>
+        <span>Registered in America before somebody else gets there first.</span>
+      </li>
+      <li>
+        <b>A community, and a board of experts</b>
+        <span>Founders a step behind you and a year ahead of you, and one live call a month with Megha.</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════ §2 THE SECOND PROMISE ═══════
+     Hero #2, back to back with the hero because ~85% never scroll deep.
+
+     "Grow Rich from America" is gone. That line was D31, hers, from 8-07. She
+     reversed it herself on 9-3: "I'm build in America." Credible beats loud, and
+     the get-rich register is wrong for a buyer whose actual fear is telling his
+     family he left a prestigious job. D31 is superseded. -->
+<section class="sec band" data-wake>
+  <div class="band-in">
+    <div class="band-copy">
+      <h2 class="display">
+        <span class="l">Live in India.</span>
+        <span class="l"><em>Build in America.</em></span>
+      </h2>
+      <p class="band-sub">Your company, your customers and your invoices in America. You, your family and your life exactly where they already are.</p>
+    </div>
+    <div class="band-act">
+      <div class="cta-row">
+        <a class="btn btn--lg" href="#start">Start the Free Course</a>
+      </div>
+      <p class="cta-note">Three modules, free, and yours to keep.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════ §3 THE FACTS ═════════
+     Was "the turn." Cream arrives here and only here, because this is where the
+     copy releases.
+
+     The three "you are not stuck because…" lines are cut. They tell a
+     99th-percentile engineer something about himself that he did not ask to be
+     told, and 8-31 §7 flag 6 is explicit that this register reads as a trick to
+     this buyer specifically.
+
+     What replaces them is the same section's own footnote, promoted: the facts
+     were always the load-bearing part. Her words on why: "the debunking, this is
+     the biggest thing for them. When they know that they can do this without
+     having to travel, minimum capital, that's what pulls them in."
+
+     Still gated. These are legal claims and she has not signed them off. -->
+<section class="sec sec--paper turn" data-wake>
+  <div class="wrap">
+    <div class="turn-in" data-reveal>
+
+      <h2 class="display">Four things you were told you need.</h2>
+
+      <ul class="turn-stack" data-gate="legal-substance — the four claims are unverified">
+        <li>A visa. You do not need one to own an American company.</li>
+        <li>To move. You can form it, bank it and run it from where you are sitting.</li>
+        <li>An American partner. Not required.</li>
+        <li>Money in the bank first. There is no minimum capital to form a U.S. company, and no minimum balance to keep it alive.</li>
+      </ul>
+
+      <p class="turn-land">Owning a company in America and living in America are two different things. Almost everybody runs them together, and that single confusion is what keeps most good founders out.</p>
+
+      <blockquote class="pull">
+        <p>&ldquo;It is in fact, very simple; much simpler than you can imagine.&rdquo;</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="sec-cta">
+        <a class="btn" href="#start">Start the Free Course</a>
+        <p class="cta-note">Nothing to announce to anyone.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════ §4 WHAT YOU GET ═════════
+     D29, approved 8-24 and carried as SCOPE language: "getting your American
+     company started" is true against the free lessons and promises nothing
+     behind the paid door.
+
+     The 24 lesson descriptions are cut, along with the accordion that held them
+     and the delivery triad beneath. The steps stay, the homework goes. Module
+     Two keeps its six steps in full, because that is the proof a credentialed
+     buyer validates before he pays (H11, and she conceded it on 8-31: "they
+     don't necessarily know the six steps, so that itself is education, and the
+     order in which it comes").
+
+     Lesson counts are gone. D22 makes the real number 23 plus the intro rather
+     than 24, and she is still slashing Modules 2 and 3, so the count would move
+     again before launch. -->
+<section class="sec sec--paper get" data-wake>
+  <div class="get-in" data-reveal>
+
+    <h2 class="display">The A to Z of getting your American company started.</h2>
+    <p class="get-lede">Three modules, start to finish. All of it free, and yours to keep whether you ever pay for anything or not.</p>
+
+    <div class="mods">
+
+      <div class="mod">
+        <div class="mod-head">
+          <p class="label">Module One</p>
+          <h3>Permission to Build in America</h3>
+          <p class="mod-desc">Before the paperwork, the belief. The part almost everyone skips, and the reason they are still thinking about it two years later.</p>
+        </div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-head">
+          <p class="label">Module Two</p>
+          <h3>Your Business Presence in America</h3>
+          <p class="mod-desc">Six steps from nothing to a working American company. The entity, the tax ID, the bank account, the address and registered agent, your internal documents, and the filings that keep it all in good standing.</p>
+        </div>
+      </div>
+
+      <div class="mod">
+        <div class="mod-head">
+          <p class="label">Module Three</p>
+          <h3>Protect What You Build</h3>
+          <p class="mod-desc">Your name, your work and your idea, registered in America. The moment you are worth copying, somebody copies you.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sec-cta">
+      <a class="btn" href="#start">Start the Free Course</a>
+      <p class="cta-note">All three modules open the moment you join.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════ §5 WHAT YOU JOIN ════
+     Under D48 this is the product, not the epilogue, so the lede stops calling
+     it "the part that keeps working after the lessons are finished" and says
+     what it is. The line it now carries is the honest constraint rather than an
+     invented scarcity: the path can be taught, the application to YOUR facts
+     cannot. That is true, it is the UPL boundary she is bound by, and 8-31 flag
+     6 is explicit that the manufactured-helplessness version would read as a
+     trick to this reader.
+
+     The four access promises are hers, dictated on 8-25 in this order and this
+     form: "it can just be three lines." Do not turn them back into prose.
+
+     "The room" stays dead (D38). She killed it twice, escalating from the body
+     copy to the label itself, and her reason was audience literacy rather than
+     taste. On this page a metaphor is a tax.
+
+     The tier NAMES remain unresolved and the paid tier's contents are blocked on
+     the offer (D52). No number anywhere (D6). -->
+<section class="sec join" data-wake>
+  <div class="join-in" data-reveal>
+
+    <h2 class="display">A community of founders, and a board of experts.</h2>
+
+    <p class="join-lede">The modules show you the path. This is where you get an answer about yours, from people who have already walked it.</p>
+
+    <ul class="access">
+      <li>
+        <b>Business owners on the same journey</b>
+        Some a step behind you, some a year ahead of you.
+      </li>
+      <li>
+        <b>Experts who tailor it to your business</b>
+        You bring what you are actually building, and they shape the answer around it.
+      </li>
+      <li data-gate="wording — Megha cleared the claim 8-25; keep 'potential' doing the work">
+        <b>The potential for funding</b>
+        Megha is bringing in people who back founders at this stage. The access is real, the outcome is yours to earn.
+      </li>
+      <li>
+        <b>The potential for partnership</b>
+        The people in here hire each other, and buy from each other.
+      </li>
+    </ul>
+
+    <p class="join-step">And where it goes from here</p>
+
+    <div class="tiers">
+
+      <div class="tier">
+        <p class="label">Free, and complete</p>
+        <h3>Everything above, plus the community itself</h3>
+        <ul>
+          <li>All three modules, with the written guide for every lesson.</li>
+          <li><b>A private community of Indian founders</b> on the same road at the same time, who understand where you are without you having to explain it.</li>
+          <li><b>One live call a month with Megha</b> and her board of experts. You bring the question, she answers it directly. No junior associate, no chat box.</li>
+          <li>Yours to keep, whether you ever pay for anything or not.</li>
+        </ul>
+        <p class="tier-note">Joining takes your name, your email, the city you are in, and a line about where you are in your business. That is all of it.</p>
+      </div>
+
+      <div class="tier tier--next">
+        <p class="label">The next step</p>
+        <h3>When you want more than an answer</h3>
+        <ul>
+          <li><b>Two live sessions a month with Megha.</b> One leans business, one leans protecting what you own. Questions are collected ahead, so nobody gets put on the spot.</li>
+          <li><b>A toolkit for every module.</b> The templates, checklists and walkthroughs that turn a lesson you understood into a step you finished.</li>
+          <li><b>Your cohort.</b> The people who started the week you did, working the same steps in the same month.</li>
+          <li><b>Guest experts,</b> including an outside attorney for the specific questions Megha is not able to answer for you directly.</li>
+          <li data-gate="offer — the India-side content depends on her sourced material"><b>The compliance work, run live</b> with people who do it every day. Both the American side and the Indian one.</li>
+        </ul>
+        <p class="tier-note" data-gate="D52 + D6 — tier contents and the price both wait on the offer">Founding member pricing, announced when the doors open in October. Free members hear first.</p>
+      </div>
+
+    </div>
+
+    <blockquote class="pull">
+      <p>&ldquo;You could be googling this, you know it anyway, but when you get a call with me or my experts, we&rsquo;ll help you tailor it and design it for you. It&rsquo;s like, are you building a tower or are you building a three-story house?&rdquo;</p>
+      <cite>Megha, in her own words</cite>
+    </blockquote>
+
+    <div class="sec-cta">
+      <a class="btn" href="#start">Start the Free Course</a>
+      <p class="cta-note">The course and the community cost nothing. Stay as long as you like.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════ §6 WHY MEGHA ════════
+     "Who you get it from," the second of her three moves.
+
+     The lede no longer opens on "an attorney in downtown New York." She called
+     that framing too local herself on 9-3 and waved the change through: "25
+     years of experience, chat change my background, that's too local. Fine.
+     Let's change that language. That shouldn't be a big deal." It now opens on
+     the twenty-five years and the two countries, which is the credential this
+     buyer is actually weighing.
+
+     Credentials first, then one warm line. Not either/or: authority is what
+     makes him consider it, and "family, not a billing number" is what makes it
+     safe to tell his own family about.
+
+     PHOTOGRAPH: the existing office shot stays. No new stills this round — her
+     instruction on 9-3, "don't put any photographs in there, just send me the
+     text." CJ is editing the shoot on a 1 to 1.5 week track.
+
+     The Evercoach line is cut from the trust strip. It was gated on consent she
+     has never given, and it is the weakest of the five sitting next to Columbia
+     and twenty-five years. Removing it also removes a gate. -->
+<section class="sec why" data-wake>
+  <div class="why-in">
+
+    <figure class="why-fig" data-reveal>
+      <img src="assets/megha-office-sm.jpg" width="574" height="860" loading="lazy"
+           alt="Megha Bhouraskar in her New York office">
+    </figure>
+
+    <div data-reveal>
+      <h2 class="display">Twenty-five years on the other side of the gap.</h2>
+      <p class="lede">Megha Bhouraskar has spent more than twenty-five years helping Indian founders, family businesses and investors navigate the American business system. She has practised law in New York that entire time, she went to Barnard and Columbia, and she has been going back and forth between the two countries her whole life.</p>
+
+      <ul class="why-facts" data-gate="verification — confirm the book title and the podcast reference before launch">
+        <li>She wrote <em>How to Have a Business Presence in the U.S.A.</em>, which is the spine of Module Two.</li>
+        <li>Family businesses, tech founders, real estate investors and entertainment companies. Most of them Indian, all of them running two countries at once.</li>
+        <li>Clients who have stayed ten, fifteen and twenty years, several of whom handed her power of attorney over their American affairs.</li>
+      </ul>
+
+      <blockquote class="pull">
+        <p>&ldquo;I make them feel like family, not like a billing number.&rdquo;</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+    </div>
+
+  </div>
+
+  <div class="why-foot">
+      <!-- The credentials, in her own section rather than bolted to the hero.
+           Position is what keeps this inside the never-lead-with-credentials
+           rule: it is read after her story, not instead of it. -->
+      <ul class="trust">
+        <li>
+          <b>25 years</b>
+          <span>Practising law in New York</span>
+        </li>
+        <li>
+          <b>Columbia</b>
+          <span>Barnard and Columbia, New York</span>
+        </li>
+        <li>
+          <b>A decade or more</b>
+          <span>How long her clients tend to stay, several with power of attorney over their American affairs</span>
+        </li>
+        <li data-gate="verification — confirm the book title before launch">
+          <b>Published</b>
+          <span><em>How to Have a Business Presence in the U.S.A.</em>, the guide Module Two is built on</span>
+        </li>
+      </ul>
+
+      <div class="sec-cta">
+        <a class="btn" href="#start">Start the Free Course</a>
+        <p class="cta-note">Everything opens the moment you join.</p>
+      </div>
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════ §7 QUESTIONS ═════════
+     Four, collapsed. Friction removal, not persuasion. These stay because they
+     answer rather than describe — the one thing on the page the reader actually
+     arrived with. The full-time-job answer keeps its aside; it is the only place
+     on the page that sounds like a person rather than a business. -->
+<section class="sec faq" data-wake>
+  <div class="faq-in" data-reveal>
+
+    <h2 class="display">Questions</h2>
+
+    <details class="qa" data-gate="legal-substance — Megha reads and blesses this before launch">
+      <summary>I do not have a visa. Does that stop me?</summary>
+      <div class="qa-a">No. Owning an American company and living in America are two different things, and almost everybody runs them together. You can form it, bank it and run it from where you are sitting right now.</div>
+    </details>
+
+    <details class="qa" data-gate="legal-substance — Megha reads and blesses this before launch">
+      <summary>How much money do I actually need?</summary>
+      <div class="qa-a">Less than the number in your head. There is no minimum capital required to form a U.S. company and no minimum balance to keep it alive. There are real third-party costs to set things up, and Module Two walks them so you are not guessing.</div>
+    </details>
+
+    <details class="qa">
+      <summary>Is this legal advice?</summary>
+      <div class="qa-a">It is not, and I would rather say that plainly than bury it. This is education: how the system works, what to weigh, and which questions are worth asking. I can show you every step. What I cannot do in a video is tell you which one applies to your situation, because that depends on facts I do not have. For that, work with a qualified professional in your jurisdiction. Joining does not create an attorney and client relationship.</div>
+    </details>
+
+    <details class="qa">
+      <summary>I have a full-time job.</summary>
+      <div class="qa-a">I know, and probably a demanding one with people on the other side of the world sitting in your calendar. The lessons are short and built for a phone. Nothing expires, nothing drips, and there is no cohort you can fall behind. Go at the speed your life actually allows.</div>
+    </details>
+
+  </div>
+</section>
+
+<!-- ═════════════════════════════════════════════════════ §8 CLOSE ═════════
+     Her close, from the VSL, and it is better than ours: the clarity loop names
+     the reader's actual behaviour instead of exhorting them out of it. Lands on
+     her exclamation mark, which stays. Trimmed by one paragraph. -->
+<section class="sec close" id="start" data-wake>
+  <div class="close-in" data-reveal>
+
+    <h2 class="display">Do not wait until you have it all figured out.</h2>
+
+    <div class="prose">
+      <p>That is the loop. You wait for clarity before you start, and the clarity only comes once you start.</p>
+      <p>Your name, your email, the city you are in, and a line about where you are in your business. That is the whole first step.</p>
+    </div>
+
+    <p class="shout">&ldquo;It&rsquo;s Never Too Late!&rdquo;</p>
+
+    <div class="close-act">
+      <div class="cta-row">
+        <a class="btn" href="#start">Start the Free Course</a>
+      </div>
+      <p class="cta-note">No card. Three modules, yours to keep.</p>
+      <!-- D45: ONE checkbox on the form itself (messaging consent). The terms are
+           acknowledged by this line rather than by a second checkbox — Megha
+           asked for a checkbox, Shayne argued the conversion cost, she agreed. -->
+      <p class="consent">By signing up you agree to the <a href="/terms">Terms of Service</a> and the <a href="/privacy">Privacy Policy</a>, and to receiving email and messages about the course.</p>
+    </div>
+
+    <p class="sig">Look Forward.</p>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="sec foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="assets/logo-compact-dark-sm.png" width="400" height="245" loading="lazy" alt="Megha Bhouraskar">
+        <p class="foot-tag">Storyteller &middot; Strategist &middot; Guide</p>
+      </div>
+      <!-- A copyright line names the ENTITY, not the brand, so this is correct
+           whatever D3 lands on. Entity confirmed 2026-08-31: DIMARA Inc. -->
+      <div class="foot-meta">
+        <p>&copy; 2026 DIMARA Inc.</p>
+        <p class="foot-links" data-gate="D44 — Shayne drafts, Megha's attorney pass, then these go live"><a href="/terms">Terms of Service</a> &middot; <a href="/privacy">Privacy Policy</a></p>
+      </div>
+    </div>
+    <!-- D43, 2026-08-25. Megha rewrote this doctrine on the call: "I don't want
+         to say it's separate. I don't want to mention the law offices." No MDB,
+         no "separate from" framing, and the limits arrive AFTER the value so the
+         reader does not feel they are being handed less than they were promised. -->
+    <p class="legal">This is an educational platform. It teaches how the American system works, what to weigh, and which questions to ask, so you can make good decisions about your own business. It is not legal advice and it is not accounting advice, and nothing here creates an attorney and client relationship. Laws and processes change and vary by situation and by jurisdiction, so work with a qualified professional on your specific circumstances.</p>
+    <p class="buildmark">Build 3, the language pass &middot; for your review &middot; 3 September 2026</p>
+  </div>
+</footer>
+
+<script src="system.js"></script>
+<script src="vsl.js"></script>
+</body>
+</html>
