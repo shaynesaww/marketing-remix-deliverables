@@ -1,0 +1,865 @@
+/* =============================================================================
+   STRATA.CSS — the shared depth kit for the shipping pages
+
+   WHY THIS FILE EXISTS
+   Strata won the depth thesis on 2026-08-13, by ratification: the hero variants
+   Megha judged and approved were Strata builds. Two pages now sit on it — the
+   short page (Build 1) and the long page (Build 2) — so the vocabulary gets
+   extracted once rather than pasted twice and drifting.
+
+   It replaces two things it was lifted from:
+     - `study-strata.html`, which only ever built §1, §2, §4 and §14
+     - `heroes.css`, which carried the VSL hero plus a review harness we drop
+
+   THE THESIS, IN ONE LINE
+   Depth comes from LAYERS AND EDGES. Discrete opaque planes, visible value steps
+   between them, a lit hairline on every top edge, and objects that CROSS the
+   seams instead of respecting them. You know it is deep because things are
+   visibly IN FRONT of other things.
+
+   WHY IT IS THE BRIEF AND NOT A PREFERENCE
+   She rejected soft, airy, fading and dissolving twice, on behalf of an audience
+   she described as *"no nonsense types… engineers, MIT business school,"* and
+   said *"the first two are more crisp."* Atmosphere's logged risk was "mush" and
+   Strata's was "cold." Against this reader, cold is not a risk. Cold is the ask.
+   The warmth is carried by the portrait, her voice device, generous leading and
+   the cream sheet — never by loosening the geometry.
+
+   CASCADE
+   Loads after system.css. Everything lives in @layer variant, which system.css
+   never declares, so it lands last and wins with no specificity fights.
+   ============================================================================= */
+
+@layer variant {
+
+/* ==================================================== PLANES, NOT AIR ===== */
+
+/* No isolation. An element has to be able to paint across a section boundary,
+   which is the entire point of this variant. The sections are opaque, so the
+   grain still blends against the plane it sits on rather than leaking. */
+.sec{
+  isolation:auto;
+  background:var(--ground,var(--g-1));
+  box-shadow:inset 0 1px 0 var(--edge-hi);   /* the lit top edge of a sheet */
+}
+.sec::after{content:none}                    /* no haze; this variant has weather-free air */
+
+:root{
+  --grain:url(assets/grain-coarse.png);      /* paper tooth, not film grain */
+  --grain-opacity:.05;
+  --edge-hi:rgba(241,238,231,.085);
+}
+
+/* The section CTA. D30 asks for bold and strong; the 8-13 CTA doctrine asks for
+   "Start free" at every scroll section so nobody has to scroll back up. One
+   element, one rule, repeated — a raised plate rather than a naked button, so
+   the repetition reads as structure instead of nagging. */
+.sec-cta{
+  margin-top:var(--s-8);
+  padding:var(--s-6) var(--s-6);
+  background:var(--cta-plate,var(--g-3));
+  border:1px solid var(--rule-gold);
+  box-shadow:inset 0 1px 0 rgba(241,238,231,.12);
+  display:flex;align-items:center;gap:var(--s-5);flex-wrap:wrap;
+}
+.sec-cta .cta-note{margin:0}
+
+/* D45. The terms are acknowledged by a line rather than a second checkbox, so
+   the line has to be legible without competing with the CTA above it. */
+.consent{margin-top:var(--s-5);max-width:52ch;
+  font-size:var(--t-1);line-height:1.7;color:var(--ink-faint)}
+.consent a{color:var(--ink-mute);text-decoration:none;
+  border-bottom:1px solid var(--rule-soft)}
+.consent a:hover{color:var(--gold-aa);border-bottom-color:var(--rule-gold)}
+
+/* A CTA inside each open module, worded to that module. Shayne's note on the
+   8-25 walkthrough: the accordion ends on a lesson list and gives the reader
+   nowhere to go at the exact moment they are most convinced. Quiet variant so
+   three of them down the page do not shout over the section CTA. */
+.mod-cta{margin:0 var(--s-6) var(--s-6);padding-top:var(--s-5);
+  border-top:1px solid var(--rule-paper);
+  display:flex;align-items:center;gap:var(--s-5);flex-wrap:wrap}
+.mod-cta .cta-note{margin:0;max-width:44ch}
+.sec--paper .sec-cta{
+  --cta-plate:var(--p-3);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.8);
+}
+
+/* ================================================================ NAV ===== */
+.nav{
+  position:sticky;top:0;z-index:var(--z-nav);
+  background:var(--g-0);
+  border-bottom:1px solid var(--rule-gold);
+}
+.nav-in{
+  max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+  height:76px;display:flex;align-items:center;justify-content:space-between;gap:var(--s-5);
+}
+.nav-logo{height:42px;width:auto}
+.nav .btn{padding:12px 24px;font-size:13px}
+
+/* ============================================= §1 THE HERO (D26/D27) ======
+   C1 · Strata · Recognition. Lifted out of heroes.css and de-harnessed: no
+   scroll-snap, no review pill, no keyboard paging, no [data-noop].
+
+   Arrangement is split, text left, video right. She rejected the centred
+   version on sight. The media takes the larger share because D27 made the video
+   the hero element, and the copy column still holds a two-line headline at
+   display size because the wrap grew to pay for it. */
+.hero{
+  position:relative;
+  isolation:auto;
+  --ground:var(--g-2);                       /* the stronger blue. Her words. */
+  background:var(--ground);
+  box-shadow:inset 0 1px 0 var(--edge-hi);
+  border-top:0;
+  /* Opened up from clamp(52px,7vh,92px). The fold was reading compressed against
+     the nav above it and the band below, and a hero that has to carry a video,
+     a two-line display headline and a trust strip needs air or it looks like a
+     banner rather than the top of a page. */
+  padding-block:clamp(76px,10vh,136px);
+  overflow:hidden;
+}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background-image:var(--grain);
+  background-size:var(--grain-size) var(--grain-size);
+  opacity:var(--grain-opacity);
+  mix-blend-mode:var(--grain-blend);
+}
+@media (min-resolution:2dppx){
+  .hero::before{background-size:calc(var(--grain-size) * 1.5) calc(var(--grain-size) * 1.5)}
+}
+
+/* Wider than the system --wrap of 1280. The hero carries a video at half its
+   width and has to fill a screen on its own; at 1280 it read as under-filled,
+   which is the opposite of D26's "make it really, really big." */
+/* Equal columns, not the 1 / 1.16 the review pages used. Measured, not guessed:
+   "Own an American company" needs 571px at the 48px cap, and 1.16fr left the
+   copy column at 560px, so the headline wrapped to three lines while the CSS
+   still said 48px. Equal columns give it 605px, and the ratio holds down the
+   whole range because the headline and the column both scale on vw. The video
+   is still the largest single object in the fold, which is what D27 asked for. */
+.hero-in{
+  position:relative;z-index:3;
+  width:100%;max-width:1400px;margin-inline:auto;padding-inline:var(--gutter);
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  column-gap:clamp(32px,4.4vw,76px);
+  align-items:center;
+}
+.hero-copy{position:relative}
+
+/* The NAME beat of the fear protocol, above the promise. Small and quiet on
+   purpose: it is a recognition trigger, not a headline, and sizing it like one
+   would make the fold read as a complaint. This reader's life is good. */
+.hx-tension{
+  font-family:var(--display);font-size:var(--t-5);font-style:italic;
+  line-height:1.44;color:var(--ink-mute);max-width:34ch;margin-bottom:var(--s-5);
+}
+
+/* Capped well under the global --t-8 because the split copy column is ~560px:
+   "Own an American company" needs roughly 11.5em, and anything larger strands a
+   word onto a third line the forced breaks never intended. */
+.hero h1.display{
+  font-size:clamp(31px,3.4vw,48px);
+  margin-bottom:var(--s-5);
+  max-width:none;
+}
+.hero h1.display .l{display:block}
+
+/* The clarity carrier. Every variant's subtext has to tell a cold visitor what
+   this actually is — the 8-13 note was that the headlines alone were ambiguous.
+   Generous measure, because this line is doing real work. */
+.hx-sub{
+  font-size:var(--t-5);line-height:1.62;color:var(--ink-soft);
+  max-width:46ch;margin-bottom:var(--s-7);
+}
+
+/* Stacked, not side by side. The system's .cta-row sits the note beside the
+   button, which cramps in a 560px column and orphaned "join." on its own line.
+   Stacking also lets the button read at the size D26 asked for. */
+.hero .cta-row{flex-direction:column;align-items:flex-start;gap:var(--s-4)}
+.hero .cta-note{max-width:40ch}
+
+/* The column rule. A hairline in the gutter that says the grid is real. It
+   hangs off the copy column because the media is a clipped box, and a
+   negatively positioned child of that would simply be cut off. */
+.hero-copy::after{
+  content:"";position:absolute;top:-6%;bottom:-6%;
+  right:calc(-1 * clamp(16px,2.5vw,42px));
+  width:1px;background:var(--rule-soft);
+}
+
+/* ---- the VSL (D27) ------------------------------------------------------
+   The video replaces her portrait. Click-to-play with a facade, never an
+   autoplaying iframe: the audience is a phone in India on a middling
+   connection, a cold YouTube embed is roughly half a megabyte of JavaScript
+   before anything paints, and a talking-head VSL is sound-on by definition. */
+.vsl{position:relative;margin:0;width:100%;
+  border:1px solid var(--rule-gold);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  background:var(--g-3)}
+.vsl-btn{
+  position:relative;display:block;width:100%;aspect-ratio:16 / 9;
+  padding:0;border:0;background:var(--g-0);cursor:pointer;overflow:hidden;
+  font:inherit;color:inherit;
+}
+.vsl-btn img{
+  width:100%;height:100%;object-fit:cover;
+  /* the only photo we have is a 1320x1643 portrait, so a 16:9 crop has to be
+     pulled well up to keep her face in frame rather than her collar */
+  object-position:56% 12%;
+  filter:saturate(.9) brightness(.88) contrast(1.03);
+  transition:filter var(--dur) var(--ease),transform var(--dur) var(--ease);
+}
+.vsl-btn:hover img{filter:saturate(.98) brightness(.97) contrast(1.02);transform:scale(1.012)}
+.vsl-btn::after{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:
+    linear-gradient(250deg,rgba(233,201,150,.14) 0%,rgba(212,170,106,.04) 34%,transparent 58%),
+    linear-gradient(180deg,transparent 58%,rgba(7,12,30,.6) 100%);
+}
+.vsl-play{
+  position:absolute;left:50%;top:50%;translate:-50% -50%;z-index:3;
+  width:clamp(58px,7vw,82px);aspect-ratio:1;border-radius:50%;
+  display:grid;place-items:center;
+  background:rgba(10,17,40,.52);
+  border:1px solid rgba(226,186,132,.72);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.16);
+  transition:background var(--dur-fast) var(--ease),border-color var(--dur-fast) var(--ease);
+}
+.vsl-play::after{
+  content:"";width:0;height:0;margin-left:14%;
+  border-left:clamp(15px,1.8vw,21px) solid var(--gold);
+  border-block:clamp(9px,1.1vw,13px) solid transparent;
+}
+.vsl-btn:hover .vsl-play{background:rgba(10,17,40,.7);border-color:var(--gold)}
+/* Top-right, not bottom-right: the caption plate owns the bottom edge and the
+   two collide there at split-column widths. */
+.vsl-dur{
+  position:absolute;right:var(--s-4);top:var(--s-4);z-index:3;
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:rgba(255,255,255,.82);background:rgba(7,12,30,.62);
+  padding:5px 9px;border-radius:var(--r-sm);
+}
+/* The caption plate, inside the frame's own edges. Part of what makes the media
+   read as a bounded object rather than a hole cut in the page. */
+.vsl-cap{
+  position:absolute;left:0;right:0;bottom:0;z-index:3;
+  padding:var(--s-5) var(--s-5) var(--s-4);
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:rgba(255,255,255,.86);pointer-events:none;
+}
+.vsl-pending{
+  position:absolute;inset:0;z-index:4;display:none;place-items:center;text-align:center;
+  padding:var(--s-6);background:rgba(7,12,30,.88);
+  font-size:var(--t-4);color:var(--ink-soft);line-height:1.6;
+}
+.vsl.is-pending .vsl-pending{display:grid}
+.vsl-pending b{display:block;font-family:var(--display);font-size:var(--t-6);
+  color:var(--ink);font-style:italic;margin-bottom:var(--s-3)}
+.vsl iframe{position:absolute;inset:0;width:100%;height:100%;border:0;z-index:5}
+
+/* ================================================== THE OUTCOMES BAR ======
+   Sits between the hero and the second promise, on the darkest ground on the
+   page with a gold rule top and bottom so it reads as its own object rather
+   than as part of either section touching it.
+
+   It answers "what do I have at the end," which is the question a free signup
+   actually turns on. Four cells: three concrete deliverables and the community, so
+   the ladder gets named once above the fold-ish without selling anything.
+
+   Near-black, not midnight. It borrows the nav's ground deliberately: the two
+   dark bars bracket the hero and make the fold read as a composed unit. */
+.outcomes{
+  --ground:var(--g-0);
+  padding-block:var(--beat-tight);
+  border-top:1px solid var(--rule-gold);
+  border-bottom:1px solid var(--rule-gold);
+  box-shadow:none;
+}
+.outcomes-in{
+  max-width:1400px;margin-inline:auto;padding-inline:var(--gutter);
+}
+.outcomes-lede{
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:var(--gold);margin-bottom:var(--s-6);
+}
+.outcomes-list{
+  list-style:none;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  column-gap:clamp(20px,2.6vw,44px);
+}
+.outcomes-list li{
+  padding-left:clamp(16px,1.8vw,30px);
+  border-left:1px solid var(--rule-gold);
+}
+.outcomes-list li:first-child{padding-left:0;border-left:0}
+.outcomes-list b{
+  display:block;font-weight:400;
+  font-family:var(--display);font-size:var(--t-5);line-height:1.28;
+  color:var(--ink);margin-bottom:var(--s-3);
+}
+.outcomes-list span{display:block;font-size:var(--t-2);line-height:1.65;color:var(--ink-mute)}
+
+/* ---- the trust strip, now living under Why Megha ----------------------
+   It was on the hero's bottom edge and read as part of the header rather than
+   as its own statement. Moved to the biography, where credentials belong and
+   where the voice guide's never-lead-with-credentials rule is satisfied by
+   position rather than by argument.
+
+   Restyled to match: a gold rule over each cell instead of hairlines between
+   them, so it reads as a row of credentials rather than a continuation of the
+   hero's grid. */
+.trust{
+  list-style:none;
+  margin-top:var(--s-9);
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  column-gap:clamp(18px,2.2vw,36px);
+}
+.trust li{padding-top:var(--s-5);border-top:1px solid var(--rule-gold)}
+.trust b{
+  display:block;font-weight:400;
+  font-family:var(--display);font-style:italic;
+  font-size:var(--t-5);line-height:1.2;color:var(--gold);
+  margin-bottom:var(--s-3);
+}
+.trust span{display:block;font-size:var(--t-2);line-height:1.62;color:var(--ink-mute)}
+
+/* ================================================= §2 THE SECOND PROMISE ==
+   "Live in India, Grow Rich from America," back to back with the hero, because
+   ~85% never scroll deep. It steps one rung UP the ramp so it reads as a plane
+   laid on the hero rather than the next chapter. */
+/* Opened up from --beat-tight, and the columns rebalanced. At 1.25 / 1 with a
+   quiet button the right half was a lone outline floating in an empty field, and
+   the whole band read as a shrunken version of the hero rather than a second
+   promise. The headline now runs bigger and further right, and the CTA column
+   carries a solid button plus a line under it so it has real content in it. */
+.band{
+  --ground:var(--g-3);
+  padding-block:var(--beat);
+  border-top:1px solid var(--rule-gold);
+}
+.band-in{
+  max-width:1400px;margin-inline:auto;padding-inline:var(--gutter);
+  display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);
+  column-gap:clamp(28px,4vw,72px);align-items:center;
+}
+/* The column rule, same device as the hero. Without it the space between the
+   copy and the button reads as a hole; with it the band reads as a two-column
+   composition that happens to have air in it. In a variant whose whole argument
+   is edges, showing the grid is the honest fix. */
+.band-copy{position:relative}
+.band-copy::after{
+  content:"";position:absolute;top:-12%;bottom:-12%;
+  right:calc(-1 * clamp(14px,2vw,36px));
+  width:1px;background:var(--rule-soft);
+}
+.band-act{justify-self:end;text-align:right;max-width:34ch}
+.band-act .cta-note{margin-top:var(--s-5);max-width:none;text-align:right}
+/* No ch cap on the headline. A 16ch measure is about 336px at the 42px cap and
+   broke "Grow Rich from America." across two lines, which turns a two-beat line
+   into a three-line block and makes the band taller than the promise deserves.
+   The grid column already constrains it to ~608px, which the longest line needs
+   445px of. Let the grid do the measuring. */
+.band h2.display{font-size:clamp(30px,3.7vw,52px);max-width:none}
+.band h2.display .l{display:block}
+.band-sub{font-size:var(--t-5);color:var(--ink-soft);max-width:none;margin-top:var(--s-6)}
+.band .cta-row{justify-content:flex-end}
+
+/* The one button on the page that has to carry a whole half of a section. */
+.btn--lg{padding:21px 42px;font-size:16px;letter-spacing:.07em}
+
+/* ==================================================== §3 RECOGNITION =====
+   The deepest plane on the page. Her four named founders from the VSL, plus the
+   proxy line, as a list of planes rather than prose — D30's "must not look like
+   reading" is the format here, not a compromise against it.
+
+   Each item is a raised sheet with its own edges. That is the callout-box
+   vocabulary she praised twice, unprompted. */
+.recog{--ground:var(--g-0);padding-block:var(--beat-wide)}
+.recog-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+/* Heading left, lede right, baselines aligned. Same head-row pattern the myths
+   section used: a stacked heading over a 52ch paragraph left the whole right
+   half of a 1280 wrap empty, which reads as an unfinished layout rather than as
+   whitespace. */
+.recog-head{
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  column-gap:clamp(28px,4vw,72px);align-items:end;margin-bottom:var(--s-8);
+}
+.recog h2.display{max-width:none}
+.recog-lede{font-size:var(--t-5);color:var(--ink-soft);max-width:52ch}
+.recog-list{
+  list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));
+  gap:var(--s-5);
+}
+.recog-item{
+  padding:var(--s-6);
+  background:var(--g-2);
+  border:1px solid var(--rule-soft);
+  border-top:1px solid var(--rule-gold);
+  box-shadow:inset 0 1px 0 rgba(241,238,231,.10);
+  font-size:var(--t-4);line-height:1.7;color:var(--ink-soft);
+}
+.recog-item b{
+  display:block;font-family:var(--display);font-style:italic;
+  font-size:var(--t-5);color:var(--ink);margin-bottom:var(--s-3);font-weight:400;
+}
+/* The one that runs deeper than the rest. A gold edge, NOT a bigger box: this is
+   a recognition line for a subset of readers, not the page's thesis, and sizing
+   it up would make the page argue something the evidence does not support. */
+.recog-item--turn{border-color:var(--rule-gold);border-left:2px solid var(--rule-gold)}
+
+/* The diagnosis, sitting in the grid's sixth cell rather than under the list.
+   Five cards in a three-column grid leave a hole in row two that reads as a
+   missing card; putting the summing-up there fills it and lands the line exactly
+   where the eye stops. Unboxed on purpose — it is the page speaking, not another
+   symptom. */
+/* Deliberately NOT the gold left bar. That bar means "Megha is speaking now,"
+   and this line is the page summing up, not her. A soft rule and plain ink keeps
+   the signature device meaning one thing. */
+.recog-sum{
+  align-self:center;
+  font-family:var(--display);font-style:italic;
+  font-size:var(--t-5);line-height:1.56;color:var(--ink-soft);
+  padding:var(--s-5) 0 var(--s-5) var(--s-6);
+  border-left:1px solid var(--rule-soft);
+}
+/* At two columns the sixth cell sits alone in a row and the border-left reads as
+   a stray rule. Let it become a full-width closing line. */
+@media (max-width:1100px){
+  .recog-sum{grid-column:1 / -1;border-left:0;padding-left:0;
+    padding-top:var(--s-6);border-top:1px solid var(--rule-soft);max-width:var(--measure-prose)}
+}
+
+/* ================================================ THE CREAM PASSAGES ======
+   FULL BLEED, edge to edge. The inset-sheet version (midnight running down both
+   margins) was the more literal statement of the layering thesis, but it read as
+   a block sitting inside a darker page rather than as the page changing state,
+   and it put a hard vertical cut on both sides of the copy.
+
+   The seam is Atmosphere's, carried over deliberately (Shayne, 8-25) because it
+   is the better dark-to-light transition and he wants it everywhere: a GOLD
+   HAIRLINE on the boundary, then a shadow falling INTO the cream beneath it.
+   Heavier at the top than the bottom, because the light in this world comes from
+   above and a symmetric shadow reads as a sticker.
+
+   This overrides `.sec`'s lit top edge on cream sections, which is correct: a
+   plane that changes material does not also need an edge highlight. */
+.sec--paper{
+  --seam:rgba(184,146,74,.72);
+  padding-block:var(--beat-wide);
+  border-top:1px solid var(--seam);
+  border-bottom:1px solid var(--seam);
+  box-shadow:
+    inset 0 26px 34px -22px rgba(4,7,18,.78),
+    inset 0 -18px 26px -18px rgba(4,7,18,.52);
+}
+/* TAN ON TAN GETS A LINE, NOT A SEAM (Shayne, 8-25).
+   The shadow exists to sell a change of material, and between two cream sections
+   there is no change of material — it just read as a hood dropped across the
+   middle of one continuous field. So the boundary between consecutive cream
+   sections is a plain gold rule and nothing else.
+
+   `:has()` rather than a marker class, so Build 2 inherits the behaviour without
+   anyone having to remember to add one. */
+.sec--paper:has(+ .sec--paper){
+  box-shadow:inset 0 26px 34px -22px rgba(4,7,18,.78);   /* its own top only */
+}
+.sec--paper + .sec--paper{
+  border-top:0;                                          /* the rule above is the previous section's border-bottom */
+  box-shadow:inset 0 -18px 26px -18px rgba(4,7,18,.52);  /* its own bottom, back into midnight */
+}
+
+.turn-in{max-width:760px;margin-inline:auto}
+.turn h2.display{max-width:none;margin-bottom:var(--s-7)}
+/* The anaphora, near-verbatim from the VSL. Each clause is its own line because
+   she says it as three beats, and setting it as a paragraph flattens the
+   cadence that makes it work. */
+.turn-stack{list-style:none;margin-bottom:var(--s-7)}
+.turn-stack li{
+  font-family:var(--display);font-size:var(--t-6);line-height:1.42;
+  color:var(--ink-paper-soft);
+  padding-block:var(--s-4);border-bottom:1px solid var(--rule-paper);
+}
+.turn-stack li:first-child{border-top:1px solid var(--rule-paper)}
+.turn-stack li b{color:var(--ink-paper);font-weight:400;font-style:italic}
+.turn-land{font-size:var(--t-5);line-height:1.7;color:var(--ink-paper);max-width:56ch}
+
+/* ================================================ §5 WHAT YOU GET =========
+   The A to Z, and the three ways it arrives. Built as objects, not paragraphs.
+   Three module planes across, then the delivery triad, then the resources line.
+   Numerals appear on the six-step road because that order is real; they do NOT
+   appear on the modules or the delivery triad, which are sets. */
+.get-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.get h2.display{max-width:22ch;margin-bottom:var(--s-5)}
+.get-lede{font-size:var(--t-5);color:var(--ink-paper-soft);max-width:56ch;margin-bottom:var(--s-8)}
+
+/* ---- the modules, stacked and collapsible ------------------------------
+   Three side-by-side cards forced every blurb to the length of the shortest one
+   and had nowhere to put the actual lessons, which is the thing a reader
+   deciding whether to sign up most wants to see. Stacked accordions instead:
+   the title and the explanation are always visible, and the lesson list is one
+   click away and CLOSED by default so the section still scans in three beats.
+
+   The lessons are deliberately UNNUMBERED. Numerals mean sequence on this page,
+   and there is a live mismatch between her video numbering and the page
+   numbering (documented 8-14) that a numbered list would publish. */
+.mods{list-style:none;display:grid;gap:var(--s-5);margin-bottom:var(--s-9)}
+.mod{
+  background:var(--p-3);
+  border:1px solid var(--rule-paper);
+  border-top:2px solid rgba(184,146,74,.6);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+}
+.mod > summary{
+  list-style:none;cursor:pointer;
+  padding:var(--s-6);
+  display:grid;grid-template-columns:minmax(0,1fr) auto;
+  column-gap:var(--s-6);align-items:center;
+}
+.mod > summary::-webkit-details-marker{display:none}
+.mod .label{color:var(--gold-aa);margin-bottom:var(--s-3)}
+.mod h3{font-family:var(--display);font-size:var(--t-6);line-height:1.24;
+  color:var(--ink-paper);font-weight:400;margin-bottom:var(--s-4)}
+.mod-desc{font-size:var(--t-3);line-height:1.7;color:var(--ink-paper-soft);max-width:76ch}
+.mod-count{display:block;margin-top:var(--s-5);
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:var(--ink-paper-mute)}
+/* The affordance. Same chevron as the questions accordion, sized up, and it says
+   what it does rather than relying on the arrow alone. */
+.mod-open{
+  display:flex;align-items:center;gap:var(--s-3);align-self:start;
+  margin-top:2px;white-space:nowrap;
+  font-size:var(--t-1);letter-spacing:var(--track-label);text-transform:uppercase;
+  color:var(--gold-aa);
+}
+.mod-open::after{
+  content:"";flex:none;width:11px;height:11px;
+  border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+  rotate:45deg;translate:0 -3px;
+  transition:rotate var(--dur-fast) var(--ease);
+}
+.mod[open] .mod-open::after{rotate:225deg;translate:0 2px}
+/* The label says what the click does, in both directions. An arrow on its own
+   makes a reader guess, and this audience does not enjoy guessing. */
+.mod-open .o-open{display:none}
+.mod[open] .mod-open .o-shut{display:none}
+.mod[open] .mod-open .o-open{display:inline}
+.lessons{
+  list-style:none;
+  margin:0 var(--s-6) var(--s-6);
+  padding-top:var(--s-5);
+  border-top:1px solid var(--rule-paper);
+}
+/* Numbered, named and explained. A dash and a title told a reader the shape of
+   the module and nothing about whether it was worth their evening; a numbered
+   lesson with a sentence under it is the thing somebody deciding to sign up
+   actually reads. Number and title both bold, the number in gold so the sequence
+   is scannable without counting. */
+.lessons li{
+  padding:var(--s-5) 0;
+  border-bottom:1px solid var(--rule-paper);
+}
+.lessons li:last-child{border-bottom:0;padding-bottom:0}
+.lessons li b{
+  display:block;font-weight:600;
+  font-size:var(--t-4);line-height:1.42;color:var(--ink-paper);
+  margin-bottom:var(--s-3);
+}
+.lessons .ln{color:var(--gold-aa);white-space:nowrap}
+.lessons .ln::after{content:" · ";color:var(--ink-paper-mute);font-weight:400}
+.lesson-d{
+  display:block;max-width:74ch;
+  font-size:var(--t-3);line-height:1.7;color:var(--ink-paper-soft);
+}
+
+/* Watch it / read it / work it. Her line, and the strongest single answer to
+   "what do I actually get" — so it gets planes of its own rather than a
+   sentence inside a paragraph. */
+.triad{list-style:none;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));
+  gap:var(--s-5);margin-bottom:var(--s-7)}
+.triad li{
+  padding:var(--s-6);background:var(--p-1);
+  border:1px solid var(--rule-paper);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.85);
+}
+.triad b{display:block;font-family:var(--display);font-style:italic;
+  font-size:var(--t-6);color:var(--ink-paper);font-weight:400;margin-bottom:var(--s-3)}
+.triad p{font-size:var(--t-3);line-height:1.7;color:var(--ink-paper-soft)}
+
+/* ======================================================= §6 WHAT YOU JOIN
+   D36. Free on the left, the upper level on the right, on two visibly different
+   planes — the value ladder stated as layering rather than as a price table.
+   No number appears anywhere (D6). */
+/* Renamed from .room on 2026-08-31 (D38). Megha rejected the metaphor outright,
+   the label included, so the class went with it — otherwise the next person
+   reading this file reintroduces the word. */
+.join{--ground:var(--g-2);padding-block:var(--beat-wide)}
+.join-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+.join h2.display{max-width:24ch;margin-bottom:var(--s-5)}
+.join-lede{font-size:var(--t-4);line-height:1.62;color:var(--ink-soft);
+  max-width:54ch;margin-bottom:var(--s-8)}
+
+/* The four access promises (D39). One line each and no paragraph anywhere — she
+   gave us the form as well as the content: "It can just be three lines." Two-up
+   on desktop so the block stays short; the bold lead carries the scan and the
+   line beneath it carries the meaning. */
+.access{list-style:none;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:var(--s-7) var(--s-8);margin-bottom:var(--s-9);max-width:100ch}
+.access li{position:relative;padding-left:var(--s-5);
+  font-size:var(--t-3);line-height:1.66;color:var(--ink-soft)}
+.access li::before{content:"";position:absolute;left:0;top:.72em;
+  width:10px;height:1px;background:var(--rule-gold)}
+.access li b{display:block;color:var(--ink);font-weight:600;
+  margin-bottom:var(--s-2);line-height:1.4}
+
+/* The h2 used to carry the ladder idea ("and where it goes"). It now carries the
+   two nouns, so the ladder gets its own line above the tiers. */
+.join-step{font-size:var(--t-1);letter-spacing:var(--track-label);
+  text-transform:uppercase;color:var(--gold);margin-bottom:var(--s-6)}
+.tiers{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));
+  gap:var(--s-6);align-items:start}
+.tier{padding:var(--s-7) var(--s-6);
+  background:var(--g-1);
+  border:1px solid var(--rule-soft);
+  box-shadow:inset 0 1px 0 rgba(241,238,231,.09)}
+/* The paid tier is one step further forward: lighter ground, gold edge, and it
+   sits slightly proud of the free plane. The ladder, built rather than labelled. */
+.tier--next{
+  background:var(--g-3);
+  border-color:var(--rule-gold);border-top-width:2px;
+  box-shadow:inset 0 1px 0 rgba(241,238,231,.14);
+}
+.tier .label{margin-bottom:var(--s-4)}
+.tier h3{font-family:var(--display);font-size:var(--t-6);line-height:1.26;
+  color:var(--ink);font-weight:400;margin-bottom:var(--s-5)}
+.tier ul{list-style:none;display:grid;gap:var(--s-4)}
+.tier li{font-size:var(--t-3);line-height:1.72;color:var(--ink-soft);
+  padding-left:var(--s-5);position:relative}
+.tier li::before{content:"";position:absolute;left:0;top:.72em;
+  width:10px;height:1px;background:var(--rule-gold)}
+.tier li b{color:var(--ink);font-weight:600}
+.tier-note{margin-top:var(--s-6);padding-top:var(--s-5);
+  border-top:1px solid var(--rule-soft);
+  font-size:var(--t-2);line-height:1.7;color:var(--ink-mute)}
+
+/* ====================================================== §7 WHY MEGHA =====
+   Compressed hard. The long page earns its way from the arc to the credentials;
+   this one has ~150 words, so it is the portrait, four facts, and the line about
+   family. No steakhouse, no transformation passage, no consent gate. */
+.why{--ground:var(--g-1);padding-block:var(--beat-wide)}
+.why-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter);
+  display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);
+  column-gap:clamp(32px,5vw,88px);align-items:center}
+.why-fig{position:relative;border:1px solid var(--rule-gold);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  background:var(--g-3);overflow:hidden;aspect-ratio:4 / 5}
+.why-fig img{width:100%;height:100%;object-fit:cover;object-position:56% 8%;
+  filter:saturate(.92) brightness(.92) contrast(1.03)}
+.why-fig::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(250deg,rgba(233,201,150,.15) 0%,rgba(212,170,106,.04) 34%,transparent 58%),
+    linear-gradient(180deg,transparent 55%,rgba(7,12,30,.55) 100%)}
+/* The credentials and the CTA run the full section width rather than sitting in
+   the bio's right column. Five cells inside a half-width column is about 125px
+   each, which strands every second word. */
+.why-foot{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+/* h2.display carries no default bottom margin in system.css, and every other
+   section on this page sets its own. This one was missed and the lede collided
+   with the heading's descenders. */
+.why h2.display{margin-bottom:var(--s-5)}
+.why-facts{list-style:none;display:grid;gap:var(--s-4);
+  margin-block:var(--s-6) var(--s-7)}
+.why-facts li{font-size:var(--t-3);line-height:1.7;color:var(--ink-soft);
+  padding-left:var(--s-5);position:relative}
+.why-facts li::before{content:"";position:absolute;left:0;top:.72em;
+  width:10px;height:1px;background:var(--rule-gold)}
+
+/* ======================================================== §8 QUESTIONS ====
+   Four, collapsed. An accordion rather than an open stack, because the page must
+   not look like reading and these are friction removal, not persuasion. */
+.faq{--ground:var(--g-1);padding-block:var(--beat-wide)}
+.faq-in{max-width:var(--wrap-narrow);margin-inline:auto;padding-inline:var(--gutter)}
+.faq h2.display{margin-bottom:var(--s-7)}
+.qa{border-top:1px solid var(--rule-soft)}
+.qa:last-of-type{border-bottom:1px solid var(--rule-soft)}
+.qa summary{
+  list-style:none;cursor:pointer;padding-block:var(--s-5);
+  display:flex;align-items:baseline;gap:var(--s-5);
+  font-family:var(--display);font-size:var(--t-5);line-height:1.4;color:var(--ink);
+}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary::after{
+  content:"";margin-left:auto;flex:none;align-self:center;
+  width:11px;height:11px;
+  border-right:1px solid var(--gold);border-bottom:1px solid var(--gold);
+  rotate:45deg;translate:0 -3px;
+  transition:rotate var(--dur-fast) var(--ease);
+}
+.qa[open] summary::after{rotate:225deg;translate:0 2px}
+.qa-a{padding-bottom:var(--s-6);font-size:var(--t-3);line-height:1.78;
+  color:var(--ink-soft);max-width:64ch}
+
+/* =========================================================== §9 CLOSE =====
+   The last plane. It steps back UP the ramp — the lightest ground after the
+   hero — and the CTA sits on a raised sheet of its own, so the final action is
+   literally the top layer of the page. */
+.close{--ground:var(--g-2);padding-block:var(--beat-wide);position:relative}
+.close-in{position:relative;z-index:2;max-width:660px;margin-inline:auto;text-align:center}
+.close h2{margin-inline:auto;margin-bottom:var(--s-7);max-width:none}
+.close .prose{margin-inline:auto;text-align:left;max-width:540px}
+.close p{margin-bottom:var(--s-5);font-size:var(--t-5)}
+.close .shout{font-family:var(--display);font-style:italic;color:var(--gold);
+  font-size:var(--t-7);line-height:1.24;margin-block:var(--s-7)}
+.close-act{margin-top:var(--s-7);padding:var(--s-7) var(--s-6);
+  background:var(--g-3);border:1px solid var(--rule-gold);
+  box-shadow:inset 0 1px 0 rgba(241,238,231,.12)}
+.close-act .cta-row{justify-content:center}
+.close-act .cta-note{text-align:center;max-width:none;margin-top:var(--s-4)}
+/* `.close .sig`, not a bare `.sig` — `.close p` (0,1,1) beats `.sig` (0,1,0) and
+   forced her sign-off to body size. This is the last line of the page. */
+.close .sig{margin-top:var(--s-8);font-family:var(--display);font-style:italic;
+  font-size:var(--t-7);line-height:1.2;color:var(--ink);padding-bottom:.18em}
+
+/* ============================================== THE SIGNATURE DEVICE ======
+   Her verbatim voice. A gold bar on the left, italic Georgia in gold, and the
+   attribution underneath in small uppercase sans. It is the one element no
+   competitor can copy, because it is not a graphic, it is her words.
+
+   THIS IS NOT A BOX, AND THAT IS THE POINT (Shayne, 8-25). The first pass built
+   it as a bordered plane, which made it identical in construction to the section
+   CTA — and the two sit stacked in most sections, so the page read as two
+   near-identical boxes in a row, one wide and one narrow, for no reason a reader
+   could work out. A quote and a call to action should not look the same.
+
+   So: the CTA keeps the plate, and her voice gets the bar. Different device,
+   different job, no ambiguity.
+
+   `--gold` is already remapped to the AA-safe `--gold-aa` inside `.sec--paper`,
+   so this passes contrast on cream without a second rule. */
+.pull,.said{
+  position:relative;z-index:3;
+  margin-block:var(--s-8);
+  border-left:2px solid var(--rule-gold);
+  padding-left:clamp(18px,2vw,28px);
+  font-family:var(--display);font-style:italic;color:var(--gold);
+  font-size:var(--t-6);line-height:1.42;
+  max-width:34ch;
+}
+.pull p,.said p{font:inherit;color:inherit;max-width:none}
+.pull cite,.said cite,.said-by{
+  display:block;margin-top:var(--s-4);
+  font-family:var(--sans);font-style:normal;font-size:var(--t-1);
+  letter-spacing:var(--track-label);text-transform:uppercase;color:var(--ink-mute);
+}
+.sec--paper .pull cite,.sec--paper .said cite,.sec--paper .said-by{color:var(--ink-paper-mute)}
+
+/* ============================================================= FOOTER ===== */
+.foot{--ground:var(--g-0);position:relative;z-index:2;
+  background:var(--g-0);border-top:1px solid var(--rule-gold);
+  padding-block:var(--s-9) var(--s-8);font-size:var(--t-2);color:var(--ink-mute)}
+.foot-top{display:flex;justify-content:space-between;align-items:flex-start;
+  gap:var(--s-7);flex-wrap:wrap;padding-bottom:var(--s-6);
+  border-bottom:1px solid var(--rule-soft)}
+.foot-logo{height:70px;width:auto}
+.foot-tag{font-size:var(--t-1);letter-spacing:var(--track-label);
+  text-transform:uppercase;color:var(--ink-mute);margin-top:var(--s-3)}
+/* The footer's right column now carries two lines, not one: the entity
+   copyright and the two legal links (D44). */
+.foot-meta{text-align:right}
+.foot-links{margin-top:var(--s-3);font-size:var(--t-2);color:var(--ink-faint)}
+.foot-links a{color:var(--ink-mute);text-decoration:none;
+  border-bottom:1px solid var(--rule-soft)}
+.foot-links a:hover{color:var(--gold-aa);border-bottom-color:var(--rule-gold)}
+.legal{padding-top:var(--s-5);max-width:74ch;font-size:var(--t-2);
+  line-height:1.75;color:var(--ink-faint)}
+.buildmark{margin-top:var(--s-6);padding-top:var(--s-4);
+  border-top:1px solid var(--rule-soft);
+  font-size:var(--t-1);letter-spacing:.14em;text-transform:uppercase;color:var(--ink-faint)}
+
+/* ============================================================= MOTION =====
+   Rules DRAW, planes SETTLE. Shorter durations and a tighter curve than
+   Atmosphere, because this variant's personality is exactness. */
+@media (prefers-reduced-motion:no-preference){
+  [data-reveal]{transition-duration:var(--dur);transform:translateY(14px)}
+  .vsl{opacity:0;animation:sSettle .8s var(--ease-inout) .25s forwards}
+  .hero .hx-tension,.hero h1,.hero .hx-sub,.hero .cta-row{
+    opacity:0;transform:translateY(10px);animation:sUp .62s var(--ease-inout) forwards}
+  .hero .hx-tension{animation-delay:.26s}
+  .hero h1{animation-delay:.36s}
+  .hero .hx-sub{animation-delay:.48s}
+  .hero .cta-row{animation-delay:.60s}
+  .hero-copy::after{transform:scaleY(0);animation:sDraw .9s var(--ease-inout) .1s forwards}
+}
+@keyframes sSettle{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes sUp{to{opacity:1;transform:none}}
+@keyframes sDraw{to{transform:scaleY(1)}}
+
+/* ========================================================== COLLAPSE ======
+   India mobile-first is a project non-negotiable, and "must not look like
+   reading" is a mobile judgment more than a desktop one. She asked to see a
+   phone view twice, unprompted. */
+/* Both strips step down rather than squeezing. Five across on a phone is about
+   60px a cell and three is 98px, both of which strand every second word on its
+   own line. Measured at 390, not guessed. */
+@media (max-width:1100px){
+  .trust{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:var(--s-6)}
+  .outcomes-list{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s-6)}
+  .outcomes-list li:nth-child(odd){padding-left:0;border-left:0}
+}
+@media (max-width:760px){
+  /* Four promises stack rather than squeeze; two narrow columns would put a
+     line break inside every bold lead. */
+  .access{grid-template-columns:1fr;gap:var(--s-6)}
+  .trust{grid-template-columns:repeat(2,minmax(0,1fr))}
+  /* Five cells in a two-column grid leaves the last one alone on its row, so let
+     it run the full width rather than sit in a half-empty line. */
+  .trust li:last-child{grid-column:1 / -1}
+}
+@media (max-width:560px){
+  .outcomes-list{grid-template-columns:1fr;row-gap:var(--s-5)}
+  .outcomes-list li{padding-left:0;border-left:0;
+    padding-top:var(--s-5);border-top:1px solid var(--rule-gold)}
+  .outcomes-list li:first-child{padding-top:0;border-top:0}
+}
+@media (max-width:900px){
+  .hero-in{grid-template-columns:1fr;row-gap:var(--s-7)}
+  /* Video under text, and she is fine with that: "they can skip the video." */
+  .hero-copy{order:1}
+  .hero .vsl{order:2}
+  .hero-copy::after{content:none}
+  .band-in{grid-template-columns:1fr;row-gap:var(--s-7)}
+  .band-copy::after{content:none}
+  .band-act{justify-self:start;text-align:left;max-width:none}
+  .band-act .cta-note{text-align:left}
+  .band .cta-row{justify-content:flex-start}
+  .band h2.display{max-width:none}
+  .mod > summary{grid-template-columns:1fr;row-gap:var(--s-5)}
+  .mod-open{justify-self:start}
+  /* cream is full bleed at every width now, so nothing to unset here */
+  .why-in{grid-template-columns:1fr;row-gap:var(--s-7)}
+  .why-fig{aspect-ratio:3 / 2;max-height:420px}
+  .pull{margin-inline:0}
+  .foot-top{flex-direction:column}
+  .foot-meta{text-align:left}
+  .mod-cta{flex-direction:column;align-items:stretch;gap:var(--s-4)}
+  .mod-cta .btn{width:100%;text-align:center}
+  .mod-cta .cta-note{text-align:center;max-width:none}
+}
+@media (max-width:560px){
+  .nav .btn{width:auto;padding:11px 18px;font-size:12px}
+  .nav-in{height:64px}
+  .nav-logo{height:34px}
+  .hero .cta-row .btn,.sec-cta .btn{width:100%;text-align:center}
+  .sec-cta{flex-direction:column;align-items:stretch;gap:var(--s-4)}
+  .sec-cta .cta-note{text-align:center;max-width:none}
+  .close-act{padding:var(--s-6) var(--s-4)}
+  .recog-item,.mod,.triad li,.tier{padding:var(--s-5)}
+}
+
+}
