@@ -230,8 +230,17 @@
   }
   .join-cast-sub{
     font-size:var(--t-5);line-height:1.6;color:var(--ink-mute);
-    margin-top:var(--s-4);max-width:56ch;
+    margin-top:var(--s-4);max-width:66ch;
   }
+
+  /* The lede sits between two large blocks now, so at body size it read as a
+     caption. Up a step, and its old bottom margin goes because it no longer
+     has to clear the access grid. */
+  .join-lede{font-size:var(--t-5);max-width:56ch;margin-bottom:0}
+
+  /* The access grid used to carry the gap before the tiers. It is gone, so the
+     ladder label has to carry its own clearance. */
+  .join-step{margin-top:var(--s-9)}
 
   @media (max-width:760px){
     /* No room for a corner affordance on a phone: it goes back under the copy. */
