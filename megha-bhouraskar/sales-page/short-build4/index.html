@@ -183,6 +183,56 @@
 
   .nb{white-space:nowrap}
 
+  /* The hero loses its eyebrow and its column rule. With the tension line gone
+     the headline is the first thing in the column, and the hairline was
+     separating two things that no longer need separating. */
+  .hero-copy::after{display:none}
+
+  /* THE GUIDE, now fully italic. The gold accent went with the old sentence;
+     italic across the whole line is the emphasis. */
+  .guide p{font-style:italic}
+
+  /* The curriculum close, on a module card's plate so it caps that stack. */
+  .curric{
+    margin-top:var(--s-8);
+    padding:clamp(32px,3.4vw,56px);
+    background:var(--p-3);
+    border:1px solid var(--rule-paper);
+    border-top:2px solid rgba(184,146,74,.6);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .curric-line{
+    font-family:var(--display);font-size:clamp(22px,1.9vw + 14px,34px);
+    line-height:1.36;color:var(--ink-paper);
+  }
+  .curric-call{
+    font-family:var(--display);font-style:italic;
+    font-size:clamp(22px,1.9vw + 14px,34px);line-height:1.36;
+    color:var(--gold-aa);margin-top:var(--s-3);margin-bottom:var(--s-6);
+  }
+
+  /* The three "one ..." lines. A gold rule rather than a box, because the join
+     section already carries two plates and a third would flatten it. */
+  .oneline{
+    margin:var(--s-6) 0 var(--s-7);
+    padding-left:clamp(20px,2.4vw,36px);
+    border-left:2px solid var(--rule-gold);
+  }
+  .oneline p{
+    font-family:var(--display);font-size:clamp(20px,1.45vw + 14px,31px);
+    line-height:1.4;color:var(--ink);
+  }
+  .oneline p + p{margin-top:var(--s-3)}
+
+  .join-cast{
+    font-family:var(--display);font-size:clamp(19px,1vw + 15px,26px);
+    line-height:1.5;color:var(--ink-soft);margin-top:var(--s-6);
+  }
+  .join-cast-sub{
+    font-size:var(--t-5);line-height:1.6;color:var(--ink-mute);
+    margin-top:var(--s-4);max-width:56ch;
+  }
+
   @media (max-width:760px){
     /* No room for a corner affordance on a phone: it goes back under the copy. */
     .mod .label,.mod h3{padding-right:0}
@@ -212,12 +262,11 @@
   <div class="hero-in">
 
     <div class="hero-copy">
-      <p class="hx-tension">You cleared the hard part years ago.</p>
       <h1 class="display">
         <span class="l">Build your U.S. business</span>
         <span class="l"><em>from India.</em></span>
       </h1>
-      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest market <span class="nb">&mdash; intelligently.</span></p>
+      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest<br>market &mdash; intelligently.</p>
       <div class="cta-row">
         <a class="btn" href="#start">Start for Free</a>
         <p class="cta-note" data-gate="D22 — 24 counts the video lessons; the written scope is 23 + intro, and she is still slashing M2/M3">24 concise lessons. Built for people with very little time.</p>
@@ -259,7 +308,7 @@
      whole job of this band is to carry the bottom of the fold. -->
 <section class="sec guide" data-wake>
   <div class="guide-in" data-reveal>
-    <p>For twenty-five years, Megha Bhouraskar has guided Indian founders through the American business system from New York, and she built this so you can walk the same path <em>without learning it by trial and error</em>.</p>
+    <p>For 25 years, Megha has guided Indian founders through the American business system and has built one clear path for you to do the same.</p>
   </div>
 </section>
 
@@ -531,9 +580,17 @@
 
     </div>
 
-    <div class="sec-cta">
-      <a class="btn" href="#start">Start for Free</a>
-      <p class="cta-note">All three modules open the moment you join.</p>
+    <!-- The curriculum close. Built on the same plate as a module card so it
+         reads as the end of that stack rather than a CTA floating after it.
+         Copy is ChatGPT’s line, requested verbatim.
+         ⚠️ Two out-of-date claims in one sentence, both knowingly carried: the
+         lesson count (D22 — written scope is 23 + intro) and the plural
+         "Workbooks" (D49 — exercises came out of Modules 2 and 3, so worksheets
+         are Module 1 only). -->
+    <div class="curric" data-gate="D22 + D49 — the 24 count and the plural Workbooks are both out of date, requested verbatim">
+      <p class="curric-line">24 lessons. Practical guides. Workbooks. Live access.</p>
+      <p class="curric-call">Explore the curriculum now.</p>
+      <a class="btn" href="#start">Get Access Now</a>
     </div>
 
   </div>
@@ -560,28 +617,28 @@
 <section class="sec join" data-wake>
   <div class="join-in" data-reveal>
 
-    <h2 class="display">A community of founders, and a board of experts.</h2>
+    <h2 class="display">Not just a course, but a community.</h2>
 
-    <p class="join-lede">The modules show you the path. This is where you get an answer about yours, from people who have already walked it.</p>
+    <!-- ⚠️ GATED. "$50,000" is a quantified outcome claim published under a
+         licensed attorney’s name. It needs her sign-off or a softer number. -->
+    <div class="oneline" data-gate="legal-substance — the $50,000 figure is unsourced and needs Megha’s sign-off">
+      <p>One introduction can change a business.</p>
+      <p>One answer can prevent a $50,000 mistake.</p>
+      <p>One relationship can open America.</p>
+    </div>
 
-    <ul class="access">
-      <li>
-        <b>Business owners on the same journey</b>
-        Some a step behind you, some a year ahead of you.
-      </li>
-      <li>
-        <b>Experts who tailor it to your business</b>
-        You bring what you are actually building, and they shape the answer around it.
-      </li>
-      <li data-gate="wording — Megha cleared the claim 8-25; keep 'potential' doing the work">
-        <b>The potential for funding</b>
-        Megha is bringing in people who back founders at this stage. The access is real, the outcome is yours to earn.
-      </li>
-      <li>
-        <b>The potential for partnership</b>
-        The people in here hire each other, and buy from each other.
-      </li>
-    </ul>
+    <p class="join-lede">Build alongside ambitious Indians entering the American market.</p>
+
+    <!-- ⚠️ "the room" is back, at Shayne’s instruction. Megha killed this word on
+         8-25, twice, escalating from the body copy to the label itself — "even
+         the title, even even the word room" (D38) — and the CSS was renamed
+         .room → .join so it could not creep back in. Her reason was audience
+         literacy rather than taste: a metaphor is a tax and this reader will not
+         pay it. Highest-risk line on the page, and it is one word to revert.
+         ⚠️ This block also REPLACES the four access promises she dictated on 8-25
+         and listed twice on that call (D39). -->
+    <p class="join-cast" data-gate="D38 — she killed the word room twice on 8-25; reinstated at Shayne’s instruction">Get inside the room with other Founders. Operators. Professionals. Investors. Lawyers. Accountants. And Bankers.</p>
+    <p class="join-cast-sub">People a few steps ahead of you &mdash; and people building alongside you.</p>
 
     <p class="join-step">And where it goes from here</p>
 
