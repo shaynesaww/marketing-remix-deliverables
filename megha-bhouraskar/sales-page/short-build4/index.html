@@ -249,7 +249,7 @@
   /* The three "one ..." lines. A gold rule rather than a box, because the join
      section already carries two plates and a third would flatten it. */
   .oneline{
-    margin:var(--s-6) 0 var(--s-7);
+    margin:var(--s-5) 0 var(--s-7);
     padding-left:clamp(20px,2.4vw,36px);
     border-left:2px solid var(--rule-gold);
   }
@@ -261,17 +261,21 @@
 
   .join-cast{
     font-family:var(--display);font-size:clamp(19px,1vw + 15px,26px);
-    line-height:1.5;color:var(--ink-soft);margin-top:var(--s-6);
+    line-height:1.5;color:var(--ink-soft);margin-top:0;
   }
-  .join-cast-sub{
+  /* One line. The 24ch cap was breaking it across two. */
+  .join h2.display{max-width:none}
+
+  /* The lead-in. Quiet and small on purpose: it is a hinge into the three
+     lines, not a claim of its own. */
+  .join-truth{
     font-size:var(--t-5);line-height:1.6;color:var(--ink-mute);
-    margin-top:var(--s-4);max-width:66ch;
+    margin-top:var(--s-6);
   }
 
-  /* The lede sits between two large blocks now, so at body size it read as a
-     caption. Up a step, and its old bottom margin goes because it no longer
-     has to clear the access grid. */
-  .join-lede{font-size:var(--t-5);max-width:56ch;margin-bottom:0}
+  /* The lede is the last thing before the ladder now, so it needs a top margin
+     and keeps no bottom one — .join-step carries the gap to the tiers. */
+  .join-lede{font-size:var(--t-5);max-width:60ch;margin-top:var(--s-5);margin-bottom:0}
 
   /* The access grid used to carry the gap before the tiers. It is gone, so the
      ladder label has to carry its own clearance. */
@@ -468,7 +472,7 @@
   <div class="get-in" data-reveal>
 
     <h2 class="display">The A to Z of getting your American company started.</h2>
-    <p class="get-lede">Three modules, start to finish. Open one and you are reading the first lesson in under a minute.</p>
+    <p class="get-lede" data-gate="D22 — 24 counts the video lessons; written scope is 23 + intro">3 modules, 24 lessons. Full path laid out step by step.</p>
 
     <div class="mods">
 
@@ -661,7 +665,9 @@
 <section class="sec join" data-wake>
   <div class="join-in" data-reveal>
 
-    <h2 class="display">Not just a course, but a community.</h2>
+    <h2 class="display">Not just a course, a thriving community.</h2>
+
+    <p class="join-truth">The truth is&hellip;</p>
 
     <!-- ⚠️ GATED. "$50,000" is a quantified outcome claim published under a
          licensed attorney’s name. It needs her sign-off or a softer number. -->
@@ -670,8 +676,6 @@
       <p>One answer can prevent a $50,000 mistake.</p>
       <p>One relationship can open America.</p>
     </div>
-
-    <p class="join-lede">Build alongside ambitious Indians entering the American market.</p>
 
     <!-- ⚠️ "the room" is back, at Shayne’s instruction. Megha killed this word on
          8-25, twice, escalating from the body copy to the label itself — "even
@@ -682,7 +686,8 @@
          ⚠️ This block also REPLACES the four access promises she dictated on 8-25
          and listed twice on that call (D39). -->
     <p class="join-cast" data-gate="D38 — she killed the word room twice on 8-25; reinstated at Shayne’s instruction">Get inside the room with other Founders. Operators. Professionals. Investors. Lawyers. Accountants. And Bankers.</p>
-    <p class="join-cast-sub">People a few steps ahead of you &mdash; and people building alongside you.</p>
+
+    <p class="join-lede">Build alongside ambitious Indians entering the American market.</p>
 
     <p class="join-step">And where it goes from here</p>
 
