@@ -278,7 +278,7 @@
      adjective. The lede gives the scale and the hardest single proof (power of
      attorney). Her own line then says why they stay. Authority, then warmth. */
   .why .label{color:var(--gold);margin-bottom:var(--s-4)}
-  .why h2.display{max-width:13ch}
+  .why h2.display{max-width:17ch}
   .why .lede{max-width:52ch;margin-bottom:var(--s-6)}
 
   /* The credentials, as bullets rather than as a strip. Display face and up a
@@ -299,8 +299,11 @@
 
   .why-close{
     font-size:var(--t-5);line-height:1.62;color:var(--ink-soft);
-    max-width:58ch;margin-bottom:var(--s-7);
+    max-width:58ch;margin-bottom:0;
   }
+
+  /* Wider than .pull's 34ch, which would set this at three short lines. */
+  .why-built{max-width:44ch}
 
   /* The strip is the credential cascade, set as design rather than as a list.
      Off the italic and up two steps: at --t-5 italic these read as captions
@@ -811,7 +814,7 @@
     </figure>
 
     <div data-reveal>
-      <h2 class="display">Between India and America.</h2>
+      <h2 class="display">25 years between India and America.</h2>
       <p class="lede">Megha Bhouraskar has spent more than 25 years helping Indian entrepreneurs, family businesses and investors navigate the American business system.</p>
 
       <ul class="why-creds">
@@ -821,12 +824,12 @@
         <li>Entrepreneur.</li>
       </ul>
 
-      <p class="why-close">Trusted adviser to Indian businesses operating across borders.<br>She built this platform so you don&rsquo;t have to learn America by trial and error.</p>
+      <p class="why-close">Trusted adviser to Indian businesses operating across borders.</p>
 
-      <blockquote class="pull">
-        <p>&ldquo;I make them feel like family, not like a billing number.&rdquo;</p>
-        <cite>Megha, in her own words</cite>
-      </blockquote>
+      <!-- Takes the slot and the treatment the pull quote had — same display
+           face, italic, gold, gold rule. A <p> rather than a <blockquote>
+           because it is a statement about her, not something she said. -->
+      <p class="pull why-built">She built this platform so you don&rsquo;t have to learn America by trial and error.</p>
 
     </div>
 
