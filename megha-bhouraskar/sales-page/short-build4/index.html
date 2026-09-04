@@ -169,6 +169,26 @@
   .mod h3{font-size:clamp(25px,2.2vw + 14px,40px);margin-bottom:var(--s-5)}
   .mod-desc{font-size:var(--t-5);line-height:1.62;max-width:none}
   .mod-count{margin-top:var(--s-6);font-size:var(--t-2)}
+
+  /* The description was still stopping ~180px short of the card edge, which is
+     the gap that read as unfinished. The cause is structural, not a max-width:
+     > summary is a two-column grid and the affordance owns the second column,
+     so the copy can never cross it. Lifting the affordance out to the top-right
+     corner lets the description run the full width of the card. Only the label
+     and the heading keep clearance for it, and they are short. */
+  .mod > summary{display:block;position:relative}
+  .mod > summary > div{display:block}
+  .mod .label,.mod h3{padding-right:190px}
+  .mod-open{position:absolute;top:clamp(30px,3.2vw,52px);right:clamp(30px,3.2vw,52px);margin-top:0}
+
+  .nb{white-space:nowrap}
+
+  @media (max-width:760px){
+    /* No room for a corner affordance on a phone: it goes back under the copy. */
+    .mod .label,.mod h3{padding-right:0}
+    .mod-open{position:static;margin-top:var(--s-5)}
+    .nb{white-space:normal}
+  }
   .get-in > .display{margin-bottom:var(--s-6)}
 }
 </style>
@@ -197,7 +217,7 @@
         <span class="l">Build your U.S. business</span>
         <span class="l"><em>from India.</em></span>
       </h1>
-      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest market &mdash; intelligently.</p>
+      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest market <span class="nb">&mdash; intelligently.</span></p>
       <div class="cta-row">
         <a class="btn" href="#start">Start for Free</a>
         <p class="cta-note" data-gate="D22 — 24 counts the video lessons; the written scope is 23 + intro, and she is still slashing M2/M3">24 concise lessons. Built for people with very little time.</p>
