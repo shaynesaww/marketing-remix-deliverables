@@ -266,6 +266,33 @@
   /* One line. The 24ch cap was breaking it across two. */
   .join h2.display{max-width:none}
 
+  /* ---- WHY MEGHA -------------------------------------------------------
+     Restructured to lead with proof rather than with a summary. The old lede
+     was three sentences of credentials that the strip underneath then repeated
+     almost word for word; the strip now carries the credentials on its own and
+     the text carries the one fact that outperforms all of them.
+
+     The headline is the retention fact, because for this buyer nothing proves
+     trust like other people's behaviour: he is deciding whether he is in good
+     hands, and twenty years of clients answering that is stronger than any
+     adjective. The lede gives the scale and the hardest single proof (power of
+     attorney). Her own line then says why they stay. Authority, then warmth. */
+  .why .label{color:var(--gold);margin-bottom:var(--s-4)}
+  .why h2.display{max-width:16ch}
+  .why .lede{max-width:54ch;margin-bottom:var(--s-7)}
+
+  /* The strip is the credential cascade, set as design rather than as a list.
+     Off the italic and up two steps: at --t-5 italic these read as captions
+     hanging under a rule, and they are carrying the whole authority argument.
+     The descriptor comes up from --t-2/ink-mute, which was fine print. */
+  .trust{margin-top:var(--s-10);column-gap:clamp(20px,2.6vw,40px)}
+  .trust b{
+    font-style:normal;
+    font-size:clamp(20px,1.05vw + 15px,27px);
+    line-height:1.18;margin-bottom:var(--s-4);
+  }
+  .trust span{font-size:var(--t-3);line-height:1.6;color:var(--ink-soft)}
+
   /* The lead-in. Quiet and small on purpose: it is a hinge into the three
      lines, not a claim of its own. */
   .join-truth{
@@ -763,14 +790,9 @@
     </figure>
 
     <div data-reveal>
-      <h2 class="display">Twenty-five years on the other side of the gap.</h2>
-      <p class="lede">Megha Bhouraskar has spent more than twenty-five years helping Indian founders, family businesses and investors navigate the American business system. She has practised law in New York that entire time, she went to Barnard and Columbia, and she has been going back and forth between the two countries her whole life.</p>
-
-      <ul class="why-facts" data-gate="verification — confirm the book title and the podcast reference before launch">
-        <li>She wrote <em>How to Have a Business Presence in the U.S.A.</em>, which is the spine of Module Two.</li>
-        <li>Family businesses, tech founders, real estate investors and entertainment companies. Most of them Indian, all of them running two countries at once.</li>
-        <li>Clients who have stayed ten, fifteen and twenty years, several of whom handed her power of attorney over their American affairs.</li>
-      </ul>
+      <p class="label">25 years between India and America</p>
+      <h2 class="display">Her clients stay twenty years.</h2>
+      <p class="lede">Megha Bhouraskar has spent more than twenty-five years helping Indian entrepreneurs, family businesses and investors navigate the American business system. Several of them have handed her power of attorney over their American affairs.</p>
 
       <blockquote class="pull">
         <p>&ldquo;I make them feel like family, not like a billing number.&rdquo;</p>
@@ -787,20 +809,24 @@
            rule: it is read after her story, not instead of it. -->
       <ul class="trust">
         <li>
-          <b>25 years</b>
-          <span>Practising law in New York</span>
+          <b>Attorney</b>
+          <span>New York, twenty-five years</span>
         </li>
         <li>
           <b>Columbia</b>
-          <span>Barnard and Columbia, New York</span>
-        </li>
-        <li>
-          <b>A decade or more</b>
-          <span>How long her clients tend to stay, several with power of attorney over their American affairs</span>
+          <span>Barnard and Columbia</span>
         </li>
         <li data-gate="verification — confirm the book title before launch">
-          <b>Published</b>
-          <span><em>How to Have a Business Presence in the U.S.A.</em>, the guide Module Two is built on</span>
+          <b>Author</b>
+          <span>The guide Module Two is built on</span>
+        </li>
+        <li>
+          <b>Founder</b>
+          <span>She is building this one herself</span>
+        </li>
+        <li>
+          <b>Two countries</b>
+          <span>Back and forth her whole life, personally and professionally</span>
         </li>
       </ul>
 
