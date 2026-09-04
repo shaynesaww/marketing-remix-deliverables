@@ -183,14 +183,34 @@
 
   .nb{white-space:nowrap}
 
-  /* The hero loses its eyebrow and its column rule. With the tension line gone
-     the headline is the first thing in the column, and the hairline was
-     separating two things that no longer need separating. */
-  .hero-copy::after{display:none}
+  /* The hero loses its eyebrow. The column rule stays: with the tension line
+     gone it is the only thing holding the two halves in one grid. */
 
-  /* THE GUIDE, now fully italic. The gold accent went with the old sentence;
-     italic across the whole line is the emphasis. */
-  .guide p{font-style:italic}
+  /* Tops align. The copy column is taller than the video, so centring it hung
+     the headline above the video's top edge and the fold read as tilted. */
+  .hero-in{align-items:start}
+
+  /* Down a step from Build 4's first pass. At the larger size the headline was
+     outweighing the video beside it. */
+  .hero h1.display{font-size:clamp(30px,3.3vw,47px)}
+
+  /* The sub was set at lede size against a 50ch measure, which made a short
+     sentence three lines tall and narrow. Smaller, and uncapped so the column
+     itself sets the measure — it lands on two lines across the range. */
+  .hx-sub{font-size:clamp(17px,.5vw + 15px,19px);max-width:none}
+
+  /* One line. The 40ch cap was dropping "time." on its own. */
+  .hero .cta-note{max-width:none;font-size:var(--t-2)}
+
+  /* THE GUIDE, fully italic and centred. Slightly less padding on top than
+     underneath, because optically centred type wants the smaller half above it.
+     Measured so the sentence sets as two centred lines rather than one very
+     long one. */
+  .guide{padding-block:clamp(36px,5vh,66px) clamp(46px,6.5vh,84px)}
+  .guide p{
+    font-style:italic;text-align:center;
+    max-width:70ch;margin-inline:auto;
+  }
 
   /* The curriculum close, on a module card's plate so it caps that stack. */
   .curric{
@@ -257,7 +277,7 @@
 <header class="nav">
   <div class="nav-in">
     <img class="nav-logo" src="assets/logo-wordmark-dark-sm.png" width="400" height="174" alt="Megha Bhouraskar">
-    <a class="btn" href="#start">Start for Free</a>
+    <a class="btn" href="#start">Get Started for Free</a>
   </div>
 </header>
 
@@ -275,9 +295,9 @@
         <span class="l">Build your U.S. business</span>
         <span class="l"><em>from India.</em></span>
       </h1>
-      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest<br>market &mdash; intelligently.</p>
+      <p class="hx-sub">The practical roadmap for Indian founders and professionals ready to enter the world&rsquo;s largest market <span class="nb">&mdash; intelligently.</span></p>
       <div class="cta-row">
-        <a class="btn" href="#start">Start for Free</a>
+        <a class="btn" href="#start">Get Started for Free</a>
         <p class="cta-note" data-gate="D22 — 24 counts the video lessons; the written scope is 23 + intro, and she is still slashing M2/M3">24 concise lessons. Built for people with very little time.</p>
       </div>
     </div>
@@ -363,7 +383,7 @@
     </div>
     <div class="band-act">
       <div class="cta-row">
-        <a class="btn btn--lg" href="#start">Start for Free</a>
+        <a class="btn btn--lg" href="#start">Get Started for Free</a>
       </div>
       <p class="cta-note">A few questions and you are in. You can start tonight.</p>
     </div>
@@ -406,7 +426,7 @@
       </blockquote>
 
       <div class="sec-cta">
-        <a class="btn" href="#start">Start for Free</a>
+        <a class="btn" href="#start">Get Started for Free</a>
         <p class="cta-note">Nothing to announce to anyone.</p>
       </div>
 
@@ -686,7 +706,7 @@
     </blockquote>
 
     <div class="sec-cta">
-      <a class="btn" href="#start">Start for Free</a>
+      <a class="btn" href="#start">Get Started for Free</a>
       <p class="cta-note">A click of a button and a few questions, and you&rsquo;re on your way.</p>
     </div>
 
@@ -765,7 +785,7 @@
       </ul>
 
       <div class="sec-cta">
-        <a class="btn" href="#start">Start for Free</a>
+        <a class="btn" href="#start">Get Started for Free</a>
         <p class="cta-note">Everything opens the moment you join.</p>
       </div>
   </div>
@@ -822,7 +842,7 @@
 
     <div class="close-act">
       <div class="cta-row">
-        <a class="btn" href="#start">Start for Free</a>
+        <a class="btn" href="#start">Get Started for Free</a>
       </div>
       <p class="cta-note">A click of a button and a few questions, and you&rsquo;re on your way.</p>
       <!-- D45: ONE checkbox on the form itself (messaging consent). The terms are
