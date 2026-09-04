@@ -278,8 +278,17 @@
      adjective. The lede gives the scale and the hardest single proof (power of
      attorney). Her own line then says why they stay. Authority, then warmth. */
   .why .label{color:var(--gold);margin-bottom:var(--s-4)}
-  .why h2.display{max-width:16ch}
-  .why .lede{max-width:54ch;margin-bottom:var(--s-7)}
+  .why h2.display{max-width:15ch}
+
+  /* Not a paragraph. Four nouns he recognises on sight, then the turn to the
+     ones he does not - which is where he actually sits. Set on the display face
+     so it reads as part of the headline rather than as body copy under it. */
+  .why-cast{
+    font-family:var(--display);
+    font-size:clamp(19px,1vw + 15px,26px);
+    line-height:1.5;color:var(--ink-soft);
+    max-width:none;margin-bottom:var(--s-7);
+  }
 
   /* The strip is the credential cascade, set as design rather than as a list.
      Off the italic and up two steps: at --t-5 italic these read as captions
@@ -791,8 +800,8 @@
 
     <div data-reveal>
       <p class="label">25 years between India and America</p>
-      <h2 class="display">Several clients gave her power of attorney.</h2>
-      <p class="lede">Megha Bhouraskar has spent more than twenty-five years helping Indian entrepreneurs, family businesses and investors navigate the American business system. Most of her clients have stayed more than ten years, and one has not lived in the United States in over fifteen.</p>
+      <h2 class="display">She takes Indian business into America.</h2>
+      <p class="why-cast">Bollywood studios. Fashion houses. Technology companies.<br>And first-generation founders nobody had heard of yet.</p>
 
       <blockquote class="pull">
         <p>&ldquo;I make them feel like family, not like a billing number.&rdquo;</p>
@@ -809,24 +818,24 @@
            rule: it is read after her story, not instead of it. -->
       <ul class="trust">
         <li>
+          <b>Columbia</b>
+          <span>Columbia University and Barnard College</span>
+        </li>
+        <li>
           <b>Attorney</b>
           <span>New York, twenty-five years</span>
         </li>
         <li>
-          <b>Columbia</b>
-          <span>Barnard and Columbia</span>
+          <b>Six years</b>
+          <span>To partner, at an all-white, all-male Manhattan firm</span>
         </li>
         <li>
           <b>Author</b>
-          <span>The guide Module Two is built on</span>
+          <span>She wrote the guide this course is built on</span>
         </li>
         <li>
           <b>Endorsed</b>
           <span>Her podcast, by India&rsquo;s Consul General in New York</span>
-        </li>
-        <li>
-          <b>Two countries</b>
-          <span>Back and forth her whole life, personally and professionally</span>
         </li>
       </ul>
 
