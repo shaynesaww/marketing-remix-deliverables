@@ -272,24 +272,98 @@
     font-size:clamp(18px,.7vw + 15px,23px);line-height:1.5;color:var(--gold);
   }
 
-  /* Sign-up: her steps, the field list, and her disclaimer under the button. */
-  .close-fields{list-style:none;margin:var(--s-2) 0 var(--s-5)}
-  .close-fields li{
-    position:relative;padding-left:var(--s-5);
-    font-family:var(--display);font-size:var(--t-5);line-height:1.6;color:var(--ink);
-  }
-  .close-fields li::before{
-    content:"";position:absolute;left:0;top:.8em;
-    width:11px;height:1px;background:var(--gold);
-  }
-  .close .close-disc{
-    margin:var(--s-6) auto 0;max-width:60ch;
-    font-size:var(--t-2);line-height:1.7;color:var(--ink-mute);text-align:center;
-  }
-  .close .consent{margin-inline:auto;text-align:center}
+  /* ── The sign-up section ───────────────────────────────────────────────
+     One centred axis the whole way down, which is what it did not have: the
+     heading was centred, the body sat left inside a narrower block, and the
+     plate underneath centred itself again. Three alignments in one column.
 
-  /* Footer: plain-text policy names and her four-part disclaimer. */
-  .legal + .legal{padding-top:var(--s-3)}
+     The five things she asks for are the only list on the page that is a form
+     in disguise, so they are set as a ruled band rather than as bullets: the
+     same gold hairlines the outcomes bar uses, which is the page's existing
+     vocabulary for "a short row of nouns."
+
+     Her disclaimer and the consent line move out of the CTA plate and become
+     the fine print they are, under a rule, ranged left at a readable measure.
+     Centred small text in a box was the ugliest thing on the page. */
+  /* The plate used to supply the only inset this column had, so taking it out
+     let the copy run to the screen edge on a phone. The gutter belongs to the
+     column, not to a box inside it. */
+  .close-in{max-width:860px;padding-inline:var(--gutter)}
+  .close h2.display{margin-bottom:var(--s-6);text-wrap:balance}
+  .close-lede{
+    font-family:var(--display);font-size:clamp(20px,1.1vw + 15px,27px);
+    line-height:1.4;color:var(--ink);margin-bottom:var(--s-7);
+  }
+  .close-ask{font-size:var(--t-4);line-height:1.6;color:var(--ink-soft);margin-bottom:0}
+  .close-ask--after{margin-top:var(--s-6);max-width:56ch;margin-inline:auto;text-wrap:balance}
+
+  .close-fields{
+    list-style:none;display:grid;
+    /* Content-sized cells, not five equal ones: equal columns forced "Stage of
+       Business" onto two lines while "Email" sat in a half-empty cell. */
+    grid-template-columns:repeat(5,auto);
+    justify-content:space-between;align-items:center;
+    margin:var(--s-6) 0 0;
+    border-top:1px solid var(--rule-gold);
+    border-bottom:1px solid var(--rule-gold);
+  }
+  .close-fields li{
+    padding:var(--s-5) clamp(10px,1.4vw,24px);
+    border-left:1px solid var(--rule-soft);
+    font-family:var(--display);
+    font-size:clamp(14.5px,.45vw + 13px,17px);line-height:1.3;
+    color:var(--ink);text-wrap:balance;
+  }
+  .close-fields li:first-child{border-left:0}
+
+  .close .close-act{
+    margin-top:var(--s-8);padding:0;
+    background:none;border:0;box-shadow:none;
+  }
+  .close .close-act .cta-note{margin-top:var(--s-5);color:var(--ink-soft)}
+  .close .sig{margin-top:var(--s-8)}
+
+  /* Ranged left at the section's own width, in two columns above 900 so the
+     block starts and ends on the same edges as the field band above it. */
+  .fineprint{
+    margin-top:var(--s-9);padding-top:var(--s-6);
+    border-top:1px solid var(--rule-soft);
+    text-align:left;
+  }
+  .fineprint p{font-size:var(--t-2);line-height:1.8;color:var(--ink-mute)}
+  .fineprint .consent{
+    margin-top:var(--s-5);max-width:none;text-align:left;
+    font-size:var(--t-2);line-height:1.8;
+  }
+  @media (min-width:900px){
+    .fineprint{
+      display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);
+      gap:clamp(32px,5vw,88px);
+    }
+    .fineprint .consent{margin-top:0}
+  }
+
+  @media (max-width:760px){
+    .close-fields{grid-template-columns:1fr}
+    .close-fields li{
+      border-left:0;border-top:1px solid var(--rule-soft);
+      padding:var(--s-4) 0;
+    }
+    .close-fields li:first-child{border-top:0}
+  }
+
+  /* Footer: the disclaimer ran at 556px under a 1152px footer, which left the
+     right half empty. Two columns carry it the full width and keep each one at
+     a readable measure instead of one 120-character line. */
+  .legal-grid{
+    margin-top:var(--s-5);display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:var(--s-5) clamp(32px,5vw,88px);
+  }
+  .legal-grid .legal{max-width:none;padding-top:0}
+  @media (max-width:760px){
+    .legal-grid{grid-template-columns:1fr;gap:var(--s-4)}
+  }
 
   /* ── fit and finish, from the 1440 / 1000 / 390 renders ───────────────── */
 
@@ -749,26 +823,33 @@
 
     <h2 class="display">You Don’t Need to Have It All Figured Out.</h2>
 
-    <div class="prose">
-      <p>Start with where you are today.</p>
-      <p>When you click below, simply fill out the form and tell us:</p>
-      <ul class="close-fields">
-        <li>Your Name &middot; Email &middot; City/State/Country</li>
-        <li>Industry &middot; Stage of Business</li>
-      </ul>
-      <p>Tell us a little about you and your business. We’ll take it from there.</p>
-    </div>
+    <p class="close-lede">Start with where you are today.</p>
+
+    <p class="close-ask">When you click below, simply fill out the form and tell us:</p>
+
+    <ul class="close-fields">
+      <li>Your Name</li>
+      <li>Email</li>
+      <li>City/State/Country</li>
+      <li>Industry</li>
+      <li>Stage of Business</li>
+    </ul>
+
+    <p class="close-ask close-ask--after">Tell us a little about you and your business. We’ll take it from there.</p>
 
     <div class="close-act">
       <div class="cta-row">
-        <a class="btn" href="#start">Get Started for Free</a>
+        <a class="btn btn--lg" href="#start">Get Started for Free</a>
       </div>
       <p class="cta-note">Start Where You Are. Grow in the U.S. Market.</p>
-      <p class="close-disc"><span class="mc">Megha’s Circle</span> is a Platform to share knowledge, educate, create, encourage and enable dialogue, connection, growth, collaboration, and investment between Entrepreneurs at all levels. It does not provide legal, financial, tax or other professional advice. Any professional engagement with Megha or an expert or any Member in the Circle must be separately agreed upon, and any decisions or actions you take based on information shared within the Circle remain your responsibility.</p>
-      <p class="consent">By signing up, you agree to the Terms of Service and Privacy Policy and to receiving emails and messages from <span class="mc">Megha’s Circle</span>.</p>
     </div>
 
     <p class="sig">Look Forward!</p>
+
+    <div class="fineprint">
+      <p><span class="mc">Megha’s Circle</span> is a Platform to share knowledge, educate, create, encourage and enable dialogue, connection, growth, collaboration, and investment between Entrepreneurs at all levels. It does not provide legal, financial, tax or other professional advice. Any professional engagement with Megha or an expert or any Member in the Circle must be separately agreed upon, and any decisions or actions you take based on information shared within the Circle remain your responsibility.</p>
+      <p class="consent">By signing up, you agree to the Terms of Service and Privacy Policy and to receiving emails and messages from <span class="mc">Megha’s Circle</span>.</p>
+    </div>
 
   </div>
 </section>
@@ -787,10 +868,12 @@
         <p class="foot-links">Terms of Service &middot; Privacy Policy &middot; Refund Policy</p>
       </div>
     </div>
-    <p class="legal"><span class="mc">Megha’s Circle</span> provides general information, practical guidance and access to experts relating to doing business in the U.S.</p>
-    <p class="legal">Nothing on this platform constitutes legal, tax, accounting, investment, financial, or other professional advice, or creates an attorney-client or other professional relationship.</p>
-    <p class="legal">Laws, regulations and circumstances may vary. Before acting on information obtained through <span class="mc">Megha’s Circle</span>, consult a qualified professional formally engaged to advise you on your specific situation. Any decisions or actions you take remain your responsibility.</p>
-    <p class="legal"><span class="mc">Megha’s Circle</span> does not guarantee or assume responsibility for advice, statements or representations made by members, guests or experts; any separate professional engagement or business is between you and that provider.</p>
+    <div class="legal-grid">
+      <p class="legal"><span class="mc">Megha’s Circle</span> provides general information, practical guidance and access to experts relating to doing business in the U.S.</p>
+      <p class="legal">Nothing on this platform constitutes legal, tax, accounting, investment, financial, or other professional advice, or creates an attorney-client or other professional relationship.</p>
+      <p class="legal">Laws, regulations and circumstances may vary. Before acting on information obtained through <span class="mc">Megha’s Circle</span>, consult a qualified professional formally engaged to advise you on your specific situation. Any decisions or actions you take remain your responsibility.</p>
+      <p class="legal"><span class="mc">Megha’s Circle</span> does not guarantee or assume responsibility for advice, statements or representations made by members, guests or experts; any separate professional engagement or business is between you and that provider.</p>
+    </div>
     <p class="buildmark">v7 &middot; for your review &middot; 18 September 2026</p>
   </div>
 </footer>
