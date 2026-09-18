@@ -292,6 +292,21 @@
   .legal + .legal{padding-top:var(--s-3)}
 
   /* ── fit and finish, from the 1440 / 1000 / 390 renders ───────────────── */
+
+  /* Inherited from Build 5 and only visible with a module open on a phone: the
+     modules are grid items, so their default min-width of auto let the widest
+     line inside set the track and the page scrolled sideways (400px of track in
+     a 350px column at 390). Capping the track and the item is the fix. */
+  .mods{grid-template-columns:minmax(0,1fr)}
+  .mod{min-width:0}
+  /* With the module no longer wider than the screen, its button is the next
+     thing to give: "Start with Module One" is one unbreakable line. On a phone
+     the button and its note stack instead of sharing a row. */
+  @media (max-width:560px){
+    .mod-cta{flex-direction:column;align-items:stretch}
+    .mod-cta .btn{white-space:normal;text-align:center}
+  }
+
   .mc{white-space:nowrap}
   .hx-sub{text-wrap:balance}
   .note-line{text-wrap:pretty}
