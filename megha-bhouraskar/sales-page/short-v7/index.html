@@ -162,10 +162,18 @@
   }
 
   /* The facts: her owning-vs-living lead-in, then the four, then the qualifier. */
+  /* The lead-in carries the section, so it takes the page's headline size and
+     the heading steps down under it: 46 / 34 / 30 reads as lead, label, list,
+     where before the heading and the lead were competing at the same weight. */
   .turn-lead{
     font-family:var(--display);
-    font-size:clamp(19px,.9vw + 15px,25px);line-height:1.5;
-    color:var(--ink-paper);margin-bottom:var(--s-7);
+    font-size:var(--t-7);line-height:1.24;
+    color:var(--ink-paper);margin-bottom:var(--s-8);
+    text-wrap:balance;
+  }
+  .turn h2.display{
+    font-size:clamp(22px,1.6vw + 14px,34px);line-height:1.26;
+    margin-bottom:var(--s-6);
   }
   .turn .turn-stack{margin-bottom:var(--s-4)}
   .turn-stack li{letter-spacing:.02em}
@@ -488,9 +496,9 @@
   <div class="wrap">
     <div class="turn-in" data-reveal>
 
-      <p class="turn-lead">You can Live Anywhere and still Own a Company and Business in America. Don’t stay out of America just because you don’t know how to enter.</p>
+      <p class="turn-lead">You can Live Anywhere and still Own a Company and Business in America. Don’t stay out just because nobody showed you the way in.</p>
 
-      <h2 class="display">WHAT YOU THINK YOU NEED – <em>BUT DON’T</em></h2>
+      <h2 class="display">What You Think You Need – <em>But Don’t</em></h2>
 
       <ul class="turn-stack">
         <li>NO VISA REQUIRED</li>
