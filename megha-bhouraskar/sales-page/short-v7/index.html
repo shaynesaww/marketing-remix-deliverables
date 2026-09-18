@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Build Your U.S. Business from India | Megha Bhouraskar</title>
+<meta name="description" content="Join Megha’s Circle. Everything you need to build and grow in America without leaving India: 3 modules and 24 focused insights + videos from a New York attorney of 25 years.">
+<link rel="stylesheet" href="system.css">
+<link rel="stylesheet" href="strata.css">
+<style>
+/* v7 (2026-09-18). Built from Build 5 against V7-CHANGE-LIST.md.
+   Palette, type family and layout carry over from Build 5 unchanged; the rules
+   below the v7 marker exist for elements v7 adds (the outcomes heading, the
+   facts lead-in, numbered module steps, the membership block, the sign-up
+   field list, the second disclaimer) and for the name treatment. */
+@layer variant {
+  .join{--ground:var(--g-2)}
+  .why{--ground:var(--g-1)}
+  .close{--ground:var(--g-2)}
+
+  .hero{padding-block:clamp(92px,12.5vh,168px)}
+  .hero-in{align-items:start}
+  .hero h1.display{font-size:clamp(30px,3.3vw,47px)}
+  .hx-sub{font-size:clamp(17px,.5vw + 15px,19px);max-width:none}
+  .hero .cta-note{max-width:none;font-size:var(--t-2)}
+
+  .guide{--ground:var(--g-1);padding-block:clamp(42px,5.8vh,76px) clamp(46px,6.5vh,84px)}
+  .guide-in{width:100%;max-width:1400px;margin-inline:auto;padding-inline:var(--gutter)}
+  .guide p{
+    font-family:var(--display);font-weight:400;font-style:italic;
+    font-size:clamp(20px,1.55vw + 13.5px,33px);line-height:1.44;
+    color:var(--ink-soft);text-align:center;
+    max-width:70ch;margin-inline:auto;text-wrap:balance;
+  }
+
+  .mods{gap:var(--s-6)}
+  .mod > summary{padding:clamp(30px,3.2vw,52px);display:block;position:relative}
+  .mod > summary > div{display:block}
+  .mod .label{font-size:var(--t-2)}
+  .mod h3{font-size:clamp(25px,2.2vw + 14px,40px);margin-bottom:var(--s-5)}
+  .mod .label,.mod h3{padding-right:210px}
+  .mod-desc{font-size:var(--t-5);line-height:1.62;max-width:none}
+  .mod-count{margin-top:var(--s-6);font-size:var(--t-2)}
+  .mod-open{position:absolute;top:clamp(30px,3.2vw,52px);right:clamp(30px,3.2vw,52px);margin-top:0}
+
+  [data-reveal].in{transform:none}
+
+  .curric{
+    margin-top:var(--s-8);
+    padding:clamp(32px,3.4vw,56px);
+    background:var(--p-3);
+    border:1px solid var(--rule-paper);
+    border-top:2px solid rgba(184,146,74,.6);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
+  }
+  .curric-line{
+    font-family:var(--display);font-size:clamp(22px,1.9vw + 14px,34px);
+    line-height:1.36;color:var(--ink-paper);
+  }
+  .curric-plus{
+    font-family:var(--display);font-style:italic;
+    font-size:var(--t-5);color:var(--gold-aa);
+    margin:var(--s-5) 0 var(--s-4);
+  }
+  .curric .btn{margin-top:var(--s-6)}
+
+  .oneline{
+    margin:var(--s-5) 0 var(--s-7);
+    padding-left:clamp(20px,2.4vw,36px);
+    border-left:2px solid var(--rule-gold);
+  }
+  .oneline p{
+    font-family:var(--display);font-size:clamp(20px,1.45vw + 14px,31px);
+    line-height:1.4;color:var(--ink);
+  }
+  .oneline p + p{margin-top:var(--s-3)}
+  .join-cast{
+    font-family:var(--display);font-size:clamp(19px,1vw + 15px,26px);
+    line-height:1.5;color:var(--ink-soft);margin-top:0;
+  }
+  .join .pull{max-width:58ch}
+
+  .why .label{color:var(--gold);margin-bottom:var(--s-4)}
+  .why .lede{max-width:52ch;margin-bottom:var(--s-5)}
+  .why-creds{list-style:none;margin-bottom:var(--s-6)}
+  .why-creds li{
+    position:relative;padding-left:var(--s-5);
+    font-family:var(--display);
+    font-size:clamp(19px,1vw + 15px,26px);
+    line-height:1.52;color:var(--ink);
+  }
+  .why-creds li::before{
+    content:"";position:absolute;left:0;top:.72em;
+    width:11px;height:1px;background:var(--rule-gold);
+  }
+
+  .hx-join{
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(23px,1.5vw + 15px,33px);line-height:1.28;
+    color:var(--ink);margin-top:var(--s-4);
+  }
+
+  .mod-steps{list-style:none;margin-top:var(--s-4)}
+  .mod-steps li{
+    position:relative;padding-left:var(--s-5);
+    font-family:var(--display);font-weight:700;
+    font-size:clamp(17px,.6vw + 14.5px,21px);
+    line-height:1.5;color:var(--ink-paper);
+  }
+
+  @media (max-width:760px){
+    .mod .label,.mod h3{padding-right:0}
+    .mod-open{position:static;margin-top:var(--s-5)}
+  }
+  .get-in > .display{margin-bottom:var(--s-5)}
+
+  /* ══ v7 ═══════════════════════════════════════════════════════════════ */
+
+  /* The name. Its own look in running text (D74): not flat gold, blue or white
+     like the copy around it, but a lit gold that runs from champagne into the
+     brand gold, upright even inside italic lines, with a hairline beneath. It
+     only ever sits on midnight grounds on this page. */
+  .mc{
+    font-style:normal;font-weight:700;letter-spacing:.015em;
+    color:var(--gold);
+    text-decoration:underline;text-decoration-thickness:1px;
+    text-underline-offset:.2em;text-decoration-color:rgba(212,170,106,.55);
+  }
+  @supports ((-webkit-background-clip:text) or (background-clip:text)){
+    .mc{
+      background:linear-gradient(100deg,#F6E7C8 0%,#E2BF84 45%,#C99A52 100%);
+      -webkit-background-clip:text;background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
+  }
+
+  /* Hero note: two labelled lines, free and members. */
+  .note-line{display:block}
+  .note-line + .note-line{margin-top:var(--s-2)}
+  .cta-note b,.get-lede b{font-weight:700;letter-spacing:.02em}
+  .hero .cta-note b{color:var(--gold)}
+
+  /* Outcomes: her heading, then two columns of three. */
+  .outcomes-head{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(22px,1.3vw + 15px,32px);line-height:1.3;
+    color:var(--gold);margin-bottom:var(--s-6);
+  }
+  .outcomes-list b{
+    font-size:clamp(17px,.7vw + 14px,22px);
+    line-height:1.4;margin-bottom:0;letter-spacing:.02em;
+  }
+  @media (min-width:561px){
+    .outcomes-list{
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      grid-template-rows:repeat(3,auto);grid-auto-flow:column;
+      row-gap:var(--s-5);max-width:1100px;
+    }
+    .outcomes-list li:nth-child(n+4){padding-left:clamp(16px,1.8vw,30px);border-left:1px solid var(--rule-gold)}
+    .outcomes-list li:nth-child(-n+3){padding-left:0;border-left:0}
+  }
+
+  /* The facts: her owning-vs-living lead-in, then the four, then the qualifier. */
+  .turn-lead{
+    font-family:var(--display);
+    font-size:clamp(19px,.9vw + 15px,25px);line-height:1.5;
+    color:var(--ink-paper);margin-bottom:var(--s-7);
+  }
+  .turn .turn-stack{margin-bottom:var(--s-4)}
+  .turn-stack li{letter-spacing:.02em}
+  .turn-qual{
+    font-size:var(--t-3);line-height:1.6;color:var(--ink-paper-mute);
+    margin-bottom:var(--s-7);
+  }
+
+  /* Curriculum sub-heading and the numbered steps. */
+  .get-sub{
+    font-family:var(--display);font-style:italic;
+    font-size:clamp(19px,1vw + 15px,26px);line-height:1.45;
+    color:var(--ink-paper-soft);max-width:44ch;margin-bottom:var(--s-5);
+  }
+  .get-lede .note-line b{color:var(--ink-paper)}
+  .mod-steps--num li{padding-left:2.1em}
+  .mod-steps--num li::before{content:none}
+  .mod-steps--num .sn{
+    position:absolute;left:0;top:0;
+    color:var(--gold-aa);font-weight:700;
+  }
+  .mod-steps--num em{font-weight:400}
+  .curric-head{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(24px,2vw + 14px,38px);line-height:1.25;
+    color:var(--ink-paper);margin-bottom:var(--s-5);
+  }
+
+  /* Community heading, two lines in her capitals. */
+  .join h2.display{max-width:none;font-size:clamp(26px,2.4vw + 13px,44px);line-height:1.18}
+  .join h2.display .l{display:block}
+  .join-cast{letter-spacing:.02em;color:var(--ink);margin-bottom:var(--s-8)}
+
+  /* ── Annual membership ─────────────────────────────────────────────────
+     Four plates on the ladder's own ground, one step up from the community
+     section. $179 is lifted: the lightest plate, a gold top edge, the badge,
+     and a larger price. */
+  .plans{--ground:var(--g-3);padding-block:var(--beat-wide)}
+  .plans-in{max-width:var(--wrap);margin-inline:auto;padding-inline:var(--gutter)}
+  .plans h2.display{max-width:none;margin-bottom:var(--s-3)}
+  .plans-note{font-size:var(--t-3);color:var(--ink-mute);margin-bottom:var(--s-8)}
+  .plan-grid{
+    list-style:none;display:grid;
+    grid-template-columns:repeat(4,minmax(0,1fr));
+    gap:clamp(14px,1.4vw,24px);align-items:stretch;
+  }
+  .plan{
+    position:relative;display:flex;flex-direction:column;
+    padding:var(--s-7) clamp(20px,1.8vw,30px) var(--s-6);
+    background:var(--g-2);
+    border:1px solid var(--rule-soft);
+    box-shadow:inset 0 1px 0 var(--edge-hi);
+  }
+  .plan .label{color:var(--gold);margin-bottom:var(--s-4)}
+  .plan h3{
+    font-family:var(--display);font-weight:400;
+    font-size:clamp(20px,.8vw + 15px,25px);line-height:1.28;
+    color:var(--ink);margin-bottom:var(--s-4);
+  }
+  .plan-desc{font-size:var(--t-3);line-height:1.6;color:var(--ink-soft);margin-bottom:var(--s-6)}
+  .plan-price{
+    margin-top:auto;padding-top:var(--s-5);
+    border-top:1px solid var(--rule-soft);
+    font-family:var(--display);color:var(--ink);
+    font-size:clamp(30px,1.6vw + 20px,42px);line-height:1;
+  }
+  .plan-price small{font-family:var(--sans);font-size:var(--t-3);color:var(--ink-mute);margin-left:.3em}
+  .plan .btn{margin-top:var(--s-6);width:100%;justify-content:center;text-align:center}
+  .plan--best{
+    background:var(--g-4);
+    border-color:rgba(212,170,106,.55);border-top:2px solid var(--gold);
+    box-shadow:inset 0 1px 0 rgba(241,238,231,.16);
+  }
+  .plan--best .plan-price{font-size:clamp(36px,2vw + 24px,52px);border-top-color:var(--rule-gold)}
+  .plan-badge{
+    position:absolute;top:0;left:50%;transform:translate(-50%,-50%);
+    padding:6px 14px;background:var(--gold);color:var(--g-1);
+    font-size:var(--t-1);font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    white-space:nowrap;
+  }
+  @media (min-width:1101px){
+    .plan--best{margin-top:-14px;padding-top:calc(var(--s-7) + 14px)}
+  }
+  @media (max-width:1100px){
+    .plan-grid{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:var(--s-7)}
+  }
+  @media (max-width:640px){
+    .plan-grid{grid-template-columns:1fr}
+  }
+
+  /* Bio: two-line headline, two paragraphs, five credentials, the close. */
+  .why h2.display{max-width:none}
+  .why h2.display .l{display:block}
+  .why-para{font-size:var(--t-5);line-height:1.62;color:var(--ink-soft);max-width:54ch;margin-bottom:var(--s-6)}
+  .why-built{max-width:none;font-style:normal}
+  .why-built .wb-1{
+    display:block;font-family:var(--display);font-style:normal;
+    font-size:clamp(19px,1vw + 14.5px,26px);line-height:1.4;
+    letter-spacing:.02em;color:var(--ink);
+  }
+  .why-built .wb-2{
+    display:block;margin-top:var(--s-3);
+    font-family:var(--display);font-style:italic;
+    font-size:clamp(18px,.7vw + 15px,23px);line-height:1.5;color:var(--gold);
+  }
+
+  /* Sign-up: her steps, the field list, and her disclaimer under the button. */
+  .close-fields{list-style:none;margin:var(--s-2) 0 var(--s-5)}
+  .close-fields li{
+    position:relative;padding-left:var(--s-5);
+    font-family:var(--display);font-size:var(--t-5);line-height:1.6;color:var(--ink);
+  }
+  .close-fields li::before{
+    content:"";position:absolute;left:0;top:.8em;
+    width:11px;height:1px;background:var(--gold);
+  }
+  .close .close-disc{
+    margin:var(--s-6) auto 0;max-width:60ch;
+    font-size:var(--t-2);line-height:1.7;color:var(--ink-mute);text-align:center;
+  }
+  .close .consent{margin-inline:auto;text-align:center}
+
+  /* Footer: plain-text policy names and her four-part disclaimer. */
+  .legal + .legal{padding-top:var(--s-3)}
+
+  /* ── fit and finish, from the 1440 / 1000 / 390 renders ───────────────── */
+  .mc{white-space:nowrap}
+  .hx-sub{text-wrap:balance}
+  .note-line{text-wrap:pretty}
+  .sec-cta .cta-note{max-width:none;text-wrap:balance}
+  .close .consent{font-size:var(--t-3);line-height:1.7}
+
+  /* Georgia only has old-style figures, which sit low beside capitals. */
+  .mod-steps--num .sn{font-family:var(--sans);font-size:.9em;top:.08em}
+
+  /* Every card shares the same row tracks, so the prices and buttons line up
+     across the row whatever the title length. */
+  .plan{display:grid;grid-row:span 3;grid-template-rows:subgrid;row-gap:0}
+  .plan-top .plan-desc{margin-bottom:var(--s-6)}
+  .plan-price{margin-top:0;align-self:end}
+  .plan .btn{align-self:start;padding-inline:10px;font-size:13px;letter-spacing:.05em;white-space:nowrap}
+  .get h2.display{max-width:none}
+  .get-lede{max-width:none}
+  @media (min-width:1101px){
+    .plan--best{margin-top:0;padding-top:var(--s-7);transform:translateY(-14px)}
+  }
+}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="nav-in">
+    <img class="nav-logo" src="assets/logo-wordmark-dark-sm.png" width="400" height="174" alt="Megha Bhouraskar">
+    <a class="btn" href="#start">Get Started for Free</a>
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="hero-in">
+
+    <div class="hero-copy">
+      <h1 class="display">
+        <span class="l">Build Your U.S. Business</span>
+        <span class="l"><em>From India.</em></span>
+      </h1>
+      <p class="hx-join">Join <span class="mc">Megha’s Circle</span></p>
+      <p class="hx-sub">Everything You Need to Build and Grow in America – Without Leaving India</p>
+      <div class="cta-row">
+        <a class="btn" href="#start">Get Started for Free</a>
+        <p class="cta-note">
+          <span class="note-line"><b>Free:</b> 3 Modules &middot; 24 Focused Insights + Videos &middot; Built for Founders</span>
+          <span class="note-line"><b>Members:</b> A Community of Entrepreneurs &middot; Live Group &amp; One-on-One Calls with Experts</span>
+        </p>
+      </div>
+    </div>
+
+    <figure class="vsl" data-video="wgf4sDvRwYE">
+      <button class="vsl-btn" type="button" aria-label="Play the introduction from Megha Bhouraskar">
+        <img src="assets/megha-headshot-sm.jpg" width="1120" height="1394" fetchpriority="high"
+             alt="Megha Bhouraskar, attorney, New York">
+        <span class="vsl-play" aria-hidden="true"></span>
+      </button>
+      <span class="vsl-dur">6 min</span>
+      <figcaption class="vsl-cap">Megha Bhouraskar &middot; 25 Years of Legal and Consulting in NY/USA</figcaption>
+      <div class="vsl-pending"><b>The introduction</b> Video is being wired up.</div>
+    </figure>
+
+  </div>
+</section>
+
+<section class="sec guide" data-wake>
+  <div class="guide-in" data-reveal>
+    <p>For 25 Years, Megha has Guided Indian Founders through the American Business Systems and has Built Clear Pathways For You to Understand and Use in <span class="mc">Megha’s Circle</span></p>
+  </div>
+</section>
+
+<section class="sec outcomes" data-wake>
+  <div class="outcomes-in">
+    <h2 class="outcomes-head">Walk Away with Knowing What You Need</h2>
+    <ul class="outcomes-list">
+      <li><b>YOUR U.S. COMPANY – YOUR CONTROL</b></li>
+      <li><b>YOUR COMPANY U.S. TAX ID</b></li>
+      <li><b>YOUR COMPANY BANK ACCOUNT</b></li>
+      <li><b>YOUR BRAND IP PROTECTION</b></li>
+      <li><b>YOUR BUSINESS COMMUNITY</b></li>
+      <li><b>YOUR CIRCLE OF EXPERTS</b></li>
+    </ul>
+  </div>
+</section>
+
+<section class="sec band" data-wake>
+  <div class="band-in">
+    <div class="band-copy">
+      <h2 class="display">
+        <span class="l">Live in India.</span>
+        <span class="l"><em>Build in America.</em></span>
+      </h2>
+    </div>
+    <div class="band-act">
+      <div class="cta-row">
+        <a class="btn btn--lg" href="#start">Get Started for Free</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper turn" data-wake>
+  <div class="wrap">
+    <div class="turn-in" data-reveal>
+
+      <p class="turn-lead">Owning in America and Living in America are Two Separate Things: You can Live Anywhere and still Own a Company and Business in America. Don’t stay out of America just because you don’t know how to enter.</p>
+
+      <h2 class="display">WHAT YOU THINK YOU NEED – <em>BUT DON’T</em></h2>
+
+      <ul class="turn-stack">
+        <li>NO VISA REQUIRED</li>
+        <li>NO NEED TO TRAVEL TO AMERICA</li>
+        <li>NO AMERICAN PARTNER REQUIRED</li>
+        <li>NO MINIMUM CAPITAL REQUIRED</li>
+      </ul>
+      <p class="turn-qual">Generally, to form and own a U.S. Company.</p>
+
+      <blockquote class="pull">
+        <p>&ldquo;It is in fact, very simple; much simpler than you can imagine.&rdquo;</p>
+        <cite>Megha, in her own words</cite>
+      </blockquote>
+
+      <div class="sec-cta">
+        <a class="btn" href="#start">Get Started for Free</a>
+        <p class="cta-note">Learn the Steps to Build and Protect in America</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="sec sec--paper get" data-wake>
+  <div class="get-in" data-reveal>
+
+    <h2 class="display">BUILD IT. PROTECT IT. GROW IT.</h2>
+    <p class="get-sub">Your Roadmap to Building Your Business in America from Anywhere Outside of America</p>
+    <p class="get-lede">
+      <span class="note-line"><b>Free:</b> 3 Modules &middot; 24 Focused Insights + Videos</span>
+      <span class="note-line"><b>Members:</b> Business Community &middot; Live Webinars + One-on-One Calls with Experts</span>
+    </p>
+
+    <div class="mods">
+
+      <details class="mod">
+        <summary>
+          <div>
+            <p class="label">01 &middot; Module One</p>
+            <h3>The SHINE Founder Framework</h3>
+            <p class="mod-desc">Define What Makes Your Business Distinct &amp; Able to Grow – <em>Position</em> It to Succeed in America</p>
+            <span class="mod-count">SEVEN INSIGHTS</span>
+          </div>
+          <span class="mod-open"><span class="o-shut">See what’s inside</span><span class="o-open">Hide</span></span>
+        </summary>
+        <ul class="lessons">
+          <li>
+            <b><span class="ln">01</span>The dream you keep on the back shelf</b>
+            <span class="lesson-d">Name the practical fears out loud, find the two sitting underneath them, and take an honest look at what you have been calling patience.</span>
+          </li>
+          <li>
+            <b><span class="ln">02</span>Whose dream is it really?</b>
+            <span class="lesson-d">Separate the values that are actually yours from the rules you were handed, and change one thing about this week.</span>
+          </li>
+          <li>
+            <b><span class="ln">03</span>Your difference is your advantage in America</b>
+            <span class="lesson-d">The commercial reason your background is an asset rather than something to explain away, and three qualities an American customer would pay for.</span>
+          </li>
+          <li>
+            <b><span class="ln">04</span>Intuition and faith as your strategy</b>
+            <span class="lesson-d">A method for making one deliberate decision this week instead of waiting for a certainty that is not coming.</span>
+          </li>
+          <li>
+            <b><span class="ln">05</span>You don&rsquo;t have to burn out to build big</b>
+            <span class="lesson-d">Why the grind was never the price of entry, and one thing you actually put in the calendar.</span>
+          </li>
+          <li>
+            <b><span class="ln">06</span>Stop dimming your light, claim your place</b>
+            <span class="lesson-d">Where hiding got mistaken for modesty, your visibility fears named and sorted, and one visible step. Done means somebody knows.</span>
+          </li>
+          <li>
+            <b><span class="ln">07</span>Permission granted, now here&rsquo;s the map</b>
+            <span class="lesson-d">Everything assembles into a permission file that is yours, and the seven asks that turn it into a commitment.</span>
+          </li>
+        </ul>
+        <div class="mod-cta">
+          <a class="btn btn--quiet" href="#start">Start with Module One</a>
+          <p class="cta-note">Seven insights, and the first one asks something of you inside ninety seconds.</p>
+        </div>
+      </details>
+
+      <details class="mod">
+        <summary>
+          <div>
+            <p class="label">02 &middot; Module Two</p>
+            <h3>SIX PRACTICAL STEPS TO SET UP YOUR U.S. BUSINESS</h3>
+            <ol class="mod-steps mod-steps--num">
+              <li><span class="sn">1</span>Form Your U.S. Company <em>the right way</em></li>
+              <li><span class="sn">2</span>Get Your U.S. Company Tax ID Number (EIN)</li>
+              <li><span class="sn">3</span>Appoint a Registered Agent for Your U.S. Company</li>
+              <li><span class="sn">4</span>Establish a U.S. Business Address for Your U.S. Company</li>
+              <li><span class="sn">5</span>Open Your U.S. Company Bank Account</li>
+              <li><span class="sn">6</span>Understand U.S. Company Compliances + Taxes</li>
+            </ol>
+            <span class="mod-count">TEN INSIGHTS</span>
+          </div>
+          <span class="mod-open"><span class="o-shut">See what’s inside</span><span class="o-open">Hide</span></span>
+        </summary>
+        <ul class="lessons">
+          <li>
+            <b><span class="ln">01</span>The six things that are not true</b>
+            <span class="lesson-d">The six beliefs that keep good founders out, and a clear yes or no on whether you can do this from where you are sitting.</span>
+          </li>
+          <li>
+            <b><span class="ln">02</span>What a U.S. presence actually is</b>
+            <span class="lesson-d">Three kinds of presence, what each one costs you, and which one your business actually needs.</span>
+          </li>
+          <li>
+            <b><span class="ln">03</span>The whole path on one page</b>
+            <span class="lesson-d">All six steps and their real timelines in one place, so you can see exactly where the waiting happens.</span>
+          </li>
+          <li>
+            <b><span class="ln">04</span>Step one: form your company</b>
+            <span class="lesson-d">What actually separates an LLC from a corporation, and how to choose for the way you will build rather than the way it sounds.</span>
+          </li>
+          <li>
+            <b><span class="ln">05</span>Step two: your EIN</b>
+            <span class="lesson-d">Why a foreign founder can get one, how the application goes, and what to do with the wait.</span>
+          </li>
+          <li>
+            <b><span class="ln">06</span>Step three: your U.S. bank account</b>
+            <span class="lesson-d">What the bank asks for, why a U.S.-based signatory comes up, and what that person can and cannot do.</span>
+          </li>
+          <li>
+            <b><span class="ln">07</span>Step four: registered agent, address, and state</b>
+            <span class="lesson-d">Two addresses doing two different jobs, and how the state you pick affects both.</span>
+          </li>
+          <li>
+            <b><span class="ln">08</span>Step five: your internal documents</b>
+            <span class="lesson-d">The operating agreement, the bylaws and the shareholder&rsquo;s agreement, and why they matter long before anyone asks to see them.</span>
+          </li>
+          <li>
+            <b><span class="ln">09</span>Step six: tax filings and staying compliant</b>
+            <span class="lesson-d">What the company itself owes each year, at both levels, and who actually does that work for you.</span>
+          </li>
+          <li>
+            <b><span class="ln">10</span>You built it</b>
+            <span class="lesson-d">The finished formation file, and one sentence about yourself you can say out loud.</span>
+          </li>
+        </ul>
+        <div class="mod-cta">
+          <a class="btn btn--quiet" href="#start">Go to Module Two</a>
+          <p class="cta-note">The six steps, start to finish, in the order you actually do them.</p>
+        </div>
+      </details>
+
+      <details class="mod">
+        <summary>
+          <div>
+            <p class="label">03 &middot; Module Three</p>
+            <h3>PROTECT WHAT YOU BUILD IN AMERICA</h3>
+            <ol class="mod-steps mod-steps--num">
+              <li><span class="sn">1</span>Protect Your Brand with a U.S. Trademark</li>
+              <li><span class="sn">2</span>Protect Your Content + Creative Work with a U.S. Copyright</li>
+              <li><span class="sn">3</span>Protect Your Invention with a U.S. Patent</li>
+            </ol>
+            <span class="mod-count">SEVEN INSIGHTS</span>
+          </div>
+          <span class="mod-open"><span class="o-shut">See what’s inside</span><span class="o-open">Hide</span></span>
+        </summary>
+        <ul class="lessons">
+          <li>
+            <b><span class="ln">01</span>The moment you&rsquo;re valuable, they&rsquo;ll copy you</b>
+            <span class="lesson-d">Why protection comes before exposure, and the three separate categories of things you already own.</span>
+          </li>
+          <li>
+            <b><span class="ln">02</span>What a trademark actually protects</b>
+            <span class="lesson-d">What it covers, what it does not, and why you need neither citizenship nor a launched product to file one.</span>
+          </li>
+          <li>
+            <b><span class="ln">03</span>How to register your trademark</b>
+            <span class="lesson-d">The six stages of an application, including the two that nobody warns you about.</span>
+          </li>
+          <li>
+            <b><span class="ln">04</span>Your work, and who really owns it</b>
+            <span class="lesson-d">Copyright in plain English, and the ownership trap sitting inside work you paid someone else to make.</span>
+          </li>
+          <li>
+            <b><span class="ln">05</span>Your invention, and a word on patents</b>
+            <span class="lesson-d">Powerful, expensive, and rarely the first move. When it is worth it, and when it is quietly not.</span>
+          </li>
+          <li>
+            <b><span class="ln">06</span>What ownership is actually for</b>
+            <span class="lesson-d">License it, distribute it, or sell the rights, and the two-contract rule that keeps you in control all the way to the end customer.</span>
+          </li>
+          <li>
+            <b><span class="ln">07</span>Now it&rsquo;s yours to keep</b>
+            <span class="lesson-d">A complete inventory of what you own, and the order to file it in.</span>
+          </li>
+        </ul>
+        <div class="mod-cta">
+          <a class="btn btn--quiet" href="#start">Go to Module Three</a>
+          <p class="cta-note">Register your name in America before somebody else gets there first.</p>
+        </div>
+      </details>
+
+    </div>
+
+    <div class="curric">
+      <h3 class="curric-head">Everything You Need to Build a Business in America</h3>
+      <p class="curric-line">24 Focused Insights + Videos. Practical Steps. Expert Guidance. A Founder Community.</p>
+      <p class="curric-plus"><em>Plus, for Members:</em></p>
+      <p class="curric-line">Live Webinars with Megha + Her Circle of Experts.</p>
+      <a class="btn" href="#start">Join Megha’s Circle</a>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec join" data-wake>
+  <div class="join-in" data-reveal>
+
+    <h2 class="display">
+      <span class="l">YOU DON’T HAVE TO BUILD ON YOUR OWN –</span>
+      <span class="l"><span class="mc">MEGHA’S CIRCLE</span> HELPS YOU BUILD IN AMERICA</span>
+    </h2>
+
+    <div class="oneline">
+      <p>One Conversation Can Clarify Your Next Move</p>
+      <p>One Answer Can Help You Avoid a Costly Mistake</p>
+      <p>One Connection Can Open a Door in America</p>
+    </div>
+
+    <p class="join-cast">BE IN THE ROOM WITH FOUNDERS, EXPERTS AND PEOPLE BUILDING WHAT’S NEXT.</p>
+
+    <blockquote class="pull">
+      <p>&ldquo;You can Google the information. What matters is knowing what applies to your business and being in the room with the right people who can help you move forward.&rdquo;</p>
+      <cite>Megha, in her own words</cite>
+    </blockquote>
+
+    <div class="sec-cta">
+      <a class="btn" href="#start">Get Started for Free</a>
+      <p class="cta-note">Your Next Move in the U.S. Market Starts Here</p>
+    </div>
+
+  </div>
+</section>
+
+<section class="sec plans" data-wake>
+  <div class="plans-in" data-reveal>
+
+    <h2 class="display">Annual Membership</h2>
+    <p class="plans-note">All prices in USD, billed yearly.</p>
+
+    <ul class="plan-grid">
+      <li class="plan">
+        <div class="plan-top">
+          <p class="label">Free</p>
+          <h3>Free Learning Content</h3>
+          <p class="plan-desc">Text + Videos</p>
+        </div>
+        <p class="plan-price">$0</p>
+        <a class="btn btn--quiet" href="#start">Get Started for Free</a>
+      </li>
+      <li class="plan">
+        <div class="plan-top">
+          <p class="label">Tier 1</p>
+          <h3>Circle of Entrepreneurs</h3>
+          <p class="plan-desc">Engage with Community and Experts</p>
+        </div>
+        <p class="plan-price">$59<small>/ year</small></p>
+        <a class="btn btn--quiet" href="#start">Join</a>
+      </li>
+      <li class="plan plan--best">
+        <span class="plan-badge">Best Value</span>
+        <div class="plan-top">
+          <p class="label">Tier 2</p>
+          <h3>Circle of Entrepreneurs + Live Monthly Webinars</h3>
+          <p class="plan-desc">Speak Directly with Experts on Webinars/Live Calls</p>
+        </div>
+        <p class="plan-price">$179<small>/ year</small></p>
+        <a class="btn" href="#start">Join</a>
+      </li>
+      <li class="plan">
+        <div class="plan-top">
+          <p class="label">Tier 3</p>
+          <h3>+ One-Time Private Call with an Expert</h3>
+          <p class="plan-desc">Everything above in Tiers 1&nbsp;&amp;&nbsp;2</p>
+        </div>
+        <p class="plan-price">$479<small>/ year</small></p>
+        <a class="btn btn--quiet" href="#start">Join</a>
+      </li>
+    </ul>
+
+  </div>
+</section>
+
+<section class="sec why" data-wake>
+  <div class="why-in">
+
+    <figure class="why-fig" data-reveal>
+      <img src="assets/megha-office-sm.jpg" width="574" height="860" loading="lazy"
+           alt="Megha Bhouraskar in her New York office">
+    </figure>
+
+    <div data-reveal>
+      <h2 class="display">
+        <span class="l">25+ Years at the Intersection</span>
+        <span class="l"><em>of India and America</em></span>
+      </h2>
+      <p class="lede">Megha Bhouraskar is a New York Attorney and Entrepreneur who has spent more than 25 Years Advising Indian Founders, Family Businesses and Investors doing Business in the U.S.</p>
+      <p class="why-para">She created <span class="mc">Megha’s Circle</span> to give you Direct Access to that Experience – Practical Know-How, Judgment, Connections and Experts that can help you move forward in the American Market.</p>
+
+      <ul class="why-creds">
+        <li>New York Attorney</li>
+        <li>Columbia/Barnard</li>
+        <li>Author</li>
+        <li>Entrepreneur</li>
+        <li>Podcast Host-Producer</li>
+      </ul>
+
+      <p class="pull why-built">
+        <span class="wb-1">SHE BUILT <span class="mc">MEGHA’S CIRCLE</span> TO OPEN HER NETWORK AND EXPERIENCE TO YOU</span>
+        <span class="wb-2">A Circle of Experts, Entrepreneurs, Investors and Advisors – With the Practical Knowledge to Help You Navigate the U.S. Market.</span>
+      </p>
+    </div>
+
+  </div>
+
+  <div class="why-foot">
+    <div class="sec-cta">
+      <a class="btn" href="#start">Get Started for Free</a>
+      <p class="cta-note">The Right Knowledge. The Right Guidance. The Right People.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec close" id="start" data-wake>
+  <div class="close-in" data-reveal>
+
+    <h2 class="display">You Don’t Need to Have It All Figured Out.</h2>
+
+    <div class="prose">
+      <p>Start with where you are today.</p>
+      <p>When you click below, simply fill out the form and tell us:</p>
+      <ul class="close-fields">
+        <li>Your Name &middot; Email &middot; City/State/Country</li>
+        <li>Industry &middot; Stage of Business</li>
+      </ul>
+      <p>Tell us a little about you and your business. We’ll take it from there.</p>
+    </div>
+
+    <div class="close-act">
+      <div class="cta-row">
+        <a class="btn" href="#start">Get Started for Free</a>
+      </div>
+      <p class="cta-note">Start Where You Are. Grow in the U.S. Market.</p>
+      <p class="close-disc"><span class="mc">Megha’s Circle</span> is a Platform to share knowledge, educate, create, encourage and enable dialogue, connection, growth, collaboration, and investment between Entrepreneurs at all levels. It does not provide legal, financial, tax or other professional advice. Any professional engagement with Megha or an expert or any Member in the Circle must be separately agreed upon, and any decisions or actions you take based on information shared within the Circle remain your responsibility.</p>
+      <p class="consent">By signing up, you agree to the Terms of Service and Privacy Policy and to receiving emails and messages from <span class="mc">Megha’s Circle</span>.</p>
+    </div>
+
+    <p class="sig">Look Forward!</p>
+
+  </div>
+</section>
+
+</main>
+
+<footer class="sec foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div>
+        <img class="foot-logo" src="assets/logo-compact-dark-sm.png" width="400" height="245" loading="lazy" alt="Megha Bhouraskar">
+        <p class="foot-tag">Attorney &middot; Strategist &middot; Entrepreneur</p>
+      </div>
+      <div class="foot-meta">
+        <p>&copy; 2026 DIMARA Inc.</p>
+        <p class="foot-links">Terms of Service &middot; Privacy Policy &middot; Refund Policy</p>
+      </div>
+    </div>
+    <p class="legal"><span class="mc">Megha’s Circle</span> provides general information, practical guidance and access to experts relating to doing business in the U.S.</p>
+    <p class="legal">Nothing on this platform constitutes legal, tax, accounting, investment, financial, or other professional advice, or creates an attorney-client or other professional relationship.</p>
+    <p class="legal">Laws, regulations and circumstances may vary. Before acting on information obtained through <span class="mc">Megha’s Circle</span>, consult a qualified professional formally engaged to advise you on your specific situation. Any decisions or actions you take remain your responsibility.</p>
+    <p class="legal"><span class="mc">Megha’s Circle</span> does not guarantee or assume responsibility for advice, statements or representations made by members, guests or experts; any separate professional engagement or business is between you and that provider.</p>
+    <p class="buildmark">v7 &middot; for your review &middot; 18 September 2026</p>
+  </div>
+</footer>
+
+<script src="system.js"></script>
+<script src="vsl.js"></script>
+</body>
+</html>
