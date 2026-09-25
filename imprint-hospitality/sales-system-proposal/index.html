@@ -682,6 +682,52 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
   .alts thead{display:table-header-group!important}
   .hero,.band,footer{background:var(--slate-deep)!important;color:#fff!important}
 }
+
+/* ===== old vs new pricing comparison (added 2026-09-25) ===== */
+.cmp{margin:0 0 2.75rem}
+.cmp-head{margin-bottom:1.6rem}
+.cmp-head h3{font-family:var(--f-title);font-size:clamp(1.5rem,3vw,2.1rem);font-weight:600;text-transform:uppercase;letter-spacing:.02em;margin:.15rem 0 .5rem}
+.cmp-head p{margin:0;color:var(--ink-soft);max-width:64ch}
+.bars{background:#fff;border:1px solid var(--hairline-strong);padding:2.1rem clamp(1.1rem,2.6vw,2.4rem)}
+.bar-block{margin-bottom:1.9rem}
+.bar-block:last-of-type{margin-bottom:0}
+.bar-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:.5rem;gap:1rem;flex-wrap:wrap}
+.bar-title{font-family:var(--f-label);font-size:.76rem;font-weight:600;letter-spacing:.13em;text-transform:uppercase}
+.bar-top .money{font-family:var(--f-title);font-weight:700;font-size:1.45rem}
+.bar-block.old .bar-title{color:var(--ink-faint)}
+.bar-block.old .bar-top .money{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:2.5px}
+.bar-block.new .bar-title{color:var(--orange-deep)}
+.bar-block.new .bar-top .money{color:var(--orange-deep)}
+.bar{display:flex;height:64px;border:1px solid var(--hairline-strong)}
+.seg{display:flex;flex-direction:column;justify-content:center;padding:0 .95rem;min-width:0}
+.seg b{font-family:var(--f-title);font-size:1.1rem;font-weight:700;line-height:1;white-space:nowrap}
+.seg small{font-size:.7rem;line-height:1.25;margin-top:.2rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.seg.build{background:var(--slate-deep);color:#fff}
+.seg.build small{color:rgba(255,255,255,.68)}
+.seg.keep{background:var(--orange);color:#fff}
+.seg.keep small{color:rgba(255,255,255,.82)}
+.seg.cut{background:repeating-linear-gradient(135deg,var(--paper-3) 0 9px,var(--paper-2) 9px 18px);color:var(--ink-faint)}
+.seg.cut b{text-decoration:line-through;text-decoration-thickness:2.5px;text-decoration-color:var(--ink-faint)}
+.bar-legend{margin-top:.55rem;font-size:.82rem;color:var(--ink-faint)}
+.bar-verdict{margin-top:2rem;padding-top:1.4rem;border-top:2px solid var(--orange-line);display:flex;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.bar-verdict .money{font-family:var(--f-title);font-weight:700;font-size:2.4rem;color:var(--orange-deep);line-height:1}
+.bar-verdict p{margin:0;font-size:.95rem;color:var(--ink-soft);max-width:52ch}
+.redline{background:#fff;border:1px solid var(--hairline-strong);border-left:4px solid var(--orange);margin-top:1.5rem}
+.rl-head{padding:1.25rem clamp(1.1rem,2.6vw,2rem);border-bottom:1px solid var(--hairline);display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+.rl-head strong{font-family:var(--f-title);font-size:1.35rem;font-weight:600;text-transform:uppercase;letter-spacing:.02em}
+.rl-row{display:grid;grid-template-columns:minmax(140px,1fr) 2.4fr;gap:1.4rem;padding:1.05rem clamp(1.1rem,2.6vw,2rem);border-bottom:1px dotted var(--hairline);align-items:baseline}
+.rl-row:last-of-type{border-bottom:0}
+.rl-label{font-family:var(--f-label);font-size:.8rem;font-weight:500;color:var(--ink-soft)}
+.rl-change{font-size:.98rem}
+.dead{color:var(--ink-faint);text-decoration:line-through;text-decoration-thickness:2px}
+.rl-arrow{color:var(--orange);font-weight:700;margin:0 .5rem}
+.rl-new{font-weight:700}
+.rl-why{display:block;font-size:.82rem;color:var(--ink-faint);margin-top:.28rem;line-height:1.5}
+.rl-foot{background:var(--orange-wash);border-top:2px solid var(--orange-line);padding:1.25rem clamp(1.1rem,2.6vw,2rem);display:flex;align-items:baseline;gap:.9rem;flex-wrap:wrap}
+.rl-foot .money{font-family:var(--f-title);font-weight:700;font-size:1.5rem;color:var(--orange-deep)}
+.rl-foot span{font-size:.9rem;color:var(--ink-soft)}
+@media(max-width:760px){.rl-row{grid-template-columns:1fr;gap:.25rem}.seg small{display:none}}
+
 </style>
 </head>
 <body>
@@ -745,7 +791,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div><dt>Prepared by</dt><dd>Shayne Champlin</dd></div>
       <div><dt>Scope</dt><dd>Phase 1 — lead to booked</dd></div>
       <div><dt>Wave two</dt><dd><a href="../integration-layer/" style="color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(238,118,35,.45)">The integration &rarr;</a></dd></div>
-      <div><dt>Live</dt><dd class="accent">November 1, 2026</dd></div>
+      <div><dt>Live</dt><dd class="accent">~12 weeks from signature</dd></div>
     </dl>
   </div>
 </header>
@@ -790,7 +836,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="cw"><div class="n hot">$400</div><div class="l">Per property, per month, for TripleSeat. It only pencils above roughly $250k a year in bookings.</div></div>
       <div class="cw"><div class="n">3</div><div class="l">Properties coming online this year that fall under that line. More behind them.</div></div>
       <div class="cw"><div class="n">1</div><div class="l">Manual spreadsheet per property, filled in weekly, sent to owners by hand.</div></div>
-      <div class="cw"><div class="n hot">Nov</div><div class="l">Booking season opens. Whatever exists on November 1 is what carries the season.</div></div>
+      <div class="cw"><div class="n hot">Season</div><div class="l">Booking season opens. Whatever exists by then is what carries the season.</div></div>
     </div>
   </div>
 </section>
@@ -1113,7 +1159,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="shead-body">
         <p class="eyebrow">Reporting</p>
         <h2>What you get out, per property</h2>
-        <p class="lede">Never aggregated, because the properties have separate owners. I checked every one of these against what the platform can actually do before putting it on this page, so each card says what shape it comes out in. Two of them are not charts, and I would rather tell you that now than in October.</p>
+        <p class="lede">Never aggregated, because the properties have separate owners. I checked every one of these against what the platform can actually do before putting it on this page, so each card says what shape it comes out in. Two of them are not charts, and I would rather tell you that now than three months in.</p>
       </div>
     </div>
 
@@ -1129,7 +1175,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     <div class="reveal" style="margin-top:2.5rem">
       <div class="to plain">
         <h3>The design decision underneath all of this</h3>
-        <p>Reporting is the part of any CRM that quietly fails eighteen months in, because the numbers were stored somewhere that cannot be totalled. So room revenue and site fees get captured as real, separate numbers on the booking records themselves, and property and event type get set up as selectable values rather than typed text. That sounds like a technical detail. It is the entire difference between these reports existing and not, and it is why it happens in week two rather than as an afterthought in October.</p>
+        <p>Reporting is the part of any CRM that quietly fails eighteen months in, because the numbers were stored somewhere that cannot be totalled. So room revenue and site fees get captured as real, separate numbers on the booking records themselves, and property and event type get set up as selectable values rather than typed text. That sounds like a technical detail. It is the entire difference between these reports existing and not, and it is why it happens in week two rather than as an afterthought in week ten.</p>
       </div>
     </div>
   </div>
@@ -1163,7 +1209,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
 
       <div class="to">
         <h3>Conversations attach to the client, not to the booking</h3>
-        <p>This is the single biggest difference from TripleSeat and the one you will notice first. TripleSeat threads sixty-seven emails onto one booking. Here, the thread lives on the contact. In practice one client rarely runs two bookings at once, so the contact thread is the booking thread. We stamp booking references into email subjects and keep notes on the booking itself. I would rather you hear this from me now than discover it in October.</p>
+        <p>This is the single biggest difference from TripleSeat and the one you will notice first. TripleSeat threads sixty-seven emails onto one booking. Here, the thread lives on the contact. In practice one client rarely runs two bookings at once, so the contact thread is the booking thread. We stamp booking references into email subjects and keep notes on the booking itself. I would rather you hear this from me now than have you discover it later.</p>
       </div>
 
       <div class="to plain">
@@ -1217,7 +1263,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="shead-body">
         <p class="eyebrow">Scope boundaries</p>
         <h2>What is in scope, and what is not</h2>
-        <p class="lede">Your words: clean up the first part of the process, the rest I have got to figure out. That is exactly where the line is drawn. Phase 1 is what this proposal covers and what has to exist before November.</p>
+        <p class="lede">Your words: clean up the first part of the process, the rest I have got to figure out. That is exactly where the line is drawn. Phase 1 is what this proposal covers and what has to exist before booking season.</p>
       </div>
     </div>
 
@@ -1237,7 +1283,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
             <li>Client portal — clients see their documents and invoices without a password</li>
             <li>A property onboarding form, so adding a property is data entry rather than a rebuild</li>
           </ul>
-          <p class="ph-why">Booking season starts in November. This is what carries it.</p>
+          <p class="ph-why">Booking season is what this has to be ready for. This is what carries it.</p>
         </div>
       </div>
 
@@ -1373,14 +1419,14 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
 
     <!-- Wave two rides the ghost folder — the same dashed treatment the
          deferred Phase 2 lane uses, because it is real work on a real
-         schedule that simply is not part of the November date. -->
+         schedule that simply is not part of the core delivery. -->
     <div class="folder ghost reveal" style="margin-top:2.5rem">
       <div class="folder-tab">Wave two &nbsp;·&nbsp; the integration layer</div>
       <div class="folder-body">
-        <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:78ch">The StayNTouch integration is built alongside the pilot above rather than after it, and it carries its own two milestones. It goes live on Kinship first and rolls out to the rest once it has been proven against real bookings on one property. The architecture, the six workstreams and the commission-proving method are all in <a href="../integration-layer/" style="color:var(--orange-deep);border-bottom:1px solid var(--orange-line);text-decoration:none"><strong>Addendum A</strong></a>.</p>
+        <p style="font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:78ch">The StayNTouch integration is built alongside the pilot above rather than after it, and it carries its own two milestones. It goes live on Casa Sequoia first and rolls out to the rest once it has been proven against real bookings on one property. The architecture, the six workstreams and the commission-proving method are all in <a href="../integration-layer/" style="color:var(--orange-deep);border-bottom:1px solid var(--orange-line);text-decoration:none"><strong>Addendum A</strong></a>.</p>
         <div class="p2lane" style="margin-top:1.5rem">
           <div class="p2step"><div class="n">Stage 1 &nbsp;·&nbsp; $2,750</div><div class="d">API access confirmed and the integration build begins</div></div>
-          <div class="p2step"><div class="n">Stage 2 &nbsp;·&nbsp; $2,750</div><div class="d">Integration live and reconciled on Kinship</div></div>
+          <div class="p2step"><div class="n">Stage 2 &nbsp;·&nbsp; $2,750</div><div class="d">Integration live and reconciled on Casa Sequoia</div></div>
         </div>
         <p style="font-size:13.5px;line-height:1.55;color:var(--ink-faint);margin-top:1.25rem">Neither of these is invoiced until the core system above has been signed off, and the second one is not invoiced until a month you have already billed reconciles against what the integration produces.</p>
       </div>
@@ -1425,9 +1471,9 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     <div class="ws-total reveal"><span class="l">Build total</span><span class="v">77 to 104 hours</span></div>
 
     <div class="after reveal">
-      <div class="af"><div class="h">September · 12 to 20 hours</div><h3>Pilot</h3><p>Your pilot property runs live leads through the system while I watch every automation fire on real people, tune the follow-up copy against real replies, and fix whatever real-world use breaks. Weekly check-in throughout.</p></div>
-      <div class="af"><div class="h">October · 10 to 16 hours</div><h3>Onboarding &amp; hardening</h3><p>Your two remaining properties come online — configuration, forms, calendars, document testing for each. Reports get polished against your actual owner reporting. Training refreshed, and every test scenario re-run green on every property before booking season.</p></div>
-      <div class="af" style="background:var(--slate-deep);border-color:var(--slate-deep)"><div class="h" style="color:var(--orange)">Through November 1</div><h3 style="color:#fff">Roughly 99 to 140 hours</h3><p style="color:rgba(255,255,255,.7)">Total effort from kickoff to live, across build, pilot and onboarding.</p></div>
+      <div class="af"><div class="h">Weeks 7 to 10 · 12 to 20 hours</div><h3>Pilot</h3><p>Your pilot property runs live leads through the system while I watch every automation fire on real people, tune the follow-up copy against real replies, and fix whatever real-world use breaks. Weekly check-in throughout.</p></div>
+      <div class="af"><div class="h">Weeks 11 to 12 · 10 to 16 hours</div><h3>Onboarding &amp; hardening</h3><p>Your two remaining properties come online — configuration, forms, calendars, document testing for each. Reports get polished against your actual owner reporting. Training refreshed, and every test scenario re-run green on every property before booking season.</p></div>
+      <div class="af" style="background:var(--slate-deep);border-color:var(--slate-deep)"><div class="h" style="color:var(--orange)">Through go-live</div><h3 style="color:#fff">Roughly 99 to 140 hours</h3><p style="color:rgba(255,255,255,.7)">Total effort from kickoff to live, across build, pilot and onboarding.</p></div>
     </div>
   </div>
 </section>
@@ -1440,7 +1486,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="shead-body">
         <p class="eyebrow">Twelve weeks, then the integration</p>
         <h2>Signature to booking season</h2>
-        <p class="lede">Week one starts the day you say yes, so this calendar does not go stale while the proposal sits on a desk. November 1 is the one date I cannot move, because booking season does not care when we started. The integration lands behind it, on the schedule at the bottom.</p>
+        <p class="lede">Week one starts the day you sign, so this calendar does not go stale while the proposal sits on a desk. Every week below is counted from signature rather than from a calendar date. Booking season opens whatever we do, which is the real reason to start sooner rather than a reason to promise a date. The integration runs alongside on its own clock, on the schedule at the bottom.</p>
       </div>
     </div>
 
@@ -1454,7 +1500,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="ms"><div class="w">Weeks 7–10</div><div class="m">The pilot runs on real customers. Weekly check-ins, copy tuned against real replies, break points found and fixed.</div></div>
       <div class="ms key"><div class="w">Week 10</div><div class="m"><strong>You sign off on the pilot.</strong></div></div>
       <div class="ms"><div class="w">Weeks 11–12</div><div class="m">Remaining properties configured and tested. Training, documentation, every scenario re-run green.</div></div>
-      <div class="ms live"><div class="w">Nov 1</div><div class="m">Live for booking season</div></div>
+      <div class="ms live"><div class="w">Week 12</div><div class="m">Core system live</div></div>
     </div>
 
     <div class="reveal" style="margin-top:3.5rem">
@@ -1462,20 +1508,20 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="tl">
         <div class="ms"><div class="w">Week 1</div><div class="m">The certification and credential request goes in to StayNTouch on day one, so that waiting runs alongside the build rather than in front of it. This is the longest lead time in the project and it is the only one I do not control.</div></div>
         <div class="ms"><div class="w">Weeks 7–10</div><div class="m">Built alongside the core pilot. Room type, rate and tax sync, availability lookup and pickup, all read-only, so they proceed while live credentials are still being issued.</div></div>
-        <div class="ms"><div class="w">Nov–Dec</div><div class="m">Block creation with the duplicate guard, amendments and drift detection, and the commission engine built to a specification you have signed. Reconciled against a month you have already billed.</div></div>
-        <div class="ms live"><div class="w">Mid-Dec</div><div class="m">Live on Kinship</div></div>
+        <div class="ms"><div class="w">Weeks 11–16</div><div class="m">Block creation with the duplicate guard, amendments and drift detection, and the commission engine built to a specification you have signed. Reconciled against a month you have already billed.</div></div>
+        <div class="ms live"><div class="w">Week 20</div><div class="m">Live on Casa Sequoia</div></div>
       </div>
     </div>
 
     <div class="reveal" style="margin-top:2.5rem">
       <div class="to plain">
-        <h3>Then, in January</h3>
-        <p>The remaining StayNTouch properties are added as configuration records, each verified against the PMS before it goes live. That rollout is paced by how fast credentials get issued, not by how fast anything gets built, which is why it sits after Kinship rather than alongside it.</p>
+        <h3>After that</h3>
+        <p>The remaining StayNTouch properties are added as configuration records, each verified against the PMS before it goes live. That rollout is paced by how fast credentials get issued, not by how fast anything gets built, which is why it sits after Casa Sequoia rather than alongside it.</p>
       </div>
       <div class="to">
         <h3>The one thing worth saying plainly about dates</h3>
-        <p>This calendar is twelve weeks from signature, not twelve weeks from today, and that arithmetic now matters. <strong>Holding November 1 means starting within about a week of you reading this.</strong> Past that point something has to give, and I would rather tell you which one in advance than absorb it quietly: I will shorten the property rollout and keep the pilot intact, because the pilot is the stretch that catches problems before your clients do. Every week the decision waits comes out of one of those two.</p>
-        <p>The integration date can move without touching the core date. That is the entire reason it is wave two, and it is why the November commitment is the one I am protecting.</p>
+        <p>This calendar is twelve weeks from signature, not twelve weeks from today, and that arithmetic now matters. <strong>Every week the decision waits is a week of booking season you do not get back.</strong> Past that point something has to give, and I would rather tell you which one in advance than absorb it quietly: I will shorten the property rollout and keep the pilot intact, because the pilot is the stretch that catches problems before your clients do. Every week the decision waits comes out of one of those two.</p>
+        <p>The integration date can move without touching the core date. That is the entire reason it is wave two, and the core system is the one I am protecting.</p>
       </div>
     </div>
   </div>
@@ -1493,6 +1539,64 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       </div>
     </div>
 
+    <div class="cmp reveal">
+      <div class="cmp-head">
+        <p class="eyebrow rev">What changed since August</p>
+        <h3>You said the commitment was too big</h3>
+        <p>You were right. So I took the support structure apart and rebuilt it around what you actually need rather than what is easy to invoice. The build price did not move.</p>
+      </div>
+
+      <div class="bars">
+        <div class="bar-block old">
+          <div class="bar-top"><span class="bar-title">August proposal</span><span class="money">$28,000</span></div>
+          <div class="bar">
+            <div class="seg build" style="flex:18"><b>$18,000</b><small>Build</small></div>
+            <div class="seg cut" style="flex:10"><b>$10,000</b><small>Support, locked for four months</small></div>
+          </div>
+          <div class="bar-legend">Committed before a single lead had run through the system.</div>
+        </div>
+
+        <div class="bar-block new">
+          <div class="bar-top"><span class="bar-title">This proposal</span><span class="money">$23,000</span></div>
+          <div class="bar" style="width:82.1%">
+            <div class="seg build" style="flex:18"><b>$18,000</b><small>Build, unchanged</small></div>
+            <div class="seg keep" style="flex:5"><b>$5,000</b><small>Two launch months</small></div>
+          </div>
+          <div class="bar-legend">Everything after month two is usage-based and yours to switch off.</div>
+        </div>
+
+        <div class="bar-verdict">
+          <span class="money">&minus;$5,000</span>
+          <p>off what you commit to, with no change to what gets built. Proactive monitoring runs $400 a month once the integration is live, and anything you ask me to build or fix is $150 an hour. Both are elective, which is the entire point of the change.</p>
+        </div>
+      </div>
+
+      <div class="redline">
+        <div class="rl-head"><strong>Line by line</strong><span class="eyebrow">Build price unchanged</span></div>
+        <div class="rl-row">
+          <div class="rl-label">Launch support</div>
+          <div class="rl-change"><span class="dead">$2,500 &times; 4 months</span><span class="rl-arrow">&rarr;</span><span class="rl-new">$2,500 &times; 2 months</span>
+          <span class="rl-why">Cut to the two months where problems are genuinely certain, and then it stops. This is the one ongoing piece I still ask you to commit to, because it is where a custom system meets real bookings for the first time.</span></div>
+        </div>
+        <div class="rl-row">
+          <div class="rl-label">Ongoing management</div>
+          <div class="rl-change"><span class="dead">$1,250 a month, flat</span><span class="rl-arrow">&rarr;</span><span class="rl-new">$400 a month, plus $60 per property past five</span>
+          <span class="rl-why">Split apart. You pay for watching the integration, and the fee grows only as your portfolio does. At eighteen properties that works out to $65 per property per month, against the $450 TripleSeat wanted.</span></div>
+        </div>
+        <div class="rl-row">
+          <div class="rl-label">Requested work</div>
+          <div class="rl-change"><span class="dead">Bundled, used or not</span><span class="rl-arrow">&rarr;</span><span class="rl-new">$150 an hour, when you ask</span>
+          <span class="rl-why">Off the agreement entirely. One hour minimum per request, invoiced for work actually done. Ask for nothing in a month and you pay nothing.</span></div>
+        </div>
+        <div class="rl-row">
+          <div class="rl-label">The build</div>
+          <div class="rl-change"><span class="rl-new">$18,000</span>
+          <span class="rl-why">Unchanged. I did not trade scope for the reduction, and I would rather you know that than wonder about it.</span></div>
+        </div>
+        <div class="rl-foot"><span class="dead money" style="font-family:var(--f-title);font-weight:700;font-size:1.5rem">$28,000</span><span class="rl-arrow">&rarr;</span><span class="money">$23,000 committed</span><span>with everything past month two elective</span></div>
+      </div>
+    </div>
+
     <div class="folder on-dark reveal" style="margin-top:0">
       <div class="folder-tab">The build <span class="cnt">fixed fee</span></div>
       <div class="folder-body" style="padding:0;border-top-color:var(--orange)">
@@ -1500,15 +1604,17 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
           <div class="iv"><div class="k">Core system build</div><div class="a">$12,500<small>Fixed, paid across the three stages</small></div><div class="d">Everything itemized above, the live pilot on a real customer, and every launch property configured and tested. $5,000 to begin, $3,750 when the pilot starts, $3,750 when you sign off on it.</div></div>
           <div class="iv"><div class="k">StayNTouch integration</div><div class="a">$5,500<small>Fixed, paid across two stages</small></div><div class="d">Wave two. Room type, rate and tax sync, availability lookups, automatic block creation on contract signature, pickup tracking with reservation-level detail, actualized revenue, automated commission calculation, amendments and drift detection. Detailed in full in <a href="../integration-layer/" style="color:var(--orange);border-bottom:1px solid rgba(238,118,35,.45);text-decoration:none">Addendum A</a>.</div></div>
           <div class="iv"><div class="k">Total build</div><div class="a">$18,000<small>Fixed, paid across five milestones</small></div><div class="d">One number for both waves. Nothing is invoiced before the work it pays for, and the schedule is below.</div></div>
-          <div class="iv"><div class="k">Launch support</div><div class="a">$2,500<small>Per month, first four months live</small></div><div class="d">Four months, and each one is a different kind of new. <b>November</b> the core system goes live and your team is learning it, when every question is a real booking on the line. <b>December</b> the integration lands on Kinship. <b>January</b> the remaining properties roll out. <b>February</b> is the first month-end where commissions calculate across every property at once. Priority response throughout, integration monitoring, and the work to fix whatever that first real month-end turns up. Billed monthly in advance, starting the month after go-live.</div></div>
-          <div class="iv"><div class="k">Ongoing management</div><div class="a">$1,250<small>Per month, from month five</small></div><div class="d">Up from $750, and the increase is entirely the integration: credential renewal across every connected property and sync monitoring with failure alerts, on top of system health, deliverability watch, up to four hours of adjustments monthly, and a quarterly review. Thirty days' notice to cancel, any time.</div></div>
+          <div class="iv"><div class="k">Launch support</div><div class="a">$2,500<small>Per month, two months</small></div><div class="d">The two months after the core system goes live, when a custom system meets real bookings for the first time. Up to sixteen hours a month of hands-on work across the CRM and, once live, the integration, plus priority response. This is the one ongoing piece that is a term rather than an option.</div></div>
+          <div class="iv"><div class="k">Proactive monitoring</div><div class="a">$400<small>Per month, plus $60 per property past five</small></div><div class="d">Starts when the integration goes live. Credential renewal ahead of expiry, sync completion checks, confirmation that every room block written from a signed contract actually landed, pickup reconciliation, rate-limit detection and field-mapping integrity. Five properties included. Thirty days' notice to cancel, any time.</div></div>
+          <div class="iv"><div class="k">Anything you ask for</div><div class="a">$150<small>Per hour, one hour minimum</small></div><div class="d">Off the agreement entirely. Invoiced monthly for work actually done, with no minimum commitment and nothing to cancel. If you need nothing in a given month, you pay nothing beyond monitoring.</div></div>
+          <div class="iv"><div class="k">Managed support</div><div class="a">$1,250<small>Per month, optional alternative</small></div><div class="d">If you would rather bundle: monitoring as above plus eight hours of work a month on the CRM, the integration, or both. Worth it only if you know you will use the hours.</div></div>
           <div class="iv"><div class="k">Additional properties</div><div class="a">$350<small>Each, beyond the three</small></div><div class="d">Reduced from $500, because room types, rates and taxes now sync from the PMS instead of being entered by hand. You kick it off with a one-page intake form the moment a new property signs. I configure it, verify it against StayNTouch, and turn it live.</div></div>
         </div>
       </div>
     </div>
 
     <div class="terms reveal">
-      <div class="tm"><h4>Payment terms</h4><p>Nothing is invoiced before the work it pays for. <b>$5,000</b> begins the build, <b>$3,750</b> falls due when the build is finished and your pilot property starts taking real leads, and <b>$3,750</b> when you have signed off on that pilot. The integration then runs on its own two: <b>$2,750</b> when API access is confirmed and the build begins, and <b>$2,750</b> when it is live and reconciled on Kinship. The monthly starts only once the core system is live across your properties, runs four months at launch support, and then steps down to ongoing management.</p></div>
+      <div class="tm"><h4>Payment terms</h4><p>Nothing is invoiced before the work it pays for. <b>$5,000</b> begins the build, <b>$3,750</b> falls due when the build is finished and your pilot property starts taking real leads, and <b>$3,750</b> when you have signed off on that pilot. The integration then runs on its own two: <b>$2,750</b> when API access is confirmed and the build begins, and <b>$2,750</b> when it is live and reconciled on Casa Sequoia. The monthly starts only once the core system is live across your properties, runs four months at launch support, and then steps down to ongoing management.</p></div>
       <div class="tm"><h4>Platform costs, paid by Imprint directly</h4><p>HighLevel at roughly $297 a month, owned by you, covering every property and every user. Small usage-based email and text costs. Standard processing fees on payments. No additional platform cost for the integration itself, and StayNTouch charges nothing for API access or certification, which is worth saying out loud given Event Temple wanted $2,000 a year for the same connection.</p></div>
       <div class="tm"><h4>Quoted separately when you're ready</h4><p>Push-based updates in place of the nightly run. The two Cloudbeds properties. Phase 2 planner operations and Phase 3 intelligence. Contract legal language and tax rates are supplied by Imprint; I configure them into the system.</p></div>
     </div>
@@ -1534,7 +1640,7 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
       <div class="nd"><div class="t">Answers to the setup questions</div><div class="s">The launch property list, countersigning, tax rates per property, and where deposits land. All twelve are below.</div></div>
       <div class="nd"><div class="t">Access to whoever runs each property website</div><div class="s">For installing the lead forms.</div></div>
       <div class="nd"><div class="t">Imprint banking details</div><div class="s">For the payment account.</div></div>
-      <div class="nd"><div class="t">Your time in September</div><div class="s">The working sessions where you run real leads through it before it goes live.</div></div>
+      <div class="nd"><div class="t">Your time during the pilot</div><div class="s">The working sessions where you run real leads through it before it goes live.</div></div>
     </div>
 
     <div class="reveal" style="margin-top:3.5rem">
@@ -1577,9 +1683,9 @@ footer a{color:var(--orange);text-decoration:none;border-bottom:1px solid rgba(2
     <div class="close-in reveal">
       <p class="eyebrow rev">The short version</p>
       <h2>Say yes and we start Monday</h2>
-      <p>On November 1 a lead from any of your properties lands in one place, gets acknowledged inside a minute, and moves through a board you can hand to somebody else. The proposal writes itself from your own rates. The contract chases its own signature. The deposit invoices itself and tells you when it clears.</p>
+      <p>On the day this goes live, a lead from any of your properties lands in one place, gets acknowledged inside a minute, and moves through a board you can hand to somebody else. The proposal writes itself from your own rates. The contract chases its own signature. The deposit invoices itself and tells you when it clears.</p>
       <p>What you get back is the part that was never really software: <strong>the hours you currently spend being the system.</strong></p>
-      <p>I have built this shape of thing before and I have told you in this document exactly where the platform falls short, because you are going to find out either way and I would rather you hear it from me in August.</p>
+      <p>I have built this shape of thing before and I have told you in this document exactly where the platform falls short, because you are going to find out either way and I would rather you hear it from me now.</p>
       <div class="sig">
         <div class="n">Shayne Champlin</div>
         <div class="e"><a href="mailto:shayne@shaynechamplin.com">shayne@shaynechamplin.com</a></div>
